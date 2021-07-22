@@ -1,4 +1,4 @@
-**Description:** A simple project to check my vocabulary. <p>&nbsp;</p>
+**Description:** A simple project to examine my vocabulary. <p>&nbsp;</p>
 
 **Example usage**: `python3 file_checker.py example_data/words.txt`
 
