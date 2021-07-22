@@ -1,0 +1,27 @@
+der Reißverschluss, zipper
+sleeve, der Ärmel
+dress, das Kleid
+blouse, die Bluse
+shirt, das Hemd
+skirt, der Rock
+tie, die Krawatte
+sock, die Socke
+boot, der Stiefel
+purse, die Handtasche
+belt, der Gürtel
+scarf, der Schal
+swimsuit, der Badeanzug
+necklace, die Halskette
+bracelet, das Armband
+glove, der Handschuh
+watch, die Armbanduhr
+glasses, die Brille
+man's suit, der Anzug
+woman's suit, das Kostüm
+sports jacket, das Sakko
+pocket, die Tasche
+underwear, die Unterwäsche
+pants, die Hose
+raincoat, der Regenmantel
+coat, der Mantel
+hat, der Hut

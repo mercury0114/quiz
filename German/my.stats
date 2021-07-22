@@ -1,0 +1,464 @@
+erheben, raise, verbs.txt, 6
+bracelet, das Armband, clothes.txt, 9
+glove, der Handschuh, clothes.txt, 9
+watch, die Armbanduhr, clothes.txt, 9
+glasses, die Brille, clothes.txt, 9
+man's suit, der Anzug, clothes.txt, 9
+woman's suit, das Kostüm, clothes.txt, 9
+sports jacket, das Sakko, clothes.txt, 9
+pocket, die Tasche, clothes.txt, 9
+pants, die Hose, clothes.txt, 9
+raincoat, der Regenmantel, clothes.txt, 9
+coat, der Mantel, clothes.txt, 9
+hat, der Hut, clothes.txt, 9
+wir haben es geschafft, we made it, Gespenst2013.txt, 9
+gewaltig, enormous, Gespenst2013.txt, 9
+die Truhe, chest, Gespenst2013.txt, 9
+der Dachboden, attic, Gespenst2013.txt, 9
+der Schornstein, chimney, Gespenst2013.txt, 9
+entsprechend, corresponding, Gespenst2013.txt, 9
+schießen, shoot, Gespenst2013.txt, 9
+wach, awake, Gespenst2013.txt, 9
+schnupfen haben, to have a cold, Gespenst2013.txt, 9
+verdrehen, twist, Gespenst2013.txt, 9
+der Zeiger, pointer, Gespenst2013.txt, 9
+das Geräusch, noise, Gespenst2013.txt, 9
+der Verwalter, manager, Gespenst2013.txt, 9
+verstecken, hide, Gespenst2013.txt, 9
+das tue ich nicht, I do not do that, Gespenst2013.txt, 9
+erschrecken, scare, Gespenst2013.txt, 9
+der Umzug, move, Gespenst2013.txt, 9
+verdächtig, suspicious, Gespenst2013.txt, 9
+gestatten, permit, Gespenst2013.txt, 9
+hinzufügen, add, maths.txt, 9
+der Bereich, area, maths.txt, 9
+die Überlegung, consideration, maths.txt, 9
+zufällig, random, maths.txt, 9
+der Fortschritt, progress, maths.txt, 9
+die Kante, edge, maths.txt, 9
+der Ablauf, procedure, maths.txt, 9
+die Abbildung, illustration, maths.txt, 9
+der Pfeil, arrow, maths.txt, 9
+die Anpassung, adjustment, maths.txt, 9
+die Ableitung, derivative, maths.txt, 9
+herkömmlich, conventional, maths.txt, 9
+schneiden, intersect, maths.txt, 9
+ermitteln, determine, maths.txt, 9
+geringer, less, maths.txt, 9
+die Bezeichnung, description, maths.txt, 9
+die Darstellung, representation, maths.txt, 9
+das Gleichgewicht, equilibrium, maths.txt, 9
+die Auszahlung, payoff, maths.txt, 9
+das Ergebnis, result, maths.txt, 9
+der Begriff, concept, maths.txt, 9
+die Zeile, row, maths.txt, 9
+die Spalte, column, maths.txt, 9
+das Teilgebiet, sub-area, maths.txt, 9
+übrigen, remaining, maths.txt, 9
+die Ansicht, opinion, chess.txt, 9
+unterstützen, support, chess.txt, 9
+die Sperre, barrier, chess.txt, 9
+absperren, seal off, chess.txt, 9
+der Fortschritt, progress, chess.txt, 9
+vertreiben, evict, chess.txt, 9
+die Beweglichkeit, mobility, chess.txt, 9
+vorstoßen, advance, chess.txt, 9
+der Umstand, circumstance, chess.txt, 9
+die Schutz, protection, chess.txt, 9
+scheitern, fail, chess.txt, 9
+die Drohung, threat, chess.txt, 9
+der Verteidiger, defender, chess.txt, 9
+verhindern, prevent, chess.txt, 9
+überzeugen, convince, chess.txt, 9
+die Empfehlung, recommendation, business.txt, 9
+der Antrag, request, business.txt, 9
+die Bewertung, assessment, business.txt, 9
+der Betrag, amount, business.txt, 9
+erhalten, receive, business.txt, 9
+das Unternehmen, company, business.txt, 9
+das Gehalt, income, business.txt, 9
+der Kunde, client, business.txt, 9
+der Arbeitgeber, employer, business.txt, 9
+der Arbeitnehmer, employee, business.txt, 9
+der Anzug, suit, business.txt, 9
+der Beruf, profession, business.txt, 9
+der Arbeiter, worker, business.txt, 9
+der Vertrag, contract, business.txt, 9
+der Auftrag, work order, business.txt, 9
+die Dienstleistung, service, business.txt, 9
+der Gewinn, profit, business.txt, 9
+der Verlust, loss, business.txt, 9
+der Umsatz, turnover, business.txt, 9
+der Wert, value, business.txt, 9
+die Bewerbung, job application, business.txt, 9
+der Lebenslauf, CV, business.txt, 9
+das Wachstum, growth, business.txt, 9
+die Nachfrage, demand, business.txt, 9
+verkaufen, sell, business.txt, 9
+verhandeln, negotiate, business.txt, 9
+der Kontostand, balance, business.txt, 9
+das Darlehen, loan, business.txt, 9
+setzen, bet, poker.txt, 9
+verweisen, refer, poker.txt, 9
+beruhen, be based, poker.txt, 9
+sich lohnen, be worth, poker.txt, 9
+verfügen, to have, poker.txt, 9
+das Anzeichen, sign, poker.txt, 9
+der Einsatz, bet, poker.txt, 9
+insbesondere, especially, poker.txt, 9
+der Umstand, fact, poker.txt, 9
+jeweils, each, poker.txt, 9
+vertraut, familiar, poker.txt, 9
+der Zufall, coincidence, poker.txt, 9
+das Gelingen, success, poker.txt, 9
+erzielen, achieve, poker.txt, 9
+der Begriff, concept, poker.txt, 9
+der Zweifel, doubt, poker.txt, 9
+die Gewissheit, certainty, poker.txt, 9
+der Leitfaden, guideline, poker.txt, 9
+anwenden, apply, poker.txt, 9
+ausgeglichen, balanced, poker.txt, 9
+erbracht, provided, poker.txt, 9
+mitgehen, go along, poker.txt, 9
+nachfolgenden, subsequent, poker.txt, 9
+der Einfluss, influence, poker.txt, 9
+unschlagbar, unbeatable, poker.txt, 9
+einzeln, individually, poker.txt, 9
+sonstiges, miscellaneous, adjectives2.txt, 9
+shredded, zerfetzt, adjectives2.txt, 9
+deep, tief, adjectives2.txt, 9
+hoarse, heiser, adjectives2.txt, 9
+concerned, besorgt, adjectives2.txt, 9
+stick out, abstehend, adjectives2.txt, 9
+perplexed, verblüfft, adjectives2.txt, 9
+verzweifelt, desperate, adjectives2.txt, 9
+consumed, verbraucht, adjectives2.txt, 9
+dutiful, pflichttreuer, adjectives2.txt, 9
+strange, merkwürdig, adjectives2.txt, 9
+spongy, schwammig, adjectives2.txt, 9
+faded, verblüht, adjectives2.txt, 9
+colorful, bunt, adjectives2.txt, 9
+smashed, zerschlagen, adjectives2.txt, 9
+zerrissen, torn, adjectives2.txt, 9
+worn, verschlissen, adjectives2.txt, 9
+sober, nüchtern, adjectives2.txt, 9
+repellent, abweisend, adjectives2.txt, 9
+confused, verwirrt, adjectives2.txt, 9
+honest, ehrlich, adjectives.txt, 9
+laid-back, entspannend, adjectives.txt, 9
+lazy, faul, adjectives.txt, 9
+low, niedrig, adjectives.txt, 9
+modest, bescheiden, adjectives.txt, 9
+perfect, vollkommen, adjectives.txt, 9
+pious, fromm, adjectives.txt, 9
+polite, höfflich, adjectives.txt, 9
+poor, arm, adjectives.txt, 9
+proud, stolz, adjectives.txt, 9
+reliable, zuverlässig, adjectives.txt, 9
+sensitive, empfindlich, adjectives.txt, 9
+shy, schüchtern, adjectives.txt, 9
+slim, schlank, adjectives.txt, 9
+strict, streng, adjectives.txt, 9
+stubborn, störrisch, adjectives.txt, 9
+weird, unheimlich, adjectives.txt, 9
+ewig, forever, adverbs.txt, 9
+vorhin, a little while ago, adverbs.txt, 9
+sogar, even, adverbs.txt, 9
+ungefähr, approximately, adverbs.txt, 9
+sonst, otherwise, adverbs.txt, 9
+doch, yet, adverbs.txt, 9
+oben, above, adverbs.txt, 9
+nun, now, adverbs.txt, 9
+weit, far, adverbs.txt, 9
+voran, in front, adverbs.txt, 9
+nirgends, nowhere, adverbs.txt, 9
+überall, everywhere, adverbs.txt, 9
+weg, away, adverbs.txt, 9
+nahe, near, adverbs.txt, 9
+gerade, right now, adverbs.txt, 9
+gleich, in a minute, adverbs.txt, 9
+ehemalig, former, adverbs.txt, 9
+eben, just now, adverbs.txt, 9
+damals, back then, adverbs.txt, 9
+zuletzt, in the end, adverbs.txt, 9
+zukünftig, in the future, adverbs.txt, 9
+bisher, so far, adverbs.txt, 9
+häufig, often, adverbs.txt, 9
+ab und zu, every once in a while, adverbs.txt, 9
+unregelmäßig, irregularly, adverbs.txt, 9
+stets, always, adverbs.txt, 9
+ständig, constantly, adverbs.txt, 9
+mehrmals, repeatedly, adverbs.txt, 9
+übermäßig, excessively, adverbs.txt, 9
+dauernd, prolonged, adverbs.txt, 9
+leidenschaftlich, passionately, adverbs.txt, 9
+unglaublich, incredibly, adverbs.txt, 9
+ungewöhnlich, unusually, adverbs.txt, 9
+fabelhaft, fabulously, adverbs.txt, 9
+herrlich, splendid, erotic.txt, 9
+die Latte, erected penis, erotic.txt, 9
+sich beugen vor, lean forward, erotic.txt, 9
+der Sattel, saddle, erotic.txt, 9
+die Eregung, excitement, erotic.txt, 9
+gierig, greedy, erotic.txt, 9
+die Ungeduld, impatience, erotic.txt, 9
+aufstöhnen, groan, erotic.txt, 9
+die Beine spreizen, spread the legs, erotic.txt, 9
+der Knebel, gag, erotic.txt, 9
+der Schlag, punch, erotic.txt, 9
+der Hintern, butt, erotic.txt, 9
+feucht, wet, erotic.txt, 9
+der Schoss, lap, erotic.txt, 9
+ahnen, suspect, erotic.txt, 9
+wichsen, jerk off, erotic.txt, 9
+die Halterlose, holders, erotic.txt, 9
+sich ergeben, surrender, erotic.txt, 9
+der Unterleib, abdomen, erotic.txt, 9
+bewegen, move, erotic.txt, 9
+stöhnen, moan, erotic.txt, 9
+abspritzen, cum, erotic.txt, 9
+der Schwanz, cock, erotic.txt, 9
+die Schamlippen, vulva lips, erotic.txt, 9
+die Möse, cunta, erotic.txt, 9
+schiefgehen, go wrong, erotic.txt, 9
+einen Steifen haben, to have an erection, erotic.txt, 9
+der Kitzler, klitoris, erotic.txt, 9
+das Geheimnis, secret, erotic.txt, 9
+sie streckte die Beine aus, she stretched out her legs, erotic.txt, 9
+die Wange, cheek, erotic.txt, 9
+zittern, tremble, erotic.txt, 9
+die Taille, waist, erotic.txt, 9
+der Hinter, butt, body.txt, 9
+der Schoss, lap, body.txt, 9
+die Stirn, forehead, body.txt, 9
+der Oberschenkel, thigh, body.txt, 9
+der Darm, gut, body.txt, 9
+der Knochen, bones, body.txt, 9
+die Ferse, heel, body.txt, 9
+der Körper, body, body.txt, 9
+das Kinn, chin, body.txt, 9
+der Mund, mouth, body.txt, 9
+die Zunge, tongue, body.txt, 9
+die Wange, cheek, body.txt, 9
+der Schnurrbart, mustache, body.txt, 9
+der Bauch, belly, body.txt, 9
+das Glied, penis, body.txt, 9
+der Hoden, testicle, body.txt, 9
+der Rücken, back, body.txt, 9
+die Hüfte, hip, body.txt, 9
+der Nagel, nail, body.txt, 9
+der Daumen, thumb, body.txt, 9
+der Zeh, toe, body.txt, 9
+das Gehirn, brain, body.txt, 9
+die Leber, liver, body.txt, 9
+die Milz, spleen, body.txt, 9
+der Magen, stomach, body.txt, 9
+die Niere, kidney, body.txt, 9
+überrascht, surprised, important.txt, 9
+einschätzen, assess, important.txt, 9
+schlagen, hit, important.txt, 9
+liefern, deliver, important.txt, 9
+conventional, herkömmlich, important.txt, 9
+prison, das Gefängnis, important.txt, 9
+reliable, zuverlässig, important.txt, 9
+excitement, die Aufregung, important.txt, 9
+convince, überzeugen, important.txt, 9
+business, das Geschäft, important.txt, 9
+scare, sich erschrecken, important.txt, 9
+support, unterstützen, important.txt, 9
+concern, sorgen, important.txt, 9
+intention, die Absicht, important.txt, 9
+provide, vermitteln, important.txt, 9
+adaptation, die Anpassung, important.txt, 9
+behaviour, das Verhalten, important.txt, 9
+die Mauer, wall, important.txt, 9
+ersetzen, replace, verbs.txt, 9
+schützen, protect, verbs.txt, 9
+schlagen, beat, verbs.txt, 9
+aufregen, excite, verbs.txt, 9
+verschwinden, disappear, verbs.txt, 9
+ahnen, suspect, verbs.txt, 9
+verhindern, prevent, verbs.txt, 9
+einrichten, set up, verbs.txt, 9
+auswählen, select, verbs.txt, 9
+fortführen, continue, verbs.txt, 9
+entsprechen, correspond, verbs.txt, 9
+bestehen, consist, verbs.txt, 9
+beinhalten, include, verbs.txt, 9
+verteidigen, defend, verbs.txt, 9
+angreifen, attack, verbs.txt, 9
+betrachten, consider, verbs.txt, 9
+überzeugen, convince, verbs.txt, 9
+übertragen, transmit, verbs.txt, 9
+übertreiben, exaggerate, verbs.txt, 9
+entfernen, remove, verbs.txt, 9
+reichen, be enough, verbs.txt, 9
+anstrengen, strain, verbs.txt, 9
+einfügen, insert, verbs.txt, 9
+versprechen, promise, verbs.txt, 9
+beurteilen, assess, verbs.txt, 9
+mitbekommen, notice, verbs.txt, 9
+überwachen, monitor, verbs.txt, 9
+zugreifen, access, verbs.txt, 9
+erteilen, grant, verbs.txt, 9
+erben, inherit, verbs.txt, 9
+abbrechen, abort, verbs.txt, 9
+verhandeln, negotiate, verbs.txt, 9
+verführen, seduce, verbs.txt, 9
+enttäuschen, disappoint, verbs.txt, 9
+abreißen, tear off, verbs.txt, 9
+vermeiden, avoid, verbs.txt, 9
+betrügen, deceive, verbs.txt, 9
+entführen, kidnap, verbs.txt, 9
+behandeln, handle, verbs.txt, 9
+verriegeln, lock, verbs.txt, 9
+sich begeistern, be enthusiastic, verbs.txt, 9
+schaffen, create, verbs.txt, 9
+betreiben, operate, verbs.txt, 9
+ergreifen, grasp, verbs.txt, 9
+ausliefern, deliver, verbs.txt, 9
+anpassen, adjust, verbs.txt, 9
+entdecken, discover, verbs.txt, 9
+versuchen, attempt, verbs.txt, 9
+shirt, das Hemd, clothes.txt, 10
+skirt, der Rock, clothes.txt, 10
+sock, die Socke, clothes.txt, 10
+belt, der Gürtel, clothes.txt, 10
+swimsuit, der Badeanzug, clothes.txt, 10
+steif, stiff, Gespenst2013.txt, 10
+mit Vergnügen, with pleasure, Gespenst2013.txt, 10
+der Wecker, alarm clock, Gespenst2013.txt, 10
+die Eiche, oak, Gespenst2013.txt, 10
+beschädigen, damage, Gespenst2013.txt, 10
+erzwungen, forced, chess.txt, 10
+die Absicht, intention, chess.txt, 10
+das Inserat, ad, business.txt, 10
+schieben, check, poker.txt, 10
+schreckhaft, scary, adjectives2.txt, 10
+unterhaltsam, entertaining, adjectives2.txt, 10
+ambitious, ehrgeizig, adjectives.txt, 10
+annoying, ärgerlich, adjectives.txt, 10
+cheerful, fröhlich, adjectives.txt, 10
+coward, feigling, adjectives.txt, 10
+cruel, grausam, adjectives.txt, 10
+easy, leicht, adjectives.txt, 10
+hard-working, fleißig, adjectives.txt, 10
+trotzdem, nevertheless, adverbs.txt, 10
+beziehungsweise, respectively, adverbs.txt, 10
+allerdings, however, adverbs.txt, 10
+eigentlich, actually, adverbs.txt, 10
+drüben, over there, adverbs.txt, 10
+zufällig, per chance, adverbs.txt, 10
+beinahe, nearly, adverbs.txt, 10
+die Anweisung, instruction, erotic.txt, 10
+die Schlampe, slut, erotic.txt, 10
+opportunity, die Gelegenheit, important.txt, 10
+besiegen, defeat, verbs.txt, 10
+blouse, die Bluse, clothes.txt, 11
+boot, der Stiefel, clothes.txt, 11
+purse, die Handtasche, clothes.txt, 11
+scarf, der Schal, clothes.txt, 11
+plaudern, chat, Gespenst2013.txt, 11
+berücksichtigen, consider, poker.txt, 11
+das Einsatzrund, betting round, poker.txt, 11
+aufreibend, stressful, adjectives2.txt, 11
+careless, unbesonnen, adjectives.txt, 11
+fake, unecht, adjectives.txt, 11
+neulich, recently, adverbs.txt, 11
+das Loch, hole, erotic.txt, 11
+die Augenbraue, eyebrow, body.txt, 11
+der Hals, neck, body.txt, 11
+der Ellbogen, elbow, body.txt, 11
+das Handgelenk, wrist, body.txt, 11
+guess, vermuten, important.txt, 11
+verwenden, use, verbs.txt, 11
+verraten, betray, verbs.txt, 11
+anlaufen, start up, verbs.txt, 11
+sleeve, der Ärmel, clothes.txt, 12
+die Burg, castle, Gespenst2013.txt, 12
+das Regal, shelf, Gespenst2013.txt, 12
+die Umwandlung, promotion, chess.txt, 12
+die Zinsen, interest, business.txt, 12
+angestellt, employed, adjectives2.txt, 12
+unangenehm, unpleasant, adjectives2.txt, 12
+soft, weich, adjectives2.txt, 12
+verdreht, twisted, adjectives2.txt, 12
+fat, fett, adjectives.txt, 12
+spüren, feel, erotic.txt, 12
+das Ausschnitt, cutout, erotic.txt, 12
+die Scheide, vagina, body.txt, 12
+annehmen, accept, verbs.txt, 12
+tie, die Krawatte, clothes.txt, 13
+underwear, die Unterwäsche, clothes.txt, 13
+unangenehm, unpleasant, Gespenst2013.txt, 13
+der Spielverlauf, game course, maths.txt, 13
+liegen, lie, poker.txt, 13
+zusammensetzen, put together, poker.txt, 13
+erwarten, expect, poker.txt, 13
+nearsighted, kurzsichtig, adjectives2.txt, 13
+beautiful, schön, adjectives.txt, 13
+crazy, verrückt, adjectives.txt, 13
+schon, already, adverbs.txt, 13
+ziemlich, quite, adverbs.txt, 13
+geil, horny, erotic.txt, 13
+das Höschen, panties, erotic.txt, 13
+der Bart, beard, body.txt, 13
+vertrauen, trust, verbs.txt, 13
+überleiten, transfer, verbs.txt, 13
+der Drucker, printer, business.txt, 14
+der Termin, appointment, business.txt, 14
+holy, heilig, adjectives.txt, 14
+generous, großzügig, adjectives.txt, 14
+ugly, hässlich, adjectives.txt, 14
+regelmäßig, regularly, adverbs.txt, 14
+das Abenteuer, adventure, erotic.txt, 14
+berühren, touch, erotic.txt, 14
+das Ohr, ear, body.txt, 14
+der Brustkorb, chest, body.txt, 14
+die Bestellung, purchase order, business.txt, 15
+conceited, eingebildet, adjectives.txt, 15
+der Reißverschluss, zipper, erotic.txt, 15
+document, die Unterlage, important.txt, 15
+widersprechen, contradict, verbs.txt, 15
+die Bedingung, condition, maths.txt, 16
+die Währung, currency, business.txt, 16
+die Schuld, debt, business.txt, 16
+die Einleitung, introduction, poker.txt, 16
+das Geschick, skill, poker.txt, 16
+frequent, häufig, adjectives.txt, 16
+weak, schwach, adjectives.txt, 16
+der Zufall, accident, erotic.txt, 16
+das Gesicht, face, body.txt, 16
+wiederverwenden, reuse, verbs.txt, 16
+dress, das Kleid, clothes.txt, 17
+das Verhalten, behaviour, maths.txt, 17
+der Wettbewerb, competition, maths.txt, 17
+der Igel, hedgehog, chess.txt, 17
+die Steuer, tax, business.txt, 17
+das Bargeld, cash, business.txt, 17
+somit, consequently, poker.txt, 17
+wesentlich, essential, poker.txt, 17
+gelegentlich, occasionally, poker.txt, 17
+das Spielverhalten, gaming behaviour, poker.txt, 17
+dark, dunkel, adjectives.txt, 17
+conventional, herkömmlich, adjectives.txt, 17
+unpleasant, unangenehm, adjectives.txt, 17
+die Schamp, vulva, erotic.txt, 17
+der Po, bottom, erotic.txt, 17
+herunterladen, download, verbs.txt, 17
+fürchten, fear, verbs.txt, 17
+der Reißverschluss, zipper, clothes.txt, 18
+necklace, die Halskette, clothes.txt, 18
+der Rand, edge, chess.txt, 18
+die Eigenschaft, property, business.txt, 18
+einschätzen, assess, poker.txt, 18
+bezeichnen, describe, poker.txt, 18
+out of tune, verstimmt, adjectives2.txt, 18
+surprised, überrascht, adjectives.txt, 18
+bad, schlecht, adjectives.txt, 18
+brave, tapfer, adjectives.txt, 18
+certain, bestimmt, adjectives.txt, 18
+difficult, schwierig, adjectives.txt, 18
+die Haut, skin, body.txt, 18
+postpone, verschieben, important.txt, 18
+erwähnen, mention, verbs.txt, 18

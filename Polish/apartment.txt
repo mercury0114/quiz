@@ -1,0 +1,29 @@
+wszystkie, all
+mieszkanie, flat
+nieruchomość, real estate
+dom, house
+działka, plot of land
+pokój, room
+magazyn, warehouse
+pozostały, remaining
+wynajem, rent
+sprzedać, sell
+zamiana, exchange
+suterena, basement
+poddasze, attic
+wybierz, choose
+zabudowa, building
+kamienica, apartment house
+dom wolnostojący, detached house
+dom szeregowiec, semi-detached house
+pokój, room
+od, from
+do, to
+cena, price
+liczba, number
+poziom, level
+umeblowane, furnished
+najnowszy, the latest
+najtańszy, the cheapest
+najdroższy, the most expensive
+w pełni wyposażony, fully equipped

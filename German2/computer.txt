@@ -1,0 +1,38 @@
+die Benachtrichtigung, notification
+einrichten, set up
+select, auswählen
+attachment, der Anhang
+cancel, abbrechen
+caps lock, die Feststelltaste
+check email, die E-Mail abrufen
+connection, die Verbindung
+cut, ausschneiden
+cut and paste, ausschneiden und einfügen
+download, herunterladen
+draft, der Entwurf
+drag, ziehen auf
+inbox, der Eingang
+outbox, der Ausgang
+enter, eingeben
+error message, die Fehlermeldung
+enter key, die Eingabetaste
+folder, der Ordner
+instruction, die Anweisung
+memory, der Speicher
+key, die Taste
+keyboard, die Tastatur
+load, laden
+message, die Meldung
+OS, das Betriebssystem
+power button, die Netztaste
+settings, die Einstellungen
+printer, der Drucker
+screen, der Bildschirm
+scroll, blättern
+shiftkey, die Umschalttaste
+shortcut, das Schnellverfahren
+tool, das Werkzeug
+transfer, verschieben
+turn on, einschalten
+last update, die letzte Änderung
+user, der Anwender
