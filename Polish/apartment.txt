@@ -1,30 +1,41 @@
-kup, buy
-wszystkie, all
-mieszkanie, flat
-nieruchomość, real estate
-dom, house
-działka, plot of land
-pokój, room
-magazyn, warehouse
-pozostały, remaining
-wynajem, rent
-sprzedać, sell
-zamiana, exchange
-suterena, basement
-poddasze, attic
-wybierz, choose
-zabudowa, building
-kamienica, apartment house
-dom wolnostojący, detached house
-dom szeregowiec, semi-detached house
-pokój, room
-od, from
-do, to
+bez, without
 cena, price
+czynsz, rent
+dom, house
+dom szeregowiec, semi-detached house
+dom wolnostojący, detached house
+do, to
+działka, plot of land
+kamienica, apartment house
+kuchnia, kitchen
+łazienka, bathroom
 liczba, number
+lodówka, fridge
+magazyn, warehouse
+między, between
+mieszkanie, flat
+najmu, lease
+nieruchomość, real estate
+od, from
+odkurzacz, vacuum cleaner
+okno, window
+piekarnik, oven
+piętro, floor
+poddasze, attic
+pokój, room
 poziom, level
+pozostały, remaining
+pralka, washing machine
+przy, at
+przystanek autobusowy, bus stop
+sprzęt, equipment
+suterena, basement
 umeblowane, furnished
-najnowszy, the latest
-najtańszy, the cheapest
-najdroższy, the most expensive
+wiadomość, message
+winda, elevator
 w pełni wyposażony, fully equipped
+wszystkie, all
+zabudowa, building
+zamiana, exchange
+żelzko, iron
+z, with
