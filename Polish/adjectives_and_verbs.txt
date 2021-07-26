@@ -12,7 +12,6 @@ napisz, write
 oddzielny, separate
 otwarty, open
 przytulny, cozy
-przytulny, cozy
 sprzedać, sell
 stary, old
 szukaj, search
