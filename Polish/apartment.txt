@@ -1,6 +1,6 @@
 bez, without
 cena, price
-czynsz, rent
+czynsz, rental payment
 dom, house
 dom szeregowiec, semi-detached house
 dom wolnostojący, detached house
@@ -18,7 +18,9 @@ najmu, lease
 nieruchomość, real estate
 od, from
 odkurzacz, vacuum cleaner
+ogłoszenie, announcement
 okno, window
+opłata, fee
 piekarnik, oven
 piętro, floor
 poddasze, attic
@@ -35,6 +37,7 @@ wiadomość, message
 winda, elevator
 w pełni wyposażony, fully equipped
 wszystkie, all
+wyróżniony, featured
 zabudowa, building
 zamiana, exchange
 żelzko, iron

@@ -4,6 +4,7 @@ doskonały, perfect
 duży, big
 jasny, bright
 kup, buy
+ładna, pretty
 najdroższy, the most expensive
 najnowszy, the latest
 najtańszy, the cheapest
@@ -16,5 +17,6 @@ sprzedać, sell
 stary, old
 szukaj, search
 wybierz, choose
-wynajem, to rent
+wynająć, to rent
 zabytkowym, historic
+zadbana, tidy
