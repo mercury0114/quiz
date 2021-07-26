@@ -2,20 +2,21 @@ czysto, clean
 dodatkowy, additional
 doskonały, perfect
 duży, big
+głowny, main
+inny, other
 jasny, bright
-kup, buy
 ładna, pretty
 najdroższy, the most expensive
 najnowszy, the latest
 najtańszy, the cheapest
-napisz, write
 oddzielny, separate
+ostatni, the last
 otwarty, open
+pozostały, remaining
 przytulny, cozy
-sprzedać, sell
 stary, old
-szukaj, search
-wybierz, choose
-wynająć, to rent
+wszystkie, all
 zabytkowym, historic
 zadbana, tidy
+zadowolona, satisfied
+zielony, green

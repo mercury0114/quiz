@@ -1,12 +1,11 @@
-bez, without
 cena, price
 czynsz, rental payment
 dom, house
 dom szeregowiec, semi-detached house
 dom wolnostojący, detached house
-do, to
 działka, plot of land
 kamienica, apartment house
+klatka schodowa, staircase
 kuchnia, kitchen
 łazienka, bathroom
 liczba, number
@@ -16,29 +15,27 @@ między, between
 mieszkanie, flat
 najmu, lease
 nieruchomość, real estate
-od, from
 odkurzacz, vacuum cleaner
 ogłoszenie, announcement
 okno, window
+opis, description
 opłata, fee
 piekarnik, oven
 piętro, floor
 poddasze, attic
 pokój, room
 poziom, level
-pozostały, remaining
+prąd, current
 pralka, washing machine
-przy, at
 przystanek autobusowy, bus stop
+sąsiad, neighbour
+schody, stairs
 sprzęt, equipment
 suterena, basement
 umeblowane, furnished
-wiadomość, message
 winda, elevator
 w pełni wyposażony, fully equipped
-wszystkie, all
 wyróżniony, featured
 zabudowa, building
 zamiana, exchange
 żelzko, iron
-z, with
