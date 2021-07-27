@@ -15,6 +15,7 @@ otwarty, open
 pozostały, remaining
 przytulny, cozy
 stary, old
+wyróżniony, featured
 wszystkie, all
 zabytkowym, historic
 zadbana, tidy

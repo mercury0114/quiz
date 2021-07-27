@@ -1,6 +1,7 @@
 bez, without
 do, to
 kup, buy
+między, between
 napisz, write
 od, from
 od zaraz, immediately

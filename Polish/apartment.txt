@@ -11,7 +11,6 @@ kuchnia, kitchen
 liczba, number
 lodówka, fridge
 magazyn, warehouse
-między, between
 mieszkanie, flat
 najmu, lease
 nieruchomość, real estate
@@ -35,7 +34,6 @@ suterena, basement
 umeblowane, furnished
 winda, elevator
 w pełni wyposażony, fully equipped
-wyróżniony, featured
 zabudowa, building
 zamiana, exchange
 żelzko, iron
