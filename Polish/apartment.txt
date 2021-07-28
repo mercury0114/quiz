@@ -10,9 +10,11 @@ kuchnia, kitchen
 łazienka, bathroom
 liczba, number
 lodówka, fridge
+łóżko
 magazyn, warehouse
 mieszkanie, flat
 najmu, lease
+naczynie, dish
 nieruchomość, real estate
 odkurzacz, vacuum cleaner
 ogłoszenie, announcement
@@ -30,10 +32,13 @@ przystanek autobusowy, bus stop
 sąsiad, neighbour
 schody, stairs
 sprzęt, equipment
+sypialna, bedroom
 suterena, basement
+sztućce, cutlery
 umeblowane, furnished
 winda, elevator
 w pełni wyposażony, fully equipped
 zabudowa, building
 zamiana, exchange
 żelzko, iron
+zmywarka, dishwasher

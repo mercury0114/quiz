@@ -13,7 +13,11 @@ oddzielny, separate
 ostatni, the last
 otwarty, open
 pozostały, remaining
+przedostatni, penultimate
+przestronny, spacious
 przytulny, cozy
+smutny, sad
+słoneczny, sunny
 stary, old
 wyróżniony, featured
 wszystkie, all
