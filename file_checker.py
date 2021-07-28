@@ -9,9 +9,7 @@ ADD_COUNT = 2
 def CloseTo(user_input, answer):
 	if len(user_input) != len(answer):
 		return False
-	s = sum(user_input[i] != answer[i] for i in range(len(answer)))
-	print(s)
-	return s < 2
+	return sum(user_input[i] != answer[i] for i in range(len(answer))) < 2
 
 if (len(argv) > 3 or len(argv) == 1):
     print("usage:")
