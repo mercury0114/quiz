@@ -1,0 +1,19 @@
+klatka schodowa, staircase
+kuchnia, kitchen
+łazienka, bathroom
+lodówka, fridge
+łóżko, bed
+naczynie, dish
+odkurzacz, vacuum cleaner
+okno, window
+piekarnik, oven
+pralka, washing machine
+prysznic, shower
+schody, stairs
+sprzęt, equipment
+sypialna, bedroom
+sztućce, cutlery
+ubranie, clothes
+żelzko, iron
+zlew, sink
+zmywarka, dishwasher

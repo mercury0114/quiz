@@ -5,40 +5,29 @@ dom szeregowiec, semi-detached house
 dom wolnostojący, detached house
 działka, plot of land
 kamienica, apartment house
-klatka schodowa, staircase
-kuchnia, kitchen
-łazienka, bathroom
 liczba, number
-lodówka, fridge
-łóżko
 magazyn, warehouse
+miesiąc, month
 mieszkanie, flat
 najmu, lease
-naczynie, dish
 nieruchomość, real estate
-odkurzacz, vacuum cleaner
 ogłoszenie, announcement
-okno, window
 opis, description
 opłata, fee
-piekarnik, oven
+otoczenie, surroundings
 piętro, floor
 poddasze, attic
 pokój, room
 poziom, level
 prąd, current
-pralka, washing machine
 przystanek autobusowy, bus stop
 sąsiad, neighbour
-schody, stairs
-sprzęt, equipment
-sypialna, bedroom
+sklep, shop
 suterena, basement
-sztućce, cutlery
 umeblowane, furnished
+użytkownik, user
 winda, elevator
+widokiem, view
 w pełni wyposażony, fully equipped
 zabudowa, building
 zamiana, exchange
-żelzko, iron
-zmywarka, dishwasher
