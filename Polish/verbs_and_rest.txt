@@ -1,5 +1,8 @@
 bez, without
+czećż, hello
 do, to
+do widzenia, goodbye
+dzień dobry, good morning
 kup, buy
 między, between
 miłego dnia, have a nice day
