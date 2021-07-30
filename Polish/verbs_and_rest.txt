@@ -22,8 +22,11 @@ przy, at
 rozumiem, got it
 sprzedać, sell
 szukaj, search
+tu, here
 tuż przy, next to
-wiadomości, message
+teraz, now
+w, in
+wiadomość, message
 więc, thus
 wybierz, choose
 wynająć, to rent

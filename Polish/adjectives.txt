@@ -19,7 +19,7 @@ przytulny, cozy
 smutny, sad
 słoneczny, sunny
 stary, old
-wyróżniony, featured
+wyróżniony, distinguished
 wszystkie, all
 zabytkowym, historic
 zadbana, tidy
