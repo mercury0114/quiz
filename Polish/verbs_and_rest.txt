@@ -1,19 +1,25 @@
 bez, without
-czećż, hello
+czy to jest Agnieszka, is this Agnieszka
+cześć, hello
 do, to
 do widzenia, goodbye
+dobranoc, good night
 dzień dobry, good morning
+dziś, today
+dziękuję, thanks
 kup, buy
 między, between
 miłego dnia, have a nice day
 napisz, write
+nie, no
 od, from
 od zaraz, immediately
 oraz, and
-padąc, rain
+padać, rain
 pokaż, show
 południe, noon
 przy, at
+rozumiem, got it
 sprzedać, sell
 szukaj, search
 tuż przy, next to

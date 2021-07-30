@@ -7,9 +7,9 @@ from utils import HINT, QUIT
 ADD_COUNT = 2
 
 def CloseTo(user_input, answer):
-	if len(user_input) != len(answer):
-		return False
-	return sum(user_input[i] != answer[i] for i in range(len(answer))) < 2
+	l = min(len(user_input), len(answer))
+	return sum(user_input[i] != answer[i] for i in range(l)) + \
+		abs(len(user_input) - len(answer)) < 3
 
 if (len(argv) > 3 or len(argv) == 1):
     print("usage:")
@@ -32,13 +32,14 @@ while (word_pairs):
 	question, answer = SelectQuestionAnswer(word_pairs[index], column_argument)
 	print(question, "?")
 	user_input = input()
-	close_to_answer = CloseTo(user_input, answer)
-	while user_input not in [HINT, QUIT] and not close_to_answer:
-		print("Wrong answer, try again")
-		mistakes_count += 1
-		word_pairs += ADD_COUNT * [word_pairs[index]]
+	while user_input not in [HINT, QUIT, answer]:
+		if CloseTo(user_input, answer):
+			print("Close, try again")
+		else:
+			print("Wrong, try again")
+			mistakes_count += 1
+			word_pairs += ADD_COUNT * [word_pairs[index]]
 		user_input = input()
-		close_to_answer = CloseTo(user_input, answer);
 	if user_input == QUIT:
 		print("Early exit, {} mistakes so far".format(mistakes_count))
 		exit()
@@ -46,10 +47,8 @@ while (word_pairs):
 		print(answer)
 		mistakes_count += 1
 		word_pairs += ADD_COUNT * [word_pairs[index]]
-	if close_to_answer:
+	if user_input == answer:
 		word_pairs.pop(index)
-		if user_input != answer:
-			print("Close, correct answer is {}".format(answer))
 		print("{} questions remain\n".format(len(word_pairs)))
     
 print("You completed in {} seconds".format(int(time() - start_time)))
