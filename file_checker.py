@@ -1,15 +1,10 @@
 from time import time
 from sys import argv
 from random import randint
-from utils import ReadPairsFromFile, SelectQuestionAnswer
+from utils import CloseTo, ReadPairsFromFile, SelectQuestionAnswer
 from utils import HINT, QUIT
 
 ADD_COUNT = 2
-
-def CloseTo(user_input, answer):
-	l = min(len(user_input), len(answer))
-	return sum(user_input[i] != answer[i] for i in range(l)) + \
-		abs(len(user_input) - len(answer)) < 3
 
 if (len(argv) > 3 or len(argv) == 1):
     print("usage:")

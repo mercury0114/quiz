@@ -3,6 +3,11 @@ from random import choice
 HINT = "h"
 QUIT = "q"
 
+def CloseTo(user_input, answer):
+	l = min(len(user_input), len(answer))
+	return sum(user_input[i] != answer[i] for i in range(l)) + \
+		abs(len(user_input) - len(answer)) < 3
+
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument
     return word_pair[question_index], word_pair[not question_index]
