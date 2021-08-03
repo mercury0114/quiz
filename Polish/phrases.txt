@@ -1,0 +1,12 @@
+cześć, bye
+dobranoc, good night
+dobry wieczór, good evening
+śpij dobrze, sleep well
+jestem w sklepie, I am at the shop
+pójdę do sklepu, I will go to the shop
+idę do sklepu, I am going to the shop
+teraz idę do sklepu, now I am going to the shop
+wróciłem ze sklepu, I came back from the shop
+witam, welcome
+pozdrawiam, regards
+mogę oddzwonić póżniej, can I call you back later

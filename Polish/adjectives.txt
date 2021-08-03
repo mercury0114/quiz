@@ -1,6 +1,7 @@
 czysto, clean
 dodatkowy, additional
 doskonały, perfect
+dostępne, available
 duży, big
 głowny, main
 inny, other
@@ -19,6 +20,7 @@ przytulny, cozy
 smutny, sad
 słoneczny, sunny
 stary, old
+ważny, important
 wyróżniony, distinguished
 wszystkie, all
 zabytkowym, historic

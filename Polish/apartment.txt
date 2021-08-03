@@ -25,7 +25,6 @@ sąsiad, neighbour
 sklep, shop
 suterena, basement
 umeblowane, furnished
-użytkownik, user
 winda, elevator
 widokiem, view
 w pełni wyposażony, fully equipped
