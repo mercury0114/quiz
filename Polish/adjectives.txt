@@ -3,10 +3,10 @@ dodatkowy, additional
 doskonały, perfect
 dostępne, available
 duży, big
-głowny, main
+główny, main
 inny, other
 jasny, bright
-ładna, pretty
+ładny, pretty
 najdroższy, the most expensive
 najnowszy, the latest
 najtańszy, the cheapest

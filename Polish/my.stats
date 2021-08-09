@@ -1,12 +1,20 @@
-zadowolona, satisfied, adjectives.txt, 9
+data wygaśnięcie, expiry date, internet.txt, 7
+potężny, powerful, adjectives.txt, 8
+ważny, important, adjectives.txt, 8
+zadowolona, satisfied, adjectives.txt, 8
+pójdę do sklepu, I will go to the shop, phrases.txt, 8
+dostępne, available, adjectives.txt, 9
+teraz idę do sklepu, now I am going to the shop, phrases.txt, 9
+dowiedz się więcej, find out more, internet.txt, 9
+imię, name, internet.txt, 9
+odśwież, refresh, internet.txt, 9
+spośob płatnosci, payment method, internet.txt, 9
 sztućce, cutlery, household.txt, 10
+dobranoc, good night, phrases.txt, 10
+bezpiecznie, safely, internet.txt, 10
+ustawienia, settings, internet.txt, 10
+zaplać, pay, internet.txt, 10
 miesiąc, month, apartment.txt, 11
-teraz, now, verbs_and_rest.txt, 11
-opłata, fee, apartment.txt, 12
-klatka schodowa, staircase, household.txt, 12
-łóżko, bed, household.txt, 12
-naczynie, dish, household.txt, 12
-prysznic, shower, household.txt, 12
 inny, other, adjectives.txt, 12
 ładna, pretty, adjectives.txt, 12
 ostatni, the last, adjectives.txt, 12
@@ -17,35 +25,63 @@ stary, old, adjectives.txt, 12
 wyróżniony, distinguished, adjectives.txt, 12
 wszystkie, all, adjectives.txt, 12
 zabytkowym, historic, adjectives.txt, 12
+klatka schodowa, staircase, household.txt, 12
+łóżko, bed, household.txt, 12
+naczynie, dish, household.txt, 12
+prysznic, shower, household.txt, 12
 dziś, today, verbs_and_rest.txt, 12
 wynająć, to rent, verbs_and_rest.txt, 12
 wyślij, send, verbs_and_rest.txt, 12
-ogłoszenie, announcement, apartment.txt, 13
-otoczenie, surroundings, apartment.txt, 13
-poddasze, attic, apartment.txt, 13
+dobry wieczór, good evening, phrases.txt, 12
+wróciłem ze sklepu, I came back from the shop, phrases.txt, 12
+dane, data, internet.txt, 12
+opłata, fee, apartment.txt, 12
+pozostały, remaining, adjectives.txt, 13
 odkurzacz, vacuum cleaner, household.txt, 13
 okno, window, household.txt, 13
 sprzęt, equipment, household.txt, 13
-pozostały, remaining, adjectives.txt, 13
 miłego dnia, have a nice day, verbs_and_rest.txt, 13
 oraz, and, verbs_and_rest.txt, 13
 w, in, verbs_and_rest.txt, 13
+cześć, bye, phrases.txt, 13
+idę do sklepu, I am going to the shop, phrases.txt, 13
+doładuj swoje konto, top up your account, internet.txt, 13
+przeglądaj, browse, internet.txt, 13
+przesyłka, delivery, internet.txt, 13
+stan konta, account balance, internet.txt, 13
+użytkownik, user, internet.txt, 13
+ogłoszenie, announcement, apartment.txt, 13
+otoczenie, surroundings, apartment.txt, 13
+poddasze, attic, apartment.txt, 13
+głowny, main, adjectives.txt, 14
+najdroższy, the most expensive, adjectives.txt, 14
+zadbana, tidy, adjectives.txt, 14
+schody, stairs, household.txt, 14
+sypialna, bedroom, household.txt, 14
+zmywarka, dishwasher, household.txt, 14
+kup, buy, verbs_and_rest.txt, 14
+nie, no, verbs_and_rest.txt, 14
+tuż przy, next to, verbs_and_rest.txt, 14
+wybierz, choose, verbs_and_rest.txt, 14
+jestem w sklepie, I am at the shop, phrases.txt, 14
+mogę oddzwonić póżniej, can I call you back later, phrases.txt, 14
 cena, price, apartment.txt, 14
 dom, house, apartment.txt, 14
 liczba, number, apartment.txt, 14
 magazyn, warehouse, apartment.txt, 14
 poziom, level, apartment.txt, 14
 sklep, shop, apartment.txt, 14
-schody, stairs, household.txt, 14
-sypialna, bedroom, household.txt, 14
-zmywarka, dishwasher, household.txt, 14
-głowny, main, adjectives.txt, 14
-najdroższy, the most expensive, adjectives.txt, 14
-zadbana, tidy, adjectives.txt, 14
-kup, buy, verbs_and_rest.txt, 14
-nie, no, verbs_and_rest.txt, 14
-tuż przy, next to, verbs_and_rest.txt, 14
-wybierz, choose, verbs_and_rest.txt, 14
+otwarty, open, adjectives.txt, 15
+zielony, green, adjectives.txt, 15
+kuchnia, kitchen, household.txt, 15
+żelzko, iron, household.txt, 15
+dzień dobry, good morning, verbs_and_rest.txt, 15
+padać, rain, verbs_and_rest.txt, 15
+tu, here, verbs_and_rest.txt, 15
+wiadomość, message, verbs_and_rest.txt, 15
+dzień dobry, good morning, phrases.txt, 15
+witam, welcome, phrases.txt, 15
+oznacz, mark, internet.txt, 15
 czynsz, rental payment, apartment.txt, 15
 dom wolnostojący, detached house, apartment.txt, 15
 kamienica, apartment house, apartment.txt, 15
@@ -54,48 +90,42 @@ przystanek autobusowy, bus stop, apartment.txt, 15
 widokiem, view, apartment.txt, 15
 zabudowa, building, apartment.txt, 15
 zamiana, exchange, apartment.txt, 15
-kuchnia, kitchen, household.txt, 15
-żelzko, iron, household.txt, 15
-otwarty, open, adjectives.txt, 15
-zielony, green, adjectives.txt, 15
-dzień dobry, good morning, verbs_and_rest.txt, 15
-padać, rain, verbs_and_rest.txt, 15
-tu, here, verbs_and_rest.txt, 15
-wiadomość, message, verbs_and_rest.txt, 15
-dom szeregowiec, semi-detached house, apartment.txt, 16
-mieszkanie, flat, apartment.txt, 16
-opis, description, apartment.txt, 16
-suterena, basement, apartment.txt, 16
-w pełni wyposażony, fully equipped, apartment.txt, 16
-zlew, sink, household.txt, 16
 najnowszy, the latest, adjectives.txt, 16
+zlew, sink, household.txt, 16
 do widzenia, goodbye, verbs_and_rest.txt, 16
 między, between, verbs_and_rest.txt, 16
 południe, noon, verbs_and_rest.txt, 16
 przy, at, verbs_and_rest.txt, 16
 sprzedać, sell, verbs_and_rest.txt, 16
+teraz, now, verbs_and_rest.txt, 16
 więc, thus, verbs_and_rest.txt, 16
-prąd, current, apartment.txt, 17
-umeblowane, furnished, apartment.txt, 17
-użytkownik, user, apartment.txt, 17
-winda, elevator, apartment.txt, 17
-piekarnik, oven, household.txt, 17
+śpij dobrze, sleep well, phrases.txt, 16
+pozdrawiam, regards, phrases.txt, 16
+płatność, payment, internet.txt, 16
+strona, page, internet.txt, 16
+dom szeregowiec, semi-detached house, apartment.txt, 16
+mieszkanie, flat, apartment.txt, 16
+opis, description, apartment.txt, 16
+suterena, basement, apartment.txt, 16
+w pełni wyposażony, fully equipped, apartment.txt, 16
 jasny, bright, adjectives.txt, 17
 smutny, sad, adjectives.txt, 17
+piekarnik, oven, household.txt, 17
 bez, without, verbs_and_rest.txt, 17
 cześć, hello, verbs_and_rest.txt, 17
-działka, plot of land, apartment.txt, 18
-najmu, lease, apartment.txt, 18
-nieruchomość, real estate, apartment.txt, 18
-sąsiad, neighbour, apartment.txt, 18
-łazienka, bathroom, household.txt, 18
-pralka, washing machine, household.txt, 18
+nazwisko, surname, internet.txt, 17
+przelew, transfer, internet.txt, 17
+prąd, current, apartment.txt, 17
+umeblowane, furnished, apartment.txt, 17
+winda, elevator, apartment.txt, 17
 czysto, clean, adjectives.txt, 18
 dodatkowy, additional, adjectives.txt, 18
 doskonały, perfect, adjectives.txt, 18
 duży, big, adjectives.txt, 18
 najtańszy, the cheapest, adjectives.txt, 18
 oddzielny, separate, adjectives.txt, 18
+łazienka, bathroom, household.txt, 18
+pralka, washing machine, household.txt, 18
 do, to, verbs_and_rest.txt, 18
 dobranoc, good night, verbs_and_rest.txt, 18
 dziękuję, thanks, verbs_and_rest.txt, 18
@@ -104,11 +134,16 @@ od, from, verbs_and_rest.txt, 18
 od zaraz, immediately, verbs_and_rest.txt, 18
 pokaż, show, verbs_and_rest.txt, 18
 znajduje się, is located, verbs_and_rest.txt, 18
+zachowaj, keep, internet.txt, 18
+działka, plot of land, apartment.txt, 18
+najmu, lease, apartment.txt, 18
+nieruchomość, real estate, apartment.txt, 18
+sąsiad, neighbour, apartment.txt, 18
 przedostatni, penultimate, adjectives.txt, 20
 czy to jest Agnieszka, is this Agnieszka, verbs_and_rest.txt, 20
 z, with, verbs_and_rest.txt, 20
 ubranie, clothes, household.txt, 21
 szukaj, search, verbs_and_rest.txt, 21
-pokój, room, apartment.txt, 22
 rozumiem, got it, verbs_and_rest.txt, 22
+pokój, room, apartment.txt, 22
 lodówka, fridge, household.txt, 23
