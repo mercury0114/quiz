@@ -1,0 +1,14 @@
+jeść, to eat
+ja jem, I am eating
+ty jesz, you are eating
+on je, he is eating
+ona je, she is eating
+ono je, it is eating
+my jemy, we are eating
+oni jedzą, they are eating
+lubić, to like
+ja lubię, I like
+ty lubisz, you like
+on lubi, he likes
+my lubimy, we like
+oni lubią, they like

@@ -3,8 +3,7 @@ czy to jest Agnieszka, is this Agnieszka
 cześć, hello
 do, to
 do widzenia, goodbye
-dobranoc, good night
-dzień dobry, good morning
+dopiero, only
 dziś, today
 dziękuję, thanks
 kup, buy
