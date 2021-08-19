@@ -1,0 +1,15 @@
+sandwich, kanapka
+food, jedzenie
+ice cream, lód
+pork, wieprzowina
+cucumber, orórek
+taste, smakować
+salt, sól
+spice, przyprawa
+hungry, głodny
+sweet, słodki
+spicy, pikanty
+salty, słony
+bitter, gorzki
+pickled, kiszony
+thirsty, spragniony

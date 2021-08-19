@@ -1,3 +1,4 @@
+zezwalaj, allow
 dotknij, tap
 wyczyść, clear
 powiadomień, notifications
@@ -11,3 +12,7 @@ utwórz, create
 osoby, people
 szachy, chess
 pobierz, download
+przekaż dalej, forward to
+prawda, right
+plik, file
+główna ulica, main street
