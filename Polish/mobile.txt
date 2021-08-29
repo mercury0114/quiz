@@ -1,3 +1,5 @@
+dostępna, available
+kosz, bin
 zezwalaj, allow
 dotknij, tap
 wyczyść, clear
@@ -15,4 +17,6 @@ pobierz, download
 przekaż dalej, forward to
 prawda, right
 plik, file
-główna ulica, main street
+odpowiedż, reply
+dostarczona, delivered
+ustawienia, settings

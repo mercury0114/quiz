@@ -1,3 +1,5 @@
+nadzieja, hope
+skupiać, focus
 niestety, unfortunately
 znakomity, excellent
 położoną, located
@@ -21,3 +23,5 @@ urządzone, decorated
 wystarczy mi, enough for me
 obejrzeć, see
 rozwiązywać, solve
+posiłek, meal
+randka, date
