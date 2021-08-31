@@ -5,7 +5,6 @@ to co dla mnie jest ważne, what is important for me
 ale to ciekawe, but it is interesting
 będę pisała, I will write
 cześć, bye
-co słychać, what's up
 dobranoc, good night
 dobry wieczór, good evening
 dzień dobry, good morning
@@ -22,7 +21,4 @@ wróciłem ze sklepu, I came back from the shop
 witam, welcome
 pozdrawiam, regards
 opowiem ci póżniej, I will tell you later
-mogę oddzwonić póżniej, can I call you back later
 zgadzam się, I agree
-jak minął dzień, how was your day
-jak mija dzień, how is your day going

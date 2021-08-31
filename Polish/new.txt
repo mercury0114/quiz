@@ -16,12 +16,9 @@ okolica, area
 połnoc, north
 południe, south
 pieszo, on foot
-najbliższej, the closest
-bardzo, very
 całkowicie, completely
 urządzone, decorated
 wystarczy mi, enough for me
 obejrzeć, see
 rozwiązywać, solve
 posiłek, meal
-randka, date

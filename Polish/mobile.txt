@@ -1,22 +1,13 @@
 dostępna, available
 kosz, bin
 zezwalaj, allow
-dotknij, tap
 wyczyść, clear
 powiadomień, notifications
-7 lat temu, 7 years ago
-na żywo, live
-rok temu, a year ago
-wiecęj, more
-wersja robocza, draft
 udostępnij, share
 utwórz, create
 osoby, people
-szachy, chess
-pobierz, download
-przekaż dalej, forward to
-prawda, right
 plik, file
 odpowiedż, reply
 dostarczona, delivered
 ustawienia, settings
+urządzenia, device
