@@ -1,3 +1,4 @@
+buraki, beetroot
 sandwich, kanapka
 food, jedzenie
 ice cream, lód
@@ -13,3 +14,11 @@ salty, słony
 bitter, gorzki
 pickled, kiszony
 thirsty, spragniony
+chicken, kurczak
+sausage, kiełbasa
+ciasteczki, cookies
+biscuit, ciastko
+marchewki, carrots
+wołowina, beef
+wieprzowina, pork
+kapusta, cabbage

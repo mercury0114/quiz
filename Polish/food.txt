@@ -9,20 +9,18 @@ honey, miód
 egg, jajko
 rice, ryż
 fruit, owoce
-vegetables, warzywo
+vegetables, warzywa
 potato, ziemniak
 meat, mięso
-sausage, kiełbasa
-chicken, kurczak
 fish, ryba
 soup, zupa
 salad, sałakta
-biscuit, ciastko
 water, woda
 juice, sok
 beer, piwo
 milk, mleko
 tea, herbata
 coffee, kawa
+kawa czarna, black coffee
 still water, woda niegazowana
 soda water, woda gazowana
