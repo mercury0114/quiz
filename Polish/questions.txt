@@ -4,8 +4,9 @@ proszę powtórzyc, please repeat
 czy mogę spróbować, can I try
 jaki rozmiar, what size
 proszę odejść, please go away
-czy mogę zadzwonić pózniej, can I call you later
-czy mogę odpowiedzieć pózniej, can I answer later
+czy mogę zadzwonić póżniej, can I call you later
+czy mogę odpowiedzieć póżniej, can I answer later
+odpowiem póżniej, I'll answer later
 czekać, wait
 co słychać, what's up
 jak minął dzień, how was your day
@@ -15,4 +16,5 @@ czy mogę oddzwonić póżniej, can I call you back later
 co dziecko pije, what does a child drink
 jaką pijesz kawę, what coffee do you drink
 czy to tu, is it here
+czy możesz pokazać swoje, can you show your
 czy mógłby pan napisać, could you please write
