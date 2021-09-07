@@ -1,9 +1,9 @@
-buraki, beetroot
+beetroot, buraki
 sandwich, kanapka
 food, jedzenie
 ice cream, lód
 pork, wieprzowina
-cucumber, orórek
+cucumber, ogórek
 taste, smakować
 salt, sól
 spice, przyprawa
@@ -16,9 +16,10 @@ pickled, kiszony
 thirsty, spragniony
 chicken, kurczak
 sausage, kiełbasa
-ciasteczki, cookies
+cookies, ciasteczki
 biscuit, ciastko
-marchewki, carrots
-wołowina, beef
-wieprzowina, pork
-kapusta, cabbage
+carrots, marchewki
+beef, wołowina
+pork, wieprzowina
+cabbage, kapusta
+orange, pomarańcza

@@ -1,8 +1,8 @@
 pierogi z mięsem, dumplings with meat
 biały ser, white cheese
 czosnek, garlic
-gzyby, mushrooms
-cebula, oniona
+grzyby, mushrooms
+cebula, onion
 boczek, bacon
 fasolki, beans
 napoje zimne, cold drinks
@@ -10,9 +10,8 @@ sok pomidorowy, tomato juice
 kwas chlebowy, kvass
 oliwa z oliwek, olive oil
 zupa dnia, daily soup
-placki ziemniaczane, potato pancaces
+placki ziemniaczane, potato pancakes
 pierogi, dumplings
 pierogi z kapustą i grzybami, dumplings with cabbage and mushrooms
 surówka, salad
-sałata, lettuce
 ogórek kiszony, pickled cucumber
