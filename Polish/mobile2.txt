@@ -1,0 +1,7 @@
+służbowy, business
+przełącz, switch
+wyłączona, disabled
+włączona, enabled
+czacie, chat
+ostatnio, recently
+zdjęcie, photo

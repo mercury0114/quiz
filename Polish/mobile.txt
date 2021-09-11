@@ -1,3 +1,4 @@
+spwardż aktywność, check activity
 dostępna, available
 kosz, bin
 zezwalaj, allow
@@ -11,3 +12,7 @@ odpowiedż, reply
 dostarczona, delivered
 ustawienia, settings
 urządzenia, device
+oznacz, mark
+hasło, password
+osoba, person
+że ta osoba, that this person

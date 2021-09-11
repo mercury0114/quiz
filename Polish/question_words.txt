@@ -8,3 +8,4 @@ czemu, why
 czyja, whose
 kogo, whom
 kto, who
+ile, how many

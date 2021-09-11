@@ -7,7 +7,7 @@ from utils import CloseTo, SelectQuestionAnswer, ReadOpen, ReadPairsFromFile, Wr
 from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
-INITIAL_SCORE = 9
+INITIAL_SCORE = 5
 
 # Each triple is (language1_phrase, language2_phrase, file_name)
 def ReadTriplesFromFolder(folder):

@@ -1,40 +1,45 @@
-butter, masło, food.txt, 7
-data wygaśnięcie, expiry date, internet.txt, 7
-potężny, powerful, adjectives.txt, 8
-ważny, important, adjectives.txt, 8
-zadowolona, satisfied, adjectives.txt, 8
-pójdę do sklepu, I will go to the shop, phrases.txt, 8
-dostępne, available, adjectives.txt, 9
-główny, main, adjectives.txt, 9
-ładny, pretty, adjectives.txt, 9
-dopiero, only, verbs_and_rest.txt, 9
-Tuesday, wtorek, time.txt, 9
-Wednesday, środa, time.txt, 9
-Thursday, czwartek, time.txt, 9
-Friday, piątek, time.txt, 9
-Saturday, sobota, time.txt, 9
-Sunday, niedziela, time.txt, 9
-morning, ranek, time.txt, 9
-noon, południe, time.txt, 9
-afternoon, popołudnie, time.txt, 9
-evening, wieczór, time.txt, 9
-night, noc, time.txt, 9
-midnight, pólnoc, time.txt, 9
-January, styczeń, time.txt, 9
-February, luty, time.txt, 9
-March, marzec, time.txt, 9
-April, kwiecień, time.txt, 9
-June, czerwiec, time.txt, 9
-July, lipiec, time.txt, 9
-August, sierpień, time.txt, 9
-September, wrzesień, time.txt, 9
-October, pażdziernik, time.txt, 9
-November, listopad, time.txt, 9
-December, grudzień, time.txt, 9
-spring, wiosna, time.txt, 9
-summer, lato, time.txt, 9
-autumn, jesień, time.txt, 9
-winter, zima, time.txt, 9
+jestem ciekawa, I am curious, new.txt, 3
+jak się masz, how are you, new.txt, 3
+czy tutaj mieszkasz, do you live here, new.txt, 3
+ile masz lat, how old are you, new.txt, 3
+który, which, new.txt, 3
+wyłącznie, only, new.txt, 3
+z, from, new.txt, 3
+ze sobą, together, new.txt, 3
+jaki, what, new.txt, 4
+kogo, whom, new.txt, 4
+dla, for, new.txt, 4
+zatem, therefore, new.txt, 4
+już, already, new.txt, 4
+baw się dobrze, enjoy, new.txt, 5
+jak masz na imię, what is your name, new.txt, 5
+gdzie, where, new.txt, 5
+czyja, whose, new.txt, 5
+kto, who, new.txt, 5
+ile, how many, new.txt, 5
+wtedy po angielsku, then in English, new.txt, 5
+godzina, hour, new.txt, 5
+miesiąc, month, new.txt, 5
+rok, year, new.txt, 5
+2 lata temu, 2 years ago, new.txt, 5
+wczora, yesterday, new.txt, 5
+jutro, tomorrow, new.txt, 5
+jak długo, how long, new.txt, 6
+czy, is, new.txt, 6
+kiedy, when, new.txt, 6
+lub, or, new.txt, 6
+w niedzielę, on Sunday, new.txt, 6
+czemu, why, new.txt, 8
+służbowy, business, mobile2.txt, 9
+przełącz, switch, mobile2.txt, 9
+wyłączona, disabled, mobile2.txt, 9
+włączona, enabled, mobile2.txt, 9
+czacie, chat, mobile2.txt, 9
+ostatnio, recently, mobile2.txt, 9
+zdjęcie, photo, mobile2.txt, 9
+nadzieja, hope, new.txt, 9
+skupiać, focus, new.txt, 9
+niestety, unfortunately, new.txt, 9
 znakomity, excellent, new.txt, 9
 położoną, located, new.txt, 9
 jednocześnie, simultaneously, new.txt, 9
@@ -45,240 +50,412 @@ jeżyk, language, new.txt, 9
 należy do, belongs to, new.txt, 9
 potrzebny, needful, new.txt, 9
 usytuowany, situated, new.txt, 9
-bezpieczna, secure, new.txt, 9
 okolica, area, new.txt, 9
-połnoc, north, new.txt, 9
-południe, south, new.txt, 9
-pieszo, on foot, new.txt, 9
-najbliższej, the closest, new.txt, 9
-bardzo, very, new.txt, 9
 całkowicie, completely, new.txt, 9
 urządzone, decorated, new.txt, 9
 wystarczy mi, enough for me, new.txt, 9
 obejrzeć, see, new.txt, 9
 rozwiązywać, solve, new.txt, 9
+jak, how, new.txt, 9
+chcę się poprawić, I want to improve, phrases.txt, 9
+kurczę, damn, phrases.txt, 9
+uczestnicy randki, dating participants, phrases.txt, 9
 to co dla mnie jest ważne, what is important for me, phrases.txt, 9
 ale to ciekawe, but it is interesting, phrases.txt, 9
 będę pisała, I will write, phrases.txt, 9
-co słychać, what's up, phrases.txt, 9
+cześć, bye, phrases.txt, 9
+dobranoc, good night, phrases.txt, 9
+dobry wieczór, good evening, phrases.txt, 9
+dzień dobry, good morning, phrases.txt, 9
+śpij dobrze, sleep well, phrases.txt, 9
 ja też nie, neither do I, phrases.txt, 9
+jestem w sklepie, I am at the shop, phrases.txt, 9
 nauczyłem się, I have learnt, phrases.txt, 9
 nie mam żadnego pojęcia, I have no idea, phrases.txt, 9
+pójdę do sklepu, I will go to the shop, phrases.txt, 9
+idę do sklepu, I am going to the shop, phrases.txt, 9
 idę do kawiarni, I am going to the cafe, phrases.txt, 9
 teraz idę do sklepu, now I am going to the shop, phrases.txt, 9
+wróciłem ze sklepu, I came back from the shop, phrases.txt, 9
+witam, welcome, phrases.txt, 9
+pozdrawiam, regards, phrases.txt, 9
 opowiem ci póżniej, I will tell you later, phrases.txt, 9
 zgadzam się, I agree, phrases.txt, 9
-jak minął dzień, how was your day, phrases.txt, 9
-jak mija dzień, how is your day going, phrases.txt, 9
-eat, jeść, food.txt, 9
-food, jedzenie, food.txt, 9
-drink, pić, food.txt, 9
-hungry, głodny, food.txt, 9
-thirsty, spragniony, food.txt, 9
-cook, gotować, food.txt, 9
-taste, smakować, food.txt, 9
-pickled, kiszony, food.txt, 9
-dinner, kolacja, food.txt, 9
-breakfast, śniadanie, food.txt, 9
-sweet, słodki, food.txt, 9
-spicy, pikanty, food.txt, 9
-salty, słony, food.txt, 9
-bitter, gorzki, food.txt, 9
-bread, chleb, food.txt, 9
-honey, miód, food.txt, 9
-egg, jajko, food.txt, 9
-rice, ryż, food.txt, 9
-salt, sól, food.txt, 9
-spice, przyprawa, food.txt, 9
-fruit, owoce, food.txt, 9
-vegetables, warzywo, food.txt, 9
-potato, ziemniak, food.txt, 9
-cucumber, orórek, food.txt, 9
-meat, mięso, food.txt, 9
-sausage, kiełbasa, food.txt, 9
-chicken, kurczak, food.txt, 9
-fish, ryba, food.txt, 9
-pork, wieprzowina, food.txt, 9
-soup, zupa, food.txt, 9
-salad, sałakta, food.txt, 9
-biscuit, ciastko, food.txt, 9
-icecream, lód, food.txt, 9
-juice, sok, food.txt, 9
+pierogi z mięsem, dumplings with meat, food3.txt, 9
+biały ser, white cheese, food3.txt, 9
+czosnek, garlic, food3.txt, 9
+grzyby, mushrooms, food3.txt, 9
+cebula, onion, food3.txt, 9
+boczek, bacon, food3.txt, 9
+fasolki, beans, food3.txt, 9
+napoje zimne, cold drinks, food3.txt, 9
+sok pomidorowy, tomato juice, food3.txt, 9
+kwas chlebowy, kvass, food3.txt, 9
+oliwa z oliwek, olive oil, food3.txt, 9
+zupa dnia, daily soup, food3.txt, 9
+placki ziemniaczane, potato pancakes, food3.txt, 9
+pierogi, dumplings, food3.txt, 9
+pierogi z kapustą i grzybami, dumplings with cabbage and mushrooms, food3.txt, 9
+surówka, salad, food3.txt, 9
+ogórek kiszony, pickled cucumber, food3.txt, 9
+bez, without, verbs_and_rest.txt, 9
+czy to jest Agnieszka, is this Agnieszka, verbs_and_rest.txt, 9
+cześć, hello, verbs_and_rest.txt, 9
+do, to, verbs_and_rest.txt, 9
+do widzenia, goodbye, verbs_and_rest.txt, 9
+dopiero, only, verbs_and_rest.txt, 9
+dziś, today, verbs_and_rest.txt, 9
+dziękuję, thanks, verbs_and_rest.txt, 9
+kup, buy, verbs_and_rest.txt, 9
+między, between, verbs_and_rest.txt, 9
+miłego dnia, have a nice day, verbs_and_rest.txt, 9
+napisz, write, verbs_and_rest.txt, 9
+nie, no, verbs_and_rest.txt, 9
+od, from, verbs_and_rest.txt, 9
+od zaraz, immediately, verbs_and_rest.txt, 9
+oraz, and, verbs_and_rest.txt, 9
+padać, rain, verbs_and_rest.txt, 9
+pokaż, show, verbs_and_rest.txt, 9
+południe, noon, verbs_and_rest.txt, 9
+przy, at, verbs_and_rest.txt, 9
+rozumiem, got it, verbs_and_rest.txt, 9
+sprzedać, sell, verbs_and_rest.txt, 9
+szukaj, search, verbs_and_rest.txt, 9
+tu, here, verbs_and_rest.txt, 9
+tuż przy, next to, verbs_and_rest.txt, 9
+teraz, now, verbs_and_rest.txt, 9
+w, in, verbs_and_rest.txt, 9
+wiadomość, message, verbs_and_rest.txt, 9
+więc, thus, verbs_and_rest.txt, 9
+wybierz, choose, verbs_and_rest.txt, 9
+wynająć, to rent, verbs_and_rest.txt, 9
+wyślij, send, verbs_and_rest.txt, 9
+znajduje się, is located, verbs_and_rest.txt, 9
+z, with, verbs_and_rest.txt, 9
 beer, piwo, food.txt, 9
-milk, mleko, food.txt, 9
-tea, herbata, food.txt, 9
+bread, chleb, food.txt, 9
+breakfast, śniadanie, food.txt, 9
+butter, masło, food.txt, 9
 coffee, kawa, food.txt, 9
-still water, woda niegazowana, food.txt, 9
+cook, gotować, food.txt, 9
+dinner, kolacja, food.txt, 9
+drink, pić, food.txt, 9
+eat, jeść, food.txt, 9
+egg, jajko, food.txt, 9
+fish, ryba, food.txt, 9
+fruit, owoce, food.txt, 9
+honey, miód, food.txt, 9
+juice, sok, food.txt, 9
+kawa czarna, black coffee, food.txt, 9
+meat, mięso, food.txt, 9
+milk, mleko, food.txt, 9
+lunch, obiad, food.txt, 9
+potato, ziemniak, food.txt, 9
+rice, ryż, food.txt, 9
+lettuce, sałata, food.txt, 9
 soda water, woda gazowana, food.txt, 9
-dotknij, tap, mobile.txt, 9
+soup, zupa, food.txt, 9
+still water, woda niegazowana, food.txt, 9
+tea, herbata, food.txt, 9
+vegetables, warzywa, food.txt, 9
+water, woda, food.txt, 9
+beetroot, buraki, food2.txt, 9
+sandwich, kanapka, food2.txt, 9
+food, jedzenie, food2.txt, 9
+ice cream, lód, food2.txt, 9
+pork, wieprzowina, food2.txt, 9
+cucumber, ogórek, food2.txt, 9
+taste, smakować, food2.txt, 9
+salt, sól, food2.txt, 9
+spice, przyprawa, food2.txt, 9
+hungry, głodny, food2.txt, 9
+sweet, słodki, food2.txt, 9
+spicy, pikanty, food2.txt, 9
+salty, słony, food2.txt, 9
+bitter, gorzki, food2.txt, 9
+pickled, kiszony, food2.txt, 9
+thirsty, spragniony, food2.txt, 9
+chicken, kurczak, food2.txt, 9
+sausage, kiełbasa, food2.txt, 9
+cookies, ciasteczki, food2.txt, 9
+biscuit, ciastko, food2.txt, 9
+carrots, marchewki, food2.txt, 9
+beef, wołowina, food2.txt, 9
+cabbage, kapusta, food2.txt, 9
+orange, pomarańcza, food2.txt, 9
+być, to be, be_have.txt, 9
+ja jestem, I am, be_have.txt, 9
+ty jesteś, you are, be_have.txt, 9
+on jest, he is, be_have.txt, 9
+ona jest, she is, be_have.txt, 9
+ono jest, it is, be_have.txt, 9
+my jesteśmy, we are, be_have.txt, 9
+oni są, they are, be_have.txt, 9
+ja będę, I will, be_have.txt, 9
+ty będziesz, you will, be_have.txt, 9
+on będzie, he will, be_have.txt, 9
+my będziemy, we will, be_have.txt, 9
+oni będą, they will, be_have.txt, 9
+ja mam, I have, be_have.txt, 9
+ty masz, you have, be_have.txt, 9
+on ma, he has, be_have.txt, 9
+my mamy, we have, be_have.txt, 9
+oni mają, they have, be_have.txt, 9
+jeść, to eat, eat_like.txt, 9
+ja jem, I am eating, eat_like.txt, 9
+ty jesz, you are eating, eat_like.txt, 9
+on je, he is eating, eat_like.txt, 9
+ona je, she is eating, eat_like.txt, 9
+ono je, it is eating, eat_like.txt, 9
+my jemy, we are eating, eat_like.txt, 9
+oni jedzą, they are eating, eat_like.txt, 9
+lubić, to like, eat_like.txt, 9
+ja lubię, I like, eat_like.txt, 9
+ty lubisz, you like, eat_like.txt, 9
+on lubi, he likes, eat_like.txt, 9
+my lubimy, we like, eat_like.txt, 9
+oni lubią, they like, eat_like.txt, 9
+mówić, to speak, speak_drink_write.txt, 9
+ja mówię, I speak, speak_drink_write.txt, 9
+ja będę mówić, I will speak, speak_drink_write.txt, 9
+ty mówisz, you speak, speak_drink_write.txt, 9
+pić, to drink, speak_drink_write.txt, 9
+ja piję, I drink, speak_drink_write.txt, 9
+ja będę pić, I will drink, speak_drink_write.txt, 9
+ty pijesz, you drink, speak_drink_write.txt, 9
+ty będziesz pić, you will drink, speak_drink_write.txt, 9
+pisać, to write, speak_drink_write.txt, 9
+ja piszę, I am writing, speak_drink_write.txt, 9
+spwardż aktywność, check activity, mobile.txt, 9
+dostępna, available, mobile.txt, 9
+kosz, bin, mobile.txt, 9
+zezwalaj, allow, mobile.txt, 9
 wyczyść, clear, mobile.txt, 9
 powiadomień, notifications, mobile.txt, 9
-7 lat temu, 7 years ago, mobile.txt, 9
-na żywo, live, mobile.txt, 9
-rok temu, a year ago, mobile.txt, 9
-wiecęj, more, mobile.txt, 9
-wersja robocza, draft, mobile.txt, 9
 udostępnij, share, mobile.txt, 9
 utwórz, create, mobile.txt, 9
-szachy, chess, mobile.txt, 9
-pobierz, download, mobile.txt, 9
+osoby, people, mobile.txt, 9
+plik, file, mobile.txt, 9
+dostarczona, delivered, mobile.txt, 9
+ustawienia, settings, mobile.txt, 9
+urządzenia, device, mobile.txt, 9
+oznacz, mark, mobile.txt, 9
+hasło, password, mobile.txt, 9
+osoba, person, mobile.txt, 9
+że ta osoba, that this person, mobile.txt, 9
+wyłącznie, only, prepositions.txt, 9
+dla, for, prepositions.txt, 9
+lub, or, prepositions.txt, 9
+z, from, prepositions.txt, 9
+w niedzielę, on Sunday, prepositions.txt, 9
+ze sobą, together, prepositions.txt, 9
+zatem, therefore, prepositions.txt, 9
+wtedy po angielsku, then in English, prepositions.txt, 9
+już, already, prepositions.txt, 9
+ile, how many, prepositions.txt, 9
+godzina, hour, time.txt, 9
+miesiąc, month, time.txt, 9
+rok, year, time.txt, 9
+2 lata temu, 2 years ago, time.txt, 9
+wczora, yesterday, time.txt, 9
+jutro, tomorrow, time.txt, 9
+czysto, clean, adjectives.txt, 9
+dodatkowy, additional, adjectives.txt, 9
+doskonały, perfect, adjectives.txt, 9
+dostępne, available, adjectives.txt, 9
+duży, big, adjectives.txt, 9
+główny, main, adjectives.txt, 9
+inny, other, adjectives.txt, 9
+jasny, bright, adjectives.txt, 9
+ładny, pretty, adjectives.txt, 9
+najbliższej, the closest, adjectives.txt, 9
+najdroższy, the most expensive, adjectives.txt, 9
+najnowszy, the latest, adjectives.txt, 9
+najtańszy, the cheapest, adjectives.txt, 9
+oddzielny, separate, adjectives.txt, 9
+ostatni, the last, adjectives.txt, 9
+otwarty, open, adjectives.txt, 9
+potężny, powerful, adjectives.txt, 9
+pozostały, remaining, adjectives.txt, 9
+przedostatni, penultimate, adjectives.txt, 9
+przestronny, spacious, adjectives.txt, 9
+przytulny, cozy, adjectives.txt, 9
+smutny, sad, adjectives.txt, 9
+słoneczny, sunny, adjectives.txt, 9
+stary, old, adjectives.txt, 9
+ważny, important, adjectives.txt, 9
+wyróżniony, distinguished, adjectives.txt, 9
+wszystkie, all, adjectives.txt, 9
+zabytkowym, historic, adjectives.txt, 9
+zadbana, tidy, adjectives.txt, 9
+zadowolona, satisfied, adjectives.txt, 9
+zielony, green, adjectives.txt, 9
+baw się dobrze, enjoy, phrases2.txt, 9
+jestem ciekawa, I am curious, phrases2.txt, 9
+jak masz na imię, what is your name, phrases2.txt, 9
+jak się masz, how are you, phrases2.txt, 9
+czy tutaj mieszkasz, do you live here, phrases2.txt, 9
+jak długo, how long, phrases2.txt, 9
+ile masz lat, how old are you, phrases2.txt, 9
+czy, is, question_words.txt, 9
+który, which, question_words.txt, 9
+jaki, what, question_words.txt, 9
+gdzie, where, question_words.txt, 9
+jak, how, question_words.txt, 9
+kiedy, when, question_words.txt, 9
+czemu, why, question_words.txt, 9
+czyja, whose, question_words.txt, 9
+kogo, whom, question_words.txt, 9
+kto, who, question_words.txt, 9
+ile, how many, question_words.txt, 9
+bezpiecznie, safely, internet.txt, 9
+dane, data, internet.txt, 9
+data wygaśnięcie, expiry date, internet.txt, 9
+doładuj swoje konto, top up your account, internet.txt, 9
 dowiedz się więcej, find out more, internet.txt, 9
 imię, name, internet.txt, 9
+nazwisko, surname, internet.txt, 9
 odśwież, refresh, internet.txt, 9
+oznacz, mark, internet.txt, 9
+płatność, payment, internet.txt, 9
+przeglądaj, browse, internet.txt, 9
+przelew, transfer, internet.txt, 9
+przesyłka, delivery, internet.txt, 9
 spośob płatnosci, payment method, internet.txt, 9
-być, to be, grammar.txt, 9
-ja jestem, I am, grammar.txt, 9
-on jest, he is, grammar.txt, 9
-ona jest, she is, grammar.txt, 9
-ono jest, it is, grammar.txt, 9
-my jesteśmy, we are, grammar.txt, 9
-oni są, they are, grammar.txt, 9
-ja będę, I will, grammar.txt, 9
-ty będziesz, you will, grammar.txt, 9
-on będzie, he will, grammar.txt, 9
-my będziemy, we will, grammar.txt, 9
-oni będą, they will, grammar.txt, 9
-ja mam, I have, grammar.txt, 9
-ty masz, you have, grammar.txt, 9
-on ma, he has, grammar.txt, 9
-my mamy, we have, grammar.txt, 9
-oni mają, they have, grammar.txt, 9
-sztućce, cutlery, household.txt, 10
-dobranoc, good night, phrases.txt, 10
-osoby, people, mobile.txt, 10
-bezpiecznie, safely, internet.txt, 10
-ustawienia, settings, internet.txt, 10
-zaplać, pay, internet.txt, 10
-miesiąc, month, apartment.txt, 11
-inny, other, adjectives.txt, 12
-ostatni, the last, adjectives.txt, 12
-przestronny, spacious, adjectives.txt, 12
-przytulny, cozy, adjectives.txt, 12
-słoneczny, sunny, adjectives.txt, 12
-stary, old, adjectives.txt, 12
-wyróżniony, distinguished, adjectives.txt, 12
-wszystkie, all, adjectives.txt, 12
-zabytkowym, historic, adjectives.txt, 12
-klatka schodowa, staircase, household.txt, 12
-łóżko, bed, household.txt, 12
-naczynie, dish, household.txt, 12
-prysznic, shower, household.txt, 12
-dziś, today, verbs_and_rest.txt, 12
-wynająć, to rent, verbs_and_rest.txt, 12
-wyślij, send, verbs_and_rest.txt, 12
-May, maj, time.txt, 12
-dobry wieczór, good evening, phrases.txt, 12
-wróciłem ze sklepu, I came back from the shop, phrases.txt, 12
-dane, data, internet.txt, 12
-opłata, fee, apartment.txt, 12
-pozostały, remaining, adjectives.txt, 13
-odkurzacz, vacuum cleaner, household.txt, 13
-okno, window, household.txt, 13
-sprzęt, equipment, household.txt, 13
-miłego dnia, have a nice day, verbs_and_rest.txt, 13
-oraz, and, verbs_and_rest.txt, 13
-w, in, verbs_and_rest.txt, 13
-cześć, bye, phrases.txt, 13
-idę do sklepu, I am going to the shop, phrases.txt, 13
-doładuj swoje konto, top up your account, internet.txt, 13
-przeglądaj, browse, internet.txt, 13
-przesyłka, delivery, internet.txt, 13
-stan konta, account balance, internet.txt, 13
-użytkownik, user, internet.txt, 13
-ogłoszenie, announcement, apartment.txt, 13
-otoczenie, surroundings, apartment.txt, 13
-poddasze, attic, apartment.txt, 13
-najdroższy, the most expensive, adjectives.txt, 14
-zadbana, tidy, adjectives.txt, 14
-schody, stairs, household.txt, 14
-sypialna, bedroom, household.txt, 14
-zmywarka, dishwasher, household.txt, 14
-kup, buy, verbs_and_rest.txt, 14
-nie, no, verbs_and_rest.txt, 14
-tuż przy, next to, verbs_and_rest.txt, 14
-wybierz, choose, verbs_and_rest.txt, 14
-jestem w sklepie, I am at the shop, phrases.txt, 14
-mogę oddzwonić póżniej, can I call you back later, phrases.txt, 14
-cena, price, apartment.txt, 14
-dom, house, apartment.txt, 14
-liczba, number, apartment.txt, 14
-magazyn, warehouse, apartment.txt, 14
-poziom, level, apartment.txt, 14
-sklep, shop, apartment.txt, 14
-otwarty, open, adjectives.txt, 15
-zielony, green, adjectives.txt, 15
-kuchnia, kitchen, household.txt, 15
-żelzko, iron, household.txt, 15
-padać, rain, verbs_and_rest.txt, 15
-tu, here, verbs_and_rest.txt, 15
-wiadomość, message, verbs_and_rest.txt, 15
-dzień dobry, good morning, phrases.txt, 15
-witam, welcome, phrases.txt, 15
-oznacz, mark, internet.txt, 15
-czynsz, rental payment, apartment.txt, 15
-dom wolnostojący, detached house, apartment.txt, 15
-kamienica, apartment house, apartment.txt, 15
-piętro, floor, apartment.txt, 15
-przystanek autobusowy, bus stop, apartment.txt, 15
-widokiem, view, apartment.txt, 15
-zabudowa, building, apartment.txt, 15
-zamiana, exchange, apartment.txt, 15
-najnowszy, the latest, adjectives.txt, 16
-zlew, sink, household.txt, 16
-do widzenia, goodbye, verbs_and_rest.txt, 16
-między, between, verbs_and_rest.txt, 16
-południe, noon, verbs_and_rest.txt, 16
-przy, at, verbs_and_rest.txt, 16
-sprzedać, sell, verbs_and_rest.txt, 16
-teraz, now, verbs_and_rest.txt, 16
-więc, thus, verbs_and_rest.txt, 16
-śpij dobrze, sleep well, phrases.txt, 16
-pozdrawiam, regards, phrases.txt, 16
-water, woda, food.txt, 16
-płatność, payment, internet.txt, 16
-strona, page, internet.txt, 16
-dom szeregowiec, semi-detached house, apartment.txt, 16
-mieszkanie, flat, apartment.txt, 16
-opis, description, apartment.txt, 16
-suterena, basement, apartment.txt, 16
-w pełni wyposażony, fully equipped, apartment.txt, 16
-ty jesteś, you are, grammar.txt, 16
-jasny, bright, adjectives.txt, 17
-smutny, sad, adjectives.txt, 17
-piekarnik, oven, household.txt, 17
-bez, without, verbs_and_rest.txt, 17
-cześć, hello, verbs_and_rest.txt, 17
-nazwisko, surname, internet.txt, 17
-przelew, transfer, internet.txt, 17
-prąd, current, apartment.txt, 17
-umeblowane, furnished, apartment.txt, 17
-winda, elevator, apartment.txt, 17
-czysto, clean, adjectives.txt, 18
-dodatkowy, additional, adjectives.txt, 18
-doskonały, perfect, adjectives.txt, 18
-duży, big, adjectives.txt, 18
-najtańszy, the cheapest, adjectives.txt, 18
-oddzielny, separate, adjectives.txt, 18
-łazienka, bathroom, household.txt, 18
-pralka, washing machine, household.txt, 18
-do, to, verbs_and_rest.txt, 18
-dziękuję, thanks, verbs_and_rest.txt, 18
-napisz, write, verbs_and_rest.txt, 18
-od, from, verbs_and_rest.txt, 18
-od zaraz, immediately, verbs_and_rest.txt, 18
-pokaż, show, verbs_and_rest.txt, 18
-znajduje się, is located, verbs_and_rest.txt, 18
-Monday, poniedziałek, time.txt, 18
-zachowaj, keep, internet.txt, 18
-działka, plot of land, apartment.txt, 18
-najmu, lease, apartment.txt, 18
-nieruchomość, real estate, apartment.txt, 18
-sąsiad, neighbour, apartment.txt, 18
-przedostatni, penultimate, adjectives.txt, 20
-czy to jest Agnieszka, is this Agnieszka, verbs_and_rest.txt, 20
-z, with, verbs_and_rest.txt, 20
-ubranie, clothes, household.txt, 21
-szukaj, search, verbs_and_rest.txt, 21
-rozumiem, got it, verbs_and_rest.txt, 22
-pokój, room, apartment.txt, 22
-lodówka, fridge, household.txt, 23
+stan konta, account balance, internet.txt, 9
+strona, page, internet.txt, 9
+ustawienia, settings, internet.txt, 9
+użytkownik, user, internet.txt, 9
+zachowaj, keep, internet.txt, 9
+zaplać, pay, internet.txt, 9
+Monday, poniedziałek, dates.txt, 9
+Tuesday, wtorek, dates.txt, 9
+Wednesday, środa, dates.txt, 9
+Thursday, czwartek, dates.txt, 9
+Friday, piątek, dates.txt, 9
+Saturday, sobota, dates.txt, 9
+Sunday, niedziela, dates.txt, 9
+morning, ranek, dates.txt, 9
+noon, południe, dates.txt, 9
+afternoon, popołudnie, dates.txt, 9
+evening, wieczór, dates.txt, 9
+night, noc, dates.txt, 9
+midnight, pólnoc, dates.txt, 9
+January, styczeń, dates.txt, 9
+February, luty, dates.txt, 9
+March, marzec, dates.txt, 9
+April, kwiecień, dates.txt, 9
+May, maj, dates.txt, 9
+June, czerwiec, dates.txt, 9
+July, lipiec, dates.txt, 9
+August, sierpień, dates.txt, 9
+September, wrzesień, dates.txt, 9
+October, pażdziernik, dates.txt, 9
+November, listopad, dates.txt, 9
+December, grudzień, dates.txt, 9
+spring, wiosna, dates.txt, 9
+summer, lato, dates.txt, 9
+autumn, jesień, dates.txt, 9
+winter, zima, dates.txt, 9
+klatka schodowa, staircase, household.txt, 9
+kuchnia, kitchen, household.txt, 9
+łazienka, bathroom, household.txt, 9
+lodówka, fridge, household.txt, 9
+łóżko, bed, household.txt, 9
+naczynie, dish, household.txt, 9
+odkurzacz, vacuum cleaner, household.txt, 9
+okno, window, household.txt, 9
+piekarnik, oven, household.txt, 9
+pralka, washing machine, household.txt, 9
+prysznic, shower, household.txt, 9
+schody, stairs, household.txt, 9
+sprzęt, equipment, household.txt, 9
+sypialna, bedroom, household.txt, 9
+sztućce, cutlery, household.txt, 9
+ubranie, clothes, household.txt, 9
+żelzko, iron, household.txt, 9
+zlew, sink, household.txt, 9
+zmywarka, dishwasher, household.txt, 9
+0, zero, numbers.txt, 9
+1, jeden, numbers.txt, 9
+2, dwa, numbers.txt, 9
+3, trzy, numbers.txt, 9
+4, cztery, numbers.txt, 9
+5, pięć, numbers.txt, 9
+6, sześć, numbers.txt, 9
+7, siedem, numbers.txt, 9
+8, osiem, numbers.txt, 9
+9, dziewięć, numbers.txt, 9
+10, dziesięć, numbers.txt, 9
+11, jedenaście, numbers.txt, 9
+12, dwanaście, numbers.txt, 9
+13, trzynaście, numbers.txt, 9
+15, piętnaście, numbers.txt, 9
+16, szesnaście, numbers.txt, 9
+17, siedemnaście, numbers.txt, 9
+18, osiemnaście, numbers.txt, 9
+19, dziewiętnaście, numbers.txt, 9
+20, dwadzieścia, numbers.txt, 9
+30, trzydzieści, numbers.txt, 9
+40, czterdzieści, numbers.txt, 9
+50, pięćdziesiąt, numbers.txt, 9
+60, sześćdziesiąt, numbers.txt, 9
+70, siedemdziesiąt, numbers.txt, 9
+80, osiemdziesiąt, numbers.txt, 9
+90, dziewięćdziesiąt, numbers.txt, 9
+100, sto, numbers.txt, 9
+cena, price, apartment.txt, 9
+czynsz, rental payment, apartment.txt, 9
+dom, house, apartment.txt, 9
+dom szeregowiec, semi-detached house, apartment.txt, 9
+dom wolnostojący, detached house, apartment.txt, 9
+działka, plot of land, apartment.txt, 9
+kamienica, apartment house, apartment.txt, 9
+liczba, number, apartment.txt, 9
+magazyn, warehouse, apartment.txt, 9
+miesiąc, month, apartment.txt, 9
+mieszkanie, flat, apartment.txt, 9
+najmu, lease, apartment.txt, 9
+nieruchomość, real estate, apartment.txt, 9
+ogłoszenie, announcement, apartment.txt, 9
+opis, description, apartment.txt, 9
+opłata, fee, apartment.txt, 9
+otoczenie, surroundings, apartment.txt, 9
+piętro, floor, apartment.txt, 9
+poddasze, attic, apartment.txt, 9
+pokój, room, apartment.txt, 9
+poziom, level, apartment.txt, 9
+prąd, current, apartment.txt, 9
+przystanek autobusowy, bus stop, apartment.txt, 9
+sąsiad, neighbour, apartment.txt, 9
+sklep, shop, apartment.txt, 9
+suterena, basement, apartment.txt, 9
+umeblowane, furnished, apartment.txt, 9
+winda, elevator, apartment.txt, 9
+widokiem, view, apartment.txt, 9
+w pełni wyposażony, fully equipped, apartment.txt, 9
+zabudowa, building, apartment.txt, 9
+zamiana, exchange, apartment.txt, 9
+czy mógłby pan mówić wolniej, could you please speak slower, questions.txt, 9
+gdzie jest przystanek autobusowy, where is the bus stop, questions.txt, 9
+proszę powtórzyc, please repeat, questions.txt, 9
+czy mogę spróbować, can I try, questions.txt, 9
+jaki rozmiar, what size, questions.txt, 9
+proszę odejść, please go away, questions.txt, 9
+czy mogę zadzwonić póżniej, can I call you later, questions.txt, 9
+czy mogę odpowiedzieć póżniej, can I answer later, questions.txt, 9
+odpowiem póżniej, I'll answer later, questions.txt, 9
+czekać, wait, questions.txt, 9
+co słychać, what's up, questions.txt, 9
+jak minął dzień, how was your day, questions.txt, 9
+jak mija dzień, how is your day going, questions.txt, 9
+nie chodzi o to, it's not about that, questions.txt, 9
+czy mogę oddzwonić póżniej, can I call you back later, questions.txt, 9
+co dziecko pije, what does a child drink, questions.txt, 9
+jaką pijesz kawę, what coffee do you drink, questions.txt, 9
+czy to tu, is it here, questions.txt, 9
+czy możesz pokazać swoje, can you show your, questions.txt, 9
+czy mógłby pan napisać, could you please write, questions.txt, 9
+czy chciałaby pani zatańczyć, would you like to dance, questions.txt, 9
+odpowiedż, reply, mobile.txt, 12
+14, czternaście, numbers.txt, 12
