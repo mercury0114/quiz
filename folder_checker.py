@@ -3,11 +3,12 @@ from os import listdir
 from os.path import join, basename
 from random import choice
 from math import ceil, sqrt
-from utils import CloseTo, SelectQuestionAnswer, ReadOpen, ReadPairsFromFile, WriteOpen
+from utils import CloseTo, ReadOpen, ReadPairsFromFile, WriteOpen
 from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
 INITIAL_SCORE = 5
+SAME_FILE_COUNT = 5
 
 # Each triple is (language1_phrase, language2_phrase, file_name)
 def ReadTriplesFromFolder(folder):
@@ -16,6 +17,7 @@ def ReadTriplesFromFolder(folder):
 		if f == STATISTICS_FILE: continue
 		pairs = ReadPairsFromFile(join(folder, f))
 		triples += [(pair[0], pair[1], f) for pair in pairs]
+		triples += [(pair[1], pair[0], f) for pair in pairs]
 	return triples
 
 def GetStatistics(triples, folder):
@@ -51,13 +53,21 @@ triples = ReadTriplesFromFolder(folder)
 statistics = GetStatistics(triples, folder)
 penalty = {triple : 1 for triple in triples}
 
-print("Press {} for hint, {} to quit".format(HINT, QUIT))
+print("Press {} for hint, {} to quit\n".format(HINT, QUIT))
+file_name = None
+same_file_count = 0
 while True:
 	min_score = min(statistics.values())
-	triple = choice([t for t in statistics if statistics[t] <= min_score + 2])
-	question, answer = SelectQuestionAnswer(triple, 2)
+	if same_file_count == 0:
+		file_name = choice([t for t in statistics if statistics[t] == min_score])[2]
+		same_file_count = SAME_FILE_COUNT
+	triples = [t for t in statistics if t[2] == file_name]
+	min_score = min([statistics[t] for t in triples])
+	triple = choice([t for t in triples if statistics[t] <= min_score + 2])
+	question, answer = triple[0], triple[1]
 	score = statistics[triple]
-	print("{}: {}?".format(triple[2], question)) # triple[2] is the file_name
+	print("{} more from {}".format(same_file_count, triple[2]))
+	print(question)
 	user_input = input()
 	while user_input not in [answer, HINT, QUIT]:
 		if CloseTo(user_input, answer):
@@ -65,12 +75,15 @@ while True:
 		else:
 			print("Wrong answer, try again")
 			score = DecreaseScore(score, triple, penalty)
+			same_file_count += 1
 		user_input = input()
 	if user_input == answer:
 		score = IncreaseScore(score, triple, penalty)
+		same_file_count -= 1
 	if user_input == HINT:
 		print(answer)
 		score = DecreaseScore(score, triple, penalty)
+		same_file_count += 1
 	if user_input == QUIT:
 		print("Updating statistics and exiting")
 		WriteStatistics(statistics, folder)

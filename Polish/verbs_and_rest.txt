@@ -13,7 +13,6 @@ napisz, write
 nie, no
 od, from
 od zaraz, immediately
-oraz, and
 padać, rain
 pokaż, show
 południe, noon

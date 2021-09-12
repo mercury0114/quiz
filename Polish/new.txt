@@ -1,23 +1,4 @@
-nadzieja, hope
-skupiać, focus
-niestety, unfortunately
-znakomity, excellent
-położoną, located
-jednocześnie, simultaneously
-postrzegać, perceive
-myślałem, I thought
-ciężko mi, hard for me
-jeżyk, language
-należy do, belongs to
-potrzebny, needful
-usytuowany, situated
-okolica, area
-całkowicie, completely
-urządzone, decorated
-wystarczy mi, enough for me
-obejrzeć, see
-rozwiązywać, solve
-baw się dobrze, enjoy
+baw się dobrze, have a good time
 jestem ciekawa, I am curious
 jak masz na imię, what is your name
 jak się masz, how are you

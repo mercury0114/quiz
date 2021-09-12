@@ -4,3 +4,5 @@ rok, year
 2 lata temu, 2 years ago
 wczora, yesterday
 jutro, tomorrow
+2 tygodnie temu, 2 weeks ago
+tydzień, week
