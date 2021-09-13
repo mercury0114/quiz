@@ -8,7 +8,7 @@ from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
 INITIAL_SCORE = 5
-SAME_FILE_COUNT = 5
+SAME_FILE_COUNT = 8
 
 # Each triple is (language1_phrase, language2_phrase, file_name)
 def ReadTriplesFromFolder(folder):
@@ -67,6 +67,7 @@ while True:
 	question, answer = triple[0], triple[1]
 	score = statistics[triple]
 	print("{} more from {}".format(same_file_count, triple[2]))
+	print("Current score is", score)
 	print(question)
 	user_input = input()
 	while user_input not in [answer, HINT, QUIT]:
