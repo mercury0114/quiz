@@ -1,0 +1,4 @@
+czas doręczenia, delivery time
+doręczenia, delivery
+przesyłęk, shipment
+śledzenie przesyłek, shipment tracking
