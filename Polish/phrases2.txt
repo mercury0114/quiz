@@ -1,4 +1,4 @@
-baw się dobrze, enjoy
+baw się dobrze, have a good time
 jestem ciekawa, I am curious
 jak masz na imię, what is your name
 jak się masz, how are you
@@ -6,3 +6,5 @@ czy tutaj mieszkasz, do you live here
 jak długo, how long
 ile masz lat, how old are you
 skąd jesteś, where are you from
+napiszę póżniej, I will write later
+jesłi pasuje Ci, if it suits you

@@ -1,18 +1,17 @@
+od zaraz, immediately
 bez, without
 czy to jest Agnieszka, is this Agnieszka
 cześć, hello
+od, from
 do, to
 do widzenia, goodbye
 dopiero, only
 dziś, today
 dziękuję, thanks
 kup, buy
-między, between
 miłego dnia, have a nice day
 napisz, write
 nie, no
-od, from
-od zaraz, immediately
 padać, rain
 pokaż, show
 południe, noon
@@ -20,9 +19,6 @@ przy, at
 rozumiem, got it
 sprzedać, sell
 szukaj, search
-tu, here
-tuż przy, next to
-teraz, now
 w, in
 wiadomość, message
 więc, thus

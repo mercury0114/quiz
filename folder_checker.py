@@ -8,7 +8,7 @@ from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
 INITIAL_SCORE = 5
-SAME_FILE_COUNT = 8
+SAME_FILE_COUNT = 12
 
 # Each triple is (language1_phrase, language2_phrase, file_name)
 def ReadTriplesFromFolder(folder):
@@ -53,12 +53,14 @@ triples = ReadTriplesFromFolder(folder)
 statistics = GetStatistics(triples, folder)
 penalty = {triple : 1 for triple in triples}
 
-print("Press {} for hint, {} to quit\n".format(HINT, QUIT))
+print("Press {} for hint, {} to quit".format(HINT, QUIT))
 file_name = None
 same_file_count = 0
 while True:
 	min_score = min(statistics.values())
 	if same_file_count == 0:
+		WriteStatistics(statistics, folder)
+		print("CHOOSING NEW FILE\n");
 		file_name = choice([t for t in statistics if statistics[t] == min_score])[2]
 		same_file_count = SAME_FILE_COUNT
 	triples = [t for t in statistics if t[2] == file_name]
@@ -84,10 +86,8 @@ while True:
 	if user_input == HINT:
 		print(answer)
 		score = DecreaseScore(score, triple, penalty)
-		same_file_count += 1
+		same_file_count += 2
 	if user_input == QUIT:
-		print("Updating statistics and exiting")
-		WriteStatistics(statistics, folder)
 		exit()
-	print("Changing score from {} to {}\n".format(statistics[triple], score))
+	print("New score is {}\n".format(score))
 	statistics[triple] = score
