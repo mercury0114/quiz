@@ -1,3 +1,4 @@
+od zaraz, immediately
 godzina, hour
 miesiąc, month
 rok, year
@@ -5,4 +6,5 @@ rok, year
 wczora, yesterday
 jutro, tomorrow
 2 tygodnie temu, 2 weeks ago
+w tygodniu, in a week
 tydzień, week

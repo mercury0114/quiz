@@ -65,7 +65,7 @@ while True:
 		same_file_count = SAME_FILE_COUNT
 	triples = [t for t in statistics if t[2] == file_name]
 	min_score = min([statistics[t] for t in triples])
-	triple = choice([t for t in triples if statistics[t] <= min_score + 2])
+	triple = choice([t for t in triples if statistics[t] <= min_score * 1.5])
 	question, answer = triple[0], triple[1]
 	score = statistics[triple]
 	print("{} more from {}".format(same_file_count, triple[2]))
