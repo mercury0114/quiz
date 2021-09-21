@@ -1,3 +1,4 @@
+szybko, quickly
 ciężko, hard
 smutny, sad
 dodatkowy, additional
@@ -6,4 +7,3 @@ ostatni, the last
 otwarty, open
 najbliższej, the closest
 łatwo, easy
-
