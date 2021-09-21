@@ -1,25 +1,19 @@
 czysto, clean
-dodatkowy, additional
 doskonały, perfect
-dostępne, available
 duży, big
 główny, main
 inny, other
 jasny, bright
 ładny, pretty
-najbliższej, the closest
 najdroższy, the most expensive
 najnowszy, the latest
 najtańszy, the cheapest
 oddzielny, separate
-ostatni, the last
-otwarty, open
 potężny, powerful
 pozostały, remaining
 przedostatni, penultimate
 przestronny, spacious
 przytulny, cozy
-smutny, sad
 słoneczny, sunny
 stary, old
 ważny, important

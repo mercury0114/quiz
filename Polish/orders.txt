@@ -1,4 +1,13 @@
+odbioru, receipt
+wysłana przez, posted by
+odejbrać, pick up
+śledż paczkę, track package
+w drogę, on the way
+oczekuje, is waiting
 czas doręczenia, delivery time
 doręczenia, delivery
-przesyłęk, shipment
+przesyłka, shipment
 śledzenie przesyłek, shipment tracking
+nadawca, sender
+poczta, post
+paczka, package

@@ -7,6 +7,7 @@ from utils import CloseTo, ReadOpen, ReadPairsFromFile, WriteOpen
 from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
+MAX_SCORE = 30
 INITIAL_SCORE = 5
 SAME_FILE_COUNT = 12
 
@@ -35,14 +36,6 @@ def WriteStatistics(statistics, folder):
 	for t in sorted_triples:
 		output.write("{}, {}, {}, {}\n".format(t[0], t[1], t[2], statistics[t]))
     
-def IncreaseScore(score, triple, penalty):
-	penalty[triple] = max(1, penalty[triple]-1)
-	return score + ceil(choice(range(score+1)) / penalty[triple])
-
-def DecreaseScore(score, triple, penalty):
-	penalty[triple] += 2
-	return max(1, score - choice(range(ceil(sqrt(score)))))
-
 if len(argv) != 2:
 	print("usage:")
 	print("python3 folder_checker.py [folder]")
@@ -51,7 +44,6 @@ if len(argv) != 2:
 folder = argv[1]
 triples = ReadTriplesFromFolder(folder)
 statistics = GetStatistics(triples, folder)
-penalty = {triple : 1 for triple in triples}
 
 print("Press {} for hint, {} to quit".format(HINT, QUIT))
 file_name = None
@@ -77,15 +69,15 @@ while True:
 			print("Close, try again")
 		else:
 			print("Wrong answer, try again")
-			score = DecreaseScore(score, triple, penalty)
+			score = max(0, score - 2)
 			same_file_count += 1
 		user_input = input()
 	if user_input == answer:
-		score = IncreaseScore(score, triple, penalty)
+		score = min(MAX_SCORE, score + 1)
 		same_file_count -= 1
 	if user_input == HINT:
 		print(answer)
-		score = DecreaseScore(score, triple, penalty)
+		score -= max(0, score // 2)
 		same_file_count += 2
 	if user_input == QUIT:
 		exit()

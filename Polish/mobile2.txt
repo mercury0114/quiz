@@ -5,3 +5,5 @@ włączona, enabled
 czacie, chat
 ostatnio, recently
 zdjęcie, photo
+rozłączone, disconnected
+praca domowa, remote work

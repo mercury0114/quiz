@@ -1,3 +1,6 @@
+obie, both
+w przypadku, in case of
+podczas, during
 przy, at
 dla, for
 ile, how many
@@ -8,7 +11,7 @@ nasze, our
 oprócz, apart from
 teraz, now
 tu, here
-tuż przy, next to
+obok, next to
 w niedzielę, on Sunday
 więc, thus
 wtedy po angielsku, then in English
@@ -17,5 +20,6 @@ w Litwa, in Lithuania
 z Litwa, of Lithuania
 z Litwy, from Lithuania
 z nami, with us
+zawsze, always
 zatem, therefore
 ze sobą, together

@@ -1,4 +1,24 @@
-give, nadaj, pko.txt, 8
+track package, śledż paczkę, orders.txt, 6
+przełącz, switch, mobile2.txt, 7
+włączona, enabled, mobile2.txt, 7
+rozłączone, disconnected, mobile2.txt, 7
+praca domowa, remote work, mobile2.txt, 7
+co więcej, what is more, phrases2.txt, 7
+służbowy, business, mobile2.txt, 8
+wyłączona, disabled, mobile2.txt, 8
+chat, czacie, mobile2.txt, 8
+recently, ostatnio, mobile2.txt, 8
+remote work, praca domowa, mobile2.txt, 8
+in case of, w przypadku, prepositions.txt, 8
+odbioru, receipt, orders.txt, 8
+wysłana przez, posted by, orders.txt, 8
+posted by, wysłana przez, orders.txt, 8
+pick up, odejbrać, orders.txt, 8
+zostaw, leave, verbs2.txt, 8
+leave, zostaw, verbs2.txt, 8
+anticipate, przewidywać, verbs2.txt, 8
+sincerely, serdecznośći, tango.txt, 8
+eat in, na miejscu, food4.txt, 9
 to co dla mnie jest ważne, what is important for me, phrases.txt, 9
 cześć, bye, phrases.txt, 9
 dobry wieczór, good evening, phrases.txt, 9
@@ -9,6 +29,7 @@ witam, welcome, phrases.txt, 9
 but it is interesting, ale to ciekawe, phrases.txt, 9
 good morning, dzień dobry, phrases.txt, 9
 regards, pozdrawiam, phrases.txt, 9
+czacie, chat, mobile2.txt, 9
 proszę odejść, please go away, questions.txt, 9
 czy mogę zadzwonić póżniej, can I call you later, questions.txt, 9
 czy mogę odpowiedzieć póżniej, can I answer later, questions.txt, 9
@@ -35,57 +56,78 @@ ile, how many, question_words.txt, 9
 which, który, question_words.txt, 9
 what, jaki, question_words.txt, 9
 when, kiedy, question_words.txt, 9
+w przypadku, in case of, prepositions.txt, 9
+podczas, during, prepositions.txt, 9
+during, podczas, prepositions.txt, 9
+mark, oznacz, internet.txt, 9
 I confirm, potwierdzam, pko.txt, 9
-napisz, write, verbs.txt, 9
-szukaj, search, verbs.txt, 9
-wiadomość, message, verbs.txt, 9
-wyślij, send, verbs.txt, 9
+odejbrać, pick up, orders.txt, 9
+śledż paczkę, track package, orders.txt, 9
+receipt, odbioru, orders.txt, 9
+turn left, skręć w lewo, verbs.txt, 9
+aby uzyskać, to obtain, verbs2.txt, 9
+przewidywać, anticipate, verbs2.txt, 9
+to obtain, aby uzyskać, verbs2.txt, 9
+serdecznośći, sincerely, tango.txt, 9
+takeaway, na wynos, food4.txt, 10
 ale to ciekawe, but it is interesting, phrases.txt, 10
 nauczyłem się, I have learnt, phrases.txt, 10
 what is important for me, to co dla mnie jest ważne, phrases.txt, 10
 bye, cześć, phrases.txt, 10
 I am going to the shop, idę do sklepu, phrases.txt, 10
 I will tell later, opowiem póżniej, phrases.txt, 10
+oliwa z oliwek, olive oil, food3.txt, 10
+placki ziemniaczane, potato pancakes, food3.txt, 10
+dumplings with meat, pierogi z mięsem, food3.txt, 10
+garlic, czosnek, food3.txt, 10
+bacon, boczek, food3.txt, 10
+potato pancakes, placki ziemniaczane, food3.txt, 10
+ostatnio, recently, mobile2.txt, 10
+zdjęcie, photo, mobile2.txt, 10
+photo, zdjęcie, mobile2.txt, 10
+disconnected, rozłączone, mobile2.txt, 10
 can I call you later, czy mogę zadzwonić póżniej, questions.txt, 10
 is it here, czy to tu, questions.txt, 10
 why, czemu, question_words.txt, 10
+top up your account, doładuj swoje konto, internet.txt, 10
 w tygodniu, in a week, time.txt, 10
-albo, or, pko.txt, 10
 start, rozpocznij, pko.txt, 10
-next, dalej, pko.txt, 10
+give, nadaj, pko.txt, 10
 this may take a while, może to chwilę potrwać, pko.txt, 10
-enter, wprowadż, pko.txt, 10
-shipment, przesyłęk, orders.txt, 10
-kup, buy, verbs.txt, 10
-wybierz, choose, verbs.txt, 10
-znajduje się, is located, verbs.txt, 10
-rain, padać, verbs.txt, 10
-search, szukaj, verbs.txt, 10
+delivery, doręczenia, orders.txt, 10
+shipment, przesyłka, orders.txt, 10
+shipment tracking, śledzenie przesyłek, orders.txt, 10
+post, poczta, orders.txt, 10
+package, paczka, orders.txt, 10
+wiadomość, message, verbs.txt, 10
+send, wyślij, verbs.txt, 10
+closed embrace, bliskim objęciu, tango.txt, 10
 notifications, powiadomień, mobile.txt, 10
+orzeski ziemne, peanuts, food4.txt, 11
 ja też nie, neither do I, phrases.txt, 11
 zgadzam się, I agree, phrases.txt, 11
 I will write, będę pisała, phrases.txt, 11
 I have no idea, nie mam żadnego pojęcia, phrases.txt, 11
 now I am going to the shop, teraz idę do sklepu, phrases.txt, 11
 welcome, witam, phrases.txt, 11
+zupa dnia, daily soup, food3.txt, 11
+ogórek kiszony, pickled cucumber, food3.txt, 11
+mushrooms, grzyby, food3.txt, 11
 gdzie jest przystanek autobusowy, where is the bus stop, questions.txt, 11
 can I answer later, czy mogę odpowiedzieć póżniej, questions.txt, 11
 I'll answer later, odpowiem póżniej, questions.txt, 11
 whom, kogo, question_words.txt, 11
 how many, ile, question_words.txt, 11
+together, ze sobą, prepositions.txt, 11
 find out more, dowiedz się więcej, internet.txt, 11
-pay, zaplać, internet.txt, 11
 miesiąc, month, time.txt, 11
 2 tygodnie temu, 2 weeks ago, time.txt, 11
-rozpocznij, start, pko.txt, 11
+ile masz lat, how old are you, phrases2.txt, 11
+how are you, jak się masz, phrases2.txt, 11
 dalej, next, pko.txt, 11
-może to chwilę potrwać, this may take a while, pko.txt, 11
 log in, wloguj, pko.txt, 11
-wynająć, to rent, verbs.txt, 11
-buy, kup, verbs.txt, 11
-sell, sprzedać, verbs.txt, 11
-message, wiadomość, verbs.txt, 11
-send, wyślij, verbs.txt, 11
+w drogę, on the way, orders.txt, 11
+on the way, w drogę, orders.txt, 11
 meeting, spotkanie, tango.txt, 11
 osoby, people, mobile.txt, 11
 delivered, dostarczona, mobile.txt, 11
@@ -93,8 +135,11 @@ uczestnicy randki, dating participants, phrases.txt, 12
 sleep well, śpij dobrze, phrases.txt, 12
 I am going to the cafe, idę do kawiarni, phrases.txt, 12
 I came back from the shop, wróciłem ze sklepu, phrases.txt, 12
-zdjęcie, photo, mobile2.txt, 12
-business, służbowy, mobile2.txt, 12
+pierogi z mięsem, dumplings with meat, food3.txt, 12
+sok pomidorowy, tomato juice, food3.txt, 12
+pierogi, dumplings, food3.txt, 12
+white cheese, biały ser, food3.txt, 12
+cold drinks, napoje zimne, food3.txt, 12
 co słychać, what's up, questions.txt, 12
 jak mija dzień, how is your day going, questions.txt, 12
 what's up, co słychać, questions.txt, 12
@@ -104,18 +149,15 @@ is, czy, question_words.txt, 12
 whose, czyja, question_words.txt, 12
 who, kto, question_words.txt, 12
 zaplać, pay, internet.txt, 12
-delivery, przesyłka, internet.txt, 12
+pay, zaplać, internet.txt, 12
 od zaraz, immediately, time.txt, 12
+rozpocznij, start, pko.txt, 12
 potwierdzam, I confirm, pko.txt, 12
 confirm, potwierdzać, pko.txt, 12
-śledzenie przesyłek, shipment tracking, orders.txt, 12
-słychać, listen, verbs.txt, 12
-padać, rain, verbs.txt, 12
-pokaż, show, verbs.txt, 12
+enter, wprowadż, pko.txt, 12
+wynająć, to rent, verbs.txt, 12
 listen, słychać, verbs.txt, 12
-write, napisz, verbs.txt, 12
-to rent, wynająć, verbs.txt, 12
-is located, znajduje się, verbs.txt, 12
+buy, kup, verbs.txt, 12
 utwórz, create, mobile.txt, 12
 odpowiedż, reply, mobile.txt, 12
 ustawienia, settings, mobile.txt, 12
@@ -130,7 +172,14 @@ dating participants, uczestnicy randki, phrases.txt, 13
 good night, dobranoc, phrases.txt, 13
 good evening, dobry wieczór, phrases.txt, 13
 neither do I, ja też nie, phrases.txt, 13
-czacie, chat, mobile2.txt, 13
+czosnek, garlic, food3.txt, 13
+boczek, bacon, food3.txt, 13
+kwas chlebowy, kvass, food3.txt, 13
+surówka, salad, food3.txt, 13
+onion, cebula, food3.txt, 13
+tomato juice, sok pomidorowy, food3.txt, 13
+kvass, kwas chlebowy, food3.txt, 13
+dumplings, pierogi, food3.txt, 13
 jaki rozmiar, what size, questions.txt, 13
 please repeat, proszę powtórzyc, questions.txt, 13
 could you please write, czy mógłby pan napisać, questions.txt, 13
@@ -138,18 +187,25 @@ how, jak, question_words.txt, 13
 tu, here, prepositions.txt, 13
 w niedzielę, on Sunday, prepositions.txt, 13
 our, nasze, prepositions.txt, 13
-thus, więc, prepositions.txt, 13
-then in English, wtedy po angielsku, prepositions.txt, 13
-together, ze sobą, prepositions.txt, 13
 użytkownik, user, internet.txt, 13
 month, miesiąc, time.txt, 13
 2 weeks ago, 2 tygodnie temu, time.txt, 13
 week, tydzień, time.txt, 13
-nadaj, give, pko.txt, 13
-available funds, dostępne środki, pko.txt, 13
+czy to jest Agnieszka, is this Agnieszka, phrases2.txt, 13
+może to chwilę potrwać, this may take a while, pko.txt, 13
+next, dalej, pko.txt, 13
 add, dodaj, pko.txt, 13
-delivery, doręczenia, orders.txt, 13
-shipment tracking, śledzenie przesyłek, orders.txt, 13
+sender, nadawca, orders.txt, 13
+napisz, write, verbs.txt, 13
+padać, rain, verbs.txt, 13
+pokaż, show, verbs.txt, 13
+szukaj, search, verbs.txt, 13
+wybierz, choose, verbs.txt, 13
+wyślij, send, verbs.txt, 13
+skręć w lewo, turn left, verbs.txt, 13
+search, szukaj, verbs.txt, 13
+message, wiadomość, verbs.txt, 13
+is located, znajduje się, verbs.txt, 13
 czy chciałaby pani zatańczyć, would you like to dance, tango.txt, 13
 serce, heart, tango.txt, 13
 opowiedzieć, tell, tango.txt, 13
@@ -166,23 +222,26 @@ pójdę do sklepu, I will go to the shop, phrases.txt, 14
 damn, kurczę, phrases.txt, 14
 I have learnt, nauczyłem się, phrases.txt, 14
 I agree, zgadzam się, phrases.txt, 14
-służbowy, business, mobile2.txt, 14
-włączona, enabled, mobile2.txt, 14
+biały ser, white cheese, food3.txt, 14
+cebula, onion, food3.txt, 14
+napoje zimne, cold drinks, food3.txt, 14
+beans, fasolki, food3.txt, 14
+pickled cucumber, ogórek kiszony, food3.txt, 14
 nie chodzi o to, it's not about that, questions.txt, 14
 how is your day going, jak mija dzień, questions.txt, 14
 can I call you back later, czy mogę oddzwonić póżniej, questions.txt, 14
 już, already, prepositions.txt, 14
 nasze, our, prepositions.txt, 14
 teraz, now, prepositions.txt, 14
-z nami, with us, prepositions.txt, 14
+obok, next to, prepositions.txt, 14
 at, przy, prepositions.txt, 14
 how many, ile, prepositions.txt, 14
 apart from, oprócz, prepositions.txt, 14
 here, tu, prepositions.txt, 14
+next to, obok, prepositions.txt, 14
 in Lithuania, w Litwa, prepositions.txt, 14
 dane, data, internet.txt, 14
 płatność, payment, internet.txt, 14
-przesyłka, delivery, internet.txt, 14
 stan konta, account balance, internet.txt, 14
 name, imię, internet.txt, 14
 payment method, spośob płatnosci, internet.txt, 14
@@ -192,11 +251,17 @@ wczora, yesterday, time.txt, 14
 immediately, od zaraz, time.txt, 14
 yesterday, wczora, time.txt, 14
 in a week, w tygodniu, time.txt, 14
+nadaj, give, pko.txt, 14
 wloguj, log in, pko.txt, 14
-czas doręczenia, delivery time, orders.txt, 14
-przesyłęk, shipment, orders.txt, 14
+available funds, dostępne środki, pko.txt, 14
+śledzenie przesyłek, shipment tracking, orders.txt, 14
 delivery time, czas doręczenia, orders.txt, 14
+słychać, listen, verbs.txt, 14
+write, napisz, verbs.txt, 14
+rain, padać, verbs.txt, 14
+sell, sprzedać, verbs.txt, 14
 choose, wybierz, verbs.txt, 14
+to rent, wynająć, verbs.txt, 14
 bliskim objęciu, closed embrace, tango.txt, 14
 be together, pobyć razem, tango.txt, 14
 dostarczona, delivered, mobile.txt, 14
@@ -207,7 +272,9 @@ nie mam żadnego pojęcia, I have no idea, phrases.txt, 15
 teraz idę do sklepu, now I am going to the shop, phrases.txt, 15
 opowiem póżniej, I will tell later, phrases.txt, 15
 I will go to the shop, pójdę do sklepu, phrases.txt, 15
-switch, przełącz, mobile2.txt, 15
+fasolki, beans, food3.txt, 15
+olive oil, oliwa z oliwek, food3.txt, 15
+salad, surówka, food3.txt, 15
 czekać, wait, questions.txt, 15
 co dziecko pije, what does a child drink, questions.txt, 15
 could you please speak slower, czy mógłby pan mówić wolniej, questions.txt, 15
@@ -217,7 +284,6 @@ where, gdzie, question_words.txt, 15
 przy, at, prepositions.txt, 15
 z Litwa, of Lithuania, prepositions.txt, 15
 zatem, therefore, prepositions.txt, 15
-with us, z nami, prepositions.txt, 15
 therefore, zatem, prepositions.txt, 15
 odśwież, refresh, internet.txt, 15
 godzina, hour, time.txt, 15
@@ -227,18 +293,16 @@ odczuwanie, feeling, tango.txt, 15
 zezwalaj, allow, mobile.txt, 15
 udostępnij, share, mobile.txt, 15
 plik, file, mobile.txt, 15
+peanuts, orzeski ziemne, food4.txt, 16
 idę do sklepu, I am going to the shop, phrases.txt, 16
 I want to improve, chcę się poprawić, phrases.txt, 16
-enabled, włączona, mobile2.txt, 16
-photo, zdjęcie, mobile2.txt, 16
+pierogi z kapustą i grzybami, dumplings with cabbage and mushrooms, food3.txt, 16
 proszę powtórzyc, please repeat, questions.txt, 16
 czy mógłby pan napisać, could you please write, questions.txt, 16
 please go away, proszę odejść, questions.txt, 16
 what does a child drink, co dziecko pije, questions.txt, 16
 lub, or, prepositions.txt, 16
 oprócz, apart from, prepositions.txt, 16
-tuż przy, next to, prepositions.txt, 16
-wyłącznie, only, prepositions.txt, 16
 w Litwa, in Lithuania, prepositions.txt, 16
 z Litwy, from Lithuania, prepositions.txt, 16
 or, lub, prepositions.txt, 16
@@ -261,15 +325,18 @@ wprowadż, enter, pko.txt, 16
 tell, opowiedzieć, tango.txt, 16
 people, osoby, mobile.txt, 16
 file, plik, mobile.txt, 16
+na wynos, takeaway, food4.txt, 17
 śpij dobrze, sleep well, phrases.txt, 17
-wyłączona, disabled, mobile2.txt, 17
+grzyby, mushrooms, food3.txt, 17
+daily soup, zupa dnia, food3.txt, 17
 czy mógłby pan mówić wolniej, could you please speak slower, questions.txt, 17
 czy mogę spróbować, can I try, questions.txt, 17
 can I try, czy mogę spróbować, questions.txt, 17
 ile, how many, prepositions.txt, 17
 między, between, prepositions.txt, 17
+wyłącznie, only, prepositions.txt, 17
 between, między, prepositions.txt, 17
-next to, tuż przy, prepositions.txt, 17
+then in English, wtedy po angielsku, prepositions.txt, 17
 data wygaśnięcie, expiry date, internet.txt, 17
 keep, zachowaj, internet.txt, 17
 jutro, tomorrow, time.txt, 17
@@ -280,18 +347,17 @@ jesłi pasuje Ci, if it suits you, phrases2.txt, 17
 I will write later, napiszę póżniej, phrases2.txt, 17
 bezpłatna, free, pko.txt, 17
 wyloguj, log out, pko.txt, 17
-or, albo, pko.txt, 17
-doręczenia, delivery, orders.txt, 17
+znajduje się, is located, verbs.txt, 17
 spwardż aktywność, check activity, mobile.txt, 17
 kosz, bin, mobile.txt, 17
 osoba, person, mobile.txt, 17
 create, utwórz, mobile.txt, 17
 device, urządzenia, mobile.txt, 17
 that this person, że ta osoba, mobile.txt, 17
+na miejscu, eat in, food4.txt, 18
 kurczę, damn, phrases.txt, 18
 idę do kawiarni, I am going to the cafe, phrases.txt, 18
 pozdrawiam, regards, phrases.txt, 18
-ostatnio, recently, mobile2.txt, 18
 wtedy po angielsku, then in English, prepositions.txt, 18
 ze sobą, together, prepositions.txt, 18
 already, już, prepositions.txt, 18
@@ -315,13 +381,14 @@ wyczyść, clear, mobile.txt, 18
 hasło, password, mobile.txt, 18
 person, osoba, mobile.txt, 18
 I am at the shop, jestem w sklepie, phrases.txt, 19
-przełącz, switch, mobile2.txt, 19
-disabled, wyłączona, mobile2.txt, 19
+dumplings with cabbage and mushrooms, pierogi z kapustą i grzybami, food3.txt, 19
+switch, przełącz, mobile2.txt, 19
 hour, godzina, time.txt, 19
 what is more, co więcej, phrases2.txt, 19
 log out, wyloguj, pko.txt, 19
+czas doręczenia, delivery time, orders.txt, 19
+kup, buy, verbs.txt, 19
 show, pokaż, verbs.txt, 19
-chat, czacie, mobile2.txt, 20
 więc, thus, prepositions.txt, 20
 zachowaj, keep, internet.txt, 20
 browse, przeglądaj, internet.txt, 20
@@ -331,28 +398,33 @@ jak masz na imię, what is your name, phrases2.txt, 20
 jak się masz, how are you, phrases2.txt, 20
 how long, jak długo, phrases2.txt, 20
 where are you from, skąd jesteś, phrases2.txt, 20
+oczekuje, is waiting, orders.txt, 20
+paczka, package, orders.txt, 20
+is waiting, oczekuje, orders.txt, 20
 would you like to dance, czy chciałaby pani zatańczyć, tango.txt, 20
+business, służbowy, mobile2.txt, 21
 dla, for, prepositions.txt, 21
 now, teraz, prepositions.txt, 21
 from Lithuania, z Litwy, prepositions.txt, 21
 imię, name, internet.txt, 21
 do you live here, czy tutaj mieszkasz, phrases2.txt, 21
-recently, ostatnio, mobile2.txt, 22
+doręczenia, delivery, orders.txt, 21
+poczta, post, orders.txt, 21
 for, dla, prepositions.txt, 22
 on Sunday, w niedzielę, prepositions.txt, 22
 bezpiecznie, safely, internet.txt, 22
 is this Agnieszka, czy to jest Agnieszka, phrases2.txt, 22
 how old are you, ile masz lat, phrases2.txt, 22
+nadawca, sender, orders.txt, 22
 feeling, odczuwanie, tango.txt, 22
+enabled, włączona, mobile2.txt, 23
 przelew, transfer, internet.txt, 23
 napiszę póżniej, I will write later, phrases2.txt, 23
+przesyłka, shipment, orders.txt, 23
+disabled, wyłączona, mobile2.txt, 24
+z nami, with us, prepositions.txt, 24
+thus, więc, prepositions.txt, 24
+with us, z nami, prepositions.txt, 24
 safely, bezpiecznie, internet.txt, 24
 2 lata temu, 2 years ago, time.txt, 24
 czy tutaj mieszkasz, do you live here, phrases2.txt, 24
-closed embrace, bliskim objęciu, tango.txt, 24
-top up your account, doładuj swoje konto, internet.txt, 25
-mark, oznacz, internet.txt, 26
-czy to jest Agnieszka, is this Agnieszka, phrases2.txt, 26
-ile masz lat, how old are you, phrases2.txt, 26
-how are you, jak się masz, phrases2.txt, 28
-co więcej, what is more, phrases2.txt, 33

@@ -10,7 +10,6 @@ oznacz, mark
 płatność, payment
 przeglądaj, browse
 przelew, transfer
-przesyłka, delivery
 spośob płatnosci, payment method
 stan konta, account balance
 strona, page

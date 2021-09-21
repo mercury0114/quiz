@@ -1,7 +1,6 @@
 dostępne środki, available funds
 rozpocznij, start
 dalej, next
-albo, or
 nadaj, give
 potwierdzać, confirm
 bezpłatna, free
