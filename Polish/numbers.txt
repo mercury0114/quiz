@@ -1,3 +1,5 @@
+drugie piętro, second floor
+trzecie piętro, third floor
 pierwszy, first
 drugi, second
 0, zero

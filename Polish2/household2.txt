@@ -1,0 +1,6 @@
+poduszka, pillow
+prześcieradło, bedsheet
+okno, window
+drzwi, door
+łóżko, bed
+lustro, mirror

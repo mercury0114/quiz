@@ -1,0 +1,13 @@
+fork, widły
+blunder, błąd
+threat, grożba
+pin, związanie
+poświęcenie, sacrifice
+bishop pair, para gońców
+extra pawn, pion więcej
+exchange, jakość
+middlegame, gra środkowa
+endgame, gra końcowa
+blunder, błąd
+advantage, przewaga
+double check, podwójny szach

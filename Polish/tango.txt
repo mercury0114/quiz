@@ -13,3 +13,4 @@ opowiedzieć, tell
 pobyć razem, be together
 naprzód, forward
 wstecz, back
+działa, it works
