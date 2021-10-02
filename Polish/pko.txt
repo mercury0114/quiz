@@ -1,3 +1,4 @@
+wjazd, entry
 dostępne środki, available funds
 rozpocznij, start
 dalej, next

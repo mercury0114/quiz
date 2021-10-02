@@ -1,3 +1,5 @@
+because his knight is standing there, bo tam stoi jego skoczek
+it must be a draw, to musi być remis
 kingside attack, atak na skrzydle królewskim
 opening advantage, przewaga debiutowa
 slight advantage, niewielka przewaga
@@ -7,4 +9,4 @@ pawn majority, przewaga pionowa
 exchange sacrifice, ofiara jakości
 queenside, skrzydło hetmańskie
 capture en passant, bicie w przelocie
-discovered atatck, atak z odsłony
+discovered attack, atak z odsłony
