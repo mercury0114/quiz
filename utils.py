@@ -1,3 +1,4 @@
+from os.path import isfile
 from random import choice
 
 HINT = "h"
@@ -7,6 +8,16 @@ def CloseTo(user_input, answer):
 	l = min(len(user_input), len(answer))
 	return sum(user_input[i] != answer[i] for i in range(l)) + \
 		abs(len(user_input) - len(answer)) < 3
+
+def GetFileScore(f):
+	if not isfile(f): return 0
+	count = 0
+	score_sum = 0
+	for line in ReadOpen(f):
+		p1, p2, score = line.split(', ')
+		count += 1
+		score_sum += int(score)
+	return score_sum / count
 
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument

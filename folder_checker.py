@@ -4,12 +4,15 @@ from os.path import join, basename
 from random import choice
 from math import ceil, sqrt
 from utils import CloseTo, ReadOpen, ReadPairsFromFile, WriteOpen
+from utils import GetFileScore
 from utils import HINT, QUIT
 
 STATISTICS_FILE = "my.stats"
 MAX_SCORE = 30
 INITIAL_SCORE = 5
-SAME_FILE_COUNT = 12
+GROUP_COUNT = 12
+STATS_END = ".stats"
+TXT_END = ".txt"
 
 # Each triple is (language1_phrase, language2_phrase, file_name)
 def ReadTriplesFromFolder(folder):
@@ -21,30 +24,27 @@ def ReadTriplesFromFolder(folder):
 		triples += [(pair[1], pair[0], f) for pair in pairs]
 	return triples
 
-def GetStatistics(triples, folder):
-	statistics = {triple : INITIAL_SCORE for triple in triples}
-	if STATISTICS_FILE not in listdir(folder): return statistics
-	for line in ReadOpen(join(folder,STATISTICS_FILE)):
-		word1, word2, file_name, score = line.split(', ')
-		if (word1, word2, file_name) in statistics:
-			statistics[(word1, word2, file_name)] = int(score)
+def GetStatistics(folder, group):
+	pairs = ReadPairsFromFile(join(folder, group + TXT_END))
+	pairs += [(p[1], p[0]) for p in pairs]
+	statistics = {p : INITIAL_SCORE for p in pairs}
+	if group + STATS_END in listdir(folder):
+		for line in ReadOpen(join(folder, group + STATS_END)):
+			word1, word2, score = line.split(', ')
+			score = int(score)
+			if (word1, word2) in statistics:
+				statistics[(word1, word2)] = score
 	return statistics
 
-def WriteStatistics(statistics, folder):
-	output = WriteOpen(join(folder, STATISTICS_FILE))
-	sorted_triples = sorted(statistics, key=statistics.get)
-	for t in sorted_triples:
-		output.write("{}, {}, {}, {}\n".format(t[0], t[1], t[2], statistics[t]))
+def WriteStatistics(folder, group, statistics):
+	if group == None: return
+	output = WriteOpen(join(folder, group + STATS_END))
+	for pair in sorted(statistics, key=statistics.get):
+		output.write("{}, {}, {}\n".format(pair[0], pair[1], statistics[pair]))
 
-def ChooseWeakestFile(statistics):
-	scores = {}
-	counts = {}
-	for triple in statistics:
-		scores.setdefault(triple[2], 0)
-		scores[triple[2]] += statistics[triple]
-		counts.setdefault(triple[2], 0)
-		counts[triple[2]] += 1
-	weakness = [(scores[f] / counts[f], f) for f in scores]
+def ChooseWeakestGroup(folder):
+	groups = [f.split('.')[0] for f in listdir(folder)]
+	weakness = [(GetFileScore(join(folder, g + STATS_END)), g) for g in groups]
 	return min(weakness)
 
 if len(argv) != 2:
@@ -53,25 +53,23 @@ if len(argv) != 2:
 	exit()
 
 folder = argv[1]
-triples = ReadTriplesFromFolder(folder)
-statistics = GetStatistics(triples, folder)
+group = None
+statistics = None
 
 print("Press {} for hint, {} to quit".format(HINT, QUIT))
-file_name = None
-same_file_count = 0
+counter = 0
 while True:
+	if counter == 0:
+		WriteStatistics(folder, group, statistics)
+		group = ChooseWeakestGroup(folder)[1]
+		print("NEW GROUP {}\n".format(group))
+		counter = GROUP_COUNT
+		statistics = GetStatistics(folder, group)
 	min_score = min(statistics.values())
-	if same_file_count == 0:
-		WriteStatistics(statistics, folder)
-		score_file = ChooseWeakestFile(statistics)
-		print("NEW FILE {} WITH SCORE {}\n".format(score_file[1], score_file[0]))
-		same_file_count = SAME_FILE_COUNT
-	triples = [t for t in statistics if t[2] == score_file[1]]
-	min_score = min([statistics[t] for t in triples])
-	triple = choice([t for t in triples if statistics[t] <= min_score * 1.5])
-	question, answer = triple[0], triple[1]
-	score = statistics[triple]
-	print("{} more from {}".format(same_file_count, triple[2]))
+	pair = choice([p for p in statistics if statistics[p] <= min_score * 1.5])
+	question, answer = pair[0], pair[1]
+	score = statistics[pair]
+	print("{} more from {}".format(counter, group))
 	print("Current score is", score)
 	print(question)
 	user_input = input()
@@ -81,16 +79,16 @@ while True:
 		else:
 			print("Wrong answer, try again")
 			score = max(0, score - 2)
-			same_file_count += 1
+			counter += 1
 		user_input = input()
 	if user_input == answer:
 		score = min(MAX_SCORE, score + 1)
-		same_file_count -= 1
+		counter -= 1
 	if user_input == HINT:
 		print(answer)
 		score -= max(0, score // 2)
-		same_file_count += 2
+		counter += 2
 	if user_input == QUIT:
 		exit()
 	print("New score is {}\n".format(score))
-	statistics[triple] = score
+	statistics[pair] = score
