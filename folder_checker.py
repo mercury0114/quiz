@@ -35,7 +35,18 @@ def WriteStatistics(statistics, folder):
 	sorted_triples = sorted(statistics, key=statistics.get)
 	for t in sorted_triples:
 		output.write("{}, {}, {}, {}\n".format(t[0], t[1], t[2], statistics[t]))
-    
+
+def ChooseWeakestFile(statistics):
+	scores = {}
+	counts = {}
+	for triple in statistics:
+		scores.setdefault(triple[2], 0)
+		scores[triple[2]] += statistics[triple]
+		counts.setdefault(triple[2], 0)
+		counts[triple[2]] += 1
+	weakness = [(scores[f] / counts[f], f) for f in scores]
+	return min(weakness)
+
 if len(argv) != 2:
 	print("usage:")
 	print("python3 folder_checker.py [folder]")
@@ -52,10 +63,10 @@ while True:
 	min_score = min(statistics.values())
 	if same_file_count == 0:
 		WriteStatistics(statistics, folder)
-		print("CHOOSING NEW FILE\n");
-		file_name = choice([t for t in statistics if statistics[t] == min_score])[2]
+		score_file = ChooseWeakestFile(statistics)
+		print("NEW FILE {} WITH SCORE {}\n".format(score_file[1], score_file[0]))
 		same_file_count = SAME_FILE_COUNT
-	triples = [t for t in statistics if t[2] == file_name]
+	triples = [t for t in statistics if t[2] == score_file[1]]
 	min_score = min([statistics[t] for t in triples])
 	triple = choice([t for t in triples if statistics[t] <= min_score * 1.5])
 	question, answer = triple[0], triple[1]

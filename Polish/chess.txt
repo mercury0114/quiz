@@ -1,3 +1,4 @@
+capture, bicie
 bishop, goniec
 board, deska
 castling, roszada

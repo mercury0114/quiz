@@ -1,20 +1,134 @@
+różna, different, adjectives2.txt, 4
+it should be drawish, powinna byc remisowa, chess3.txt, 4
+nie potrzebuję, I do not need, phrases3.txt, 4
+troska, worry, verbs2.txt, 5
+uzywać, use, verbs2.txt, 5
+worry, troska, verbs2.txt, 5
+use, uzywać, verbs2.txt, 5
+piękny, beautiful, adjectives2.txt, 5
+dość zimno, fairly cold, adjectives2.txt, 5
+different, różna, adjectives2.txt, 5
+beautiful, piękny, adjectives2.txt, 5
+fairly cold, dość zimno, adjectives2.txt, 5
+truly, naprawdę, adjectives2.txt, 5
+a little, trocha, adjectives2.txt, 5
+extensive, rozbudowana, adjectives2.txt, 5
+wjazd, entry, pko.txt, 5
+entry, wjazd, pko.txt, 5
+kingside attack, atak na skrzydle królewskim, chess3.txt, 5
+czy to działa, does that work, phrases3.txt, 5
+I do not need, nie potrzebuję, phrases3.txt, 5
+does that work, czy to działa, phrases3.txt, 5
+greetings to all, pozdro dla wszystkich, phrases3.txt, 5
+bo, because, prepositions2.txt, 5
+no, well, prepositions2.txt, 5
+na koniec, at the end, prepositions2.txt, 5
+because, bo, prepositions2.txt, 5
+well, no, prepositions2.txt, 5
+at the end, na koniec, prepositions2.txt, 5
 drugie piętro, second floor, numbers.txt, 5
 trzecie piętro, third floor, numbers.txt, 5
 second floor, drugie piętro, numbers.txt, 5
 third floor, trzecie piętro, numbers.txt, 5
+do przodu, forward, tango.txt, 5
+forward, do przodu, tango.txt, 5
+player, zawodnik, chess2.txt, 5
+fork, widły, chess2.txt, 5
+na deser, for desert, food4.txt, 5
+for desert, na deser, food4.txt, 5
+jaka jest pogoda w warszawie, what is the weather in Warsaw, questions2.txt, 6
 recently, ostatnio, mobile2.txt, 6
-forward, naprzód, tango.txt, 6
+naprawdę, truly, adjectives2.txt, 6
+trocha, a little, adjectives2.txt, 6
+rozbudowana, extensive, adjectives2.txt, 6
+roszada, castling, chess.txt, 6
+figura, piece, chess.txt, 6
+because his knight is standing there, bo tam stoi jego skoczek, chess3.txt, 6
+capture en passant, bicie w przelocie, chess3.txt, 6
+przewaga pionowa, pawn majority, chess3.txt, 6
+pozdro dla wszystkich, greetings to all, phrases3.txt, 6
+siema, what's up, phrases3.txt, 6
+sometimes I use, czasem uzywam, phrases3.txt, 6
+widły, fork, chess2.txt, 6
+no one, nikt, prepositions3.txt, 6
+for a month, na miesiąc, prepositions3.txt, 6
+is it raining, czy pada, questions2.txt, 7
 to obtain, aby uzyskać, verbs2.txt, 7
+zimno, cold, adjectives2.txt, 7
+trudny, difficult, adjectives2.txt, 7
+cold, zimno, adjectives2.txt, 7
+difficult, trudny, adjectives2.txt, 7
 the closest, najbliższej, adjectives2.txt, 7
 sit down, siadać, verbs.txt, 7
 turn left, skręć w lewo, verbs.txt, 7
+bishop, goniec, chess.txt, 7
+castling, roszada, chess.txt, 7
+centre, centrum, chess.txt, 7
+game, partia, chess.txt, 7
+horse, koń, chess.txt, 7
+king, król, chess.txt, 7
+knight, skoczek, chess.txt, 7
+move, ruch, chess.txt, 7
+pawn, pion, chess.txt, 7
+piece, figura, chess.txt, 7
+rank, rząd, chess.txt, 7
+rook, wieża, chess.txt, 7
+white, białe, chess.txt, 7
+bicie, capture, chess.txt, 7
+goniec, bishop, chess.txt, 7
+deska, board, chess.txt, 7
+centrum, centre, chess.txt, 7
+obrona, defence, chess.txt, 7
+linia, file, chess.txt, 7
+partia, game, chess.txt, 7
+koń, horse, chess.txt, 7
+król, king, chess.txt, 7
+pion, pawn, chess.txt, 7
+hetman, queen, chess.txt, 7
+rząd, rank, chess.txt, 7
+wieża, rook, chess.txt, 7
+pole, square, chess.txt, 7
+białe, white, chess.txt, 7
 co więcej, what is more, phrases2.txt, 7
-jesłi pasuje Ci, if it suits you, phrases3.txt, 7
+it must be a draw, to musi być remis, chess3.txt, 7
+opening advantage, przewaga debiutowa, chess3.txt, 7
+queenside, skrzydło hetmańskie, chess3.txt, 7
+discovered attack, atak z odsłony, chess3.txt, 7
+raz na dwa tygodnie, once in two weeks, phrases3.txt, 7
+czy możemy kontynuować, can we continue, phrases3.txt, 7
+i tak dalej, and so on, phrases3.txt, 7
+such as, jak na, phrases3.txt, 7
+to nie takie proste, it's not that simple, phrases3.txt, 7
+czasem uzywam, sometimes I use, phrases3.txt, 7
+once in two weeks, raz na dwa tygodnie, phrases3.txt, 7
+once in four days, raz na cztery dni, phrases3.txt, 7
+can we continue, czy możemy kontynuować, phrases3.txt, 7
+and so on, i tak dalej, phrases3.txt, 7
+jak na, such as, phrases3.txt, 7
+it's not that simple, to nie takie proste, phrases3.txt, 7
+what's up, siema, phrases3.txt, 7
 recently, niedawno, prepositions2.txt, 7
 posted by, wysłana przez, orders.txt, 7
 pick up, odejbrać, orders.txt, 7
 90, dziewięćdziesiąt, numbers.txt, 7
+blunder, błąd, chess2.txt, 7
+sacrifice, poświęcenie, chess2.txt, 7
+bishop pair, para gońców, chess2.txt, 7
+exchange, jakość, chess2.txt, 7
+middlegame, gra środkowa, chess2.txt, 7
+advantage, przewaga, chess2.txt, 7
+zawodnik, player, chess2.txt, 7
+błąd, blunder, chess2.txt, 7
+gra środkowa, middlegame, chess2.txt, 7
+przewaga, advantage, chess2.txt, 7
+w niedzielę, on Sunday, prepositions3.txt, 7
+z Litwy, from Lithuania, prepositions3.txt, 7
+of Lithuania, z Litwa, prepositions3.txt, 7
 eat in, na miejscu, food4.txt, 7
+radzę sobie, I am doing well, phrases4.txt, 7
+radzę sobie całkiem dobrze, I am doing quite well, phrases4.txt, 7
+I am doing well, radzę sobie, phrases4.txt, 7
+what is the weather in Warsaw, jaka jest pogoda w warszawie, questions2.txt, 8
 do dzieła, to work, verbs2.txt, 8
 to work, do dzieła, verbs2.txt, 8
 służbowy, business, mobile2.txt, 8
@@ -30,7 +144,36 @@ sad, smutny, adjectives2.txt, 8
 the last, ostatni, adjectives2.txt, 8
 open, otwarty, adjectives2.txt, 8
 easy, łatwo, adjectives2.txt, 8
+capture, bicie, chess.txt, 8
+board, deska, chess.txt, 8
+defence, obrona, chess.txt, 8
+draw, remis, chess.txt, 8
+file, linia, chess.txt, 8
+queen, hetman, chess.txt, 8
+square, pole, chess.txt, 8
+remis, draw, chess.txt, 8
+skoczek, knight, chess.txt, 8
+ruch, move, chess.txt, 8
 w tygodniu, in a week, time.txt, 8
+powinna byc remisowa, it should be drawish, chess3.txt, 8
+slight advantage, niewielka przewaga, chess3.txt, 8
+double attack, podwójne uderzenie, chess3.txt, 8
+advanced pawn, zaawansowany pion, chess3.txt, 8
+pawn majority, przewaga pionowa, chess3.txt, 8
+exchange sacrifice, ofiara jakości, chess3.txt, 8
+bo tam stoi jego skoczek, because his knight is standing there, chess3.txt, 8
+to musi być remis, it must be a draw, chess3.txt, 8
+atak na skrzydle królewskim, kingside attack, chess3.txt, 8
+przewaga debiutowa, opening advantage, chess3.txt, 8
+niewielka przewaga, slight advantage, chess3.txt, 8
+podwójne uderzenie, double attack, chess3.txt, 8
+zaawansowany pion, advanced pawn, chess3.txt, 8
+ofiara jakości, exchange sacrifice, chess3.txt, 8
+skrzydło hetmańskie, queenside, chess3.txt, 8
+bicie w przelocie, capture en passant, chess3.txt, 8
+atak z odsłony, discovered attack, chess3.txt, 8
+raz na cztery dni, once in four days, phrases3.txt, 8
+jesłi pasuje Ci, if it suits you, phrases3.txt, 8
 niedawno, recently, prepositions2.txt, 8
 oprócz, apart from, prepositions2.txt, 8
 1, jeden, numbers.txt, 8
@@ -43,7 +186,6 @@ siedemnaście, 17, numbers.txt, 8
 but, shoe, tango.txt, 8
 wygodnych butów, comfortable shoes, tango.txt, 8
 zamień partnerów, swap partners, tango.txt, 8
-naprzód, forward, tango.txt, 8
 wstecz, back, tango.txt, 8
 attention, uwaga, tango.txt, 8
 swap partners, zamień partnerów, tango.txt, 8
@@ -51,6 +193,33 @@ tango classes, zajęcia z tango, tango.txt, 8
 sincerely, serdecznośći, tango.txt, 8
 back, wstecz, tango.txt, 8
 it works, działa, tango.txt, 8
+make sense, mają sens, chess2.txt, 8
+threat, grożba, chess2.txt, 8
+pin, związanie, chess2.txt, 8
+extra pawn, pion więcej, chess2.txt, 8
+endgame, gra końcowa, chess2.txt, 8
+double check, podwójny szach, chess2.txt, 8
+mają sens, make sense, chess2.txt, 8
+grożba, threat, chess2.txt, 8
+związanie, pin, chess2.txt, 8
+poświęcenie, sacrifice, chess2.txt, 8
+para gońców, bishop pair, chess2.txt, 8
+pion więcej, extra pawn, chess2.txt, 8
+jakość, exchange, chess2.txt, 8
+gra końcowa, endgame, chess2.txt, 8
+podwójny szach, double check, chess2.txt, 8
+tez, too, prepositions3.txt, 8
+w Litwa, in Lithuania, prepositions3.txt, 8
+z Litwa, of Lithuania, prepositions3.txt, 8
+nikt, no one, prepositions3.txt, 8
+całkiem dobrze, quite well, prepositions3.txt, 8
+na miesiąc, for a month, prepositions3.txt, 8
+too, tez, prepositions3.txt, 8
+on Sunday, w niedzielę, prepositions3.txt, 8
+in Lithuania, w Litwa, prepositions3.txt, 8
+from Lithuania, z Litwy, prepositions3.txt, 8
+quite well, całkiem dobrze, prepositions3.txt, 8
+czy pada, is it raining, questions2.txt, 9
 we anticipate, przewidujemy, verbs2.txt, 9
 anticipate, przewidywać, verbs2.txt, 9
 pojęcie, concept, mobile2.txt, 9
@@ -224,6 +393,7 @@ closed embrace, bliskim objęciu, tango.txt, 10
 mąka, flour, food4.txt, 10
 can I call you later, czy mogę zadzwonić póżniej, questions.txt, 10
 is it here, czy to tu, questions.txt, 10
+I am doing quite well, radzę sobie całkiem dobrze, phrases4.txt, 10
 ja chuję kota, I smell cat, verbs2.txt, 11
 przewidujemy, we anticipate, verbs2.txt, 11
 zostaw, leave, verbs2.txt, 11
@@ -348,7 +518,6 @@ check activity, spwardż aktywność, mobile.txt, 13
 bin, kosz, mobile.txt, 13
 reply, odpowiedż, mobile.txt, 13
 tu, here, prepositions.txt, 13
-w niedzielę, on Sunday, prepositions.txt, 13
 month, miesiąc, time.txt, 13
 2 weeks ago, 2 tygodnie temu, time.txt, 13
 week, tydzień, time.txt, 13
@@ -392,7 +561,6 @@ teraz, now, prepositions.txt, 14
 at, przy, prepositions.txt, 14
 how many, ile, prepositions.txt, 14
 here, tu, prepositions.txt, 14
-in Lithuania, w Litwa, prepositions.txt, 14
 wczora, yesterday, time.txt, 14
 immediately, od zaraz, time.txt, 14
 yesterday, wczora, time.txt, 14
@@ -423,7 +591,6 @@ zezwalaj, allow, mobile.txt, 15
 udostępnij, share, mobile.txt, 15
 plik, file, mobile.txt, 15
 przy, at, prepositions.txt, 15
-z Litwa, of Lithuania, prepositions.txt, 15
 zatem, therefore, prepositions.txt, 15
 therefore, zatem, prepositions.txt, 15
 godzina, hour, time.txt, 15
@@ -445,10 +612,7 @@ wprowadż, enter, pko.txt, 16
 people, osoby, mobile.txt, 16
 file, plik, mobile.txt, 16
 lub, or, prepositions.txt, 16
-w Litwa, in Lithuania, prepositions.txt, 16
-z Litwy, from Lithuania, prepositions.txt, 16
 or, lub, prepositions.txt, 16
-of Lithuania, z Litwa, prepositions.txt, 16
 rok, year, time.txt, 16
 jestem ciekawa, I am curious, phrases2.txt, 16
 have a good time, baw się dobrze, phrases2.txt, 16
@@ -543,13 +707,11 @@ would you like to dance, czy chciałaby pani zatańczyć, tango.txt, 20
 business, służbowy, mobile2.txt, 21
 dla, for, prepositions.txt, 21
 now, teraz, prepositions.txt, 21
-from Lithuania, z Litwy, prepositions.txt, 21
 do you live here, czy tutaj mieszkasz, phrases2.txt, 21
 imię, name, internet.txt, 21
 doręczenia, delivery, orders.txt, 21
 poczta, post, orders.txt, 21
 for, dla, prepositions.txt, 22
-on Sunday, w niedzielę, prepositions.txt, 22
 is this Agnieszka, czy to jest Agnieszka, phrases2.txt, 22
 how old are you, ile masz lat, phrases2.txt, 22
 bezpiecznie, safely, internet.txt, 22

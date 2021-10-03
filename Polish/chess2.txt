@@ -1,3 +1,4 @@
+player, zawodnik
 make sense, mają sens
 fork, widły
 blunder, błąd
