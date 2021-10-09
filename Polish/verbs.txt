@@ -9,7 +9,7 @@ sprzedać, sell
 szukaj, search
 wiadomość, message
 wybierz, choose
-wynająć, to rent
+wynająć, rent
 wyślij, send
 znajduje się, is located
 skręć w lewo, turn left

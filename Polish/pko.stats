@@ -1,26 +1,26 @@
-start, rozpocznij, 4
-wjazd, entry, 5
-dostępne środki, available funds, 5
-dalej, next, 5
-nadaj, give, 5
-może to chwilę potrwać, this may take a while, 5
-wprowadż, enter, 5
-wyloguj, log out, 5
+enter, wprowadż, 4
+potwierdzam, I confirm, 5
 entry, wjazd, 5
-next, dalej, 5
-give, nadaj, 5
+available funds, dostępne środki, 5
 confirm, potwierdzać, 5
 I confirm, potwierdzam, 5
-enter, wprowadż, 5
-log out, wyloguj, 5
-rozpocznij, start, 6
-potwierdzać, confirm, 6
-bezpłatna, free, 6
-dodaj, add, 6
-potwierdzam, I confirm, 6
-wloguj, log in, 6
-available funds, dostępne środki, 6
-free, bezpłatna, 6
-this may take a while, może to chwilę potrwać, 6
+dostępne środki, available funds, 6
+może to chwilę potrwać, this may take a while, 6
+wprowadż, enter, 6
+give, nadaj, 6
+log out, wyloguj, 6
 log in, wloguj, 6
+wjazd, entry, 7
+rozpocznij, start, 7
+dalej, next, 7
+nadaj, give, 7
+potwierdzać, confirm, 7
+bezpłatna, free, 7
+dodaj, add, 7
+wyloguj, log out, 7
+wloguj, log in, 7
+start, rozpocznij, 7
+next, dalej, 7
+free, bezpłatna, 7
+this may take a while, może to chwilę potrwać, 7
 add, dodaj, 7

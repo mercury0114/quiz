@@ -79,15 +79,15 @@ while True:
 		else:
 			print("Wrong answer, try again")
 			score = max(0, score - 2)
-			counter += 1
+			counter += 2
 		user_input = input()
 	if user_input == answer:
 		score = min(MAX_SCORE, score + 1)
 		counter -= 1
 	if user_input == HINT:
 		print(answer)
-		score -= max(0, score // 2)
-		counter += 2
+		score -= max(0, (score * 3) // 4)
+		counter += 3
 	if user_input == QUIT:
 		exit()
 	print("New score is {}\n".format(score))

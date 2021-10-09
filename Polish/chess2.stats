@@ -1,28 +1,28 @@
-player, zawodnik, 4
+fork, widły, 4
+middlegame, gra środkowa, 4
+endgame, gra końcowa, 4
 make sense, mają sens, 5
-blunder, błąd, 5
-threat, grożba, 5
-pin, związanie, 5
-extra pawn, pion więcej, 5
 exchange, jakość, 5
-endgame, gra końcowa, 5
-advantage, przewaga, 5
 widły, fork, 5
-błąd, blunder, 5
-związanie, pin, 5
-poświęcenie, sacrifice, 5
 para gońców, bishop pair, 5
-jakość, exchange, 5
 gra środkowa, middlegame, 5
-podwójny szach, double check, 5
-fork, widły, 6
-bishop pair, para gońców, 6
-middlegame, gra środkowa, 6
-zawodnik, player, 6
-mają sens, make sense, 6
-grożba, threat, 6
-pion więcej, extra pawn, 6
-gra końcowa, endgame, 6
+player, zawodnik, 6
+pin, związanie, 6
+błąd, blunder, 6
+związanie, pin, 6
 przewaga, advantage, 6
+blunder, błąd, 7
+threat, grożba, 7
 sacrifice, poświęcenie, 7
+bishop pair, para gońców, 7
+extra pawn, pion więcej, 7
+advantage, przewaga, 7
 double check, podwójny szach, 7
+zawodnik, player, 7
+mają sens, make sense, 7
+grożba, threat, 7
+poświęcenie, sacrifice, 7
+pion więcej, extra pawn, 7
+jakość, exchange, 7
+gra końcowa, endgame, 7
+podwójny szach, double check, 7
