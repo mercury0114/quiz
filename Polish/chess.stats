@@ -1,6 +1,5 @@
-capture, bicie, 5
+defence, obrona, 4
 bishop, goniec, 5
-board, deska, 5
 centre, centrum, 5
 draw, remis, 5
 horse, koń, 5
@@ -8,10 +7,8 @@ king, król, 5
 knight, skoczek, 5
 move, ruch, 5
 piece, figura, 5
-queen, hetman, 5
 rank, rząd, 5
 square, pole, 5
-white, białe, 5
 bicie, capture, 5
 goniec, bishop, 5
 linia, file, 5
