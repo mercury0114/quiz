@@ -7,7 +7,6 @@ from utils import CloseTo, ReadOpen, ReadPairsFromFile, WriteOpen
 from utils import GetFileScore
 from utils import HINT, QUIT
 
-STATISTICS_FILE = "my.stats"
 MAX_SCORE = 30
 INITIAL_SCORE = 5
 GROUP_COUNT = 12
@@ -61,8 +60,9 @@ counter = 0
 while True:
 	if counter == 0:
 		WriteStatistics(folder, group, statistics)
-		group = ChooseWeakestGroup(folder)[1]
-		print("NEW GROUP {}\n".format(group))
+		score_group = ChooseWeakestGroup(folder)
+		group = score_group[1]
+		print("NEW GROUP {} with score {}\n".format(group, score_group[0]))
 		counter = GROUP_COUNT
 		statistics = GetStatistics(folder, group)
 	min_score = min(statistics.values())
@@ -71,14 +71,14 @@ while True:
 	score = statistics[pair]
 	print("{} more from {}".format(counter, group))
 	print("Current score is", score)
-	print(question)
+	print("{}: {}".format(group, question))
 	user_input = input()
 	while user_input not in [answer, HINT, QUIT]:
 		if CloseTo(user_input, answer):
 			print("Close, try again")
 		else:
 			print("Wrong answer, try again")
-			score = max(0, score - 2)
+			score = max(0, score - 1)
 			counter += 1
 		user_input = input()
 	if user_input == answer:
@@ -86,7 +86,7 @@ while True:
 		counter -= 1
 	if user_input == HINT:
 		print(answer)
-		score -= max(0, score // 2)
+		score -= max(0, score - 4)
 		counter += 2
 	if user_input == QUIT:
 		exit()

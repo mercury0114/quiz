@@ -13,3 +13,5 @@ endgame, gra końcowa
 blunder, błąd
 advantage, przewaga
 double check, podwójny szach
+zwycięzca, winner
+drugie miejsce, second place
