@@ -1,3 +1,5 @@
+ręnka, hand
+krzyż, cross
 uwaga, attention
 but, shoe
 wygodnych butów, comfortable shoes
@@ -9,7 +11,6 @@ bliskim objęciu, closed embrace
 serce, heart
 odczuwanie, feeling
 spotkanie, meeting
-opowiedzieć, tell
 pobyć razem, be together
 do przodu, forward
 wstecz, back
