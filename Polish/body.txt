@@ -1,0 +1,14 @@
+body, ciało
+foot, stopa
+arm, ręka
+shoulder, ramię
+head, głowa
+eyes, oczy
+eye, oko
+leg, noga
+knee, kolano
+neck, szyja
+back, plecy
+forearm, przedramię
+heel, pięta
+he broke his leg, złamał sobie nogę
