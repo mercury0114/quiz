@@ -1,3 +1,4 @@
+from math import sqrt
 from os.path import isfile
 from random import choice
 
@@ -16,7 +17,7 @@ def GetFileScore(f):
 	for line in ReadOpen(f):
 		p1, p2, score = line.split(', ')
 		count += 1
-		score_sum += int(score)
+		score_sum += sqrt(int(score))
 	return score_sum / count
 
 def SelectQuestionAnswer(word_pair, argument):

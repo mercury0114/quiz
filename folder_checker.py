@@ -66,12 +66,12 @@ while True:
 		counter = GROUP_COUNT
 		statistics = GetStatistics(folder, group)
 	min_score = min(statistics.values())
-	pair = choice([p for p in statistics if statistics[p] <= min_score * 1.5])
+	pair = choice([p for p in statistics if statistics[p] <= min_score * 1.2])
 	question, answer = pair[0], pair[1]
 	score = statistics[pair]
 	print("{} more from {}".format(counter, group))
 	print("Current score is", score)
-	print("{}: {}".format(group, question))
+	print(question)
 	user_input = input()
 	while user_input not in [answer, HINT, QUIT]:
 		if CloseTo(user_input, answer):
