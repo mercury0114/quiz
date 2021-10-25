@@ -9,7 +9,6 @@ from utils import HINT, QUIT
 
 MAX_SCORE = 30
 INITIAL_SCORE = 5
-GROUP_COUNT = 12
 STATS_END = ".stats"
 TXT_END = ".txt"
 
@@ -63,8 +62,8 @@ while True:
 		score_group = ChooseWeakestGroup(folder)
 		group = score_group[1]
 		print("NEW GROUP {} with score {}\n".format(group, score_group[0]))
-		counter = GROUP_COUNT
 		statistics = GetStatistics(folder, group)
+		counter = len(statistics)
 	min_score = min(statistics.values())
 	pair = choice([p for p in statistics if statistics[p] <= min_score * 1.2])
 	question, answer = pair[0], pair[1]

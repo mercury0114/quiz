@@ -2,7 +2,9 @@ sprawdż, check
 siadać, sit down
 słuchać, listen
 kup, buy
-napisz, write
+pisać, write
+ja piszę, I write
+ty piszesz, you write
 padać, rain
 pokaż, show
 sprzedać, sell

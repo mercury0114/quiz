@@ -4,7 +4,9 @@ kosz, bin
 zezwalaj, allow
 wyczyść, clear
 powiadomień, notifications
-udostępnij, share
+udostępnić, share
+ja udostępnię, I share
+ty udostępnisz, you share
 utwórz, create
 osoby, people
 plik, file

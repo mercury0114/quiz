@@ -5,7 +5,10 @@ doładuj swoje konto, top up your account
 dowiedz się więcej, find out more
 imię, name
 nazwisko, surname
+odświeżyć, to refresh
 odśwież, refresh
+ja odświeżę, I refresh
+ty odświeżysz, you refresh
 oznacz, mark
 płatność, payment
 przeglądaj, browse
