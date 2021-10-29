@@ -1,8 +1,8 @@
-write, pisać
-speak, mówić
-listen, słuchać
-read, czytać
-chat, rozmawiać
+to write, pisać
+to speak, mówić
+to listen, słuchać
+to read, czytać
+to talk, rozmawiać
 I can write, ja mogę pisać
 I can read, ja mogę czytać
 I can chat with you, ja mogę z tobą rozmawiać w czaczie

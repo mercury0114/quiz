@@ -4,21 +4,18 @@ from random import choice
 
 HINT = "h"
 QUIT = "q"
+INITIAL_SCORE = 5
+MAX_SCORE = 30
 
 def CloseTo(user_input, answer):
-	l = min(len(user_input), len(answer))
-	return sum(user_input[i] != answer[i] for i in range(l)) + \
-		abs(len(user_input) - len(answer)) < 3
+    l = min(len(user_input), len(answer))
+    return sum(user_input[i] != answer[i] for i in range(l)) + \
+        abs(len(user_input) - len(answer)) < 3
 
 def GetFileScore(f):
-	if not isfile(f): return 0
-	count = 0
-	score_sum = 0
-	for line in ReadOpen(f):
-		p1, p2, score = line.split(', ')
-		count += 1
-		score_sum += sqrt(int(score))
-	return score_sum / count
+    scores = ReadDataFromFile(f).values()
+    score_sum = sum([sqrt(s[0]) + sqrt(s[1]) for s in scores])
+    return score_sum / len(scores)
 
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument
@@ -30,9 +27,15 @@ def WriteOpen(file_path):
 def ReadOpen(file_path):
     return open(file_path, encoding='UTF-8')
 
-def ReadPairsFromFile(file_path):
-    pairs = []
+def ReadDataFromFile(file_path):
+    statistics = {}
     for line in ReadOpen(file_path):
-        wordA, wordB = line.split(', ')
-        pairs.append((wordA, wordB.strip('\n')))
-    return pairs
+        columns = line.split(', ')
+        words = (columns[0], columns[1].strip('\n'))
+        score1 = INITIAL_SCORE if len(columns) < 3 else int(columns[2])
+        score2 = INITIAL_SCORE if len(columns) < 4 else int(columns[3])
+        statistics[words] = [score1, score2]
+    return statistics
+
+def ReadPairsFromFile(file_path):
+    return list(ReadDataFromFile(file_path).keys())
