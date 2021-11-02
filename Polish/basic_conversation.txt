@@ -1,11 +1,11 @@
-to write, pisać
-to speak, mówić
-to listen, słuchać
-to read, czytać
-to talk, rozmawiać
-I can write, ja mogę pisać
-I can read, ja mogę czytać
-I can chat with you, ja mogę z tobą rozmawiać w czaczie
-I can not speak, ja nie mogę mówić
-I understand a bit, ja trochę rozumiem
-I understand but do not speak, ja rozumiem ale nie mówię
+to speak, mówić, 5, 5
+to read, czytać, 5, 5
+to talk, rozmawiać, 5, 5
+I can write, ja mogę pisać, 5, 5
+I can not speak, ja nie mogę mówić, 5, 5
+I understand a bit, ja trochę rozumiem, 5, 5
+to listen, słuchać, 6, 5
+I can read, ja mogę czytać, 6, 5
+I can chat with you, ja mogę z tobą rozmawiać w czaczie, 6, 5
+to write, pisać, 6, 6
+I understand but do not speak, ja rozumiem ale nie mówię, 7, 7

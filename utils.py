@@ -15,7 +15,7 @@ def CloseTo(user_input, answer):
 def GetFileScore(f):
     scores = ReadDataFromFile(f).values()
     score_sum = sum([sqrt(s[0]) + sqrt(s[1]) for s in scores])
-    return score_sum / len(scores)
+    return (score_sum / (len(scores) * 2)) ** 2
 
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument

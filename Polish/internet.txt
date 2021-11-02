@@ -1,22 +1,22 @@
-bezpiecznie, safely
-dane, data
-data wygaśnięcie, expiry date
-doładuj swoje konto, top up your account
-dowiedz się więcej, find out more
-imię, name
-nazwisko, surname
-odświeżyć, to refresh
-odśwież, refresh
-ja odświeżę, I refresh
-ty odświeżysz, you refresh
-oznacz, mark
-płatność, payment
-przeglądaj, browse
-przelew, transfer
-spośob płatnosci, payment method
-stan konta, account balance
-strona, page
-ustawienia, settings
-użytkownik, user
-zachowaj, keep
-zaplać, pay
+bezpiecznie, safely, 5, 5
+dowiedz się więcej, find out more, 5, 5
+imię, name, 5, 5
+odświeżyć, to refresh, 5, 5
+ja odświeżę, I refresh, 5, 5
+ty odświeżysz, you refresh, 5, 5
+przeglądaj, browse, 5, 5
+przelew, transfer, 5, 5
+stan konta, account balance, 5, 5
+ustawienia, settings, 5, 5
+data wygaśnięcie, expiry date, 6, 5
+doładuj swoje konto, top up your account, 6, 5
+nazwisko, surname, 6, 5
+odśwież, refresh, 6, 5
+zaplać, pay, 6, 5
+płatność, payment, 6, 6
+spośob płatnosci, payment method, 6, 6
+strona, page, 6, 6
+użytkownik, user, 6, 6
+zachowaj, keep, 6, 6
+dane, data, 7, 6
+oznacz, mark, 7, 6

@@ -1,14 +1,14 @@
-z nim, with him
-wszyczy, everyone
-dla siebie, for myself
-poniżej, below
-z tobą, with you
-dlatego że, because
-też, too
-w niedzielę, on Sunday
-w Litwa, in Lithuania
-z Litwa, of Lithuania
-z Litwy, from Lithuania
-nikt, no one
-całkiem dobrze, quite well
-na miesiąc, for a month
+wszyczy, everyone, 4, 5
+też, too, 4, 5
+z Litwa, of Lithuania, 4, 5
+z nim, with him, 5, 5
+dla siebie, for myself, 5, 5
+poniżej, below, 5, 5
+z tobą, with you, 5, 5
+z Litwy, from Lithuania, 5, 5
+całkiem dobrze, quite well, 5, 5
+dlatego że, because, 6, 5
+nikt, no one, 6, 5
+w niedzielę, on Sunday, 6, 6
+w Litwa, in Lithuania, 6, 6
+na miesiąc, for a month, 6, 6

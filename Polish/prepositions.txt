@@ -1,13 +1,13 @@
-przy, at
-dla, for
-ile, how many
-już, already
-lub, or
-między, between
-teraz, now
-tu, here
-więc, thus
-wtedy po angielsku, then in English
-z nami, with us
-zatem, therefore
-ze sobą, together
+zatem, therefore, 4, 5
+przy, at, 5, 5
+dla, for, 5, 5
+lub, or, 5, 5
+wtedy po angielsku, then in English, 5, 5
+ze sobą, together, 5, 5
+ile, how many, 6, 5
+tu, here, 6, 5
+więc, thus, 6, 5
+już, already, 6, 6
+między, between, 6, 6
+teraz, now, 7, 6
+z nami, with us, 7, 6

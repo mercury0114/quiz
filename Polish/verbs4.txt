@@ -1,21 +1,18 @@
-myśleć, think
-ja myślę, I think
-ty myślisz, you think
-boleć, hurt
-ja bolę, I hurt
-ty bolisz, you hurt
-wdepnąć, step
-ja wdepnę, I step
-ty wdepniesz, you step
-powiedzieć, tell
-ja powiem, I tell
-ty powiesz, you tell
-czuć, feel
-ja czuję, I feel
-ty czujesz, you feel
-żartować, joke
-ja żartuję, I joke
-ty żartujesz, you joke
-wierzyć, believe
-ja wierzę, I believe
-ty wierzysz, you believe
+boleć, to hurt, 5, 5
+ja bolę, I hurt, 5, 5
+ty bolisz, you hurt, 5, 5
+ja wdepnę, I step, 5, 5
+ty czujesz, you feel, 5, 5
+ja żartuję, I joke, 5, 5
+ty wierzysz, you believe, 5, 5
+wdepnąć, to step, 6, 5
+ty wdepniesz, you step, 6, 5
+powiedzieć, to tell, 6, 5
+ja powiem, I tell, 6, 5
+ty powiesz, you tell, 6, 5
+ty żartujesz, you joke, 6, 5
+czuć, to feel, 6, 6
+ja czuję, I feel, 6, 6
+żartować, to joke, 6, 6
+wierzyć, to believe, 6, 6
+ja wierzę, I believe, 6, 6

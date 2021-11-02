@@ -1,13 +1,13 @@
-raz na dwa tygodnie, once in two weeks
-raz na cztery dni, once in four days
-czy możemy kontynuować, can we continue
-czy to działa, does this work
-i tak dalej, and so on
-such as, jak na
-to nie takie proste, it's not that simple
-pozdro dla wszystkich, greetings to all
-siema, what's up
-jesteś w błędzie, you are wrong
-jesłi pasuje Ci, if it suits you
-miło mi cię poznać, nice to meet you
-czasem uzywam, sometimes I use
+jesłi pasuje Ci, if it suits you, 4, 5
+czy możemy kontynuować, can we continue, 5, 5
+pozdro dla wszystkich, greetings to all, 5, 5
+jesteś w błędzie, you are wrong, 5, 5
+miło mi cię poznać, nice to meet you, 5, 5
+czy to działa, does this work, 6, 5
+i tak dalej, and so on, 6, 5
+such as, jak na, 6, 5
+czasem uzywam, sometimes I use, 6, 5
+raz na cztery dni, once in four days, 6, 6
+to nie takie proste, it's not that simple, 6, 6
+siema, what's up, 6, 6
+raz na dwa tygodnie, once in two weeks, 7, 6

@@ -1,2 +1,2 @@
-komórkowy, cellular
-cofnij, undo
+komórkowy, cellular, 6, 5
+cofnij, undo, 6, 5

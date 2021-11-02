@@ -1,6 +1,6 @@
-mocna, strong
-silniejszy, stronger
-przygotowanie, preparation
-wiele, many
-mało ludzi, few people
-mało czasu, little time
+silniejszy, stronger, 5, 5
+przygotowanie, preparation, 5, 5
+mocna, strong, 6, 5
+mało czasu, little time, 6, 5
+wiele, many, 6, 6
+mało ludzi, few people, 6, 6

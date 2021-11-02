@@ -40,7 +40,7 @@ while True:
         statistics = ReadDataFromFile(join(folder, group))
         counter = len(statistics)
     min_score = min([min(p) for p in statistics.values()])
-    pair = choice([p for p in statistics if min(statistics[p]) <= min_score * 1.2])
+    pair = choice([p for p in statistics if min(statistics[p]) <= min_score * 1.5])
     index = statistics[pair][0] > statistics[pair][1]
     question, answer = pair[index], pair[not index]
     score = statistics[pair][index]
@@ -61,7 +61,7 @@ while True:
         counter -= 1
     if user_input == HINT:
         print(answer)
-        score = max(0, score - 4)
+        score = max(0, score - 3)
         counter += 2
     if user_input == QUIT:
         exit()

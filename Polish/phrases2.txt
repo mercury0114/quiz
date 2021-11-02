@@ -1,11 +1,11 @@
-co więcej, what is more
-czy to jest Agnieszka, is this Agnieszka
-baw się dobrze, have a good time
-jestem ciekawa, I am curious
-jak masz na imię, what is your name
-jak się masz, how are you
-czy tutaj mieszkasz, do you live here
-jak długo, how long
-ile masz lat, how old are you
-skąd jesteś, where are you from
-napiszę póżniej, I will write later
+czy to jest Agnieszka, is this Agnieszka, 5, 5
+jestem ciekawa, I am curious, 5, 5
+jak masz na imię, what is your name, 5, 5
+czy tutaj mieszkasz, do you live here, 5, 5
+jak długo, how long, 5, 5
+jak się masz, how are you, 6, 5
+skąd jesteś, where are you from, 6, 5
+baw się dobrze, have a good time, 6, 6
+ile masz lat, how old are you, 6, 6
+ja napiszę póżniej, I will write later, 6, 6
+co więcej, what is more, 7, 6

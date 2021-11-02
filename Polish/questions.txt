@@ -1,20 +1,20 @@
-czy mógłby pan mówić wolniej, could you please speak slower
-gdzie jest przystanek autobusowy, where is the bus stop
-proszę powtórzyć, please repeat
-czy mogę spróbować, can I try
-jaki rozmiar, what size
-proszę odejść, please go away
-czy mogę zadzwonić póżniej, can I call you later
-czy mogę odpowiedzieć póżniej, can I answer later
-odpowiem póżniej, I will answer later
-czekać, wait
-co słychać, what's up
-jak minął dzień, how was your day
-jak mija dzień, how is your day going
-nie chodzi o to, it's not about that
-czy mogę oddzwonić póżniej, can I call you back later
-co dziecko pije, what does a child drink
-jaką pijesz kawę, what coffee do you drink
-czy to tu, is it here
-czy możesz pokazać swoje, can you show your
-czy mógłby pan napisać, could you please write
+czy mógłby pan mówić wolniej, could you please speak slower, 5, 5
+proszę powtórzyć, please repeat, 5, 5
+czy mogę spróbować, can I try, 5, 5
+czy mogę zadzwonić póżniej, can I call later, 5, 5
+co słychać, what's up, 5, 5
+nie chodzi o to, it's not about that, 5, 5
+czy mogę oddzwonić póżniej, can I call back later, 5, 6
+gdzie jest przystanek autobusowy, where is the bus stop, 6, 5
+proszę odejść, please go away, 6, 5
+czy mogę odpowiedzieć póżniej, can I answer later, 6, 5
+odpowiem póżniej, I will answer later, 6, 5
+czekać, wait, 6, 5
+jak minął dzień, how was your day, 6, 5
+jak mija dzień, how is your day going, 6, 5
+jaką pijesz kawę, what coffee do you drink, 6, 5
+czy możesz pokazać swoje, can you show your, 6, 5
+co dziecko pije, what does a child drink, 6, 6
+czy to tu, is it here, 6, 6
+jaki rozmiar, what size, 7, 6
+czy mógłby pan napisać, could you please write, 7, 6

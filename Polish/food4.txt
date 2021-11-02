@@ -1,6 +1,6 @@
-na deser, for desert
-mąka, flour
-rachunek, bill
-orzeski ziemne, peanuts
-na wynos, takeaway
-na miejscu, eat in
+na deser, for desert, 5, 5
+orzeski ziemne, peanuts, 5, 5
+na miejscu, eat in, 5, 5
+na wynos, takeaway, 6, 5
+mąka, flour, 6, 6
+rachunek, bill, 7, 6

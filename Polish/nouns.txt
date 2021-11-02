@@ -1,1 +1,1 @@
-trzina, cane
+trzina, cane, 6, 5
