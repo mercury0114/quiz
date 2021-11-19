@@ -1,14 +1,20 @@
-spać, to sleep
-ja śpię, I sleep
-ty śpisz, you sleep
-oni śpią, they sleep
-śpij dobrze, sleep well
-przygotować, to prepare
-ja przygotuję, I prepare
-ty przygotujesz, you prepare
-przygotuj, prepare
-przygotowanie, preparation
-czy on otrzymał, did he receive
-otrzymać, to receive
-ja otrzymam, I receive
-otrzymaj, receive
+wyglądać, to look
+ja wyglądam, I look
+ono wygląda, it looks
+ja wyglądałem, I looked
+ja chcę wyglądać jak tygrys, I want to look like a tiger
+jak wyglądam, how do I look
+spać, to sleep, 5, 4
+ja śpię, I sleep, 5, 5
+ty śpisz, you sleep, 5, 5
+przygotować, to prepare, 5, 5
+ty przygotujesz, you prepare, 5, 5
+przygotuj, prepare, 5, 5
+otrzymać, to receive, 5, 5
+przygotowanie, preparation, 5, 6
+oni śpią, they sleep, 6, 6
+śpij dobrze, sleep well, 6, 6
+ja przygotuję, I prepare, 6, 6
+czy on otrzymał, did he receive, 6, 6
+ja otrzymam, I receive, 6, 6
+otrzymaj, receive, 6, 6

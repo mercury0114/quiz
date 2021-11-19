@@ -5,7 +5,7 @@ from random import choice
 HINT = "h"
 QUIT = "q"
 INITIAL_SCORE = 5
-MAX_SCORE = 30
+MAX_SCORE = 15
 
 def CloseTo(user_input, answer):
     l = min(len(user_input), len(answer))

@@ -1,0 +1,15 @@
+żółty, yellow, 5, 5
+niebieski, blue, 5, 5
+jasnoniebieski, light blue, 5, 5
+ciemnoniebieski, dark blue, 5, 5
+jasny, light, 5, 5
+ciemny, dark, 5, 5
+kolor, color, 5, 6
+czerwony, red, 5, 6
+pomarańczowy, orange, 5, 6
+fioletowy, purple, 5, 6
+czarny, black, 5, 6
+biały, white, 5, 6
+zielony, green, 6, 6
+brązowy, brown, 6, 6
+różowy, pink, 7, 7

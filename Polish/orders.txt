@@ -1,15 +1,16 @@
-ja zamawiam, I order
-pakowanie, packing
-odebrane, received
-odbioru, receipt
-wysłana przez, posted by
-odejbrać, pick up
-śledż paczkę, track package
-w drogę, on the way
-czas doręczenia, delivery time
-doręczenia, delivery
-przesyłka, shipment
-śledzenie przesyłek, shipment tracking
-nadawca, sender
-poczta, post
-paczka, package
+płacić gotówką, pay in cash
+ja zamawiam, I order, 5, 4
+odebrane, received, 5, 5
+odbioru, receipt, 5, 5
+wysłana przez, posted by, 5, 5
+odejbrać, pick up, 5, 5
+śledż paczkę, track package, 5, 5
+przesyłka, shipment, 5, 5
+śledzenie przesyłek, shipment tracking, 5, 5
+pakowanie, packing, 5, 6
+nadawca, sender, 5, 6
+czas doręczenia, delivery time, 6, 6
+doręczenia, delivery, 6, 6
+poczta, post, 6, 6
+w drogę, on the way, 6, 7
+paczka, package, 6, 7

@@ -19,6 +19,7 @@ sausage, kiełbasa
 cookies, ciasteczki
 biscuit, ciastko
 carrots, marchewki
+indyk, turkey, 6, 7
 beef, wołowina
 pork, wieprzowina
 cabbage, kapusta

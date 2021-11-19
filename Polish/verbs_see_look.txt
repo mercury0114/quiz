@@ -1,0 +1,12 @@
+ty zobaczysz, you will see, 5, 2
+ciebie dobrze widzieć, good to see you, 5, 6
+ja oglądam nowy serial, I watch a new series, 6, 6
+ja nic nie widzę, I do not see anything, 6, 6
+oglądać, to watch, 6, 7
+ja widzę, I see, 6, 7
+ty widzisz, you see, 6, 7
+ja widziałem, I saw, 6, 7
+do zobaczenia, see you soon, 6, 7
+ja zobaczę, I will see, 6, 7
+zobacz, see, 6, 7
+wygląda, looks like, 7, 7

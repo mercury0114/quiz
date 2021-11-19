@@ -1,9 +1,9 @@
-czy wiesz, do you know
-boisz się, are you afraid
-czy potrzebuję, do I need
-ja chcę zapytać, I want to ask
-co wolisz, what do you prefer
-czy to złe, is it wrong
-skąd jesteś, where are you from
-czy pada, is it raining
-jaka jest pogoda w Warszawie, what is the weather in Warsaw
+ja chcę zapytać, I want to ask, 5, 2
+jaka jest pogoda w Warszawie, what is the weather in Warsaw, 5, 2
+boisz się, are you afraid, 5, 5
+czy wiesz, do you know, 6, 6
+co wolisz, what do you prefer, 6, 7
+czy to złe, is it wrong, 6, 7
+skąd jesteś, where are you from, 6, 7
+czy pada, is it raining, 6, 7
+czy potrzebuję, do I need, 7, 7

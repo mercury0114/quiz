@@ -1,0 +1,18 @@
+ja płaciłem, I paid, 5, 4
+uczestnik, participant, 5, 4
+woleć, to prefer, 5, 5
+ja wolę, I prefer, 5, 5
+jak ty wolisz, as you prefer, 5, 5
+płacić, to pay, 5, 5
+ty już mi zapłaciłeś, you have already paid me, 5, 5
+ty uczestniczysz, you participate, 5, 5
+uczestnictwo, participation, 5, 5
+ty wolisz, you prefer, 5, 6
+ja płacę, I pay, 5, 6
+ja będę uczestniczyć, I will participate, 5, 6
+co ty wolisz, what do you prefer, 6, 6
+ty płacisz, you pay, 6, 6
+uczestniczyć, to participate, 6, 6
+ja uczestniczę, I participate, 6, 6
+uczestnicy randki, dating participants, 6, 6
+ja uczestniczyłem, I participated, 6, 7

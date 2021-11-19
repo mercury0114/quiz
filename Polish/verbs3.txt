@@ -1,17 +1,16 @@
-badać, examine
-brać, take
-gryżć, bite
-gryżć zęby, bite teeth
-ja trzymam, I hold
-ja ubieram, I dress
-ja zapłaciłem, I paid
-pracować, work
-tłumaczyć, explain
-trzymać, hold
-ty trzymasz, you hold
-ty żartujesz, you joke
-wykonać, perform
-zamykać, close
-zarabiać, earn
-żartować, joke
-robić, to do
+trzymać, hold, 4, 6
+badać, examine, 5, 2
+tłumaczyć, explain, 5, 2
+ty trzymasz, you hold, 6, 6
+ja trzymam, I hold, 6, 6
+zamykać, close, 6, 6
+brać, take, 6, 6
+ty żartujesz, you joke, 6, 6
+wykonać, perform, 6, 6
+zarabiać, earn, 6, 6
+pracować, work, 6, 7
+robić, to do, 6, 7
+gryżć, bite, 6, 7
+ja ubieram, I dress, 6, 7
+gryżć zęby, bite teeth, 7, 7
+żartować, joke, 7, 7

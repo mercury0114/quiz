@@ -1,15 +1,15 @@
-następny, next
-bo, because
-no, well
-na koniec, at the end
-niedawno, recently
-całość, whole
-zawsze, always
-wyłącznie, only
-obok, next to
-nasze, our
-oprócz, apart from
-przed, before
-obie, both
-w przypadku, in case of
-podczas, during
+no, well, 5, 5
+na koniec, at the end, 5, 5
+niedawno, recently, 5, 5
+całość, whole, 5, 5
+obok, next to, 5, 5
+podczas, during, 5, 5
+wyłącznie, only, 5, 6
+nasze, our, 5, 6
+przed, before, 5, 6
+obie, both, 5, 6
+następny, next, 6, 6
+zawsze, always, 6, 6
+oprócz, apart from, 6, 6
+w przypadku, in case of, 6, 6
+bo, because, 6, 7

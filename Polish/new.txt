@@ -1,10 +1,17 @@
-indyk, turkey
-wystarczy na dzisiaj, enough for today, 4, 5
-my nie potrzebujemy parasola, we do not need an umbrella, 5, 5
-kościół, church, 5, 5
-to jest dobra rzecz, it is a good thing, 6, 5
-gród, castle, 6, 5
-ktoś, someone, 6, 5
-wsród, among, 6, 5
-list, letter, 6, 6
-czy on otrzymał, did he receive, 6, 6
+na szczęście, luckily, 5, 2
+dokładnie, exactly, 5, 3
+przetwarzać, to process, 5, 5
+to znaczy, that is, 5, 5
+na przykład, for example, 5, 5
+jedynie, only, 5, 5
+ból, pain, 5, 5
+pomylić się, be mistaken, 5, 6
+praca zdalna, remote work, 5, 6
+w tym przypadku, in this case, 6, 6
+czasownik, verb, 6, 6
+tłumaczyć się, to explain, 6, 7
+wczesny, early, 6, 7
+to jest dobra rzecz, it is a good thing, 6, 7
+ktoś, someone, 6, 7
+wsród, among, 6, 7
+oczywiście, of course, 7, 7

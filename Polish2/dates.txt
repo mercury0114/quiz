@@ -1,29 +1,29 @@
-Monday, poniedziałek
-Tuesday, wtorek
-Wednesday, środa
-Thursday, czwartek
-Friday, piątek
-Saturday, sobota
-Sunday, niedziela
-morning, ranek
-noon, południe
-afternoon, popołudnie
-evening, wieczór
-night, noc
-midnight, pólnoc
-January, styczeń
-February, luty
-March, marzec
-April, kwiecień
-May, maj
-June, czerwiec
-July, lipiec
-August, sierpień
-September, wrzesień
-October, pażdziernik
-November, listopad
-December, grudzień
-spring, wiosna
-summer, lato
-autumn, jesień
-winter, zima
+September, wrzesień, 4, 6
+Monday, poniedziałek, 5, 5
+Friday, piątek, 5, 5
+Sunday, niedziela, 5, 5
+February, luty, 5, 5
+March, marzec, 5, 5
+May, maj, 5, 5
+June, czerwiec, 5, 5
+August, sierpień, 5, 5
+spring, wiosna, 5, 5
+autumn, jesień, 5, 5
+winter, zima, 5, 5
+Tuesday, wtorek, 5, 6
+Thursday, czwartek, 5, 6
+Saturday, sobota, 5, 6
+noon, południe, 5, 6
+afternoon, popołudnie, 5, 6
+midnight, pólnoc, 5, 6
+January, styczeń, 5, 6
+November, listopad, 5, 6
+December, grudzień, 5, 6
+summer, lato, 5, 6
+Wednesday, środa, 6, 6
+morning, ranek, 6, 6
+night, noc, 6, 6
+April, kwiecień, 6, 6
+July, lipiec, 6, 6
+October, pażdziernik, 6, 6
+evening, wieczór, 7, 7
