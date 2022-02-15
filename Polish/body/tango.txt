@@ -5,7 +5,7 @@ odczuwanie, feeling, 5, 5
 spotkanie, meeting, 5, 5
 pobyć razem, be together, 5, 5
 do przodu, forward, 5, 5
-wstecz, back, 5, 5
+do tyłu, back
 działa, it works, 5, 5
 ręka, hand, 5, 6
 uwaga, attention, 5, 6

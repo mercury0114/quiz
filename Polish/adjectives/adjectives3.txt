@@ -1,3 +1,10 @@
+często, often
+wczesny, early, 6, 7
+rzadko, rarely
+darmowy, free
+tani, cheap
+drogy, expensive
+mokry, wet
 silniejszy, stronger, 5, 5
 przygotowanie, preparation, 5, 5
 mocna, strong, 6, 5

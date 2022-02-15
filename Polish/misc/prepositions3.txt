@@ -1,3 +1,6 @@
+ktoś, someone, 6, 7
+wsród, among, 6, 7
+oczywiście, of course, 7, 7
 wszyczy, everyone, 5, 2
 dla siebie, for myself, 5, 2
 poniżej, below, 5, 3

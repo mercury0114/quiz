@@ -1,3 +1,4 @@
+to jest dobra rzecz, it is a good thing, 6, 7
 oczywiście, of course, 5, 5
 dam znac, I will let you know, 5, 5
 o co chodzi, what's going on, 5, 5
@@ -11,4 +12,3 @@ nie mam pojęcia, I have no idea, 6, 5
 ja mam prośbę, I have a request, 6, 5
 ja mam niewielką temperaturę, I have a low temperature, 6, 6
 radzę sobie, I am doing well, 6, 6
-miło mi cie poznać, nice to meet you, 7, 7

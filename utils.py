@@ -6,6 +6,7 @@ HINT = "h"
 QUIT = "q"
 INITIAL_SCORE = 5
 MAX_SCORE = 15
+NEXT_QUESTION_INDEX = -1
 
 def CloseTo(user_input, answer):
     l = min(len(user_input), len(answer))

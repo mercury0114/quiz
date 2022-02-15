@@ -1,0 +1,1 @@
+kaucja, deposit

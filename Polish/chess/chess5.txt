@@ -1,0 +1,19 @@
+przewaga przestrzeni, space advantage
+sędzia, arbiter
+atak na skrzydle, flank attack
+atak matowy, mating attack
+atak mniejszościowy, minority attack
+przedwczesny atak, premature attack
+jasno-polowy goniec, light-squared bishop
+ciemno-polowy goniec, dark-squared bishop
+gońce różnopolowe, opposite-colored bishops
+liczenie, calculation
+sztuczna roszada, artificial castling
+prawo do wykonania roszady, castling right
+zamknięte centrum, closed centre
+otwarte centrum, open centre
+wieczny szach, perpetual check
+aktywna obrona, active defence
+końcówka teoretyczna, theoretical endgame
+widły skoczkiem, knight fork
+dziura, hole

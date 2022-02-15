@@ -1,0 +1,12 @@
+zimny, cold
+nudny, boring
+wąsky, wide
+świetny, great
+biedny, poor
+bogaty, rich
+brudny, dirty
+niski, short
+lekki, light
+ciężki, heavy
+młody, young
+miły, nice

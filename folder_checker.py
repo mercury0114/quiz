@@ -5,7 +5,7 @@ from random import choice
 from math import ceil, sqrt
 from utils import CloseTo, ReadOpen, ReadDataFromFile, ReadPairsFromFile, WriteOpen
 from utils import GetFileScore
-from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE
+from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
 
 def GetStatistics(folder, group):
     pairs_scores = ReadDataFromFile(join(folder, group))
@@ -33,16 +33,18 @@ statistics = None
 
 print("Press {} for hint, {} to quit".format(HINT, QUIT))
 counter = 0
+index = NEXT_QUESTION_INDEX
 while True:
     if counter == 0:
         if group: WriteStatistics(folder, group, statistics)
         group = ChooseWeakestGroup(folder)
         statistics = ReadDataFromFile(join(folder, group))
         counter = len(statistics)
-    min_score = min([min(p) for p in statistics.values()])
-    pair = choice([p for p in statistics if min(statistics[p]) <= min_score + 4])
-    index = statistics[pair][0] >= statistics[pair][1]
-    question, answer = pair[index], pair[not index]
+    if index == NEXT_QUESTION_INDEX:
+        min_score = min([min(p) for p in statistics.values()])
+        pair = choice([p for p in statistics if min(statistics[p]) <= min_score + 2])
+        index = statistics[pair][0] >= statistics[pair][1]
+        question, answer = pair[index], pair[not index]
     score = statistics[pair][index]
     print("{} more from {}".format(counter, group))
     print("Current score is", score)
@@ -67,3 +69,4 @@ while True:
         exit()
     print("New score is {}\n".format(score))
     statistics[pair][index] = score
+    if user_input == answer: index = NEXT_QUESTION_INDEX

@@ -1,3 +1,4 @@
+wioska, village
 cena, price
 czynsz, rental payment
 dom, house
