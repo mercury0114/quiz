@@ -1,27 +1,27 @@
-obróć się, to turn around
-oddech, breath
-skłon w przód, bend forward
-zmienić, to change
-otworzyć, to open
-rozlużnić, to relax
-powtórzyć, to repeat
-wyciągnać, to pull out
-rozciąganie, stretching
-do przodu, forward
-wdychać, to breathe in
-wydychać, to breathe out
-opuść głowę, head down
-ciągnać, to pull
-on złamał sobie nogę, he broke his leg, 5, 5
-postarać się, to try
-rozlużnij, relax
-uśiąść, to sit down
-ćwiczenia, exercise
-chwytać, to grab
-garbić się, to bend back
-unieść w górę, to raise up
-krążenie, circulation
-złączyć, to put together
-przetrzymać, to endure
-pochylać się, to lean
-zadzierać, to put up in the air
+unieść w górę, to raise up, 4, 6
+zadzierać, to put up in the air, 5, 3
+garbić się, to bend back, 5, 4
+pochylać się, to lean, 5, 4
+obróć się, to turn around, 5, 5
+zmienić, to change, 5, 5
+wydychać, to breathe out, 5, 5
+opuść głowę, head down, 5, 5
+ciągnać, to pull, 5, 5
+usiąść, to sit down, 5, 5
+ćwiczenie, exercise, 5, 5
+złączyć, to put together, 5, 5
+skłon w przód, bend forward, 5, 6
+otworzyć, to open, 5, 6
+powtórzyć, to repeat, 5, 6
+wdychać, to breathe in, 5, 6
+postarać się, to try, 5, 6
+chwytać, to grab, 5, 6
+oddech, breath, 6, 6
+rozlużnić, to relax, 6, 6
+wyciągnać, to pull out, 6, 6
+rozciąganie, stretching, 6, 6
+do przodu, forward, 6, 6
+on złamał sobie nogę, he broke his leg, 6, 6
+rozlużnij, relax, 6, 6
+krążenie, circulation, 6, 6
+przetrzymać, to endure, 6, 6
