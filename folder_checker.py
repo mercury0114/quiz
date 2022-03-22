@@ -7,13 +7,9 @@ from utils import CloseTo, ReadOpen, ReadDataFromFile, ReadPairsFromFile, WriteO
 from utils import GetFileScore
 from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
 
-def GetStatistics(folder, group):
-    pairs_scores = ReadDataFromFile(join(folder, group))
-    return {ps[0] : ps[1] for ps in pairs_scores}
-
 def WriteStatistics(folder, group, statistics):
     output = WriteOpen(join(folder, group))
-    for pair in sorted(statistics, key=statistics.get):
+    for pair in sorted(statistics, key = lambda p : statistics[p][0] + statistics[p][1]):
         output.write("{}, {}, {}, {}\n".format(pair[0], pair[1], statistics[pair][0], statistics[pair][1]))
 
 def ChooseWeakestGroup(folder):
@@ -38,8 +34,11 @@ while True:
     if counter == 0:
         if group: WriteStatistics(folder, group, statistics)
         group = ChooseWeakestGroup(folder)
-        statistics = ReadDataFromFile(join(folder, group))
+        statistics = ReadDataFromFile(join(folder, group), read_all_words=False)
         counter = len(statistics)
+        if counter == 0:
+            print("No words to learn from this directory")
+            quit()
     if index == NEXT_QUESTION_INDEX:
         min_score = min([min(p) for p in statistics.values()])
         pair = choice([p for p in statistics if min(statistics[p]) <= min_score + 2])
@@ -66,6 +65,7 @@ while True:
         score = max(0, score - 3)
         counter += 2
     if user_input == QUIT:
+        WriteStatistics(folder, group, statistics)
         exit()
     print("New score is {}\n".format(score))
     statistics[pair][index] = score

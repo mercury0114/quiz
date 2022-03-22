@@ -1,0 +1,80 @@
+przeszkadzam, I disturb, 6, 4
+stracić, to loose, 6, 4
+wysyłam, I send, 6, 6
+dokąd nas wysyłasz, where are you sending us, 6, 6
+powstrzymać, to stop, 6, 6
+olewać, to ignore, 6, 6
+wdrożyć, to implement, 6, 6
+mistrzostwo świata, world championship, 6, 6
+grzeczny, polite, 6, 6
+czy mogę coś powiedzieć, can I say something, 6, 6
+zasnę, I will fall asleep, 6, 6
+zasnąć, to fall asleep, 6, 6
+I get, dostaję, 6, 6
+to exist, istnieć, 6, 6
+I am glad, cieszę się, 6, 6
+to be afraid, bać się, 6, 6
+podobny, similar, 6, 6
+zaoszczędzić pieniądze, to save money, 6, 6
+dostać, to receive, 6, 6
+wojna, war, 6, 6
+you find, znajdujesz, 6, 6
+pozwolić, to let, 6, 6
+śmierć, death, 6, 6
+niepodległości, independence, 6, 6
+na bieżąco, up to date, 6, 6
+to be glad, cieszyć się, 6, 6
+you doubt, wątpisz, 6, 6
+you get, dostajesz, 6, 6
+to doubt, wątpić, 6, 6
+I doubt, wątpię, 6, 6
+I find, znajduję, 6, 6
+to get, dostawać, 6, 6
+you are afraid, boisz się, 6, 6
+to help, pomagać, 6, 6
+you help, pomagasz, 6, 6
+miotła, broom, 6, 6
+statek, ship, 6, 6
+przełożyć, to postpone, 6, 6
+sprzątać, to clean, 6, 6
+zachowanie, behaviour, 6, 6
+powiedzieć, to say, 6, 6
+przetwarzać, to process, 6, 6
+wypełnić, to fill in, 6, 6
+wysyłać, to send, 6, 6
+chyba nie przeszkadzam, I hope I do not disturb you, 6, 6
+zaśniesz, you will fall asleep, 6, 6
+zasnąłem, I fell asleep, 6, 6
+opuścić, to leave, 6, 6
+zbrodnia, crime, 6, 6
+na świecie, in the world, 6, 6
+I exist, istnieję, 6, 7
+wg, according to, 6, 7
+you exist, istniejesz, 6, 7
+zamiar, intention, 6, 7
+zaznaczyć, to mark, 6, 7
+odwolać, to cancel, 6, 7
+myć, to wash, 6, 7
+wierzyć, to believe, 6, 7
+to find, znajdować, 6, 7
+nic nie wysyłałem, I never sent that, 6, 7
+I help, pomagam, 6, 7
+walczyć, to fight, 6, 7
+wsparcie, support, 6, 7
+bohaterski, heroic, 6, 7
+narzekać, to complain, 6, 7
+przeszkadzać, to disturb, 6, 7
+zamrożony, frozen, 6, 7
+pożyczyć, to lend, 7, 7
+you are glad, cieszysz się, 7, 7
+I am afraid, boję się, 7, 7
+zakładać, to assume, 7, 7
+ukryć, to hide, 7, 7
+zakładam, I assume, 7, 7
+postęp, progress, 7, 7
+świat, world, 7, 7
+umieć, to know how, 7, 7
+wspierać, to support, 7, 7
+nie zaśnij, don't fall asleep, 7, 7
+kierunek, direction, 7, 7
+opór, resistance, 7, 7

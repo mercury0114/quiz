@@ -1,0 +1,14 @@
+powstrzymać, to stop, 5, 4
+wierzyć, to believe, 5, 4
+niepodległości, independence, 6, 4
+wojna, war, 6, 5
+wsparcie, support, 6, 6
+bohaterski, heroic, 6, 6
+śmierć, death, 6, 6
+opuścić, to leave, 6, 6
+zbrodnia, crime, 6, 6
+zamrożony, frozen, 6, 7
+ukryć, to hide, 6, 7
+postęp, progress, 6, 7
+kierunek, direction, 7, 7
+opór, resistance, 7, 7

@@ -1,17 +1,17 @@
 to be glad, cieszyć się, 4, 6
-you exist, istniejesz, 4, 6
 to find, znajdować, 5, 2
-you doubt, wątpisz, 5, 5
-to exist, istnieć, 5, 5
 I exist, istnieję, 5, 5
 I get, dostaję, 5, 5
-you get, dostajesz, 5, 6
+you exist, istniejesz, 5, 6
+to exist, istnieć, 5, 6
 I am glad, cieszę się, 5, 6
-to doubt, wątpić, 5, 6
-I am afraid, boję się, 5, 6
-I doubt, wątpię, 5, 6
 to be afraid, bać się, 5, 6
-I find, znajduję, 5, 6
+you doubt, wątpisz, 6, 6
+you get, dostajesz, 6, 6
+to doubt, wątpić, 6, 6
+I am afraid, boję się, 6, 6
+I doubt, wątpię, 6, 6
+I find, znajduję, 6, 6
 you are glad, cieszysz się, 6, 6
 you find, znajdujesz, 6, 6
 to get, dostawać, 6, 6

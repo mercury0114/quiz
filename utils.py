@@ -5,6 +5,7 @@ from random import choice
 HINT = "h"
 QUIT = "q"
 INITIAL_SCORE = 5
+GOOD_SCORE = 10
 MAX_SCORE = 15
 NEXT_QUESTION_INDEX = -1
 
@@ -28,14 +29,15 @@ def WriteOpen(file_path):
 def ReadOpen(file_path):
     return open(file_path, encoding='UTF-8')
 
-def ReadDataFromFile(file_path):
+def ReadDataFromFile(file_path, read_all_words=True):
     statistics = {}
     for line in ReadOpen(file_path):
         columns = line.split(', ')
         words = (columns[0], columns[1].strip('\n'))
         score1 = INITIAL_SCORE if len(columns) < 3 else int(columns[2])
         score2 = INITIAL_SCORE if len(columns) < 4 else int(columns[3])
-        statistics[words] = [score1, score2]
+        if read_all_words or score1 <= GOOD_SCORE or score2 <= GOOD_SCORE:
+            statistics[words] = [score1, score2]
     return statistics
 
 def ReadPairsFromFile(file_path):
