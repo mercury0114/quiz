@@ -1,0 +1,7 @@
+spoon, łyżka, 5, 5
+cup, kubek, 5, 5
+teaspoon, łyżeczka, 5, 6
+bowl, miska, 5, 6
+plate, talerz, 5, 6
+knife, nóż, 6, 6
+fork, widelec, 6, 6

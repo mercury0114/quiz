@@ -1,19 +1,23 @@
-wg, according to
-na bieżąco, up to date, 3, 6
-grzeczny, polite, 5, 3
-wdrożyć, to implement, 5, 3
-podobny, similar, 5, 6
-zaoszczędzić pieniądze, to save money, 5, 6
-pożyczyć, to lend, 5, 6
-dostać, to receive, 5, 6
-zamiar, intention, 5, 6
-miotła, broom, 6, 6
-pozwolić, to let, 6, 6
-statek, ship, 6, 6
-przełożyć, to postpone, 6, 6
-walczyć, to fight, 6, 6
-sprzątać, to clean, 6, 6
-narzekać, to complain, 6, 6
-zaznaczyć, to mark, 6, 6
-zachowanie, behaviour, 6, 6
-odwolać, to cancel, 6, 6
+zastanawiać, to wonder
+podekscytowany, excited
+szczęśliwy, lucky, 7, 6
+wdrożyć, to implement, 7, 7
+walczyć, to fight, 7, 7
+odwolać, to cancel, 7, 8
+uczęszczać, to attend, 7, 8
+wg, according to, 8, 7
+zamiar, intention, 8, 8
+pozwolić, to let, 8, 8
+miotła, broom, 8, 8
+pożyczyć, to borrow, 8, 8
+przełożyć, to postpone, 8, 8
+na bieżąco, up to date, 8, 9
+narzekać, to complain, 8, 9
+zaoszczędzić pieniądze, to save money, 8, 9
+sprzątać, to clean, 8, 9
+podobny, similar, 8, 9
+statek, ship, 9, 9
+zaznaczyć, to mark, 9, 9
+grzeczny, polite, 9, 9
+dostać, to receive, 9, 9
+zachowanie, behaviour, 9, 9

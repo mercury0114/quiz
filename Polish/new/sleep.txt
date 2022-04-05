@@ -1,5 +1,5 @@
-zasnę, I will fall asleep, 5, 5
-zaznąć, to fall asleep, 6, 4
-zaśniesz, you will fall asleep, 6, 6
 zasnąłem, I fell asleep, 6, 6
-nie zaśnij, don't fall asleep, 7, 7
+zaśniesz, you will fall asleep, 8, 8
+zasnę, I will fall asleep, 8, 9
+nie zaśnij, don't fall asleep, 9, 9
+zasnąć, to fall asleep, 9, 9

@@ -1,21 +1,21 @@
-to be glad, cieszyć się, 4, 6
-to find, znajdować, 5, 2
-I exist, istnieję, 5, 5
-I get, dostaję, 5, 5
-you exist, istniejesz, 5, 6
-to exist, istnieć, 5, 6
-I am glad, cieszę się, 5, 6
-to be afraid, bać się, 5, 6
-you doubt, wątpisz, 6, 6
-you get, dostajesz, 6, 6
-to doubt, wątpić, 6, 6
-I am afraid, boję się, 6, 6
-I doubt, wątpię, 6, 6
-I find, znajduję, 6, 6
-you are glad, cieszysz się, 6, 6
-you find, znajdujesz, 6, 6
-to get, dostawać, 6, 6
-you are afraid, boisz się, 6, 6
-to help, pomagać, 6, 6
-I help, pomagam, 6, 6
-you help, pomagasz, 6, 6
+you find, znajdujesz, 5, 8
+to doubt, wątpić, 7, 7
+I am glad, cieszę się, 8, 8
+to get, dostawać, 8, 8
+I exist, istnieję, 8, 8
+to help, pomagać, 8, 8
+you doubt, wątpisz, 8, 8
+to exist, istnieć, 8, 8
+I am afraid, boję się, 8, 8
+you are afraid, boisz się, 8, 8
+I find, znajduję, 8, 8
+to find, znajdować, 8, 8
+you get, dostajesz, 8, 8
+you exist, istniejesz, 8, 8
+I help, pomagam, 8, 8
+I get, dostaję, 8, 8
+to be glad, cieszyć się, 8, 8
+you are glad, cieszysz się, 8, 8
+I doubt, wątpię, 8, 8
+to be afraid, bać się, 8, 8
+you help, pomagasz, 8, 8

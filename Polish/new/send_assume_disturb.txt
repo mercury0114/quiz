@@ -1,9 +1,8 @@
-nic nie wysyłałem, I never sent that, 5, 4
-dokąd nas wysyłasz, where are you sending us, 5, 6
-ja przeszkadzam, I disturb, 6, 6
-wysyłać, to send, 6, 6
-ja wysyłam, I send, 6, 6
-chyba nie przeszkadzam, I hope I do not disturb you, 6, 6
-zakładać, to assume, 6, 7
-przeszkadzać, to disturb, 6, 7
-ja zakładam, I assume, 6, 7
+przeszkadzam, I disturb, 7, 7
+zakładam, I assume, 7, 8
+wysyłam, I send, 7, 8
+przeszkadzać, to disturb, 8, 8
+wysyłać, to send, 8, 8
+chyba nie przeszkadzam, I hope I do not disturb you, 9, 9
+dokąd nas wysyłasz, where are you sending us, 9, 9
+zakładać, to assume, 10, 10

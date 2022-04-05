@@ -1,27 +1,27 @@
-beer, piwo
-bread, chleb
-breakfast, śniadanie
-butter, masło
-coffee, kawa
-cook, gotować
-dinner, kolacja
-drink, pić
-eat, jeść
-egg, jajko
-fish, ryba
-fruit, owoce
-honey, miód
-juice, sok
-kawa czarna, black coffee
-meat, mięso
-milk, mleko
-lunch, obiad
-potato, ziemniak
-rice, ryż
-lettuce, sałata
-soda water, woda gazowana
-soup, zupa
-still water, woda niegazowana
-tea, herbata
-vegetables, warzywa
-water, woda
+potato, ziemniak, 5, 4
+breakfast, śniadanie, 5, 5
+beer, piwo, 5, 6
+milk, mleko, 5, 6
+to eat, jeść, 6, 6
+egg, jajko, 6, 6
+juice, sok, 6, 6
+soda water, woda gazowana, 6, 6
+still water, woda niegazowana, 6, 6
+to drink, pić, 6, 6
+fish, ryba, 6, 6
+fruit, owoce, 6, 6
+kawa czarna, black coffee, 6, 6
+lunch, obiad, 6, 6
+vegetables, warzywa, 6, 6
+butter, masło, 6, 6
+dinner, kolacja, 6, 6
+honey, miód, 6, 6
+meat, mięso, 6, 6
+rice, ryż, 6, 6
+soup, zupa, 6, 6
+tea, herbata, 6, 6
+coffee, kawa, 6, 7
+to cook, gotować, 6, 7
+lettuce, sałata, 6, 7
+bread, chleb, 6, 7
+water, woda, 6, 7

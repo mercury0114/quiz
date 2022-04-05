@@ -38,6 +38,8 @@ def ReadDataFromFile(file_path, read_all_words=True):
         score2 = INITIAL_SCORE if len(columns) < 4 else int(columns[3])
         if read_all_words or score1 <= GOOD_SCORE or score2 <= GOOD_SCORE:
             statistics[words] = [score1, score2]
+        else:
+            print("You know {}".format(line))
     return statistics
 
 def ReadPairsFromFile(file_path):

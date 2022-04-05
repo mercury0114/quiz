@@ -1,17 +1,17 @@
 biały ser, white cheese, 5, 5
-cebula, onion, 5, 5
 zupa dnia, daily soup, 5, 5
 placki ziemniaczane, potato pancakes, 5, 5
-czosnek, garlic, 6, 5
-grzyby, mushrooms, 6, 5
+pierogi z kapustą i grzybami, dumplings with cabbage and mushrooms, 6, 4
+oliwa z oliwek, olive oil, 6, 4
+cebula, onion, 5, 6
 boczek, bacon, 6, 5
-fasolki, beans, 6, 5
-sok pomidorowy, tomato juice, 6, 5
 kwas chlebowy, kvass, 6, 5
 pierogi, dumplings, 6, 5
-pierogi z kapustą i grzybami, dumplings with cabbage and mushrooms, 6, 5
 ogórek kiszony, pickled cucumber, 6, 5
+napoje zimne, cold drinks, 6, 5
+czosnek, garlic, 6, 6
+grzyby, mushrooms, 6, 6
+fasolki, beans, 6, 6
+sok pomidorowy, tomato juice, 6, 6
 pierogi z mięsem, dumplings with meat, 6, 6
-napoje zimne, cold drinks, 6, 6
-oliwa z oliwek, olive oil, 6, 6
 surówka, salad, 6, 6

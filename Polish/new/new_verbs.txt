@@ -1,9 +1,9 @@
-olewać, to ignore, 5, 3
-czy mogę coś powiedzieć, can I say something, 5, 5
-myć, to wash, 6, 6
-stracić, to loose, 6, 6
-powiedzieć, to say, 6, 6
-przetwarzać, to process, 6, 6
-wypełnić, to fill in, 6, 6
 umieć, to know how, 7, 7
-wspierać, to support, 7, 7
+olewać, to ignore, 7, 8
+stracić, to loose, 8, 8
+myć, to wash, 8, 8
+wspierać, to support, 8, 8
+powiedzieć, to say, 8, 8
+wypełnić, to fill in, 8, 9
+przetwarzać, to process, 8, 9
+czy mogę coś powiedzieć, can I say something, 10, 10
