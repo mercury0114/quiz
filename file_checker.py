@@ -5,7 +5,6 @@ from utils import CloseTo, ReadPairsFromFile, SelectQuestionAnswer
 from utils import HINT, QUIT, NEXT_QUESTION_INDEX
 
 if (len(argv) > 3 or len(argv) == 1):
-    print("usage:")
     print("to ask questions from both columns:")
     print("python3 main.py [words_text_file]")
     print("to ask questions only from the 0-th column:")
