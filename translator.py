@@ -1,8 +1,8 @@
-# Program that prints translations of all words from a movie script.
-# Words are capitalised and have digits/punctuation characters removed.
+# Words are decapitalised and have digits/punctuation characters removed.
 # Start the program by typing: 
-# python3 translator.py [script_file_path]
+# python3 translator.py [script_file_path] [optional_language_tag]
 # The output will be stored in the file "all_words.txt"
+from json import JSONDecodeError
 from sys import argv
 from string import punctuation
 from google_trans_new import google_translator
@@ -25,7 +25,8 @@ def ReadWordsAndCount(file_name):
     return sorted(counts, key=counts.get, reverse=True), counts
 
 def Translate(word):
-    return google_translator(timeout=5).translate(word)
+    language = "en" if len(argv) <= 2 else argv[2]
+    return google_translator(timeout=5).translate(word, lang_src=language)
 
 print("Reading words from the input file...")
 words, counts = ReadWordsAndCount(argv[1])
