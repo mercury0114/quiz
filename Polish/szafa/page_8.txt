@@ -1,0 +1,29 @@
+mebli, furniture, 5, 5
+czule, fondly, 5, 5
+zupełnie, quite, 5, 5
+krowa, cow, 5, 5
+gospodarstwa, farm, 5, 5
+postawić, to place, 5, 5
+korytarz, corridor, 5, 5
+kwarantanna, quarantine, 5, 5
+sypialnia, bedroom, 5, 5
+wstrzykiwać, to inject, 5, 5
+ledwie, hardly, 5, 5
+widoczny, visible, 5, 5
+dziurka, keyhole, 5, 5
+niezawodny, reliable, 5, 5
+szczepionka, vaccine, 5, 5
+przeciwko, against, 5, 5
+przesadny, exaggerated, 5, 5
+podłoga, floor, 5, 5
+rozpoznawać, to recognise, 5, 5
+zawiesić, to hang, 5, 5
+firanka, curtain, 5, 5
+hałas, noise, 5, 5
+stały, constant, 5, 5
+snów, dreams, 5, 5
+usnąć, to fall asleep, 5, 5
+wspólny, common, 5, 5
+zawieszony, suspended, 5, 5
+wystawa, exhibition, 5, 5
+szczęśliwy, happy, 5, 5
