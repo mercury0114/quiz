@@ -2,7 +2,7 @@ szlak, trail
 rzeka, river
 długość, length
 trwania, duration
-śluzy, water gate
+śluza, water gate
 swoboda, freedom
 puszcza, forest
 sprzęt, equipment
