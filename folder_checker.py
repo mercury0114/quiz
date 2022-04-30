@@ -41,7 +41,8 @@ while True:
             quit()
     if index == NEXT_QUESTION_INDEX:
         min_score = min([min(p) for p in statistics.values()])
-        pair = choice([p for p in statistics if min(statistics[p]) <= min_score + 2])
+        pair = choice(list(statistics))
+        # pair = choice([p for p in statistics if min(statistics[p]) <= (min_score + 2) * 1.3])
         index = statistics[pair][0] >= statistics[pair][1]
         question, answer = pair[index], pair[not index]
     score = statistics[pair][index]
