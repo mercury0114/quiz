@@ -1,4 +1,4 @@
 from sys import argv
-from utils import GetFileScore
+from utils import get_file_score
 
-print(GetFileScore(argv[1]))
+print(get_file_score(argv[1]))
