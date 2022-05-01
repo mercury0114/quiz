@@ -1,5 +1,6 @@
 from math import sqrt
-from os.path import isfile
+from os import listdir
+from os.path import isfile, join
 from random import choice
 
 HINT = "h"
@@ -9,21 +10,30 @@ GOOD_SCORE = 10
 MAX_SCORE = 15
 NEXT_QUESTION_INDEX = -1
 
-def CloseTo(user_input, answer):
+def close_words(user_input, answer):
     l = min(len(user_input), len(answer))
     return sum(user_input[i] != answer[i] for i in range(l)) + \
         abs(len(user_input) - len(answer)) < 3
 
-def GetFileScore(f):
+def get_file_score(f):
     scores = ReadDataFromFile(f).values()
     score_sum = sum([sqrt(s[0]) + sqrt(s[1]) for s in scores])
     return (score_sum / (len(scores) * 2)) ** 2
+
+def lowest_score_file(folder):
+    return min(listdir(folder), key=lambda f : get_file_score(join(folder, f)))
+
+def ChooseWeakestGroup(folder):
+    weakness = [(get_file_score(join(folder, g)), g) for g in listdir(folder)]
+    score_group = min(weakness)
+    print("Weakest group {} with score {}\n".format(score_group[1], score_group[0]))
+    return score_group[1]
 
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument
     return word_pair[question_index], word_pair[not question_index]
 
-def WriteOpen(file_path):
+def write_open(file_path):
     return open(file_path, "w", encoding='UTF-8')
 
 def ReadOpen(file_path):

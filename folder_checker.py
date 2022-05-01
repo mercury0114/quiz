@@ -3,17 +3,17 @@ from os import listdir
 from os.path import join, basename
 from random import choice
 from math import ceil, sqrt
-from utils import CloseTo, ReadOpen, ReadDataFromFile, ReadPairsFromFile, WriteOpen
-from utils import GetFileScore
+from utils import close_words, ReadOpen, ReadDataFromFile, ReadPairsFromFile, write_open
+from utils import get_file_score
 from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
 
 def WriteStatistics(folder, group, statistics):
-    output = WriteOpen(join(folder, group))
+    output = write_open(join(folder, group))
     for pair in sorted(statistics, key = lambda p : statistics[p][0] + statistics[p][1]):
         output.write("{}, {}, {}, {}\n".format(pair[0], pair[1], statistics[pair][0], statistics[pair][1]))
 
 def ChooseWeakestGroup(folder):
-    weakness = [(GetFileScore(join(folder, g)), g) for g in listdir(folder)]
+    weakness = [(get_file_score(join(folder, g)), g) for g in listdir(folder)]
     score_group = min(weakness)
     print("Weakest group {} with score {}\n".format(score_group[1], score_group[0]))
     return score_group[1]
@@ -51,7 +51,7 @@ while True:
     print(question)
     user_input = input()
     while user_input not in [answer, HINT, QUIT]:
-        if CloseTo(user_input, answer):
+        if close_words(user_input, answer):
             print("Close, try again")
         else:
             print("Wrong answer, try again")

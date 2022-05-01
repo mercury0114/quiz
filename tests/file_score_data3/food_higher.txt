@@ -1,0 +1,5 @@
+potato, ziemniak, 7, 7
+beer, piwo, 7, 7
+milk, mleko, 7, 7
+egg, jajko, 7, 7
+fish, ryba, 7, 7

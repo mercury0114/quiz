@@ -1,7 +1,7 @@
 from time import time
 from sys import argv
 from random import randint
-from utils import CloseTo, ReadPairsFromFile, SelectQuestionAnswer
+from utils import close_words, ReadPairsFromFile, SelectQuestionAnswer
 from utils import HINT, QUIT, NEXT_QUESTION_INDEX
 
 if (len(argv) > 3 or len(argv) == 1):
@@ -27,7 +27,7 @@ while (word_pairs):
 	print(question, "?")
 	user_input = input()
 	while user_input not in [HINT, QUIT, answer]:
-		if CloseTo(user_input, answer):
+		if close_words(user_input, answer):
 			print("Close, try again")
 		else:
 			print("Wrong, try again")
