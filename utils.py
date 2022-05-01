@@ -18,7 +18,7 @@ def close_words(user_input, answer):
 def get_file_score(f):
     scores = ReadDataFromFile(f).values()
     score_sum = sum([sqrt(s[0]) + sqrt(s[1]) for s in scores])
-    return (score_sum / (len(scores) * 2)) ** 2
+    return score_sum / (len(scores) * 2)
 
 def lowest_score_file(folder):
     return min(listdir(folder), key=lambda f : get_file_score(join(folder, f)))
