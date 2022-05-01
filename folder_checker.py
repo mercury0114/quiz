@@ -4,19 +4,13 @@ from os.path import join, basename
 from random import choice
 from math import ceil, sqrt
 from utils import close_words, ReadOpen, ReadDataFromFile, ReadPairsFromFile, write_open
-from utils import get_file_score
+from utils import get_file_score, lowest_score_file
 from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
 
 def WriteStatistics(folder, group, statistics):
     output = write_open(join(folder, group))
     for pair in sorted(statistics, key = lambda p : statistics[p][0] + statistics[p][1]):
         output.write("{}, {}, {}, {}\n".format(pair[0], pair[1], statistics[pair][0], statistics[pair][1]))
-
-def ChooseWeakestGroup(folder):
-    weakness = [(get_file_score(join(folder, g)), g) for g in listdir(folder)]
-    score_group = min(weakness)
-    print("Weakest group {} with score {}\n".format(score_group[1], score_group[0]))
-    return score_group[1]
 
 if len(argv) != 2:
     print("usage:")
@@ -33,7 +27,7 @@ index = NEXT_QUESTION_INDEX
 while True:
     if counter == 0:
         if group: WriteStatistics(folder, group, statistics)
-        group = ChooseWeakestGroup(folder)
+        group = lowest_score_file(folder)
         statistics = ReadDataFromFile(join(folder, group), read_all_words=False)
         counter = len(statistics)
         if counter == 0:
