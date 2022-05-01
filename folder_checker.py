@@ -3,7 +3,7 @@ from os import listdir
 from os.path import join, basename
 from random import choice
 from math import ceil, sqrt
-from utils import close_words, ReadOpen, ReadDataFromFile, ReadPairsFromFile, write_open
+from utils import close_words, ReadDataFromFile, ReadPairsFromFile, write_open
 from utils import get_file_score, lowest_score_file
 from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
 

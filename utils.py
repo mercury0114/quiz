@@ -30,12 +30,12 @@ def SelectQuestionAnswer(word_pair, argument):
 def write_open(file_path):
     return open(file_path, "w", encoding='UTF-8')
 
-def ReadOpen(file_path):
+def read_open(file_path):
     return open(file_path, encoding='UTF-8')
 
 def ReadDataFromFile(file_path, read_all_words=True):
     statistics = {}
-    for line in ReadOpen(file_path):
+    for line in read_open(file_path):
         columns = line.split(', ')
         words = (columns[0], columns[1].strip('\n'))
         score1 = INITIAL_SCORE if len(columns) < 3 else int(columns[2])
