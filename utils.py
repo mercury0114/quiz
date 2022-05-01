@@ -23,12 +23,6 @@ def get_file_score(f):
 def lowest_score_file(folder):
     return min(listdir(folder), key=lambda f : get_file_score(join(folder, f)))
 
-def ChooseWeakestGroup(folder):
-    weakness = [(get_file_score(join(folder, g)), g) for g in listdir(folder)]
-    score_group = min(weakness)
-    print("Weakest group {} with score {}\n".format(score_group[1], score_group[0]))
-    return score_group[1]
-
 def SelectQuestionAnswer(word_pair, argument):
     question_index = choice([0, 1]) if argument == 2 else argument
     return word_pair[question_index], word_pair[not question_index]
