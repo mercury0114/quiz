@@ -1,13 +1,13 @@
+niedorzeczność, ridiculousness, 6, 3
 przewiezienie, transport, 6, 4
-ozdobiony, decorated, 6, 4
-niedorzeczność, ridiculousness, 6, 5
 zapętlony, looped, 6, 5
-sznur, string, 4, 7
-własnej, own, 6, 7
-oszklony, glazed, 6, 7
-jazda, ride, 6, 7
-wrazenie, impression, 7, 7
-wiązać, to bind, 7, 7
-kosztować, to cost, 7, 8
-sprowadzić, to bring back, 8, 8
-roślinny, floral, 8, 8
+oszklony, glazed, 4, 7
+sznur, string, 5, 7
+ozdobiony, decorated, 6, 7
+jazda, ride, 7, 7
+własnej, own, 7, 8
+wiązać, to bind, 7, 8
+wrazenie, impression, 8, 8
+kosztować, to cost, 8, 8
+sprowadzić, to bring back, 8, 9
+roślinny, floral, 9, 10
