@@ -5,11 +5,14 @@ from random import choice
 from string import ascii_lowercase
 from utils import close_words
 
+
 def random_string(length):
     return ''.join(choice(ascii_lowercase) for i in range(length))
 
+
 def assert_close_words(w1, w2):
     assert close_words(w1, w2), "{} and {} not close".format(w1, w2)
+
 
 def test_random_strings():
     for i in range(25):
@@ -17,6 +20,7 @@ def test_random_strings():
         assert_close_words(word, word)
         assert_close_words(word + 'x', word)
         assert_close_words(word, word + 'x')
+
 
 assert close_words("hello", "hallo")
 assert close_words("hello", "holla")
@@ -28,4 +32,3 @@ assert not close_words("hello", "h")
 test_random_strings()
 
 print("close_words-test.py passed")
-

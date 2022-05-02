@@ -1,16 +1,20 @@
 from sys import argv
-from os import listdir
-from os.path import join, basename
+from os.path import join
 from random import choice
-from math import ceil, sqrt
-from utils import close_words, ReadDataFromFile, ReadPairsFromFile, write_open
-from utils import get_file_score, lowest_score_file
-from utils import HINT, QUIT, INITIAL_SCORE, MAX_SCORE, NEXT_QUESTION_INDEX
+from utils import close_words, ReadDataFromFile, write_open
+from utils import lowest_score_file
+from utils import HINT, QUIT, MAX_SCORE, NEXT_QUESTION_INDEX
+
 
 def WriteStatistics(folder, group, statistics):
     output = write_open(join(folder, group))
-    for pair in sorted(statistics, key = lambda p : statistics[p][0] + statistics[p][1]):
-        output.write("{}, {}, {}, {}\n".format(pair[0], pair[1], statistics[pair][0], statistics[pair][1]))
+    for pair in sorted(statistics,
+                       key=lambda p: statistics[p][0] + statistics[p][1]):
+        output.write("{}, {}, {}, {}\n".format(pair[0],
+                                               pair[1],
+                                               statistics[pair][0],
+                                               statistics[pair][1]))
+
 
 if len(argv) != 2:
     print("usage:")
@@ -26,9 +30,11 @@ counter = 0
 index = NEXT_QUESTION_INDEX
 while True:
     if counter == 0:
-        if group: WriteStatistics(folder, group, statistics)
+        if group:
+            WriteStatistics(folder, group, statistics)
         group = lowest_score_file(folder)
-        statistics = ReadDataFromFile(join(folder, group), read_all_words=False)
+        statistics = ReadDataFromFile(join(folder, group),
+                                      read_all_words=False)
         counter = len(statistics)
         if counter == 0:
             print("No words to learn from this directory")
@@ -63,4 +69,5 @@ while True:
         exit()
     print("New score is {}\n".format(score))
     statistics[pair][index] = score
-    if user_input == answer: index = NEXT_QUESTION_INDEX
+    if user_input == answer:
+        index = NEXT_QUESTION_INDEX
