@@ -1,6 +1,0 @@
-ból, pain, 5, 5
-praca zdalna, remote work, 5, 6
-krew, blood
-kościół, church, 6, 6
-gród, castle, 6, 7
-trzina, cane, 6, 5

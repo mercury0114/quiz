@@ -1,8 +1,0 @@
-przeszkadzam, I disturb, 7, 7
-zakładam, I assume, 7, 8
-wysyłam, I send, 7, 8
-przeszkadzać, to disturb, 8, 8
-wysyłać, to send, 8, 8
-chyba nie przeszkadzam, I hope I do not disturb you, 9, 9
-dokąd nas wysyłasz, where are you sending us, 9, 9
-zakładać, to assume, 10, 10

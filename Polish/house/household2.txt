@@ -1,8 +1,0 @@
-nóż, knife, 6, 6
-prysznic, shower, 5, 5
-poduszka, pillow
-prześcieradło, bedsheet
-okno, window
-drzwi, door
-łóżko, bed
-lustro, mirror

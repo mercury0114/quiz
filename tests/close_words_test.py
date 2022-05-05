@@ -10,8 +10,9 @@ def random_string(length):
     return ''.join(choice(ascii_lowercase) for i in range(length))
 
 
-def assert_close_words(w1, w2):
-    assert close_words(w1, w2), "{} and {} not close".format(w1, w2)
+def assert_close_words(word1, word2):
+    assert close_words(word1, word2), "{} and {} not close".format(word1,
+                                                                   word2)
 
 
 def test_random_strings():

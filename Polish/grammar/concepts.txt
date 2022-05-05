@@ -1,7 +1,0 @@
-zaimek, pronoun
-verb, czasownik
-noun, rzeczownik
-pronoun, zaimek
-adjective, przymiotnik
-adverb, przysłowek
-imperfect, niedokonany

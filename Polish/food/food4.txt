@@ -1,6 +1,0 @@
-orzeski ziemne, peanuts, 5, 4
-na deser, for desert, 5, 6
-na wynos, takeaway, 6, 6
-mąka, flour, 6, 6
-na miejscu, eat in, 6, 7
-rachunek, bill, 7, 6
