@@ -4,17 +4,17 @@
 # The output will be stored in the file "all_words.txt"
 from sys import argv
 from string import punctuation
+from multiprocessing.dummy import Pool
 from google_trans_new import google_translator
 from google_trans_new.google_trans_new import google_new_transError
-from multiprocessing.dummy import Pool
-from utils import ReadOpen, WriteOpen
+from utils import read_open, write_open
 
 OUTPUT_FILE = "all_words.txt"
 
 
 def ReadWordsAndCount(file_name):
     counts = {}
-    for line in ReadOpen(file_name):
+    for line in read_open(file_name):
         for word in line.split():
             word = ''.join(ch for ch in word if ch not in punctuation)
             word = word.lower()
@@ -42,7 +42,7 @@ except google_new_transError:
 
 print("Writing translations to {}...".format(OUTPUT_FILE))
 current_count = None
-f = WriteOpen(OUTPUT_FILE)
+f = write_open(OUTPUT_FILE)
 for word, translation in zip(words, translations):
     if current_count != counts[word]:
         current_count = counts[word]

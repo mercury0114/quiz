@@ -23,7 +23,7 @@ mistakes_count = 0
 index = NEXT_QUESTION_INDEX
 
 print("Press {} for hint, {} for quit".format(HINT, QUIT))
-while (word_pairs):
+while word_pairs:
     if index == NEXT_QUESTION_INDEX:
         index = randint(0, len(word_pairs) - 1)
         question, answer = SelectQuestionAnswer(word_pairs[index],
