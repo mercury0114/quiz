@@ -14,7 +14,7 @@ def WriteStatistics(folder, group, statistics):
                                                pair[1],
                                                statistics[pair][0],
                                                statistics[pair][1]))
-
+    output.close()
 
 if len(argv) != 2:
     print("usage:")

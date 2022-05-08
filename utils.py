@@ -42,7 +42,8 @@ def read_open(file_path):
 
 def ReadDataFromFile(file_path, read_all_words=True):
     statistics = {}
-    for line in read_open(file_path):
+    open_file = read_open(file_path)
+    for line in open_file:
         columns = line.split(', ')
         words = (columns[0], columns[1].strip('\n'))
         score1 = INITIAL_SCORE if len(columns) < 3 else int(columns[2])
@@ -51,6 +52,7 @@ def ReadDataFromFile(file_path, read_all_words=True):
             statistics[words] = [score1, score2]
         else:
             print("You know {}".format(line))
+    open_file.close()
     return statistics
 
 
