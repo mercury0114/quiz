@@ -33,6 +33,7 @@ counter = 0
 index = NEXT_QUESTION_INDEX
 while True:
     if counter == 0:
+        print("Choosing a new file")
         if group:
             WriteStatistics(folder, group, statistics)
         group = lowest_score_file(folder)
