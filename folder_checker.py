@@ -16,12 +16,15 @@ def WriteStatistics(folder, group, statistics):
                                                statistics[pair][1]))
     output.close()
 
-if len(argv) != 2:
+if not (2 <= len(argv) <= 3):
     print("usage:")
     print("python3 folder_checker.py [folder]")
+    print("to ask questions only from specific column:")
+    print("python3 folder_checker.py [folder] column_nr")
     exit()
 
 folder = argv[1]
+column = int(argv[2]) if len(argv) == 3 else 2
 group = None
 statistics = None
 
@@ -42,7 +45,7 @@ while True:
     if index == NEXT_QUESTION_INDEX:
         min_score = min([min(p) for p in statistics.values()])
         pair = choice(list(statistics))
-        index = statistics[pair][0] >= statistics[pair][1]
+        index = choice([0, 1]) if column == 2 else column
         question, answer = pair[index], pair[not index]
     score = statistics[pair][index]
     print("{} more from {}".format(counter, group))

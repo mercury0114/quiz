@@ -3,7 +3,7 @@ from sys import argv
 from random import randint
 from utils import close_words
 from utils import ReadPairsFromFile
-from utils import SelectQuestionAnswer
+from utils import select_question_answer
 from utils import HINT, QUIT
 from utils import NEXT_QUESTION_INDEX
 
@@ -26,7 +26,7 @@ print("Press {} for hint, {} for quit".format(HINT, QUIT))
 while word_pairs:
     if index == NEXT_QUESTION_INDEX:
         index = randint(0, len(word_pairs) - 1)
-        question, answer = SelectQuestionAnswer(word_pairs[index],
+        question, answer = select_question_answer(word_pairs[index],
                                                 column_argument)
     print(question, "?")
     user_input = input()
