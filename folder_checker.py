@@ -1,6 +1,7 @@
 from sys import argv
 from os.path import join
 from random import choice
+from random import choices
 from utils import close_words, ReadDataFromFile, write_open
 from utils import lowest_score_file
 from utils import HINT, QUIT, MAX_SCORE, NEXT_QUESTION_INDEX
@@ -45,8 +46,9 @@ while True:
             quit()
     if index == NEXT_QUESTION_INDEX:
         min_score = min([min(p) for p in statistics.values()])
-        pair = choice(list(statistics))
         index = choice([0, 1]) if column == 2 else column
+        weights = [1/(1+v[index]**3) for v in statistics.values()]
+        pair = choices(list(statistics), weights=weights)[0]
         question, answer = pair[index], pair[not index]
     score = statistics[pair][index]
     print("{} more from {}".format(counter, group))
