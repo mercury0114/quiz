@@ -24,3 +24,13 @@ this will read words from the `words.txt` file and ask you to provide `English =
    **Example command:** `python3 main.py example_data/words.txt 1`
    
    Command without the `NUMBER` argument will ask questions from both columns
+   
+ <p>&nbsp;</p>
+   
+**To run on Android phone**:
+
+ 1) Install `Pydroid` app
+ 2) Open Chrome browser app, in settings choose "Computer Version", navigate to github and download this project.
+ 3) Open `Pydroid` app and open the terminal. Navigate to downloaded git repo directory.
+ 4) Execute the program typing the regular `python3 file_checker.py example_data/words.txt` command.
+ 5) To conveniently edit `.txt` files in Android, install `txtpad` app.
