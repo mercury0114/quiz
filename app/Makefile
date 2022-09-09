@@ -7,7 +7,7 @@ all : makecapk.apk
 
 # WARNING WARNING WARNING!  YOU ABSOLUTELY MUST OVERRIDE THE PROJECT NAME
 # you should also override these parameters, get your own signatre file and make your own manifest.
-APPNAME?=cnfgtest
+APPNAME?=vocabulary
 LABEL?=$(APPNAME)
 APKFILE ?= $(APPNAME).apk
 PACKAGENAME?=org.yourorg.$(APPNAME)
@@ -185,5 +185,5 @@ run : push
 	$(ADB) shell am start -n $(PACKAGENAME)/$(ACTIVITYNAME)
 
 clean :
-	rm -rf temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+	rm -rf $(APPNAME).apk.idsig my-release-key.keystore temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
 
