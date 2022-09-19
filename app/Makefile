@@ -9,18 +9,13 @@ LABEL?=$(APPNAME)
 APKFILE ?= $(APPNAME).apk
 PACKAGENAME?=org.mercury0114.$(APPNAME)
 RAWDRAWANDROID?=.
-RAWDRAWANDROIDSRCS=$(RAWDRAWANDROID)/android_native_app_glue.c
+RAWDRAWANDROIDSRCS=android_native_app_glue.c
 SRC?=test.c
 ANDROIDVERSION?=30
 ANDROIDTARGET?=$(ANDROIDVERSION)
 CFLAGS?=-ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
 LDFLAGS?=-Wl,--gc-sections -s
-ANDROID_FULLSCREEN?=y
-
 ANDROIDSRCS:= $(SRC) $(RAWDRAWANDROIDSRCS)
-
-#if you have a custom Android Home location you can add it to this list.  
-#This makefile will select the first present folder.
 
 
 UNAME := $(shell uname)
@@ -36,7 +31,7 @@ ifeq ($(ANDROIDSDK),)
 $(error ANDROIDSDK directory not found)
 endif
 
-NDK?=$(firstword $(ANDROID_NDK) $(ANDROID_NDK_HOME) $(wildcard $(ANDROIDSDK)/ndk/*) $(wildcard $(ANDROIDSDK)/ndk-bundle/*) )
+NDK?=$(firstword $(wildcard $(ANDROIDSDK)/ndk/*))
 ifeq ($(NDK),)
 $(error NDK directory not found)
 endif
@@ -46,11 +41,9 @@ ifeq ($(BUILD_TOOLS),)
 $(error BUILD_TOOLS directory not found)
 endif
 
-CFLAGS+=-Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
-ifeq (ANDROID_FULLSCREEN,y)
+CFLAGS +=-Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
 CFLAGS +=-DANDROID_FULLSCREEN
-endif
-CFLAGS+= -I$(RAWDRAWANDROID)/rawdraw -I$(NDK)/sysroot/usr/include -I$(NDK)/sysroot/usr/include/android -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android -fPIC -I$(RAWDRAWANDROID) -DANDROIDVERSION=$(ANDROIDVERSION)
+CFLAGS += -I./rawdraw -I$(NDK)/sysroot/usr/include -I$(NDK)/sysroot/usr/include/android -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android -I. -DANDROIDVERSION=$(ANDROIDVERSION)
 LDFLAGS += -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate
 
@@ -66,8 +59,6 @@ DNAME:="CN=example.com, OU=ID, O=Example, L=Doe, S=John, C=GB"
 KEYSTOREFILE:=my-release-key.keystore
 ALIASNAME?=standkey
 
-keystore : $(KEYSTOREFILE)
-
 $(KEYSTOREFILE) : clean
 	keytool -genkey -v -keystore $(KEYSTOREFILE) -alias $(ALIASNAME) -keyalg RSA -keysize 2048 -validity 10000 -storepass $(STOREPASS) -keypass $(STOREPASS) -dname $(DNAME)
 
@@ -79,7 +70,7 @@ makecapk/lib/armeabi-v7a/lib$(APPNAME).so : $(ANDROIDSRCS)
 	mkdir -p makecapk/lib/armeabi-v7a
 	$(CC_ARM32) $(CFLAGS) $(CFLAGS_ARM32) -o $@ $^ -L$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/lib/arm-linux-androideabi/$(ANDROIDVERSION) $(LDFLAGS)
 
-makecapk.apk : $(TARGETS) $(EXTRA_ASSETS_TRIGGER) AndroidManifest.xml
+makecapk.apk : $(TARGETS) AndroidManifest.xml
 	mkdir -p makecapk/assets
 	cp -r Sources/assets/* makecapk/assets
 	rm -rf temp.apk
@@ -90,16 +81,12 @@ makecapk.apk : $(TARGETS) $(EXTRA_ASSETS_TRIGGER) AndroidManifest.xml
 	jarsigner -sigalg SHA1withRSA -digestalg SHA1 -verbose -keystore $(KEYSTOREFILE) -storepass $(STOREPASS) makecapk.apk $(ALIASNAME)
 	rm -rf $(APKFILE)
 	$(BUILD_TOOLS)/zipalign -v 4 makecapk.apk $(APKFILE)
-	#Using the apksigner in this way is only required on Android 30+
 	$(BUILD_TOOLS)/apksigner sign --key-pass pass:$(STOREPASS) --ks-pass pass:$(STOREPASS) --ks $(KEYSTOREFILE) $(APKFILE)
 	rm -rf temp.apk
 	rm -rf makecapk.apk
 	@ls -l $(APKFILE)
 
-manifest: AndroidManifest.xml
-
 AndroidManifest.xml :
-	rm -rf AndroidManifest.xml
 	PACKAGENAME=$(PACKAGENAME) \
 		ANDROIDVERSION=$(ANDROIDVERSION) \
 		ANDROIDTARGET=$(ANDROIDTARGET) \
@@ -107,15 +94,12 @@ AndroidManifest.xml :
 		LABEL=$(LABEL) envsubst '$$ANDROIDTARGET $$ANDROIDVERSION $$APPNAME $$PACKAGENAME $$LABEL' \
 		< AndroidManifest.xml.template > AndroidManifest.xml
 
-install : $(KEYSTOREFILE) push
+install : $(KEYSTOREFILE) makecapk.apk
+	@echo "Installing" $(PACKAGENAME)
+	adb install -r $(APKFILE)
 reinstall : uninstall install
 uninstall : 
 	adb uninstall $(PACKAGENAME)
-
-push : makecapk.apk
-	@echo "Installing" $(PACKAGENAME)
-	adb install -r $(APKFILE)
-
 clean :
-	rm -rf $(APPNAME).apk.idsig my-release-key.keystore temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+	rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
 
