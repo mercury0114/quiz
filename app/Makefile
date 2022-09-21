@@ -8,15 +8,11 @@ APPNAME?=vocabulary
 LABEL?=$(APPNAME)
 APKFILE ?= $(APPNAME).apk
 PACKAGENAME?=org.mercury0114.$(APPNAME)
-RAWDRAWANDROID?=.
-RAWDRAWANDROIDSRCS=android_native_app_glue.c
-SRC?=test.c
 ANDROIDVERSION?=30
 ANDROIDTARGET?=$(ANDROIDVERSION)
-CFLAGS?=-ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
-LDFLAGS?=-Wl,--gc-sections -s
-ANDROIDSRCS:= $(SRC) $(RAWDRAWANDROIDSRCS)
 
+
+ANDROIDSRCS:= test.c android_native_app_glue.c
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
@@ -41,10 +37,15 @@ ifeq ($(BUILD_TOOLS),)
 $(error BUILD_TOOLS directory not found)
 endif
 
-CFLAGS +=-Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
-CFLAGS +=-DANDROID_FULLSCREEN
-CFLAGS += -I./rawdraw -I$(NDK)/sysroot/usr/include -I$(NDK)/sysroot/usr/include/android -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android -I. -DANDROIDVERSION=$(ANDROIDVERSION)
-LDFLAGS += -lm -lGLESv3 -lEGL -landroid -llog
+CFLAGS := -ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
+CFLAGS += -Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
+CFLAGS += -DANDROID_FULLSCREEN
+CFLAGS += -I.
+CFLAGS += -I./rawdraw -I$(NDK)/sysroot/usr/include
+CFLAGS += -I$(NDK)/sysroot/usr/include/android
+CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android
+
+LDFLAGS := -Wl,--gc-sections -s -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate
 
 CC_ARM64:=$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/bin/aarch64-linux-android$(ANDROIDVERSION)-clang
@@ -57,10 +58,24 @@ TARGETS += makecapk/lib/armeabi-v7a/lib$(APPNAME).so
 STOREPASS?=password
 DNAME:="CN=example.com, OU=ID, O=Example, L=Doe, S=John, C=GB"
 KEYSTOREFILE:=my-release-key.keystore
-ALIASNAME?=standkey
+
+
+clean :
+	rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+
+uninstall : 
+	adb uninstall $(PACKAGENAME)
+
+AndroidManifest.xml :
+	PACKAGENAME=$(PACKAGENAME) \
+		ANDROIDVERSION=$(ANDROIDVERSION) \
+		ANDROIDTARGET=$(ANDROIDTARGET) \
+		APPNAME=$(APPNAME) \
+		LABEL=$(LABEL) envsubst '$$ANDROIDTARGET $$ANDROIDVERSION $$APPNAME $$PACKAGENAME $$LABEL' \
+		< AndroidManifest.xml.template > AndroidManifest.xml
 
 $(KEYSTOREFILE) : clean
-	keytool -genkey -v -keystore $(KEYSTOREFILE) -alias $(ALIASNAME) -keyalg RSA -keysize 2048 -validity 10000 -storepass $(STOREPASS) -keypass $(STOREPASS) -dname $(DNAME)
+	keytool -genkey -v -keystore $(KEYSTOREFILE) -alias standkey -keyalg RSA -keysize 2048 -validity 10000 -storepass $(STOREPASS) -keypass $(STOREPASS) -dname $(DNAME)
 
 makecapk/lib/arm64-v8a/lib$(APPNAME).so : $(ANDROIDSRCS)
 	mkdir -p makecapk/lib/arm64-v8a
@@ -78,7 +93,7 @@ makecapk.apk : $(TARGETS) AndroidManifest.xml
 	unzip -o temp.apk -d makecapk
 	rm -rf makecapk.apk
 	cd makecapk && zip -D9r ../makecapk.apk . && zip -D0r ../makecapk.apk ./resources.arsc ./AndroidManifest.xml
-	jarsigner -sigalg SHA1withRSA -digestalg SHA1 -verbose -keystore $(KEYSTOREFILE) -storepass $(STOREPASS) makecapk.apk $(ALIASNAME)
+	jarsigner -sigalg SHA1withRSA -digestalg SHA1 -verbose -keystore $(KEYSTOREFILE) -storepass $(STOREPASS) makecapk.apk standkey
 	rm -rf $(APKFILE)
 	$(BUILD_TOOLS)/zipalign -v 4 makecapk.apk $(APKFILE)
 	$(BUILD_TOOLS)/apksigner sign --key-pass pass:$(STOREPASS) --ks-pass pass:$(STOREPASS) --ks $(KEYSTOREFILE) $(APKFILE)
@@ -86,20 +101,7 @@ makecapk.apk : $(TARGETS) AndroidManifest.xml
 	rm -rf makecapk.apk
 	@ls -l $(APKFILE)
 
-AndroidManifest.xml :
-	PACKAGENAME=$(PACKAGENAME) \
-		ANDROIDVERSION=$(ANDROIDVERSION) \
-		ANDROIDTARGET=$(ANDROIDTARGET) \
-		APPNAME=$(APPNAME) \
-		LABEL=$(LABEL) envsubst '$$ANDROIDTARGET $$ANDROIDVERSION $$APPNAME $$PACKAGENAME $$LABEL' \
-		< AndroidManifest.xml.template > AndroidManifest.xml
-
 install : $(KEYSTOREFILE) makecapk.apk
 	@echo "Installing" $(PACKAGENAME)
 	adb install -r $(APKFILE)
 reinstall : uninstall install
-uninstall : 
-	adb uninstall $(PACKAGENAME)
-clean :
-	rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
-
