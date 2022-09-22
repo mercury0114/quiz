@@ -11,11 +11,10 @@ PACKAGENAME := org.mercury0114.$(APPNAME)
 ANDROIDVERSION := 30
 ANDROIDTARGET := $(ANDROIDVERSION)
 
-UNAME := $(shell uname)
-ifeq ($(UNAME), Linux)
+ifeq ($(shell uname), Linux)
 OS_NAME = linux-x86_64
 endif
-ifeq ($(UNAME), Darwin)
+ifeq ($(shell uname), Darwin)
 OS_NAME = darwin-x86_64
 endif
 

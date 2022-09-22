@@ -1,5 +1,11 @@
 [![rawdrawandroid](https://github.com/dreua/rawdrawandroid/actions/workflows/install.yml/badge.svg)](https://github.com/dreua/rawdrawandroid/actions/workflows/install.yml)
 
+# DEBUG environment
+
+To read app printf statements in a shell:
+```adb logcat | grep "vocabulary:"```
+
+
 # rawdrawandroid
 
 Ever wanted to write C code and run it on Android?  Sick of multi-megabyte
