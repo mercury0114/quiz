@@ -247,8 +247,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	       eglQueryString(egl_display, EGL_VERSION));
 	printf("EGL Vendor: \"%s\"\n",
 	       eglQueryString(egl_display, EGL_VENDOR));
-	printf("EGL Extensions: \"%s\"\n",
-	       eglQueryString(egl_display, EGL_EXTENSIONS));
 
 	eglChooseConfig(egl_display, config_attribute_list, &config, 1,
 			&num_config);
@@ -325,7 +323,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	printf("GL Vendor: \"%s\"\n", glGetString(GL_VENDOR));
 	printf("GL Renderer: \"%s\"\n", glGetString(GL_RENDERER));
 	printf("GL Version: \"%s\"\n", glGetString(GL_VERSION));
-	printf("GL Extensions: \"%s\"\n", glGetString(GL_EXTENSIONS));
 
 	CNFGSetupBatchInternal();
 
@@ -501,7 +498,6 @@ void android_main(struct android_app* app)
 	gapp = app;
 	app->onAppCmd = handle_cmd;
 	app->onInputEvent = handle_input;
-	printf( "Starting with Android SDK Version: %d", android_sdk_version );
 
 	printf( "Starting Main\n" );
 	main( 1, argv );

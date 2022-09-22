@@ -3,7 +3,12 @@
 # DEBUG environment
 
 To read app printf statements in a shell:
+
 ```adb logcat | grep "vocabulary:"```
+
+The logcat is stored locally and accumulates. To clear old logs:
+
+```adb logcat -c```
 
 
 # rawdrawandroid

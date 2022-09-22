@@ -274,7 +274,6 @@ int main()
 		ThisTime = OGGetAbsoluteTime();
 		if( ThisTime > LastFPSTime + 1 )
 		{
-			printf( "FPS: %d\n", frames );
 			frames = 0;
 			linesegs = 0;
 			LastFPSTime+=1;

@@ -236,7 +236,6 @@ int main()
 
 	CNFGBGColor = 0x000040ff;
 	CNFGSetupFullscreen( "Test Bench", 0 );
-	//CNFGSetup( "Test Bench", 0, 0 );
 
 	for( x = 0; x < HMX; x++ )
 	for( y = 0; y < HMY; y++ )
@@ -344,7 +343,6 @@ int main()
 		ThisTime = OGGetAbsoluteTime();
 		if( ThisTime > LastFPSTime + 1 )
 		{
-			printf( "FPS: %d\n", frames );
 			frames = 0;
 			linesegs = 0;
 			LastFPSTime+=1;
