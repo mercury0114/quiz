@@ -483,6 +483,7 @@ int __system_property_get(const char* name, char* value);
 
 void android_main(struct android_app* app)
 {
+    printf("Starting android_main\n");
 	int main( int argc, char ** argv );
 	char * argv[] = { "main", 0 };
 
@@ -499,9 +500,7 @@ void android_main(struct android_app* app)
 	app->onAppCmd = handle_cmd;
 	app->onInputEvent = handle_input;
 
-	printf( "Starting Main\n" );
 	main( 1, argv );
-	printf( "Main Complete\n" );
 }
 
 void AndroidMakeFullscreen()
