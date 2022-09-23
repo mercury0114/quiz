@@ -358,30 +358,6 @@ void handle_cmd(struct android_app* app, int32_t cmd)
 
 int __system_property_get(const char* name, char* value);
 
-void android_main(struct android_app* app)
-{
-    printf("Starting android_main\n");
-	int main( int argc, char ** argv );
-	char * argv[] = { "main", 0 };
-
-	{
-		char sdk_ver_str[92];
-		int len = __system_property_get("ro.build.version.sdk", sdk_ver_str);
-		if( len <= 0 ) 
-			android_sdk_version = 0;
-		else
-			android_sdk_version = atoi(sdk_ver_str);
-	}
-
-	gapp = app;
-	app->onAppCmd = handle_cmd;
-	app->onInputEvent = handle_input;
-
-	main( 1, argv );
-}
-
-
-
 
 void AndroidDisplayKeyboard(int pShow)
 {
@@ -583,4 +559,26 @@ void AndroidSendToBack( int param )
 	jnii->DetachCurrentThread( jniiptr );
 }
 
+
+void android_main(struct android_app* app)
+{
+    printf("Starting android_main\n");
+	int main( int argc, char ** argv );
+	char * argv[] = { "main", 0 };
+
+	{
+		char sdk_ver_str[92];
+		int len = __system_property_get("ro.build.version.sdk", sdk_ver_str);
+		if( len <= 0 ) 
+			android_sdk_version = 0;
+		else
+			android_sdk_version = atoi(sdk_ver_str);
+	}
+
+	gapp = app;
+	app->onAppCmd = handle_cmd;
+	app->onInputEvent = handle_input;
+
+	main( 1, argv );
+}
 
