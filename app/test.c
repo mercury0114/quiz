@@ -12,11 +12,12 @@
 #include <android_native_app_glue.h>
 #include <android/sensor.h>
 #include "CNFGAndroid.h"
+#include "CNFG.h"
 
 #define CNFG_IMPLEMENTATION
 #define CNFG3D
 
-#include "CNFG.h"
+
 
 float mountainangle;
 float mountainoffsetx;
