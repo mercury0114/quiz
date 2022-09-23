@@ -33,7 +33,9 @@ ifeq ($(BUILD_TOOLS),)
 $(error BUILD_TOOLS directory not found)
 endif
 
-ANDROIDSRCS := test.c android_native_app_glue.c
+ANDROIDSRCS := android_native_app_glue.c 
+ANDROIDSRCS += test.c
+# ANDROIDSRCS += rawdraw/CNFG3D.c
 
 CFLAGS := -ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
 CFLAGS += -Os -DANDROID -DAPPNAME=\"$(APPNAME)\"

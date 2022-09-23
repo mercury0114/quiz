@@ -1,6 +1,15 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+//#include "CNFG.h"
+
+
 #define tdQ_PI 3.141592653589
 #define tdDEGRAD (tdQ_PI/180.)
 #define tdRADDEG (180./tdQ_PI)
+#define tdMATRIXMAXDEPTH 32
+#define tdMATCOPY(x,y) memcpy( x, y, 16*sizeof(float))
+
 
 #define m00 0
 #define m01 1
@@ -18,6 +27,33 @@
 #define m31 13
 #define m32 14
 #define m33 15
+
+static void tdMultiply( float * fin1, float * fin2, float * fout )
+{
+	float fotmp[16];
+	int i, k;
+	for( i = 0; i < 16; i++ )
+	{
+		int xp = i & 0x03;
+		int yp = i & 0x0c;
+		fotmp[i] = 0;
+		for( k = 0; k < 4; k++ )
+		{
+			fotmp[i] += fin1[yp+k] * fin2[(k<<2)|xp];
+		}
+	}
+	memcpy(fout, fotmp, 16*sizeof(float));
+}
+
+void tdCross( float * va, float * vb, float * vout )
+{
+	float vtmp[2];
+	vtmp[0] = va[1] * vb[2] - va[2] * vb[1];
+	vtmp[1] = va[2] * vb[0] - va[0] * vb[2];
+	vout[2] = va[0] * vb[1] - va[1] * vb[0];
+	vout[0] = vtmp[0];
+	vout[1] = vtmp[1];
+}
 
 void tdIdentity( float * f )
 {
@@ -159,23 +195,6 @@ void tdRotateEA( float * f, float x, float y, float z )
 	tdMultiply( f, ftmp, f );
 }
 
-void tdMultiply( float * fin1, float * fin2, float * fout )
-{
-	float fotmp[16];
-	int i, k;
-	for( i = 0; i < 16; i++ )
-	{
-		int xp = i & 0x03;
-		int yp = i & 0x0c;
-		fotmp[i] = 0;
-		for( k = 0; k < 4; k++ )
-		{
-			fotmp[i] += fin1[yp+k] * fin2[(k<<2)|xp];
-		}
-	}
-	tdMATCOPY( fout, fotmp );
-}
-
 void tdPrint( const float * f )
 {
 	int i;
@@ -283,16 +302,6 @@ void tdNormalizeSelf( float * vin )
 	vin[2] *= vsq;
 }
 
-void tdCross( float * va, float * vb, float * vout )
-{
-	float vtmp[2];
-	vtmp[0] = va[1] * vb[2] - va[2] * vb[1];
-	vtmp[1] = va[2] * vb[0] - va[0] * vb[2];
-	vout[2] = va[0] * vb[1] - va[1] * vb[0];
-	vout[0] = vtmp[0];
-	vout[1] = vtmp[1];
-}
-
 float tdDistance( float * va, float * vb )
 {
 	float dx = va[0]-vb[0];
@@ -313,27 +322,6 @@ float * gSMatrix = gsMatricies[0][0];
 static int gsMMode;
 static int gsMPlace[2];
 
-void tdPush()
-{
-	if( gsMPlace[gsMMode] > tdMATRIXMAXDEPTH - 2 )
-		return;
-
-	tdMATCOPY( gsMatricies[gsMMode][gsMPlace[gsMMode] + 1], gsMatricies[gsMMode][gsMPlace[gsMMode]] );
-	gsMPlace[gsMMode]++;
-
-	gSMatrix = gsMatricies[gsMMode][gsMPlace[gsMMode]];
-}
-
-void tdPop()
-{
-	if( gsMPlace[gsMMode] < 1 )
-		return;
-
-	gsMPlace[gsMMode]--;
-
-	gSMatrix = gsMatricies[gsMMode][gsMPlace[gsMMode]];
-
-}
 
 void tdMode( int mode )
 {

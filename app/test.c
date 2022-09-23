@@ -235,7 +235,6 @@ int main()
 	int x, y;
 	double ThisTime;
 	double LastFPSTime = OGGetAbsoluteTime();
-	int linesegs = 0;
 
 	CNFGBGColor = 0x000040ff;
 	CNFGSetupFullscreen( "Test Bench", 0 );
@@ -261,7 +260,7 @@ int main()
 
 	while(1)
 	{
-		int i, pos;
+		int i;
 		iframeno++;
 
 		CNFGHandleInput();
@@ -300,7 +299,6 @@ int main()
 		CNFGPenX = 10; CNFGPenY = 10;
 
 		// Text
-		pos = 0;
 		CNFGColor( 0xffffffff );
 		for( i = 0; i < 1; i++ )
 		{
@@ -347,7 +345,6 @@ int main()
 		if( ThisTime > LastFPSTime + 1 )
 		{
 			frames = 0;
-			linesegs = 0;
 			LastFPSTime+=1;
 		}
 

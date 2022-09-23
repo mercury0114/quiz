@@ -122,8 +122,6 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 #define tdTAN tanf
 #define tdSQRT sqrtf
 
-#define tdMATCOPY(x,y) memcpy( x, y, 16*sizeof(float))
-
 #define tdQ_PI 3.141592653589
 #define tdDEGRAD (tdQ_PI/180.)
 #define tdRADDEG (180./tdQ_PI)
@@ -131,13 +129,11 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 
 //General Matrix Functions
 void tdIdentity( float * f );
-void tdZero( float * f );
 void tdTranslate( float * f, float x, float y, float z );		//Operates ON f
 void tdScale( float * f, float x, float y, float z );			//Operates ON f
 void tdRotateAA( float * f, float angle, float x, float y, float z ); 	//Operates ON f
 void tdRotateQuat( float * f, float qw, float qx, float qy, float qz ); 	//Operates ON f
 void tdRotateEA( float * f, float x, float y, float z );		//Operates ON f
-void tdMultiply( float * fin1, float * fin2, float * fout );		//Operates ON f
 void tdPrint( const float * f );
 void tdTransposeSelf( float * f );
 
@@ -158,9 +154,6 @@ float tdDot( float * va, float * vb );
 #define tdPAdd( x, y, z ) { (z)[0] = (x)[0] + (y)[0]; (z)[1] = (x)[1] + (y)[1]; (z)[2] = (x)[2] + (y)[2]; }
 
 //Stack Functionality
-#define tdMATRIXMAXDEPTH 32
-void tdPush();
-void tdPop();
 void tdMode( int mode );
 #define tdMODELVIEW 0
 #define tdPROJECTION 1
@@ -172,7 +165,6 @@ void tdFinalPoint( float * pin, float * pout );
 float tdNoiseAt( int x, int y );
 float tdFLerp( float a, float b, float t );
 float tdPerlin2D( float x, float y );
-
 
 #include "android_main.c"
 #include "CNFG3D.c"

@@ -343,8 +343,6 @@ int32_t handle_input(struct android_app* app, AInputEvent* event)
 
 	if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION)
 	{
-		static uint64_t downmask;
-
 		int action = AMotionEvent_getAction( event );
 		int whichsource = action >> 8;
 		action &= AMOTION_EVENT_ACTION_MASK;
@@ -362,7 +360,6 @@ int32_t handle_input(struct android_app* app, AInputEvent* event)
 				int id = index;
 				if( action == AMOTION_EVENT_ACTION_POINTER_DOWN && id != whichsource ) continue;
 				HandleButton( x, y, id, 1 );
-				downmask    |= 1<<id;
 				ANativeActivity_showSoftInput( gapp->activity, ANATIVEACTIVITY_SHOW_SOFT_INPUT_FORCED );
 			}
 			else if( action == AMOTION_EVENT_ACTION_POINTER_UP || action == AMOTION_EVENT_ACTION_UP || action == AMOTION_EVENT_ACTION_CANCEL )
@@ -370,7 +367,6 @@ int32_t handle_input(struct android_app* app, AInputEvent* event)
 				int id = index;
 				if( action == AMOTION_EVENT_ACTION_POINTER_UP && id != whichsource ) continue;
 				HandleButton( x, y, id, 0 );
-				downmask    &= ~(1<<id);
 			}
 			else if( action == AMOTION_EVENT_ACTION_MOVE )
 			{
