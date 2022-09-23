@@ -145,10 +145,58 @@ static const EGLint context_attribute_list[] = {
 EGLDisplay egl_display;
 EGLSurface egl_surface;
 
-void CNFGSetVSync( int vson )
+
+static void AndroidMakeFullscreen()
 {
-	eglSwapInterval(egl_display, vson);
+	//Partially based on https://stackoverflow.com/questions/47507714/how-do-i-enable-full-screen-immersive-mode-for-a-native-activity-ndk-app
+	const struct JNINativeInterface * env = 0;
+	const struct JNINativeInterface ** envptr = &env;
+	const struct JNIInvokeInterface ** jniiptr = gapp->activity->vm;
+	const struct JNIInvokeInterface * jnii = *jniiptr;
+
+	jnii->AttachCurrentThread( jniiptr, &envptr, NULL);
+	env = (*envptr);
+
+	//Get android.app.NativeActivity, then get getWindow method handle, returns view.Window type
+	jclass activityClass = env->FindClass( envptr, "android/app/NativeActivity");
+	jmethodID getWindow = env->GetMethodID( envptr, activityClass, "getWindow", "()Landroid/view/Window;");
+	jobject window = env->CallObjectMethod( envptr, gapp->activity->clazz, getWindow);
+
+	//Get android.view.Window class, then get getDecorView method handle, returns view.View type
+	jclass windowClass = env->FindClass( envptr, "android/view/Window");
+	jmethodID getDecorView = env->GetMethodID( envptr, windowClass, "getDecorView", "()Landroid/view/View;");
+	jobject decorView = env->CallObjectMethod( envptr, window, getDecorView);
+
+	//Get the flag values associated with systemuivisibility
+	jclass viewClass = env->FindClass( envptr, "android/view/View");
+	const int flagLayoutHideNavigation = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION", "I"));
+	const int flagLayoutFullscreen = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN", "I"));
+	const int flagLowProfile = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LOW_PROFILE", "I"));
+	const int flagHideNavigation = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_HIDE_NAVIGATION", "I"));
+	const int flagFullscreen = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_FULLSCREEN", "I"));
+	const int flagImmersiveSticky = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_IMMERSIVE_STICKY", "I"));
+
+	jmethodID setSystemUiVisibility = env->GetMethodID( envptr, viewClass, "setSystemUiVisibility", "(I)V");
+
+	//Call the decorView.setSystemUiVisibility(FLAGS)
+	env->CallVoidMethod( envptr, decorView, setSystemUiVisibility,
+		        (flagLayoutHideNavigation | flagLayoutFullscreen | flagLowProfile | flagHideNavigation | flagFullscreen | flagImmersiveSticky));
+
+	//now set some more flags associated with layoutmanager -- note the $ in the class path
+	//search for api-versions.xml
+	//https://android.googlesource.com/platform/development/+/refs/tags/android-9.0.0_r48/sdk/api-versions.xml
+
+	jclass layoutManagerClass = env->FindClass( envptr, "android/view/WindowManager$LayoutParams");
+	const int flag_WinMan_Fullscreen = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_FULLSCREEN", "I") ));
+	const int flag_WinMan_KeepScreenOn = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_KEEP_SCREEN_ON", "I") ));
+	const int flag_WinMan_hw_acc = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_HARDWARE_ACCELERATED", "I") ));
+	//    const int flag_WinMan_flag_not_fullscreen = env->GetStaticIntField(layoutManagerClass, (env->GetStaticFieldID(layoutManagerClass, "FLAG_FORCE_NOT_FULLSCREEN", "I") ));
+	//call window.addFlags(FLAGS)
+	env->CallVoidMethod( envptr, window, (env->GetMethodID (envptr, windowClass, "addFlags" , "(I)V")), (flag_WinMan_Fullscreen | flag_WinMan_KeepScreenOn | flag_WinMan_hw_acc));
+
+	jnii->DetachCurrentThread( jniiptr );
 }
+
 
 static short iLastInternalW, iLastInternalH;
 
@@ -491,56 +539,7 @@ void android_main(struct android_app* app)
 	main( 1, argv );
 }
 
-void AndroidMakeFullscreen()
-{
-	//Partially based on https://stackoverflow.com/questions/47507714/how-do-i-enable-full-screen-immersive-mode-for-a-native-activity-ndk-app
-	const struct JNINativeInterface * env = 0;
-	const struct JNINativeInterface ** envptr = &env;
-	const struct JNIInvokeInterface ** jniiptr = gapp->activity->vm;
-	const struct JNIInvokeInterface * jnii = *jniiptr;
 
-	jnii->AttachCurrentThread( jniiptr, &envptr, NULL);
-	env = (*envptr);
-
-	//Get android.app.NativeActivity, then get getWindow method handle, returns view.Window type
-	jclass activityClass = env->FindClass( envptr, "android/app/NativeActivity");
-	jmethodID getWindow = env->GetMethodID( envptr, activityClass, "getWindow", "()Landroid/view/Window;");
-	jobject window = env->CallObjectMethod( envptr, gapp->activity->clazz, getWindow);
-
-	//Get android.view.Window class, then get getDecorView method handle, returns view.View type
-	jclass windowClass = env->FindClass( envptr, "android/view/Window");
-	jmethodID getDecorView = env->GetMethodID( envptr, windowClass, "getDecorView", "()Landroid/view/View;");
-	jobject decorView = env->CallObjectMethod( envptr, window, getDecorView);
-
-	//Get the flag values associated with systemuivisibility
-	jclass viewClass = env->FindClass( envptr, "android/view/View");
-	const int flagLayoutHideNavigation = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION", "I"));
-	const int flagLayoutFullscreen = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN", "I"));
-	const int flagLowProfile = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_LOW_PROFILE", "I"));
-	const int flagHideNavigation = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_HIDE_NAVIGATION", "I"));
-	const int flagFullscreen = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_FULLSCREEN", "I"));
-	const int flagImmersiveSticky = env->GetStaticIntField( envptr, viewClass, env->GetStaticFieldID( envptr, viewClass, "SYSTEM_UI_FLAG_IMMERSIVE_STICKY", "I"));
-
-	jmethodID setSystemUiVisibility = env->GetMethodID( envptr, viewClass, "setSystemUiVisibility", "(I)V");
-
-	//Call the decorView.setSystemUiVisibility(FLAGS)
-	env->CallVoidMethod( envptr, decorView, setSystemUiVisibility,
-		        (flagLayoutHideNavigation | flagLayoutFullscreen | flagLowProfile | flagHideNavigation | flagFullscreen | flagImmersiveSticky));
-
-	//now set some more flags associated with layoutmanager -- note the $ in the class path
-	//search for api-versions.xml
-	//https://android.googlesource.com/platform/development/+/refs/tags/android-9.0.0_r48/sdk/api-versions.xml
-
-	jclass layoutManagerClass = env->FindClass( envptr, "android/view/WindowManager$LayoutParams");
-	const int flag_WinMan_Fullscreen = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_FULLSCREEN", "I") ));
-	const int flag_WinMan_KeepScreenOn = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_KEEP_SCREEN_ON", "I") ));
-	const int flag_WinMan_hw_acc = env->GetStaticIntField( envptr, layoutManagerClass, (env->GetStaticFieldID( envptr, layoutManagerClass, "FLAG_HARDWARE_ACCELERATED", "I") ));
-	//    const int flag_WinMan_flag_not_fullscreen = env->GetStaticIntField(layoutManagerClass, (env->GetStaticFieldID(layoutManagerClass, "FLAG_FORCE_NOT_FULLSCREEN", "I") ));
-	//call window.addFlags(FLAGS)
-	env->CallVoidMethod( envptr, window, (env->GetMethodID (envptr, windowClass, "addFlags" , "(I)V")), (flag_WinMan_Fullscreen | flag_WinMan_KeepScreenOn | flag_WinMan_hw_acc));
-
-	jnii->DetachCurrentThread( jniiptr );
-}
 
 
 void AndroidDisplayKeyboard(int pShow)

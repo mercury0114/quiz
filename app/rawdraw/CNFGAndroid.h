@@ -5,7 +5,6 @@
 //In order to build rawdraw for Android, please compile CNFGEGLDriver.c with -DANDROID
 
 extern struct android_app * gapp;
-void AndroidMakeFullscreen();
 int AndroidHasPermissions(const char* perm_name);
 void AndroidRequestAppPermissions(const char * perm);
 void AndroidDisplayKeyboard(int pShow);

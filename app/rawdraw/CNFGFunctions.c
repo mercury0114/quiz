@@ -338,7 +338,7 @@ float sqrtf( float f );
 #endif
 
 //Geometry batching system - so we can batch geometry and deliver it all at once.
-float CNFGVertDataV[CNFG_BATCH*3];
+static float CNFGVertDataV[CNFG_BATCH*3];
 uint32_t CNFGVertDataC[CNFG_BATCH];
 int CNFGVertPlace;
 static float wgl_last_width_over_2 = .5;

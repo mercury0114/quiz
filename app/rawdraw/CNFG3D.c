@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-//#include "CNFG.h"
+#include "CNFG.h"
 
 
 #define tdQ_PI 3.141592653589
@@ -210,7 +210,7 @@ static float tdNoiseAt( int x, int y )
 	return ((x*13241*y + y * 33455927)%9293) / 4646. - 1.0;
 }
 
-static inline float tdFade( float f )
+static float tdFade( float f )
 {
 	float ft3 = f*f*f;
 	return ft3 * 10 - ft3 * f * 15 + 6 * ft3 * f * f;

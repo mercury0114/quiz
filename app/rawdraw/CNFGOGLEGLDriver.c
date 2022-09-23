@@ -167,23 +167,10 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	return 0;
 }
 
-void CNFGHandleInput()
-{
-	//Stubbed (No input)
-	return;
-}
 void CNFGUpdateScreenWithBitmap( unsigned long * data, int w, int h )
 {
 	printf( "Stubbed update screen\n" );
 }
-void CNFGSetVSync( int vson )
-{
-	//No-op
-}
 
-void CNFGSwapBuffers()
-{
-	//No-op
-}
 
 
