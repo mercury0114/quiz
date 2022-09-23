@@ -25,6 +25,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef _CNFG_C
 #define _CNFG_C
 
+#include <gl.h>
+
 #include "CNFG.h"
 #include <stdbool.h>
 #ifdef _CNFG_FANCYFONT

@@ -35,7 +35,7 @@ endif
 
 ANDROIDSRCS := android_native_app_glue.c 
 ANDROIDSRCS += test.c
-# ANDROIDSRCS += android_main.c rawdraw/CNFG3D.c rawdraw/CNFGFunctions.c
+ANDROIDSRCS += android_main.c rawdraw/CNFG3D.c rawdraw/CNFGFunctions.c
 
 CFLAGS := -ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
 CFLAGS += -Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
@@ -44,6 +44,7 @@ CFLAGS += -I.
 CFLAGS += -I./rawdraw -I$(NDK)/sysroot/usr/include
 CFLAGS += -I$(NDK)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android
+CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/GLES
 
 LDFLAGS := -Wl,--gc-sections -s -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate

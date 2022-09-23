@@ -152,7 +152,3 @@ void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float 
 void tdFinalPoint( float * pin, float * pout );
 
 float tdPerlin2D( float x, float y );
-
-#include "android_main.c"
-#include "CNFG3D.c"
-#include "CNFGFunctions.c"
