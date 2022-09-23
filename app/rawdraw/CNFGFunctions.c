@@ -26,6 +26,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #define _CNFG_C
 
 #include "CNFG.h"
+#include <stdbool.h>
 #ifdef _CNFG_FANCYFONT
 #include "TextTool/FontData.h"
 #endif
@@ -749,7 +750,7 @@ void CNFGSetupBatchInternal()
 	CNFGglEnableVertexAttribArray(1);
 
 	glDisable(GL_DEPTH_TEST);
-	glDepthMask( GL_FALSE );
+	glDepthMask( false );
 	glEnable( GL_BLEND );
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
 
@@ -774,8 +775,8 @@ void	CNFGEmitBackendTriangles( const float * vertices, const uint32_t * colors, 
 {
 	CNFGglUseProgram( gRDShaderProg );
 	CNFGglUniform4f( gRDShaderProgUX, 1.f/gRDLastResizeW, -1.f/gRDLastResizeH, -0.5f, 0.5f);
-	CNFGglVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-	CNFGglVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, 0, colors);
+	CNFGglVertexAttribPointer(0, 3, GL_FLOAT, false, 0, vertices);
+	CNFGglVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, true, 0, colors);
 	glDrawArrays( GL_TRIANGLES, 0, num_vertices);
 }
 
@@ -813,8 +814,8 @@ void CNFGBlitImage( uint32_t * data, int x, int y, int w, int h )
 		0,0,   255,0,  255,255,
 		0,0,  255,255, 0,255 };
 
-	CNFGglVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, verts);
-	CNFGglVertexAttribPointer(1, 2, GL_UNSIGNED_BYTE, GL_TRUE, 0, colors);
+	CNFGglVertexAttribPointer(0, 2, GL_FLOAT, false, 0, verts);
+	CNFGglVertexAttribPointer(1, 2, GL_UNSIGNED_BYTE, true, 0, colors);
 	glDrawArrays( GL_TRIANGLES, 0, 6);
 }
 
