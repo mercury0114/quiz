@@ -1,36 +1,3 @@
-/*
- * Copyright (c) 2011-2013 Luc Verhaegen <libv@skynet.be>
- * Copyright (c) 2018-2020 <>< Charles Lohr
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sub license,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the
- * next paragraph) shall be included in all copies or substantial portions
- * of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
-
-
-#if defined( __android__ ) && !defined( ANDROID )
-#define ANDROID
-#endif
-
-//Note: This interface provides the following two things privately.
-//you may "extern" them in your code.
-
-#ifdef ANDROID
 #include "CNFGAndroid.h"
 struct android_app * gapp;
 static int OGLESStarted;
@@ -41,9 +8,6 @@ int android_sdk_version;
 #include <jni.h>
 #include <native_activity.h>
 #define ERRLOG(...) printf( __VA_ARGS__ );
-#else
-#define ERRLOG(...) fprintf( stderr, __VA_ARGS__ );
-#endif
 
 
 
@@ -55,20 +19,11 @@ int android_sdk_version;
 #include <stdint.h>
 #include <EGL/egl.h>
 
-#ifdef ANDROID
 #include <GLES3/gl3.h>
-#else
-#include <GLES2/gl2.h>
-#endif
 
 #define EGL_ZBITS 16
 #define EGL_IMMEDIATE_SIZE 2048
 
-#ifdef USE_EGL_X
-	#error This feature has never been completed or tested.
-	Display *XDisplay;
-	Window XWindow;
-#else
 	typedef enum
 	{
 		FBDEV_PIXMAP_DEFAULT = 0,
@@ -97,16 +52,11 @@ int android_sdk_version;
 		unsigned char luminance_size;
 		fbdev_pixmap_flags flags;
 		unsigned short *data;
-		unsigned int format; /* extra format information in case rgbal is not enough, especially for YUV formats */
+		unsigned int format;
 	} fbdev_pixmap;
 
-#if defined( ANDROID )
 EGLNativeWindowType native_window;
-#else
-struct fbdev_window native_window;
-#endif
 
-#endif
 
 
 static EGLint const config_attribute_list[] = {
@@ -117,18 +67,7 @@ static EGLint const config_attribute_list[] = {
 	EGL_BUFFER_SIZE, 32,
 	EGL_STENCIL_SIZE, 0,
 	EGL_DEPTH_SIZE, EGL_ZBITS,
-	//EGL_SAMPLES, 1,
-#ifdef ANDROID
-#if ANDROIDVERSION >= 28
 	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
-#else
-	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-#endif
-
-#else
-	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-	EGL_SURFACE_TYPE, EGL_WINDOW_BIT | EGL_PIXMAP_BIT,
-#endif
 	EGL_NONE
 };
 
@@ -204,24 +143,17 @@ void CNFGSwapBuffers()
 {
 	CNFGFlushRender();
 	eglSwapBuffers(egl_display, egl_surface);
-#ifdef ANDROID
 	android_width = ANativeWindow_getWidth( native_window );
 	android_height = ANativeWindow_getHeight( native_window );
 	glViewport( 0, 0, android_width, android_height );
 	if( iLastInternalW != android_width || iLastInternalH != android_height )
 		CNFGInternalResize( iLastInternalW=android_width, iLastInternalH=android_height );
-#endif
 }
 
 void CNFGGetDimensions( short * x, short * y )
 {
-#ifdef ANDROID
 	*x = android_width;
 	*y = android_height;
-#else
-	*x = native_window.width;
-	*y = native_window.height;
-#endif
 	if( *x != iLastInternalW || *y != iLastInternalH )
 		CNFGInternalResize( iLastInternalW=*x, iLastInternalH=*y );
 }
@@ -245,42 +177,7 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	}
 
 
-#ifdef USE_EGL_X
-	XDisplay = XOpenDisplay(NULL);
-	if (!XDisplay) {
-		ERRLOG( "Error: failed to open X display.\n");
-		return -1;
-	}
-
-	Window XRoot = DefaultRootWindow(XDisplay);
-
-	XSetWindowAttributes XWinAttr;
-	XWinAttr.event_mask  =  ExposureMask | PointerMotionMask;
-
-	XWindow = XCreateWindow(XDisplay, XRoot, 0, 0, WIDTH, HEIGHT, 0,
-				CopyFromParent, InputOutput,
-				CopyFromParent, CWEventMask, &XWinAttr);
-
-	Atom XWMDeleteMessage =
-		XInternAtom(XDisplay, "WM_DELETE_WINDOW", False);
-
-	XMapWindow(XDisplay, XWindow);
-	XStoreName(XDisplay, XWindow, "Mali libs test");
-	XSetWMProtocols(XDisplay, XWindow, &XWMDeleteMessage, 1);
-
-	egl_display = eglGetDisplay((EGLNativeDisplayType) XDisplay);
-#else
-
-#ifndef ANDROID
-	if( w >= 1 && h >= 1 )
-	{
-		native_window.width = w;
-		native_window.height =h;
-	}
-#endif
-
 	egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-#endif
 	if (egl_display == EGL_NO_DISPLAY) {
 		ERRLOG( "Error: No display found!\n");
 		return -1;
@@ -306,10 +203,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	}
 	printf( "Context Created %p\n", context );
 
-#ifdef USE_EGL_X
-	egl_surface = eglCreateWindowSurface(egl_display, config, XWindow,
-					     window_attribute_list);
-#else
 
 	if( native_window && !gapp->window )
 	{
@@ -328,13 +221,8 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	android_height = ANativeWindow_getHeight( native_window );
 	printf( "Width/Height: %dx%d\n", android_width, android_height );
 	egl_surface = eglCreateWindowSurface(egl_display, config,
-#ifdef ANDROID
 			     gapp->window,
-#else
-			     (EGLNativeWindowType)&native_window,
-#endif
 			     window_attribute_list);
-#endif
 	printf( "Got Surface: %p\n", egl_surface );
 
 	if (egl_surface == EGL_NO_SURFACE) {
@@ -342,20 +230,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 			"0x%08X\n", eglGetError());
 		return -1;
 	}
-
-#ifndef ANDROID
-	int width, height;
-	if (!eglQuerySurface(egl_display, egl_surface, EGL_WIDTH, &width) ||
-	    !eglQuerySurface(egl_display, egl_surface, EGL_HEIGHT, &height)) {
-		ERRLOG( "Error: eglQuerySurface failed: 0x%08X\n",
-			eglGetError());
-		return -1;
-	}
-	printf("Surface size: %dx%d\n", width, height);
-
-	native_window.width = width;
-	native_window.height = height;
-#endif
 
 	if (!eglMakeCurrent(egl_display, egl_surface, egl_surface, context)) {
 		ERRLOG( "Error: eglMakeCurrent() failed: 0x%08X\n",
@@ -386,7 +260,6 @@ int debuga, debugb, debugc;
 
 int32_t handle_input(struct android_app* app, AInputEvent* event)
 {
-#ifdef ANDROID
 	//Potentially do other things here.
 
 	if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION)
@@ -426,9 +299,6 @@ int32_t handle_input(struct android_app* app, AInputEvent* event)
 	else if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_KEY)
 	{
 		int code = AKeyEvent_getKeyCode(event);
-#ifdef ANDROID_USE_SCANCODES
-		HandleKey( code, AKeyEvent_getAction(event) );
-#else
 		int unicode = AndroidGetUnicodeChar( code, AMotionEvent_getMetaState( event ) );
 		if( unicode )
 			HandleKey( unicode, AKeyEvent_getAction(event) );
@@ -437,18 +307,15 @@ int32_t handle_input(struct android_app* app, AInputEvent* event)
 			HandleKey( code, !AKeyEvent_getAction(event) );
 			return (code == 4)?1:0; //don't override functionality.
 		}
-#endif
 
 		return 1;
 	}
-#endif
 	return 0;
 }
 
 void CNFGHandleInput()
 {
 
-#ifdef ANDROID
 	int events;
 	struct android_poll_source* source;
 	while( ALooper_pollAll( 0, 0, &events, (void**)&source) >= 0 )
@@ -458,29 +325,10 @@ void CNFGHandleInput()
 			source->process(gapp, source);
 		}
 	}
-#endif
 
-#ifdef USE_EGL_X
-	while (1) {
-		XEvent event;
-
-		XNextEvent(XDisplay, &event);
-
-		if ((event.type == MotionNotify) ||
-		    (event.type == Expose))
-			Redraw(width, height);
-		else if (event.type == ClientMessage) {
-			if (event.xclient.data.l[0] == XWMDeleteMessage)
-				break;
-		}
-	}
-	XSetWMProtocols(XDisplay, XWindow, &XWMDeleteMessage, 0);
-#endif
 }
 
 
-
-#ifdef ANDROID
 
 
 void handle_cmd(struct android_app* app, int32_t cmd)
@@ -724,14 +572,6 @@ void AndroidRequestAppPermissions(const char * perm)
 	jnii->DetachCurrentThread( jniiptr );
 }
 
-/* Example:
-	int hasperm = android_has_permission( "RECORD_AUDIO" );
-	if( !hasperm )
-	{
-		android_request_app_permissions( "RECORD_AUDIO" );
-	}
-*/
-
 void AndroidSendToBack( int param )
 {
 	struct android_app* app = gapp;
@@ -750,5 +590,4 @@ void AndroidSendToBack( int param )
 	jnii->DetachCurrentThread( jniiptr );
 }
 
-#endif
 
