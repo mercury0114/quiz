@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stdint.h>
-#include "CNFGAndroid.h"
 
 //Some per-platform logic.
 #define CNFGOGL
@@ -111,18 +110,6 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 #define CNFG_KEY_ESCAPE 27
 #define CNFG_KEY_ENTER 13
 
-
-
-#include <math.h>
-
-#define tdCOS cosf
-#define tdSIN sinf
-#define tdTAN tanf
-#define tdSQRT sqrtf
-
-#define tdQ_PI 3.141592653589
-#define tdDEGRAD (tdQ_PI/180.)
-#define tdRADDEG (180./tdQ_PI)
 
 
 //General Matrix Functions
