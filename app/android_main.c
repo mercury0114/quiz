@@ -1,5 +1,5 @@
 #include "CNFGAndroid.h"
-
+#include "test.h"
 
 #include <android_native_app_glue.h>
 #include <jni.h>
@@ -11,6 +11,129 @@
 #include <stdint.h>
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
+
+
+void display_image() {
+  int x, y;
+  double ThisTime;
+  double LastFPSTime = OGGetAbsoluteTime();
+
+  CNFGBGColor = 0x000040ff;
+  CNFGSetupFullscreen("Test Bench", 0);
+
+  for (x = 0; x < HMX; x++)
+    for (y = 0; y < HMY; y++) {
+      Heightmap[x + y * HMX] = tdPerlin2D(x, y) * 8.;
+    }
+
+  const char *assettext = "Not Found";
+  AAsset *file = AAssetManager_open(gapp->activity->assetManager, "asset.txt",
+                                    AASSET_MODE_BUFFER);
+  if (file) {
+    size_t fileLength = AAsset_getLength(file);
+    char *temp = malloc(fileLength + 1);
+    memcpy(temp, AAsset_getBuffer(file), fileLength);
+    temp[fileLength] = 0;
+    assettext = temp;
+  }
+  SetupIMU();
+
+  while (1) {
+    int i;
+    iframeno++;
+
+    CNFGHandleInput();
+    AccCheck();
+
+    if (suspended) {
+      usleep(50000);
+      continue;
+    }
+
+    CNFGClearFrame();
+    CNFGColor(0xFFFFFFFF);
+    CNFGGetDimensions(&screenx, &screeny);
+
+    // Mesh in background
+    CNFGSetLineWidth(9);
+    DrawHeightmap();
+    CNFGPenX = 0;
+    CNFGPenY = 400;
+    CNFGColor(0xffffffff);
+    CNFGDrawText(assettext, 15);
+    CNFGFlushRender();
+
+    CNFGPenX = 0;
+    CNFGPenY = 480;
+    char st[50];
+    sprintf(st, "%dx%d %d %d %d %d %d %d\n%d %d\n%5.2f %5.2f %5.2f %d", screenx,
+            screeny, lastbuttonx, lastbuttony, lastmotionx, lastmotiony,
+            lastkey, lastkeydown, lastbid, lastmask, accx, accy, accz, accs);
+    CNFGDrawText(st, 10);
+    CNFGSetLineWidth(2);
+
+
+
+    // Square behind text
+    CNFGColor(0x303030ff);
+    CNFGTackRectangle(600, 0, 950, 350);
+
+    CNFGPenX = 10;
+    CNFGPenY = 10;
+
+    // Text
+    CNFGColor(0xffffffff);
+    for (i = 0; i < 1; i++) {
+      int c;
+      char tw[2] = {0, 0};
+      for (c = 0; c < 256; c++) {
+        tw[0] = c;
+
+        CNFGPenX = (c % 16) * 20 + 606;
+        CNFGPenY = (c / 16) * 20 + 5;
+        CNFGDrawText(tw, 4);
+      }
+    }
+
+    // Green triangles
+    CNFGPenX = 0;
+    CNFGPenY = 0;
+
+    for (i = 0; i < 400; i++) {
+      RDPoint pp[3];
+      CNFGColor(0x00FF00FF);
+      pp[0].x = (short)(50 * sin((float)(i + iframeno) * .01) + (i % 20) * 30);
+      pp[0].y =
+          (short)(50 * cos((float)(i + iframeno) * .01) + (i / 20) * 20) + 700;
+      pp[1].x = (short)(20 * sin((float)(i + iframeno) * .01) + (i % 20) * 30);
+      pp[1].y =
+          (short)(50 * cos((float)(i + iframeno) * .01) + (i / 20) * 20) + 700;
+      pp[2].x = (short)(10 * sin((float)(i + iframeno) * .01) + (i % 20) * 30);
+      pp[2].y =
+          (short)(30 * cos((float)(i + iframeno) * .01) + (i / 20) * 20) + 700;
+      CNFGTackPoly(pp, 3);
+    }
+
+    int x, y;
+    for (y = 0; y < 256; y++)
+      for (x = 0; x < 256; x++)
+        randomtexturedata[x + y * 256] =
+            x | ((x * 394543L + y * 355 + iframeno) << 8);
+    CNFGBlitImage(randomtexturedata, 100, 600, 256, 256);
+
+    frames++;
+    // On Android, CNFGSwapBuffers must be called, and
+    // CNFGUpdateScreenWithBitmap does not have an implied framebuffer swap.
+    CNFGSwapBuffers();
+
+    ThisTime = OGGetAbsoluteTime();
+    if (ThisTime > LastFPSTime + 1) {
+      frames = 0;
+      LastFPSTime += 1;
+    }
+  }
+}
+
 
 struct android_app * gapp;
 static int OGLESStarted;
@@ -563,7 +686,6 @@ void AndroidSendToBack( int param )
 void android_main(struct android_app* app)
 {
     printf("Starting android_main\n");
-	int main( int argc, char ** argv );
 	char * argv[] = { "main", 0 };
 
 	{
@@ -579,6 +701,6 @@ void android_main(struct android_app* app)
 	app->onAppCmd = handle_cmd;
 	app->onInputEvent = handle_input;
 
-	main( 1, argv );
+	display_image();
 }
 

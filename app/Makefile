@@ -34,7 +34,6 @@ $(error BUILD_TOOLS directory not found)
 endif
 
 ANDROIDSRCS := android_native_app_glue.c 
-ANDROIDSRCS += test.c
 ANDROIDSRCS += android_main.c
 ANDROIDSRCS += rawdraw/CNFG3D.c
 ANDROIDSRCS += rawdraw/CNFGFunctions.c
