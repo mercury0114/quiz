@@ -7,7 +7,7 @@
 #elif defined( EGL_LEAN_AND_MEAN )
 #include "CNFGEGLLeanAndMean.c"
 #elif defined( __android__ ) || defined( ANDROID )
-#include "CNFGEGLDriver.c"
+#include "android_main.c"
 #elif defined( __wasm__ )
 #include "CNFGWASMDriver.c"
 #else

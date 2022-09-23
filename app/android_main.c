@@ -243,11 +243,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 		return -1;
 	}
 
-	printf("EGL Version: \"%s\"\n",
-	       eglQueryString(egl_display, EGL_VERSION));
-	printf("EGL Vendor: \"%s\"\n",
-	       eglQueryString(egl_display, EGL_VENDOR));
-
 	eglChooseConfig(egl_display, config_attribute_list, &config, 1,
 			&num_config);
 	printf( "Config: %d\n", num_config );
@@ -320,9 +315,6 @@ int CNFGSetup( const char * WindowName, int w, int h )
 		return -1;
 	}
 
-	printf("GL Vendor: \"%s\"\n", glGetString(GL_VENDOR));
-	printf("GL Renderer: \"%s\"\n", glGetString(GL_RENDERER));
-	printf("GL Version: \"%s\"\n", glGetString(GL_VERSION));
 
 	CNFGSetupBatchInternal();
 
@@ -475,7 +467,7 @@ void handle_cmd(struct android_app* app, int32_t cmd)
 		//Not sure why - callbacks here seem to break stuff.
 	//	break;
 	default:
-		printf( "event not handled: %d", cmd);
+		printf( "event not handled: %d\n", cmd);
 	}
 }
 
