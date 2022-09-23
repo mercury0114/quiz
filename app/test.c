@@ -22,6 +22,9 @@ float mountainangle;
 float mountainoffsetx;
 float mountainoffsety;
 
+
+extern float * gSMatrix;
+
 ASensorManager * sm;
 const ASensor * as;
 bool no_sensor_for_gyro = false;

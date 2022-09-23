@@ -1,49 +1,7 @@
-//Copyright 2012-2017 <>< Charles Lohr
-//You may license this file under the MIT/x11, NewBSD, or any GPL license.
-//This is a series of tools useful for software rendering.
-//Use of this file with OpenGL is untested.
+#define tdQ_PI 3.141592653589
+#define tdDEGRAD (tdQ_PI/180.)
+#define tdRADDEG (180./tdQ_PI)
 
-#ifdef CNFG3D
-
-#include "CNFG.h"
-
-#ifdef __wasm__
-double sin( double v );
-double cos( double v );
-double tan( double v );
-double sqrt( double v );
-float sinf( float v );
-float cosf( float v );
-float tanf( float v );
-float sqrtf( float v );
-void tdMATCOPY( float * x, const float * y )
-{
-	int i;
-	for( i = 0; i < 16; i++ ) x[i] = y[i];
-}
-#else
-#include <string.h>
-#include <stdio.h>
-#endif
-
-#ifdef CNFG3D_USE_OGL_MAJOR
-#define m00 0
-#define m10 1
-#define m20 2
-#define m30 3
-#define m01 4
-#define m11 5
-#define m21 6
-#define m31 7
-#define m02 8
-#define m12 9
-#define m22 10
-#define m32 11
-#define m03 12
-#define m13 13
-#define m23 14
-#define m33 15
-#else
 #define m00 0
 #define m01 1
 #define m02 2
@@ -60,7 +18,6 @@ void tdMATCOPY( float * x, const float * y )
 #define m31 13
 #define m32 14
 #define m33 15
-#endif
 
 void tdIdentity( float * f )
 {
@@ -90,23 +47,6 @@ void tdTranslate( float * f, float x, float y, float z )
 
 void tdScale( float * f, float x, float y, float z )
 {
-#if 0
-	f[m00] *= x;
-	f[m01] *= x;
-	f[m02] *= x;
-	f[m03] *= x;
-
-	f[m10] *= y;
-	f[m11] *= y;
-	f[m12] *= y;
-	f[m13] *= y;
-
-	f[m20] *= z;
-	f[m21] *= z;
-	f[m22] *= z;
-	f[m23] *= z;
-#endif
-
 	float ftmp[16];
 	tdIdentity(ftmp);
 	ftmp[m00] *= x;
@@ -121,9 +61,9 @@ void tdRotateAA( float * f, float angle, float ix, float iy, float iz )
 {
 	float ftmp[16];
 
-	float c = tdCOS( angle*tdDEGRAD );
-	float s = tdSIN( angle*tdDEGRAD );
-	float absin = tdSQRT( ix*ix + iy*iy + iz*iz );
+	float c = cosf( angle*tdDEGRAD );
+	float s = sinf( angle*tdDEGRAD );
+	float absin = sqrtf( ix*ix + iy*iy + iz*iz );
 	float x = ix/absin;
 	float y = iy/absin;
 	float z = iz/absin;
@@ -154,7 +94,6 @@ void tdRotateAA( float * f, float angle, float ix, float iy, float iz )
 void tdRotateQuat( float * f, float qw, float qx, float qy, float qz )
 {
 	float ftmp[16];
-	//float qw2 = qw*qw;
 	float qx2 = qx*qx;
 	float qy2 = qy*qy;
 	float qz2 = qz*qz;
@@ -187,19 +126,16 @@ void tdRotateEA( float * f, float x, float y, float z )
 {
 	float ftmp[16];
 
-	//x,y,z must be negated for some reason
 	float X = -x*2*tdQ_PI/360; //Reduced calulation for speed
 	float Y = -y*2*tdQ_PI/360;
 	float Z = -z*2*tdQ_PI/360;
-	float cx = tdCOS(X);
-	float sx = tdSIN(X);
-	float cy = tdCOS(Y);
-	float sy = tdSIN(Y);
-	float cz = tdCOS(Z);
-	float sz = tdSIN(Z);
+	float cx = cosf(X);
+	float sx = sinf(X);
+	float cy = cosf(Y);
+	float sy = sinf(Y);
+	float cz = cosf(Z);
+	float sz = sinf(Z);
 
-	//Row major (unless CNFG3D_USE_OGL_MAJOR is selected)
-	//manually transposed
 	ftmp[m00] = cy*cz;
 	ftmp[m10] = (sx*sy*cz)-(cx*sz);
 	ftmp[m20] = (cx*sy*cz)+(sx*sz);
@@ -227,27 +163,6 @@ void tdMultiply( float * fin1, float * fin2, float * fout )
 {
 	float fotmp[16];
 	int i, k;
-#ifdef CNFG3D_USE_OGL_MAJOR
-	fotmp[m00] = fin1[m00] * fin2[m00] + fin1[m01] * fin2[m10] + fin1[m02] * fin2[m20] + fin1[m03] * fin2[m30];
-	fotmp[m01] = fin1[m00] * fin2[m01] + fin1[m01] * fin2[m11] + fin1[m02] * fin2[m21] + fin1[m03] * fin2[m31];
-	fotmp[m02] = fin1[m00] * fin2[m02] + fin1[m01] * fin2[m12] + fin1[m02] * fin2[m22] + fin1[m03] * fin2[m32];
-	fotmp[m03] = fin1[m00] * fin2[m03] + fin1[m01] * fin2[m13] + fin1[m02] * fin2[m23] + fin1[m03] * fin2[m33];
-
-	fotmp[m10] = fin1[m10] * fin2[m00] + fin1[m11] * fin2[m10] + fin1[m12] * fin2[m20] + fin1[m13] * fin2[m30];
-	fotmp[m11] = fin1[m10] * fin2[m01] + fin1[m11] * fin2[m11] + fin1[m12] * fin2[m21] + fin1[m13] * fin2[m31];
-	fotmp[m12] = fin1[m10] * fin2[m02] + fin1[m11] * fin2[m12] + fin1[m12] * fin2[m22] + fin1[m13] * fin2[m32];
-	fotmp[m13] = fin1[m10] * fin2[m03] + fin1[m11] * fin2[m13] + fin1[m12] * fin2[m23] + fin1[m13] * fin2[m33];
-
-	fotmp[m20] = fin1[m20] * fin2[m00] + fin1[m21] * fin2[m10] + fin1[m22] * fin2[m20] + fin1[m23] * fin2[m30];
-	fotmp[m21] = fin1[m20] * fin2[m01] + fin1[m21] * fin2[m11] + fin1[m22] * fin2[m21] + fin1[m23] * fin2[m31];
-	fotmp[m22] = fin1[m20] * fin2[m02] + fin1[m21] * fin2[m12] + fin1[m22] * fin2[m22] + fin1[m23] * fin2[m32];
-	fotmp[m23] = fin1[m20] * fin2[m03] + fin1[m21] * fin2[m13] + fin1[m22] * fin2[m23] + fin1[m23] * fin2[m33];
-
-	fotmp[m30] = fin1[m30] * fin2[m00] + fin1[m31] * fin2[m10] + fin1[m32] * fin2[m20] + fin1[m33] * fin2[m30];
-	fotmp[m31] = fin1[m30] * fin2[m01] + fin1[m31] * fin2[m11] + fin1[m32] * fin2[m21] + fin1[m33] * fin2[m31];
-	fotmp[m32] = fin1[m30] * fin2[m02] + fin1[m31] * fin2[m12] + fin1[m32] * fin2[m22] + fin1[m33] * fin2[m32];
-	fotmp[m33] = fin1[m30] * fin2[m03] + fin1[m31] * fin2[m13] + fin1[m32] * fin2[m23] + fin1[m33] * fin2[m33];
-#else
 	for( i = 0; i < 16; i++ )
 	{
 		int xp = i & 0x03;
@@ -258,29 +173,19 @@ void tdMultiply( float * fin1, float * fin2, float * fout )
 			fotmp[i] += fin1[yp+k] * fin2[(k<<2)|xp];
 		}
 	}
-#endif
 	tdMATCOPY( fout, fotmp );
 }
 
-#ifndef __wasm__
 void tdPrint( const float * f )
 {
 	int i;
 	printf( "{\n" );
-#ifdef CNFG3D_USE_OGL_MAJOR
-	for( i = 0; i < 4; i++ )
-	{
-		printf( "  %f, %f, %f, %f\n", f[0+i], f[4+i], f[8+i], f[12+i] );
-	}
-#else
 	for( i = 0; i < 16; i+=4 )
 	{
 		printf( "  %f, %f, %f, %f\n", f[0+i], f[1+i], f[2+i], f[3+i] );
 	}
-#endif
 	printf( "}\n" );
 }
-#endif
 
 void tdTransposeSelf( float * f )
 {
@@ -295,7 +200,7 @@ void tdTransposeSelf( float * f )
 
 void tdPerspective( float fovy, float aspect, float zNear, float zFar, float * out )
 {
-	float f = 1./tdTAN(fovy * tdQ_PI / 360.0);
+	float f = 1./tanf(fovy * tdQ_PI / 360.0);
 	out[m00] = f/aspect; out[m01] = 0; out[m02] = 0; out[m03] = 0;
 	out[m10] = 0; out[m11] = f; out[m12] = 0; out[m13] = 0;
 	out[m20] = 0; out[m21] = 0;
@@ -308,9 +213,9 @@ void tdLookAt( float * m, float * eye, float * at, float * up )
 {
 	float out[16];
 	float F[3] = { at[0] - eye[0], at[1] - eye[1], at[2] - eye[2] };
-	float fdiv = 1./tdSQRT( F[0]*F[0] + F[1]*F[1] + F[2]*F[2] );
+	float fdiv = 1./sqrtf( F[0]*F[0] + F[1]*F[1] + F[2]*F[2] );
 	float f[3] = { F[0]*fdiv, F[1]*fdiv, F[2]*fdiv };
-	float udiv = 1./tdSQRT( up[0]*up[0] + up[1]*up[1] + up[2]*up[2] );
+	float udiv = 1./sqrtf( up[0]*up[0] + up[1]*up[1] + up[2]*up[2] );
 	float UP[3] = { up[0]*udiv, up[1]*udiv, up[2]*udiv };
 	float s[3];
 	float u[3];
@@ -325,17 +230,6 @@ void tdLookAt( float * m, float * eye, float * at, float * up )
 	tdMultiply( m, out, m );
 	tdTranslate( m, -eye[0], -eye[1], -eye[2] );
 }
-
-
-
-
-
-
-
-
-
-
-
 
 void tdPTransform( const float * pin, float * f, float * pout )
 {
@@ -383,7 +277,7 @@ void td4RTransform( float * pin, float * f, float * pout )
 
 void tdNormalizeSelf( float * vin )
 {
-	float vsq = 1./tdSQRT(vin[0]*vin[0] + vin[1]*vin[1] + vin[2]*vin[2]);
+	float vsq = 1./sqrtf(vin[0]*vin[0] + vin[1]*vin[1] + vin[2]*vin[2]);
 	vin[0] *= vsq;
 	vin[1] *= vsq;
 	vin[2] *= vsq;
@@ -405,7 +299,7 @@ float tdDistance( float * va, float * vb )
 	float dy = va[1]-vb[1];
 	float dz = va[2]-vb[2];
 
-	return tdSQRT(dx*dx + dy*dy + dz*dz);
+	return sqrtf(dx*dx + dy*dy + dz*dz);
 }
 
 float tdDot( float * va, float * vb )
@@ -471,23 +365,11 @@ void tdFinalPoint( float * pin, float * pout )
 	float tdin[4] = { pin[0], pin[1], pin[2], 1. };
 	float tmp[4];
 	td4Transform( tdin, gsMatricies[0][gsMPlace[0]], tmp );
-//	printf( "XFORM1Out: %f %f %f %f\n", tmp[0], tmp[1], tmp[2], tmp[3] );
 	td4Transform(  tmp, gsMatricies[1][gsMPlace[1]], tmp );
-//	printf( "XFORM2Out: %f %f %f %f\n", tmp[0], tmp[1], tmp[2], tmp[3] );
 	pout[0] = (tmp[0]/tmp[3] - translateX) * scaleX;
 	pout[1] = (tmp[1]/tmp[3] - translateY) * scaleY;
 	pout[2] = tmp[2]/tmp[3];
-//	printf( "XFORMFOut: %f %f %f\n", pout[0], pout[1], pout[2] );
 }
-
-
-
-
-
-
-
-
-
 
 float tdNoiseAt( int x, int y )
 {
@@ -539,4 +421,3 @@ float tdPerlin2D( float x, float y )
 	return ret;
 }
 
-#endif

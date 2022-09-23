@@ -102,11 +102,6 @@ void	CNFGSetupBatchInternal(); //Driver calls this after setup is complete.
 //Useful function for emitting a non-axis-aligned quad.
 void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float cy2, float cx3, float cy3 );
 
-extern int 	CNFGVertPlace;
-extern float CNFGVertDataV[CNFG_BATCH*3];
-extern uint32_t CNFGVertDataC[CNFG_BATCH];
-
-
 
 #define CNFG_KEY_SHIFT 16
 #define CNFG_KEY_BACKSPACE 8
@@ -164,7 +159,6 @@ float tdDot( float * va, float * vb );
 
 //Stack Functionality
 #define tdMATRIXMAXDEPTH 32
-extern float * gSMatrix;
 void tdPush();
 void tdPop();
 void tdMode( int mode );
@@ -179,9 +173,6 @@ float tdNoiseAt( int x, int y );
 float tdFLerp( float a, float b, float t );
 float tdPerlin2D( float x, float y );
 
-
-extern const unsigned char RawdrawFontCharData[1405];
-extern const unsigned short RawdrawFontCharMap[256];
 
 #include "android_main.c"
 #include "CNFG3D.c"
