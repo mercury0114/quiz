@@ -1,28 +1,21 @@
 #include "CNFGAndroid.h"
-struct android_app * gapp;
-static int OGLESStarted;
-int android_width, android_height;
-int android_sdk_version;
+
 
 #include <android_native_app_glue.h>
 #include <jni.h>
 #include <native_activity.h>
-#define ERRLOG(...) printf( __VA_ARGS__ );
-
-
-
 #include "CNFG.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdint.h>
 #include <EGL/egl.h>
-
 #include <GLES3/gl3.h>
 
-#define EGL_ZBITS 16
-#define EGL_IMMEDIATE_SIZE 2048
+struct android_app * gapp;
+static int OGLESStarted;
+int android_width, android_height;
+int android_sdk_version;
 
 	typedef enum
 	{
@@ -66,7 +59,7 @@ static EGLint const config_attribute_list[] = {
 	EGL_ALPHA_SIZE, 8,
 	EGL_BUFFER_SIZE, 32,
 	EGL_STENCIL_SIZE, 0,
-	EGL_DEPTH_SIZE, EGL_ZBITS,
+	EGL_DEPTH_SIZE, 16,
 	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
 	EGL_NONE
 };
@@ -179,12 +172,12 @@ int CNFGSetup( const char * WindowName, int w, int h )
 
 	egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 	if (egl_display == EGL_NO_DISPLAY) {
-		ERRLOG( "Error: No display found!\n");
+		printf( "Error: No display found!\n");
 		return -1;
 	}
 
 	if (!eglInitialize(egl_display, &egl_major, &egl_minor)) {
-		ERRLOG( "Error: eglInitialise failed!\n");
+		printf( "Error: eglInitialise failed!\n");
 		return -1;
 	}
 
@@ -197,7 +190,7 @@ int CNFGSetup( const char * WindowName, int w, int h )
 //				NULL );
 				context_attribute_list);
 	if (context == EGL_NO_CONTEXT) {
-		ERRLOG( "Error: eglCreateContext failed: 0x%08X\n",
+		printf( "Error: eglCreateContext failed: 0x%08X\n",
 			eglGetError());
 		return -1;
 	}
@@ -226,13 +219,13 @@ int CNFGSetup( const char * WindowName, int w, int h )
 	printf( "Got Surface: %p\n", egl_surface );
 
 	if (egl_surface == EGL_NO_SURFACE) {
-		ERRLOG( "Error: eglCreateWindowSurface failed: "
+		printf( "Error: eglCreateWindowSurface failed: "
 			"0x%08X\n", eglGetError());
 		return -1;
 	}
 
 	if (!eglMakeCurrent(egl_display, egl_surface, egl_surface, context)) {
-		ERRLOG( "Error: eglMakeCurrent() failed: 0x%08X\n",
+		printf( "Error: eglMakeCurrent() failed: 0x%08X\n",
 			eglGetError());
 		return -1;
 	}
