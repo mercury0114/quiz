@@ -131,8 +131,6 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 void tdIdentity( float * f );
 void tdTranslate( float * f, float x, float y, float z );		//Operates ON f
 void tdScale( float * f, float x, float y, float z );			//Operates ON f
-void tdRotateAA( float * f, float angle, float x, float y, float z ); 	//Operates ON f
-void tdRotateQuat( float * f, float qw, float qx, float qy, float qz ); 	//Operates ON f
 void tdRotateEA( float * f, float x, float y, float z );		//Operates ON f
 void tdTransposeSelf( float * f );
 
@@ -156,8 +154,6 @@ void tdMode( int mode );
 void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float pixx, float pixy );
 void tdFinalPoint( float * pin, float * pout );
 
-float tdNoiseAt( int x, int y );
-float tdFLerp( float a, float b, float t );
 float tdPerlin2D( float x, float y );
 
 #include "android_main.c"

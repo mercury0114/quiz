@@ -93,71 +93,6 @@ void tdScale( float * f, float x, float y, float z )
 
 }
 
-void tdRotateAA( float * f, float angle, float ix, float iy, float iz )
-{
-	float ftmp[16];
-
-	float c = cosf( angle*tdDEGRAD );
-	float s = sinf( angle*tdDEGRAD );
-	float absin = sqrtf( ix*ix + iy*iy + iz*iz );
-	float x = ix/absin;
-	float y = iy/absin;
-	float z = iz/absin;
-
-	ftmp[m00] = x*x*(1-c)+c;
-	ftmp[m01] = x*y*(1-c)-z*s;
-	ftmp[m02] = x*z*(1-c)+y*s;
-	ftmp[m03] = 0;
-
-	ftmp[m10] = y*x*(1-c)+z*s;
-	ftmp[m11] = y*y*(1-c)+c;
-	ftmp[m12] = y*z*(1-c)-x*s;
-	ftmp[m13] = 0;
-
-	ftmp[m20] = x*z*(1-c)-y*s;
-	ftmp[m21] = y*z*(1-c)+x*s;
-	ftmp[m22] = z*z*(1-c)+c;
-	ftmp[m23] = 0;
-
-	ftmp[m30] = 0;
-	ftmp[m31] = 0;
-	ftmp[m32] = 0;
-	ftmp[m33] = 1;
-
-	tdMultiply( f, ftmp, f );
-}
-
-void tdRotateQuat( float * f, float qw, float qx, float qy, float qz )
-{
-	float ftmp[16];
-	float qx2 = qx*qx;
-	float qy2 = qy*qy;
-	float qz2 = qz*qz;
-
-	ftmp[m00] = 1 - 2*qy2 - 2*qz2;
-	ftmp[m01] = 2*qx*qy - 2*qz*qw;
-	ftmp[m02] = 2*qx*qz + 2*qy*qw;
-	ftmp[m03] = 0;
-
-	ftmp[m10] = 2*qx*qy + 2*qz*qw;
-	ftmp[m11] = 1 - 2*qx2 - 2*qz2;
-	ftmp[m12] = 2*qy*qz - 2*qx*qw;
-	ftmp[m13] = 0;
-
-	ftmp[m20] = 2*qx*qz - 2*qy*qw;
-	ftmp[m21] = 2*qy*qz + 2*qx*qw;
-	ftmp[m22] = 1 - 2*qx2 - 2*qy2;
-	ftmp[m23] = 0;
-
-	ftmp[m30] = 0;
-	ftmp[m31] = 0;
-	ftmp[m32] = 0;
-	ftmp[m33] = 1;
-
-	tdMultiply( f, ftmp, f );
-
-}
-
 void tdRotateEA( float * f, float x, float y, float z )
 {
 	float ftmp[16];
@@ -308,7 +243,7 @@ void tdFinalPoint( float * pin, float * pout )
 	pout[2] = tmp[2]/tmp[3];
 }
 
-float tdNoiseAt( int x, int y )
+static float tdNoiseAt( int x, int y )
 {
 	return ((x*13241*y + y * 33455927)%9293) / 4646. - 1.0;
 }
@@ -319,7 +254,7 @@ static inline float tdFade( float f )
 	return ft3 * 10 - ft3 * f * 15 + 6 * ft3 * f * f;
 }
 
-float tdFLerp( float a, float b, float t )
+static float tdFLerp( float a, float b, float t )
 {
 	float fr = tdFade( t );
 	return a * (1.-fr) + b * fr;
