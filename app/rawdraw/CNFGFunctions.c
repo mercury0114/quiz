@@ -496,7 +496,7 @@ CHEWTYPEDEF( void, glGetProgramiv, , (program,pname,params), uint32_t program, G
 CHEWTYPEDEF( void, glBindAttribLocation, , (program,index,name), uint32_t program, uint32_t index, const LGLchar *name )
 CHEWTYPEDEF( void, glGetShaderiv, , (shader,pname,params), uint32_t shader, GLenum pname, GLint *params )
 CHEWTYPEDEF( uint32_t, glCreateShader, return, (e), GLenum e )
-CHEWTYPEDEF( void, glVertexAttribPointer, , (index,size,type,normalized,stride,pointer), uint32_t index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer )
+CHEWTYPEDEF( void, glVertexAttribPointer, , (index,size,type,normalized,stride,pointer), uint32_t index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void * pointer )
 CHEWTYPEDEF( void, glShaderSource, , (shader,count,string,length), uint32_t shader, GLsizei count, const LGLchar *const*string, const GLint *length )
 CHEWTYPEDEF( void, glAttachShader, , (program,shader), uint32_t program, uint32_t shader )
 CHEWTYPEDEF( void, glCompileShader, ,(shader), uint32_t shader )
@@ -504,7 +504,7 @@ CHEWTYPEDEF( void, glGetShaderInfoLog , , (shader,maxLength, length, infoLog), u
 CHEWTYPEDEF( uint32_t, glCreateProgram, return, () , void )
 CHEWTYPEDEF( void, glLinkProgram, , (program), uint32_t program )
 CHEWTYPEDEF( void, glDeleteShader, , (shader), uint32_t shader )
-CHEWTYPEDEF( void, glUniform4f, , (location,v0,v1,v2,v3), GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 )
+CHEWTYPEDEF( void, glUniform4f, , (location,v0,v1,v2,v3), GLint location, float v0, float v1, float v2, float v3 )
 CHEWTYPEDEF( void, glUniform1i, , (location,i0), GLint location, GLint i0 )
 CHEWTYPEDEF( void, glActiveTexture, , (texture), GLenum texture )
 
