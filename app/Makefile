@@ -48,7 +48,7 @@ CFLAGS += -I$(NDK)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/GLES
 
-LDFLAGS := -Wl,--gc-sections -s -lm -lGLESv3 -lEGL -landroid -llog
+LDFLAGS := -Wl,--gc-sections -s -Wall -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate
 
 CC_ARM64 := $(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/bin/aarch64-linux-android$(ANDROIDVERSION)-clang
