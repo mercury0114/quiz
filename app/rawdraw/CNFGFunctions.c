@@ -488,22 +488,22 @@ void	CNFGSetLineWidth( short width )
 
 int (*MyFunc)( int program, const LGLchar *name );
 
-CHEWTYPEDEF( GLint, glGetUniformLocation, return, (program,name), GLuint program, const LGLchar *name )
-CHEWTYPEDEF( void, glEnableVertexAttribArray, , (index), GLuint index )
-CHEWTYPEDEF( void, glUseProgram, , (program), GLuint program )
-CHEWTYPEDEF( void, glGetProgramInfoLog, , (program,maxLength, length, infoLog), GLuint program, GLsizei maxLength, GLsizei *length, LGLchar *infoLog )
-CHEWTYPEDEF( void, glGetProgramiv, , (program,pname,params), GLuint program, GLenum pname, GLint *params )
-CHEWTYPEDEF( void, glBindAttribLocation, , (program,index,name), GLuint program, GLuint index, const LGLchar *name )
-CHEWTYPEDEF( void, glGetShaderiv, , (shader,pname,params), GLuint shader, GLenum pname, GLint *params )
-CHEWTYPEDEF( GLuint, glCreateShader, return, (e), GLenum e )
-CHEWTYPEDEF( void, glVertexAttribPointer, , (index,size,type,normalized,stride,pointer), GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer )
-CHEWTYPEDEF( void, glShaderSource, , (shader,count,string,length), GLuint shader, GLsizei count, const LGLchar *const*string, const GLint *length )
-CHEWTYPEDEF( void, glAttachShader, , (program,shader), GLuint program, GLuint shader )
-CHEWTYPEDEF( void, glCompileShader, ,(shader), GLuint shader )
-CHEWTYPEDEF( void, glGetShaderInfoLog , , (shader,maxLength, length, infoLog), GLuint shader, GLsizei maxLength, GLsizei *length, LGLchar *infoLog )
-CHEWTYPEDEF( GLuint, glCreateProgram, return, () , void )
-CHEWTYPEDEF( void, glLinkProgram, , (program), GLuint program )
-CHEWTYPEDEF( void, glDeleteShader, , (shader), GLuint shader )
+CHEWTYPEDEF( GLint, glGetUniformLocation, return, (program,name), uint32_t program, const LGLchar *name )
+CHEWTYPEDEF( void, glEnableVertexAttribArray, , (index), uint32_t index )
+CHEWTYPEDEF( void, glUseProgram, , (program), uint32_t program )
+CHEWTYPEDEF( void, glGetProgramInfoLog, , (program,maxLength, length, infoLog), uint32_t program, GLsizei maxLength, GLsizei *length, LGLchar *infoLog )
+CHEWTYPEDEF( void, glGetProgramiv, , (program,pname,params), uint32_t program, GLenum pname, GLint *params )
+CHEWTYPEDEF( void, glBindAttribLocation, , (program,index,name), uint32_t program, uint32_t index, const LGLchar *name )
+CHEWTYPEDEF( void, glGetShaderiv, , (shader,pname,params), uint32_t shader, GLenum pname, GLint *params )
+CHEWTYPEDEF( uint32_t, glCreateShader, return, (e), GLenum e )
+CHEWTYPEDEF( void, glVertexAttribPointer, , (index,size,type,normalized,stride,pointer), uint32_t index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer )
+CHEWTYPEDEF( void, glShaderSource, , (shader,count,string,length), uint32_t shader, GLsizei count, const LGLchar *const*string, const GLint *length )
+CHEWTYPEDEF( void, glAttachShader, , (program,shader), uint32_t program, uint32_t shader )
+CHEWTYPEDEF( void, glCompileShader, ,(shader), uint32_t shader )
+CHEWTYPEDEF( void, glGetShaderInfoLog , , (shader,maxLength, length, infoLog), uint32_t shader, GLsizei maxLength, GLsizei *length, LGLchar *infoLog )
+CHEWTYPEDEF( uint32_t, glCreateProgram, return, () , void )
+CHEWTYPEDEF( void, glLinkProgram, , (program), uint32_t program )
+CHEWTYPEDEF( void, glDeleteShader, , (shader), uint32_t shader )
 CHEWTYPEDEF( void, glUniform4f, , (location,v0,v1,v2,v3), GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 )
 CHEWTYPEDEF( void, glUniform1i, , (location,i0), GLint location, GLint i0 )
 CHEWTYPEDEF( void, glActiveTexture, , (texture), GLenum texture )
@@ -594,21 +594,21 @@ static void CNFGLoadExtensionsInternal() { }
 
 
 
-GLuint gRDShaderProg = -1;
-GLuint gRDBlitProg = -1;
-GLuint gRDShaderProgUX = -1;
-GLuint gRDBlitProgUX = -1;
-GLuint gRDBlitProgUT = -1;
-GLuint gRDBlitProgTex = -1;
-GLuint gRDLastResizeW;
-GLuint gRDLastResizeH;
+uint32_t gRDShaderProg = -1;
+uint32_t gRDBlitProg = -1;
+uint32_t gRDShaderProgUX = -1;
+uint32_t gRDBlitProgUX = -1;
+uint32_t gRDBlitProgUT = -1;
+uint32_t gRDBlitProgTex = -1;
+uint32_t gRDLastResizeW;
+uint32_t gRDLastResizeH;
 
 
-GLuint CNFGGLInternalLoadShader( const char * vertex_shader, const char * fragment_shader )
+uint32_t CNFGGLInternalLoadShader( const char * vertex_shader, const char * fragment_shader )
 {
-	GLuint fragment_shader_object = 0;
-	GLuint vertex_shader_object = 0;
-	GLuint program = 0;
+	uint32_t fragment_shader_object = 0;
+	uint32_t vertex_shader_object = 0;
+	uint32_t program = 0;
 	int ret;
 
 	vertex_shader_object = CNFGglCreateShader(GL_VERTEX_SHADER);

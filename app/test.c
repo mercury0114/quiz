@@ -230,13 +230,17 @@ void HandleResume()
 
 uint32_t randomtexturedata[256*256];
 
+extern uint32_t CNFGBGColor;
+extern int CNFGPenX;
+extern int CNFGPenY;
+
 int main()
 {
 	int x, y;
 	double ThisTime;
 	double LastFPSTime = OGGetAbsoluteTime();
 
-	CNFGBGColor = 0x000040ff;
+    CNFGBGColor = 0x000040ff;
 	CNFGSetupFullscreen( "Test Bench", 0 );
 
 	for( x = 0; x < HMX; x++ )

@@ -36,6 +36,9 @@ void HandleDestroy()
 	exit(10);
 }
 
+extern int CNFGPenX;
+extern int CNFGPenY;
+
 int main()
 {
 
