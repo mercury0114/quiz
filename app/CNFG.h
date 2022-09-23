@@ -1,70 +1,17 @@
-// Copyright 2010-2021 <>< CNLohr, et. al. (Several other authors, many but not all mentioned)
-//	Licensed under the MIT/x11 or NewBSD License you choose.
-//
-//	CN Foundational Graphics Main Header File.  This is the main header you
-//	should include.  See README.md for more details.
-
-
-#ifndef _CNFG_H
-#define _CNFG_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/* Rawdraw flags:
-	CNFG3D -> Enable the weird 3D functionality that rawdraw has to allow you to
-		write apps which emit basic rawdraw primitives but look 3D!
-		CNFG_USE_DOUBLE_FUNCTIONS -> Use double-precision floating point for CNFG3D.
-	CNFGOGL -> Use an OpenGL Backend for all rawdraw functionality.
-		->Caveat->If using CNFG_HAS_XSHAPE, then, we do something realy wacky.
-	CNFGRASTERIZER -> Software-rasterize the rawdraw calls, and, use
-		CNFGUpdateScreenWithBitmap to send video to webpage.
-	CNFGCONTEXTONLY -> Don't add any drawing functions, only opening a window to
-		get an OpenGL context.
-		
-Usually tested combinations:
- * TCC On Windows and X11 (Linux) with:
-    - CNFGOGL on or CNFGOGL off.  If CNFGOGL is off you can use
-			CNFG_WINDOWS_DISABLE_BATCH to disable all batching.
-		-or-
-	- CNFGRASTERIZER
-
-	NOTE: Sometimes you can also use CNFGOGL + CNFGRASTERIZER
-
- * WASM driver supports both: CNFGRASTERIZER and without CNFGRASTERIZER (Recommended turn rasterizer off)
- * ANDROID (But this automatically sets CNFGRASTERIZER OFF and CNFGOGL ON)
-*/
-
+#pragma once
 
 #include <stdint.h>
+#include "CNFGAndroid.h"
 
 //Some per-platform logic.
-#if defined( ANDROID ) || defined( __android__ )
-	#define CNFGOGL
-#endif
-
-#if ( defined( CNFGOGL ) || defined( __wasm__ ) ) && !defined(CNFG_HAS_XSHAPE)
-
-	#define CNFG_BATCH 8192 //131,072 bytes.
-
-	#if defined( ANDROID ) || defined( __android__ ) || defined( __wasm__ ) || defined( EGL_LEAN_AND_MEAN )
-		#define CNFGEWGL //EGL or WebGL
-	#else
-		#define CNFGDESKTOPGL
-	#endif
-#endif
+#define CNFGOGL
+#define CNFG_BATCH 8192 //131,072 bytes.
+#define CNFGEWGL //EGL or WebGL
 
 typedef struct {
     short x, y; 
 } RDPoint; 
 
-extern int CNFGPenX, CNFGPenY;
-extern uint32_t CNFGBGColor;
-extern uint32_t CNFGLastColor;
-extern uint32_t CNFGDialogColor; //Only used for DrawBox
-
-//Draws text at CNFGPenX, CNFGPenY, with scale of `scale`.
 void CNFGDrawText( const char * text, short scale );
 
 //Determine how large a given test would be to draw.
@@ -119,10 +66,8 @@ void HandleDestroy();
 void CNFGInternalResize( short x, short y ); //don't call this.
 
 //Not available on all systems.  Use The OGL portion with care.
-#ifdef CNFGOGL
 void   CNFGSetVSync( int vson );
 void * CNFGGetExtension( const char * extname );
-#endif
 
 //Also not available on all systems.  Transparency.
 void	CNFGPrepareForTransparency();
@@ -141,7 +86,6 @@ int 	CNFGSetupWMClass( const char * WindowName, int w, int h , char * wm_res_nam
 //
 //Note that these are the functions that are used on the backends which support this
 //sort of thing.
-#ifdef CNFG_BATCH
 
 //If you are not using the CNFGOGL driver, you will need to define these in your driver.
 void	CNFGEmitBackendTriangles( const float * vertices, const uint32_t * colors, int num_vertices );
@@ -161,24 +105,8 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 extern int 	CNFGVertPlace;
 extern float CNFGVertDataV[CNFG_BATCH*3];
 extern uint32_t CNFGVertDataC[CNFG_BATCH];
-#endif
 
 
-#if defined(WINDOWS) || defined(WIN32) || defined(WIN64) || defined(_WIN32) || defined(_WIN64)
-
-#define CNFG_KEY_SHIFT 0x10
-#define CNFG_KEY_BACKSPACE 0x08
-#define CNFG_KEY_DELETE 0x2E
-#define CNFG_KEY_LEFT_ARROW 0x25
-#define CNFG_KEY_RIGHT_ARROW 0x27
-#define CNFG_KEY_TOP_ARROW 0x26
-#define CNFG_KEY_BOTTOM_ARROW 0x28
-#define CNFG_KEY_ESCAPE 0x1B
-#define CNFG_KEY_ENTER 0x0D
-
-#elif defined( EGL_LEAN_AND_MEAN ) // doesn't have any keys
-#elif defined( __android__ ) || defined( ANDROID ) // ^
-#elif defined( __wasm__ )
 
 #define CNFG_KEY_SHIFT 16
 #define CNFG_KEY_BACKSPACE 8
@@ -190,43 +118,16 @@ extern uint32_t CNFGVertDataC[CNFG_BATCH];
 #define CNFG_KEY_ESCAPE 27
 #define CNFG_KEY_ENTER 13
 
-#else // most likely x11
 
-#define CNFG_KEY_SHIFT 65505
-#define CNFG_KEY_BACKSPACE 65288
-#define CNFG_KEY_DELETE 65535
-#define CNFG_KEY_LEFT_ARROW 65361
-#define CNFG_KEY_RIGHT_ARROW 65363
-#define CNFG_KEY_TOP_ARROW 65362
-#define CNFG_KEY_BOTTOM_ARROW 65364
-#define CNFG_KEY_ESCAPE 65307
-#define CNFG_KEY_ENTER 65293
 
-#endif
-
-#ifdef CNFG3D
-
-#ifndef __wasm__
 #include <math.h>
-#endif
 
-#ifdef CNFG_USE_DOUBLE_FUNCTIONS
-#define tdCOS cos
-#define tdSIN sin
-#define tdTAN tan
-#define tdSQRT sqrt
-#else
 #define tdCOS cosf
 #define tdSIN sinf
 #define tdTAN tanf
 #define tdSQRT sqrtf
-#endif
 
-#ifdef __wasm__
-void tdMATCOPY( float * x, const float * y ); //Copy y into x
-#else
 #define tdMATCOPY(x,y) memcpy( x, y, 16*sizeof(float))
-#endif
 
 #define tdQ_PI 3.141592653589
 #define tdDEGRAD (tdQ_PI/180.)
@@ -278,25 +179,10 @@ float tdNoiseAt( int x, int y );
 float tdFLerp( float a, float b, float t );
 float tdPerlin2D( float x, float y );
 
-#endif
 
 extern const unsigned char RawdrawFontCharData[1405];
 extern const unsigned short RawdrawFontCharMap[256];
 
-#ifdef __cplusplus
-};
-#endif
-
-
-#if defined( ANDROID ) || defined( __android__ )
-#include "CNFGAndroid.h"
-#endif
-
-#ifdef CNFG_IMPLEMENTATION
 #include "android_main.c"
-#include "CNFGFunctions.c"
 #include "CNFG3D.c"
-#endif
-
-#endif
-
+#include "CNFGFunctions.c"
