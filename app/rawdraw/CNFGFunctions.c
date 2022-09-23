@@ -25,7 +25,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef _CNFG_C
 #define _CNFG_C
 
-#include <gl.h>
+#include <GLES3/gl3.h>
 
 #include "CNFG.h"
 #include <stdbool.h>

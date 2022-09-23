@@ -35,7 +35,9 @@ endif
 
 ANDROIDSRCS := android_native_app_glue.c 
 ANDROIDSRCS += test.c
-ANDROIDSRCS += android_main.c rawdraw/CNFG3D.c rawdraw/CNFGFunctions.c
+ANDROIDSRCS += android_main.c
+ANDROIDSRCS += rawdraw/CNFG3D.c
+ANDROIDSRCS += rawdraw/CNFGFunctions.c
 
 CFLAGS := -ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
 CFLAGS += -Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
