@@ -131,7 +131,6 @@ void 	CNFGEmitQuad( float cx0, float cy0, float cx1, float cy1, float cx2, float
 void tdIdentity( float * f );
 void tdTranslate( float * f, float x, float y, float z );		//Operates ON f
 void tdScale( float * f, float x, float y, float z );			//Operates ON f
-void tdRotateEA( float * f, float x, float y, float z );		//Operates ON f
 void tdTransposeSelf( float * f );
 
 //Specialty Matrix Functions

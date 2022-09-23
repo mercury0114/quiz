@@ -93,44 +93,6 @@ void tdScale( float * f, float x, float y, float z )
 
 }
 
-void tdRotateEA( float * f, float x, float y, float z )
-{
-	float ftmp[16];
-
-	float X = -x*2*tdQ_PI/360; //Reduced calulation for speed
-	float Y = -y*2*tdQ_PI/360;
-	float Z = -z*2*tdQ_PI/360;
-	float cx = cosf(X);
-	float sx = sinf(X);
-	float cy = cosf(Y);
-	float sy = sinf(Y);
-	float cz = cosf(Z);
-	float sz = sinf(Z);
-
-	ftmp[m00] = cy*cz;
-	ftmp[m10] = (sx*sy*cz)-(cx*sz);
-	ftmp[m20] = (cx*sy*cz)+(sx*sz);
-	ftmp[m30] = 0;
-
-	ftmp[m01] = cy*sz;
-	ftmp[m11] = (sx*sy*sz)+(cx*cz);
-	ftmp[m21] = (cx*sy*sz)-(sx*cz);
-	ftmp[m31] = 0;
-
-	ftmp[m02] = -sy;
-	ftmp[m12] = sx*cy;
-	ftmp[m22] = cx*cy;
-	ftmp[m32] = 0;
-
-	ftmp[m03] = 0;
-	ftmp[m13] = 0;
-	ftmp[m23] = 0;
-	ftmp[m33] = 1;
-
-	tdMultiply( f, ftmp, f );
-}
-
-
 void tdTransposeSelf( float * f )
 {
 	float fout[16];
