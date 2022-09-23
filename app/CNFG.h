@@ -134,7 +134,6 @@ void tdScale( float * f, float x, float y, float z );			//Operates ON f
 void tdRotateAA( float * f, float angle, float x, float y, float z ); 	//Operates ON f
 void tdRotateQuat( float * f, float qw, float qx, float qy, float qz ); 	//Operates ON f
 void tdRotateEA( float * f, float x, float y, float z );		//Operates ON f
-void tdPrint( const float * f );
 void tdTransposeSelf( float * f );
 
 //Specialty Matrix Functions
@@ -142,13 +141,8 @@ void tdPerspective( float fovy, float aspect, float zNear, float zFar, float * o
 void tdLookAt( float * m, float * eye, float * at, float * up );	//Operates ON m
 //General point functions
 #define tdPSet( f, x, y, z ) { f[0] = x; f[1] = y; f[2] = z; }
-void tdPTransform( const float * pin, float * f, float * pout );
-void tdVTransform( const float * vin, float * f, float * vout );
-void td4Transform( float * kin, float * f, float * kout );
-void td4RTransform( float * kin, float * f, float * kout );
 void tdNormalizeSelf( float * vin );
 void tdCross( float * va, float * vb, float * vout );
-float tdDistance( float * va, float * vb );
 float tdDot( float * va, float * vb );
 #define tdPSub( x, y, z ) { (z)[0] = (x)[0] - (y)[0]; (z)[1] = (x)[1] - (y)[1]; (z)[2] = (x)[2] - (y)[2]; }
 #define tdPAdd( x, y, z ) { (z)[0] = (x)[0] + (y)[0]; (z)[1] = (x)[1] + (y)[1]; (z)[2] = (x)[2] + (y)[2]; }

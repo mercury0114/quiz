@@ -195,16 +195,6 @@ void tdRotateEA( float * f, float x, float y, float z )
 	tdMultiply( f, ftmp, f );
 }
 
-void tdPrint( const float * f )
-{
-	int i;
-	printf( "{\n" );
-	for( i = 0; i < 16; i+=4 )
-	{
-		printf( "  %f, %f, %f, %f\n", f[0+i], f[1+i], f[2+i], f[3+i] );
-	}
-	printf( "}\n" );
-}
 
 void tdTransposeSelf( float * f )
 {
@@ -250,27 +240,7 @@ void tdLookAt( float * m, float * eye, float * at, float * up )
 	tdTranslate( m, -eye[0], -eye[1], -eye[2] );
 }
 
-void tdPTransform( const float * pin, float * f, float * pout )
-{
-	float ptmp[2];
-	ptmp[0] = pin[0] * f[m00] + pin[1] * f[m01] + pin[2] * f[m02] + f[m03];
-	ptmp[1] = pin[0] * f[m10] + pin[1] * f[m11] + pin[2] * f[m12] + f[m13];
-	pout[2] = pin[0] * f[m20] + pin[1] * f[m21] + pin[2] * f[m22] + f[m23];
-	pout[0] = ptmp[0];
-	pout[1] = ptmp[1];
-}
-
-void tdVTransform( const float * pin, float * f, float * pout )
-{
-	float ptmp[2];
-	ptmp[0] = pin[0] * f[m00] + pin[1] * f[m01] + pin[2] * f[m02];
-	ptmp[1] = pin[0] * f[m10] + pin[1] * f[m11] + pin[2] * f[m12];
-	pout[2] = pin[0] * f[m20] + pin[1] * f[m21] + pin[2] * f[m22];
-	pout[0] = ptmp[0];
-	pout[1] = ptmp[1];
-}
-
-void td4Transform( float * pin, float * f, float * pout )
+static void td4Transform( float * pin, float * f, float * pout )
 {
 	float ptmp[3];
 	ptmp[0] = pin[0] * f[m00] + pin[1] * f[m01] + pin[2] * f[m02] + pin[3] * f[m03];
@@ -282,33 +252,12 @@ void td4Transform( float * pin, float * f, float * pout )
 	pout[2] = ptmp[2];
 }
 
-void td4RTransform( float * pin, float * f, float * pout )
-{
-	float ptmp[3];
-	ptmp[0] = pin[0] * f[m00] + pin[1] * f[m10] + pin[2] * f[m20] + pin[3] * f[m30];
-	ptmp[1] = pin[0] * f[m01] + pin[1] * f[m11] + pin[2] * f[m21] + pin[3] * f[m31];
-	ptmp[2] = pin[0] * f[m02] + pin[1] * f[m12] + pin[2] * f[m22] + pin[3] * f[m32];
-	pout[3] = pin[0] * f[m03] + pin[1] * f[m13] + pin[2] * f[m23] + pin[3] * f[m33];
-	pout[0] = ptmp[0];
-	pout[1] = ptmp[1];
-	pout[2] = ptmp[2];
-}
-
 void tdNormalizeSelf( float * vin )
 {
 	float vsq = 1./sqrtf(vin[0]*vin[0] + vin[1]*vin[1] + vin[2]*vin[2]);
 	vin[0] *= vsq;
 	vin[1] *= vsq;
 	vin[2] *= vsq;
-}
-
-float tdDistance( float * va, float * vb )
-{
-	float dx = va[0]-vb[0];
-	float dy = va[1]-vb[1];
-	float dz = va[2]-vb[2];
-
-	return sqrtf(dx*dx + dy*dy + dz*dz);
 }
 
 float tdDot( float * va, float * vb )
