@@ -82,7 +82,7 @@ makecapk/lib/armeabi-v7a/lib$(APPNAME).so : $(ANDROIDSRCS)
 	mkdir -p makecapk/lib/armeabi-v7a
 	$(CC_ARM32) $(CFLAGS) $(CFLAGS_ARM32) -o $@ $(ANDROIDSRCS) -L$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/lib/arm-linux-androideabi/$(ANDROIDVERSION) $(LDFLAGS)
 
-makecapk.apk : $(TARGETS) AndroidManifest.xml
+compile : $(TARGETS) $(KEYSTOREFILE) AndroidManifest.xml
 	mkdir -p makecapk/assets
 	cp -r Sources/assets/* makecapk/assets
 	$(BUILD_TOOLS)/aapt package -f -F temp.apk -I $(ANDROIDSDK)/platforms/android-$(ANDROIDVERSION)/android.jar -M AndroidManifest.xml -S Sources/res -A makecapk/assets -v --target-sdk-version $(ANDROIDTARGET)
@@ -92,7 +92,7 @@ makecapk.apk : $(TARGETS) AndroidManifest.xml
 	$(BUILD_TOOLS)/zipalign -v 4 makecapk.apk $(APKFILE)
 	$(BUILD_TOOLS)/apksigner sign --key-pass pass:$(STOREPASS) --ks-pass pass:$(STOREPASS) --ks $(KEYSTOREFILE) $(APKFILE)
 
-install : $(KEYSTOREFILE) makecapk.apk
+install : $(KEYSTOREFILE) compile
 	adb install -r $(APKFILE)
 
 reinstall : uninstall install

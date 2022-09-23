@@ -293,7 +293,9 @@ extern const unsigned short RawdrawFontCharMap[256];
 #endif
 
 #ifdef CNFG_IMPLEMENTATION
-#include "CNFG.c"
+#include "android_main.c"
+#include "CNFGFunctions.c"
+#include "CNFG3D.c"
 #endif
 
 #endif
