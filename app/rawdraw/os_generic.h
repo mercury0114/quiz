@@ -101,10 +101,6 @@ typedef void* og_mutex_t;
 typedef void* og_sema_t;
 typedef void* og_tls_t;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 OSG_PREFIX void OGSleep( int is );
 OSG_PREFIX void OGUSleep( int ius );
 OSG_PREFIX double OGGetAbsoluteTime();
@@ -509,9 +505,6 @@ OSG_PREFIX void OGSetTLS( og_tls_t key, void * data )
 
 #endif
 
-#ifdef __cplusplus
-};
-#endif
 
 #endif //OSG_NO_IMPLEMENTATION
 

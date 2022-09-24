@@ -1,4 +1,3 @@
-
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
 #include <jni.h>
@@ -26,14 +25,63 @@
 #define HMX 162
 #define HMY 162
 
-float mountainangle;
-float mountainoffsetx;
-float mountainoffsety;
-
 extern float *gSMatrix;
+extern uint32_t CNFGBGColor;
+extern int CNFGPenX;
+extern int CNFGPenY;
+extern struct android_app *gapp;
+
+static short iLastInternalW, iLastInternalH;
+uint32_t randomtexturedata[256 * 256];
+static float mountainangle;
+static float mountainoffsetx;
+static float mountainoffsety;
+
+static EGLNativeWindowType native_window;
+
+static EGLint const config_attribute_list[] = {
+    EGL_RED_SIZE,    8,  EGL_GREEN_SIZE,      8,
+    EGL_BLUE_SIZE,   8,  EGL_ALPHA_SIZE,      8,
+    EGL_BUFFER_SIZE, 32, EGL_STENCIL_SIZE,    0,
+    EGL_DEPTH_SIZE,  16, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
+    EGL_NONE};
+
+static EGLint window_attribute_list[] = {EGL_NONE};
+
+static const EGLint context_attribute_list[] = {EGL_CONTEXT_CLIENT_VERSION, 2,
+                                                EGL_NONE};
+
+static EGLDisplay egl_display;
+static EGLSurface egl_surface;
 
 static bool no_sensor_for_gyro = false;
 static ASensorEventQueue *aeq;
+
+
+int lastbuttonx = 0;
+int lastbuttony = 0;
+int lastmotionx = 0;
+int lastmotiony = 0;
+int lastbid = 0;
+int lastmask = 0;
+int lastkey, lastkeydown;
+
+
+struct android_app *gapp;
+static int OGLESStarted;
+int android_width, android_height;
+int android_sdk_version;
+
+short screenx, screeny;
+float Heightmap[HMX * HMY];
+
+static int keyboard_up;
+
+volatile int suspended;
+
+unsigned long iframeno = 0;
+float accx, accy, accz;
+int accs;
 
 void tdPSubtract(float* x, float* y, float* z) {
     z[0] = x[0] - y[0];
@@ -58,10 +106,6 @@ void SetupIMU() {
   }
 }
 
-
-float accx, accy, accz;
-int accs;
-
 void AccCheck() {
   if (no_sensor_for_gyro) {
     return;
@@ -82,20 +126,7 @@ void AccCheck() {
   } while (1);
 }
 
-
-unsigned long iframeno = 0;
-
 void AndroidDisplayKeyboard(int pShow);
-
-int lastbuttonx = 0;
-int lastbuttony = 0;
-int lastmotionx = 0;
-int lastmotiony = 0;
-int lastbid = 0;
-int lastmask = 0;
-int lastkey, lastkeydown;
-
-static int keyboard_up;
 
 
 
@@ -129,11 +160,6 @@ void HandleMotion(int x, int y, int mask) {
   lastmotionx = x;
   lastmotiony = y;
 }
-
-short screenx, screeny;
-float Heightmap[HMX * HMY];
-
-extern struct android_app *gapp;
 
 
 void DrawHeightmap() {
@@ -253,17 +279,9 @@ void HandleDestroy() {
   exit(10);
 }
 
-volatile int suspended;
-
 void HandleSuspend() { suspended = 1; }
 
 void HandleResume() { suspended = 0; }
-
-uint32_t randomtexturedata[256 * 256];
-
-extern uint32_t CNFGBGColor;
-extern int CNFGPenX;
-extern int CNFGPenY;
 
 
 
@@ -386,11 +404,6 @@ static void display_image() {
   }
 }
 
-struct android_app *gapp;
-static int OGLESStarted;
-int android_width, android_height;
-int android_sdk_version;
-
 typedef enum {
   FBDEV_PIXMAP_DEFAULT = 0,
   FBDEV_PIXMAP_SUPPORTS_UMP = (1 << 0),
@@ -418,23 +431,6 @@ typedef struct fbdev_pixmap {
   unsigned short *data;
   unsigned int format;
 } fbdev_pixmap;
-
-EGLNativeWindowType native_window;
-
-static EGLint const config_attribute_list[] = {
-    EGL_RED_SIZE,    8,  EGL_GREEN_SIZE,      8,
-    EGL_BLUE_SIZE,   8,  EGL_ALPHA_SIZE,      8,
-    EGL_BUFFER_SIZE, 32, EGL_STENCIL_SIZE,    0,
-    EGL_DEPTH_SIZE,  16, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
-    EGL_NONE};
-
-static EGLint window_attribute_list[] = {EGL_NONE};
-
-static const EGLint context_attribute_list[] = {EGL_CONTEXT_CLIENT_VERSION, 2,
-                                                EGL_NONE};
-
-EGLDisplay egl_display;
-EGLSurface egl_surface;
 
 static void AndroidMakeFullscreen() {
   const struct JNINativeInterface *env = 0;
@@ -516,8 +512,6 @@ static void AndroidMakeFullscreen() {
 
   jnii->DetachCurrentThread(jniiptr);
 }
-
-static short iLastInternalW, iLastInternalH;
 
 void CNFGSwapBuffers() {
   CNFGFlushRender();
@@ -623,8 +617,6 @@ void CNFGSetupFullscreen(const char *WindowName, int screen_number) {
 
   CNFGSetup(WindowName, -1, -1);
 }
-
-int debuga, debugb, debugc;
 
 int32_t handle_input(struct android_app *app, AInputEvent *event) {
   // Potentially do other things here.
