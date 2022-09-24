@@ -1,10 +1,10 @@
 #include <GLES3/gl3.h>
 #include <stdlib.h>
 
-#include <stdio.h>
 #include "CNFG.h"
-#include <stdbool.h>
 #include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 #define CNFG_BATCH 8192
 
@@ -368,21 +368,19 @@ void CNFGSetLineWidth(short width) {
   wgl_last_width_over_2 = width / 2.0; // + 0.5;
 }
 
-
-
 int (*MyFunc)(int program, const char *name);
-
 
 void glEnableVertexAttribArray(uint32_t index);
 void glUseProgram(uint32_t program);
 void glGetProgramInfoLog(uint32_t program, int32_t maxLength, int32_t *length,
-                        char *infoLog);
+                         char *infoLog);
 void glGetProgramiv(uint32_t program, uint32_t pname, int32_t *params);
 void glBindAttribLocation(uint32_t program, uint32_t index, const char *name);
 void glGetShaderiv(uint32_t shader, uint32_t pname, int32_t *params);
 
-void glVertexAttribPointer(uint32_t index, int32_t size, uint32_t type, GLboolean normalized,
-int32_t stride, const void *pointer);
+void glVertexAttribPointer(uint32_t index, int32_t size, uint32_t type,
+                           GLboolean normalized, int32_t stride,
+                           const void *pointer);
 void glShaderSource(uint32_t shader, int32_t count, const char *const *string,
                     const int32_t *length);
 void glAttachShader(uint32_t program, uint32_t shader);
@@ -392,7 +390,7 @@ void glGetShaderInfoLog(uint32_t shader, int32_t maxLength, int32_t *length,
 
 void glLinkProgram(uint32_t program);
 void glDeleteShader(uint32_t shader);
-void glUniform4f (int32_t location, float v0, float v1, float v2, float v3);
+void glUniform4f(int32_t location, float v0, float v1, float v2, float v3);
 void glUniformli(int32_t location, int32_t i0);
 void glActiveTexture(uint32_t texture);
 
@@ -557,8 +555,7 @@ void CNFGSetupBatchInternal() {
   CNFGVertPlace = 0;
 }
 
-void CNFGInternalResize(short x, short y)
-{
+void CNFGInternalResize(short x, short y) {
   glViewport(0, 0, x, y);
   gRDLastResizeW = x;
   gRDLastResizeH = y;
@@ -573,14 +570,13 @@ void CNFGEmitBackendTriangles(const float *vertices, const uint32_t *colors,
                               int num_vertices) {
   glUseProgram(gRDShaderProg);
   glUniform4f(gRDShaderProgUX, 1.f / gRDLastResizeW, -1.f / gRDLastResizeH,
-                  -0.5f, 0.5f);
+              -0.5f, 0.5f);
   glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, vertices);
   glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, true, 0, colors);
   glDrawArrays(GL_TRIANGLES, 0, num_vertices);
 }
 
-void CNFGBlitImage(uint32_t *data, int x, int y, int w, int h)
-{
+void CNFGBlitImage(uint32_t *data, int x, int y, int w, int h) {
   if (w <= 0 || h <= 0)
     return;
 
@@ -588,8 +584,8 @@ void CNFGBlitImage(uint32_t *data, int x, int y, int w, int h)
 
   glUseProgram(gRDBlitProg);
   glUniform4f(gRDBlitProgUX, 1.f / gRDLastResizeW, -1.f / gRDLastResizeH,
-                  -0.5f + x / (float)gRDLastResizeW,
-                  0.5f - y / (float)gRDLastResizeH);
+              -0.5f + x / (float)gRDLastResizeW,
+              0.5f - y / (float)gRDLastResizeH);
   glUniform1i(gRDBlitProgUT, 0);
 
   glEnable(GL_TEXTURE_2D);
@@ -617,7 +613,6 @@ void CNFGBlitImage(uint32_t *data, int x, int y, int w, int h)
 void CNFGUpdateScreenWithBitmap(uint32_t *data, int w, int h) {
   CNFGBlitImage(data, 0, 0, w, h);
 }
-
 
 void CNFGFlushRender() {
   if (!CNFGVertPlace)
