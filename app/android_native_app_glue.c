@@ -5,8 +5,9 @@
 #include <sys/resource.h>
 #include <unistd.h>
 #include <android/log.h>
+#include <pthread.h>
+#include <android/native_activity.h>
 
-#include "android_native_app_glue.h"
 #include "android_main.h"
 
 static int pfd[2];
