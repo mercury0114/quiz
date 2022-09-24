@@ -22,7 +22,6 @@
 
 #include "CNFGAndroid.h"
 #include "android_structs.h"
-#include "handlers.h"
 
 #define HMX 162
 #define HMY 162
