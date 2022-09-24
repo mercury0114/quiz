@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <sys/stat.h>
+#include <pthread.h>
+#include <sys/time.h>
+
 #include <android/sensor.h>
 #include "android_native_app_glue.h"
 #include <asset_manager.h>
@@ -16,7 +20,6 @@
 
 #include "CNFG.h"
 #include "CNFGAndroid.h"
-#include "os_generic.h"
 
 
 #include "CNFGAndroid.h"
@@ -82,6 +85,13 @@ volatile int suspended;
 unsigned long iframeno = 0;
 float accx, accy, accz;
 int accs;
+
+static inline double OGGetAbsoluteTime()
+{
+	struct timeval tv;
+	gettimeofday( &tv, 0 );
+	return ((double)tv.tv_usec)/1000000. + (tv.tv_sec);
+}
 
 void tdPSubtract(float* x, float* y, float* z) {
     z[0] = x[0] - y[0];
