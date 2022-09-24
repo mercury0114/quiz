@@ -1,10 +1,10 @@
 #include <GLES3/gl3.h>
 #include <stdlib.h>
-
 #include <stdio.h>
-#include "CNFG.h"
 #include <stdbool.h>
 #include <math.h>
+
+#include "CNFG.h"
 
 #define GL_FRAGMENT_SHADER 0x8B30
 #define GL_VERTEX_SHADER 0x8B31
@@ -17,6 +17,19 @@
 uint32_t CNFGBGColor = 0x000040ff;
 static uint32_t CNFGLastColor;
 uint32_t CNFGDialogColor;
+static float CNFGVertDataV[CNFG_BATCH * 3];
+uint32_t CNFGVertDataC[CNFG_BATCH];
+int CNFGVertPlace;
+static float wgl_last_width_over_2 = .5;
+uint32_t gRDShaderProg = -1;
+uint32_t gRDBlitProg = -1;
+uint32_t gRDShaderProgUX = -1;
+uint32_t gRDBlitProgUX = -1;
+uint32_t gRDBlitProgUT = -1;
+uint32_t gRDBlitProgTex = -1;
+uint32_t gRDLastResizeW;
+uint32_t gRDLastResizeH;
+
 
 void CNFGDrawBox(short x1, short y1, short x2, short y2) {
   uint32_t lc = CNFGLastColor;
@@ -53,11 +66,6 @@ void CNFGGetTextExtents(const char *text, int *w, int *h, int textsize) {
 
 void CNFGEmitBackendTriangles(const float *fv, const uint32_t *col,
                               int nr_verts);
-
-static float CNFGVertDataV[CNFG_BATCH * 3];
-uint32_t CNFGVertDataC[CNFG_BATCH];
-int CNFGVertPlace;
-static float wgl_last_width_over_2 = .5;
 
 static void EmitQuad(float cx0, float cy0, float cx1, float cy1, float cx2,
                      float cy2, float cx3, float cy3) {
@@ -155,19 +163,6 @@ uint32_t CNFGColor(uint32_t RGB) { return CNFGLastColor = RGB; }
 void CNFGSetLineWidth(short width) {
   wgl_last_width_over_2 = width / 2.0; // + 0.5;
 }
-
-
-
-
-
-uint32_t gRDShaderProg = -1;
-uint32_t gRDBlitProg = -1;
-uint32_t gRDShaderProgUX = -1;
-uint32_t gRDBlitProgUX = -1;
-uint32_t gRDBlitProgUT = -1;
-uint32_t gRDBlitProgTex = -1;
-uint32_t gRDLastResizeW;
-uint32_t gRDLastResizeH;
 
 uint32_t CNFGGLInternalLoadShader(const char *vertex_shader,
                                   const char *fragment_shader) {

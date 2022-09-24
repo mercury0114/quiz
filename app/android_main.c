@@ -17,6 +17,7 @@
 
 #include "CNFG.h"
 #include "CNFG3D.h"
+#include "CNFGFunctions.h"
 #include "CNFGAndroid.h"
 #include "android_structs.h"
 

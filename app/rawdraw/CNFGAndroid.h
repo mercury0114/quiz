@@ -1,6 +1,4 @@
 #pragma once
-//This file contains the additional functions that are available on the Android platform.
-//In order to build rawdraw for Android, please compile CNFGEGLDriver.c with -DANDROID
 
 int AndroidHasPermissions(const char* perm_name);
 void AndroidRequestAppPermissions(const char * perm);
