@@ -1,7 +1,7 @@
 #include "CNFGAndroid.h"
-#include "test.h"
+#include "handlers.h"
 
-#include <android_native_app_glue.h>
+// #include <android_native_app_glue.h>
 #include <jni.h>
 #include <native_activity.h>
 #include "CNFG.h"

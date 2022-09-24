@@ -1,5 +1,5 @@
 #pragma once
 
-#include <android/native_activity.h>
+#include "android_structs.h"
 
 void android_main(struct android_app* app);
