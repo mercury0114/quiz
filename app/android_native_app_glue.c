@@ -9,6 +9,7 @@
 #include <android/native_activity.h>
 
 #include "android_main.h"
+#include "android_structs.h"
 
 static int pfd[2];
 pthread_t debug_capture_thread;

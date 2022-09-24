@@ -50,17 +50,20 @@ LDFLAGS := -Wl,--gc-sections -s -Wall -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate
 
 CC_ARM64 := $(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/bin/aarch64-linux-android$(ANDROIDVERSION)-clang
-CC_ARM32 := $(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/bin/armv7a-linux-androideabi$(ANDROIDVERSION)-clang
 
-# Which binaries to build? Just comment/uncomment these lines:
 TARGETS += makecapk/lib/arm64-v8a/lib$(APPNAME).so
-TARGETS += makecapk/lib/armeabi-v7a/lib$(APPNAME).so
 
 STOREPASS := password
 DNAME := "CN=example.com, OU=ID, O=Example, L=Doe, S=John, C=GB"
 KEYSTOREFILE := my-release-key.keystore
 
-CLEAN_COMMAND := rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+CLEAN_COMMAND := rm -rf makecapk
+CLEAN_COMMAND += rm temp.apk
+CLEAN_COMMAND += rm makecapk.apk
+CLEAN_COMMAND += rm AndroidManifest.xml
+CLEAN_COMMAND += rm $(APKFILE)
+CLEAN_COMMAND += rm $(APPNAME).apk.idsig
+CLEAN_COMMAND += rm $(KEYSTOREFILE)
 
 clean :
 	$(CLEAN_COMMAND)
@@ -82,10 +85,6 @@ $(KEYSTOREFILE) : clean
 makecapk/lib/arm64-v8a/lib$(APPNAME).so : $(ANDROIDSRCS)
 	mkdir -p makecapk/lib/arm64-v8a
 	$(CC_ARM64) $(CFLAGS) $(CFLAGS_ARM64) -o $@ $(ANDROIDSRCS) -L$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/lib/aarch64-linux-android/$(ANDROIDVERSION) $(LDFLAGS)
-
-makecapk/lib/armeabi-v7a/lib$(APPNAME).so : $(ANDROIDSRCS)
-	mkdir -p makecapk/lib/armeabi-v7a
-	$(CC_ARM32) $(CFLAGS) $(CFLAGS_ARM32) -o $@ $(ANDROIDSRCS) -L$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/lib/arm-linux-androideabi/$(ANDROIDVERSION) $(LDFLAGS)
 
 compile : $(TARGETS) $(KEYSTOREFILE) AndroidManifest.xml
 	mkdir -p makecapk/assets
