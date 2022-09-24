@@ -61,8 +61,10 @@ STOREPASS := password
 DNAME := "CN=example.com, OU=ID, O=Example, L=Doe, S=John, C=GB"
 KEYSTOREFILE := my-release-key.keystore
 
+CLEAN_COMMAND := rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+
 clean :
-	rm -rf $(APPNAME).apk.idsig $(KEYSTOREFILE) temp.apk makecapk.apk makecapk $(APKFILE) AndroidManifest.xml
+	$(CLEAN_COMMAND)
 
 uninstall : 
 	adb uninstall $(PACKAGENAME)
@@ -98,5 +100,6 @@ compile : $(TARGETS) $(KEYSTOREFILE) AndroidManifest.xml
 
 install : $(KEYSTOREFILE) compile
 	adb install -r $(APKFILE)
+	$(CLEAN_COMMAND)
 
 reinstall : uninstall install
