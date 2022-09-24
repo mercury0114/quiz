@@ -32,12 +32,8 @@ float mountainoffsety;
 
 extern float *gSMatrix;
 
-ASensorManager *sm;
-const ASensor *as;
-bool no_sensor_for_gyro = false;
-ASensorEventQueue *aeq;
-ALooper *l;
-
+static bool no_sensor_for_gyro = false;
+static ASensorEventQueue *aeq;
 
 void tdPSubtract(float* x, float* y, float* z) {
     z[0] = x[0] - y[0];
@@ -46,11 +42,15 @@ void tdPSubtract(float* x, float* y, float* z) {
 }
 
 void SetupIMU() {
+  static ASensorManager* sm;
+  static const ASensor* as;
+  static ALooper* alooper;
+  
   sm = ASensorManager_getInstance();
   as = ASensorManager_getDefaultSensor(sm, ASENSOR_TYPE_GYROSCOPE);
   no_sensor_for_gyro = as == NULL;
-  l = ALooper_prepare(ALOOPER_PREPARE_ALLOW_NON_CALLBACKS);
-  aeq = ASensorManager_createEventQueue(sm, (ALooper *)&l, 0, 0, 0);
+  alooper = ALooper_prepare(ALOOPER_PREPARE_ALLOW_NON_CALLBACKS);
+  aeq = ASensorManager_createEventQueue(sm, (ALooper *)&alooper, 0, 0, 0);
   if (!no_sensor_for_gyro) {
     ASensorEventQueue_enableSensor(aeq, as);
     printf("setEvent Rate: %d\n",
@@ -83,7 +83,6 @@ void AccCheck() {
 }
 
 
-unsigned frames = 0;
 unsigned long iframeno = 0;
 
 void AndroidDisplayKeyboard(int pShow);
@@ -376,14 +375,12 @@ static void display_image() {
             x | ((x * 394543L + y * 355 + iframeno) << 8);
     CNFGBlitImage(randomtexturedata, 100, 600, 256, 256);
 
-    frames++;
     // On Android, CNFGSwapBuffers must be called, and
     // CNFGUpdateScreenWithBitmap does not have an implied framebuffer swap.
     CNFGSwapBuffers();
 
     ThisTime = OGGetAbsoluteTime();
     if (ThisTime > LastFPSTime + 1) {
-      frames = 0;
       LastFPSTime += 1;
     }
   }
