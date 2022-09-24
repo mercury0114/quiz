@@ -14,9 +14,7 @@
  * limitations under the License.
  *
  */
-
-#ifndef _ANDROID_NATIVE_APP_GLUE_H
-#define _ANDROID_NATIVE_APP_GLUE_H
+#pragma once
 
 #include <poll.h>
 #include <pthread.h>
@@ -25,10 +23,6 @@
 #include <android/configuration.h>
 #include <android/looper.h>
 #include <android/native_activity.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /**
  * The native activity interface provided by <android/native_activity.h>
@@ -347,8 +341,3 @@ app_dummy();
  */
 extern void android_main(struct android_app* app);
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* _ANDROID_NATIVE_APP_GLUE_H */
