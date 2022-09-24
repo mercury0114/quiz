@@ -11,9 +11,10 @@
 #include <stdint.h>
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
+#include <android_structs.h>
 
 
-void display_image() {
+static void display_image() {
   int x, y;
   double ThisTime;
   double LastFPSTime = OGGetAbsoluteTime();
