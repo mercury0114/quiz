@@ -15,7 +15,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#include "CNFG.h"
 #include "CNFG3D.h"
 #include "CNFGFunctions.h"
 #include "android_structs.h"
@@ -233,6 +232,9 @@ float scaleY;
 float *gSMatrix;
 float gsMatricies[2][32][16];
 
+void CNFGSwapBuffers();
+void CNFGSetupFullscreen(const char* WindowName, int screen_number);
+void CNFGHandleInput();
 int AndroidGetUnicodeChar( int keyCode, int metaState );
 void AndroidSendToBack( int param );
 

@@ -4,9 +4,9 @@
 #include <stdbool.h>
 #include <math.h>
 
-#include "CNFG.h"
 #include "CNFGFunctions.h"
 
+#define CNFG_BATCH 8192
 #define GL_FRAGMENT_SHADER 0x8B30
 #define GL_VERTEX_SHADER 0x8B31
 #define GL_COMPILE_STATUS 0x8B81
