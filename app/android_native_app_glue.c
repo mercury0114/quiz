@@ -1,14 +1,13 @@
 #include <jni.h>
-
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/resource.h>
 #include <unistd.h>
+#include <android/log.h>
 
 #include "android_native_app_glue.h"
 #include "android_main.h"
-#include <android/log.h>
 
 static int pfd[2];
 pthread_t debug_capture_thread;

@@ -1,8 +1,9 @@
 # Usage:
+# make clean
+# make compile
 # make install
 # make reinstall
 # make uninstall
-# make clean
 
 APPNAME := vocabulary
 LABEL := $(APPNAME)

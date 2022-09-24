@@ -1,5 +1,4 @@
-#ifndef _OS_GENERIC_H
-#define _OS_GENERIC_H
+#pragma once
 /*
 	"osgeneric" Generic, platform independent tool for threads and time.
 		Geared around Windows and Linux. Designed for operation on MSVC,
@@ -515,6 +514,4 @@ OSG_PREFIX void OGSetTLS( og_tls_t key, void * data )
 #endif
 
 #endif //OSG_NO_IMPLEMENTATION
-
-#endif //_OS_GENERIC_H
 

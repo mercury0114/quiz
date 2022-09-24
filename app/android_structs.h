@@ -1,5 +1,7 @@
 #pragma once
 
+#include <android/configuration.h>
+
 enum {
     /**
      * Command from main thread: the AInputQueue has changed.  Upon processing
