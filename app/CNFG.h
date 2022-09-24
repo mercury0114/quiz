@@ -2,9 +2,7 @@
 
 #include <stdint.h>
 
-//Some per-platform logic.
-#define CNFGOGL
-#define CNFGEWGL //EGL or WebGL
+#define CNFG_BATCH 8192
 
 typedef struct {
     short x, y; 
