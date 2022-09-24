@@ -1,15 +1,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include "CNFG.h"
-
 
 #define tdQ_PI 3.141592653589
-#define tdDEGRAD (tdQ_PI/180.)
-#define tdRADDEG (180./tdQ_PI)
-#define tdMATRIXMAXDEPTH 32
-#define tdMATCOPY(x,y) memcpy( x, y, 16*sizeof(float))
-
 
 #define m00 0
 #define m01 1
@@ -100,7 +93,7 @@ void tdTransposeSelf( float * f )
 	fout[m10] = f[m01]; fout[m11] = f[m11]; fout[m12] = f[m21]; fout[m13] = f[m31];
 	fout[m20] = f[m02]; fout[m21] = f[m12]; fout[m22] = f[m22]; fout[m23] = f[m32];
 	fout[m30] = f[m03]; fout[m31] = f[m13]; fout[m32] = f[m23]; fout[m33] = f[m33];
-	tdMATCOPY( f, fout );
+	memcpy( f, fout, 16*sizeof(float));
 }
 
 
