@@ -20,6 +20,8 @@
 #include "CNFGFunctions.h"
 #include "android_structs.h"
 
+#define tdMODELVIEW 0
+#define tdPROJECTION 1
 #define HMX 162
 #define HMY 162
 
