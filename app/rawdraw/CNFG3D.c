@@ -28,6 +28,17 @@
 #define m32 14
 #define m33 15
 
+//Stack functionality.
+static float gsMatricies[2][tdMATRIXMAXDEPTH][16];
+float * gSMatrix = gsMatricies[0][0];
+static int gsMMode;
+static int gsMPlace[2];
+
+static float translateX;
+static float translateY;
+static float scaleX;
+static float scaleY;
+
 static void tdMultiply( float * fin1, float * fin2, float * fout )
 {
 	float fotmp[16];
@@ -162,12 +173,6 @@ float tdDot( float * va, float * vb )
 	return va[0]*vb[0] + va[1]*vb[1] + va[2]*vb[2];
 }
 
-//Stack functionality.
-static float gsMatricies[2][tdMATRIXMAXDEPTH][16];
-float * gSMatrix = gsMatricies[0][0];
-static int gsMMode;
-static int gsMPlace[2];
-
 
 void tdMode( int mode )
 {
@@ -179,11 +184,6 @@ void tdMode( int mode )
 	gSMatrix = gsMatricies[gsMMode][gsMPlace[gsMMode]];
 
 }
-
-static float translateX;
-static float translateY;
-static float scaleX;
-static float scaleY;
 
 void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float pixx, float pixy )
 {

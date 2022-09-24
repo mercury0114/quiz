@@ -6,22 +6,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include <sys/stat.h>
 #include <pthread.h>
 #include <sys/time.h>
-
 #include <android/sensor.h>
-#include "android_native_app_glue.h"
 #include <asset_manager.h>
 #include <asset_manager_jni.h>
 #include <math.h>
 #include <string.h>
 
 #include "CNFG.h"
-#include "CNFGAndroid.h"
-
-
 #include "CNFGAndroid.h"
 #include "android_structs.h"
 
