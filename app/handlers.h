@@ -17,6 +17,7 @@
 #define HMX 162
 #define HMY 162
 
+
 float mountainangle;
 float mountainoffsetx;
 float mountainoffsety;
@@ -28,6 +29,13 @@ const ASensor *as;
 bool no_sensor_for_gyro = false;
 ASensorEventQueue *aeq;
 ALooper *l;
+
+
+void tdPSubtract(float* x, float* y, float* z) {
+    z[0] = x[0] - y[0];
+    z[1] = x[1] - y[1];
+    z[2] = x[2] - y[2];
+}
 
 void SetupIMU() {
   sm = ASensorManager_getInstance();
@@ -175,8 +183,8 @@ void DrawHeightmap() {
       ptd[1] = (ty + 1) * scale;
       ptd[2] = Heightmap[(x + 1) + (y + 1) * HMX] * scale;
 
-      tdPSub(pta, ptb, tmp2);
-      tdPSub(ptc, ptb, tmp1);
+      tdPSubtract(pta, ptb, tmp2);
+      tdPSubtract(ptc, ptb, tmp1);
       tdCross(tmp1, tmp2, normal);
       tdNormalizeSelf(normal);
 

@@ -123,8 +123,7 @@ void tdLookAt( float * m, float * eye, float * at, float * up );	//Operates ON m
 void tdNormalizeSelf( float * vin );
 void tdCross( float * va, float * vb, float * vout );
 float tdDot( float * va, float * vb );
-#define tdPSub( x, y, z ) { (z)[0] = (x)[0] - (y)[0]; (z)[1] = (x)[1] - (y)[1]; (z)[2] = (x)[2] - (y)[2]; }
-#define tdPAdd( x, y, z ) { (z)[0] = (x)[0] + (y)[0]; (z)[1] = (x)[1] + (y)[1]; (z)[2] = (x)[2] + (y)[2]; }
+
 
 //Stack Functionality
 void tdMode( int mode );
