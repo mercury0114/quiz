@@ -18,7 +18,6 @@
 #include "CNFG.h"
 #include "CNFG3D.h"
 #include "CNFGFunctions.h"
-#include "CNFGAndroid.h"
 #include "android_structs.h"
 
 #define HMX 162
@@ -231,6 +230,9 @@ float scaleY;
 
 float *gSMatrix;
 float gsMatricies[2][32][16];
+
+int AndroidGetUnicodeChar( int keyCode, int metaState );
+void AndroidSendToBack( int param );
 
 void tdFinalPoint(float *pin, float *pout) {
   float tdin[4] = {pin[0], pin[1], pin[2], 1.};
