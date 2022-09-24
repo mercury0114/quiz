@@ -22,7 +22,6 @@
 #define HMX 162
 #define HMY 162
 
-extern float *gSMatrix;
 int CNFGPenX, CNFGPenY;
 
 const unsigned char RawdrawFontCharData[1405] = {
@@ -226,6 +225,41 @@ volatile int suspended;
 unsigned long iframeno = 0;
 float accx, accy, accz;
 int accs;
+
+float translateX;
+float translateY;
+float scaleX;
+float scaleY;
+
+float *gSMatrix;
+float gsMatricies[2][32][16];
+
+void tdFinalPoint( float * pin, float * pout )
+{
+    float tdin[4] = { pin[0], pin[1], pin[2], 1. };
+    float tmp[4];
+    td4Transform( tdin, gsMatricies[0][0], tmp );
+    td4Transform(  tmp, gsMatricies[1][0], tmp );
+    pout[0] = (tmp[0]/tmp[3] - translateX) * scaleX;
+    pout[1] = (tmp[1]/tmp[3] - translateY) * scaleY;
+    pout[2] = tmp[2]/tmp[3];
+}
+
+void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float pixx, float pixy )
+{
+    translateX = leftx;
+    translateY = bottomy;
+    scaleX = pixx/(rightx-leftx);
+    scaleY = pixy/(topy-bottomy);
+
+}
+
+
+void tdMode (int mode) {
+    if( mode < 0 || mode > 1 )
+        return;
+    gSMatrix = gsMatricies[mode][0];
+}
 
 
 void CNFGDrawText(const char *text, short scale) {

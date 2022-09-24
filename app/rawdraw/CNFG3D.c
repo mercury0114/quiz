@@ -28,17 +28,6 @@
 #define m32 14
 #define m33 15
 
-//Stack functionality.
-static float gsMatricies[2][tdMATRIXMAXDEPTH][16];
-float * gSMatrix = gsMatricies[0][0];
-static int gsMMode;
-static int gsMPlace[2];
-
-static float translateX;
-static float translateY;
-static float scaleX;
-static float scaleY;
-
 static void tdMultiply( float * fin1, float * fin2, float * fout )
 {
 	float fotmp[16];
@@ -148,7 +137,7 @@ void tdLookAt( float * m, float * eye, float * at, float * up )
 	tdTranslate( m, -eye[0], -eye[1], -eye[2] );
 }
 
-static void td4Transform( float * pin, float * f, float * pout )
+void td4Transform( float * pin, float * f, float * pout )
 {
 	float ptmp[3];
 	ptmp[0] = pin[0] * f[m00] + pin[1] * f[m01] + pin[2] * f[m02] + pin[3] * f[m03];
@@ -171,38 +160,6 @@ void tdNormalizeSelf( float * vin )
 float tdDot( float * va, float * vb )
 {
 	return va[0]*vb[0] + va[1]*vb[1] + va[2]*vb[2];
-}
-
-
-void tdMode( int mode )
-{
-	if( mode < 0 || mode > 1 )
-		return;
-	
-	gsMMode = mode;
-
-	gSMatrix = gsMatricies[gsMMode][gsMPlace[gsMMode]];
-
-}
-
-void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float pixx, float pixy )
-{
-	translateX = leftx;
-	translateY = bottomy;
-	scaleX = pixx/(rightx-leftx);
-	scaleY = pixy/(topy-bottomy);
-
-}
-
-void tdFinalPoint( float * pin, float * pout )
-{
-	float tdin[4] = { pin[0], pin[1], pin[2], 1. };
-	float tmp[4];
-	td4Transform( tdin, gsMatricies[0][gsMPlace[0]], tmp );
-	td4Transform(  tmp, gsMatricies[1][gsMPlace[1]], tmp );
-	pout[0] = (tmp[0]/tmp[3] - translateX) * scaleX;
-	pout[1] = (tmp[1]/tmp[3] - translateY) * scaleY;
-	pout[2] = tmp[2]/tmp[3];
 }
 
 static float tdNoiseAt( int x, int y )
