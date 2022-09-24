@@ -34,8 +34,11 @@ ifeq ($(BUILD_TOOLS),)
 $(error BUILD_TOOLS directory not found)
 endif
 
-ANDROIDSRCS := android_native_app_glue.c 
-ANDROIDSRCS += android_main.c
+ANDROIDSRCS := android_main.c
+ifdef EXAMPLE
+ANDROIDSRCS := android_example_main.c
+endif
+ANDROIDSRCS += android_native_app_glue.c 
 ANDROIDSRCS += CNFG/CNFG3D.c
 ANDROIDSRCS += CNFG/CNFGFunctions.c
 

@@ -133,7 +133,6 @@ void android_app_post_exec_cmd(struct android_app *android_app, int8_t cmd) {
 }
 
 static void android_app_destroy(struct android_app *android_app) {
-  printf("android_app_destroy!");
   free_saved_state(android_app);
   pthread_mutex_lock(&android_app->mutex);
   if (android_app->inputQueue != NULL) {
