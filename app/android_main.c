@@ -1,19 +1,19 @@
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <jni.h>
-#include <native_activity.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <pthread.h>
-#include <sys/time.h>
 #include <android/sensor.h>
 #include <asset_manager.h>
 #include <asset_manager_jni.h>
+#include <jni.h>
 #include <math.h>
+#include <native_activity.h>
+#include <pthread.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 #include "CNFG.h"
 #include "CNFG3D.h"
@@ -23,7 +23,7 @@
 #define HMX 162
 #define HMY 162
 
-int CNFGPenX, CNFGPenY;
+volatile int suspended;
 
 const unsigned char RawdrawFontCharData[1405] = {
     0x00, 0x09, 0x20, 0x29, 0x03, 0x23, 0x14, 0x8b, 0x00, 0x09, 0x20, 0x29,
@@ -174,12 +174,12 @@ const unsigned short RawdrawFontCharMap[256] = {
     1390,  1397,  65535,
 };
 
-
 static short iLastInternalW, iLastInternalH;
 uint32_t randomtexturedata[256 * 256];
 static float mountainangle;
 static float mountainoffsetx;
 static float mountainoffsety;
+int CNFGPenX, CNFGPenY;
 
 static EGLNativeWindowType native_window;
 
@@ -201,7 +201,6 @@ static EGLSurface egl_surface;
 static bool no_sensor_for_gyro = false;
 static ASensorEventQueue *aeq;
 
-
 int lastbuttonx = 0;
 int lastbuttony = 0;
 int lastmotionx = 0;
@@ -209,7 +208,6 @@ int lastmotiony = 0;
 int lastbid = 0;
 int lastmask = 0;
 int lastkey, lastkeydown;
-
 
 struct android_app *gapp;
 static int OGLESStarted;
@@ -220,8 +218,6 @@ short screenx, screeny;
 float Heightmap[HMX * HMY];
 
 static int keyboard_up;
-
-volatile int suspended;
 
 unsigned long iframeno = 0;
 float accx, accy, accz;
@@ -235,33 +231,29 @@ float scaleY;
 float *gSMatrix;
 float gsMatricies[2][32][16];
 
-void tdFinalPoint( float * pin, float * pout )
-{
-    float tdin[4] = { pin[0], pin[1], pin[2], 1. };
-    float tmp[4];
-    td4Transform( tdin, gsMatricies[0][0], tmp );
-    td4Transform(  tmp, gsMatricies[1][0], tmp );
-    pout[0] = (tmp[0]/tmp[3] - translateX) * scaleX;
-    pout[1] = (tmp[1]/tmp[3] - translateY) * scaleY;
-    pout[2] = tmp[2]/tmp[3];
+void tdFinalPoint(float *pin, float *pout) {
+  float tdin[4] = {pin[0], pin[1], pin[2], 1.};
+  float tmp[4];
+  td4Transform(tdin, gsMatricies[0][0], tmp);
+  td4Transform(tmp, gsMatricies[1][0], tmp);
+  pout[0] = (tmp[0] / tmp[3] - translateX) * scaleX;
+  pout[1] = (tmp[1] / tmp[3] - translateY) * scaleY;
+  pout[2] = tmp[2] / tmp[3];
 }
 
-void tdSetViewport( float leftx, float topy, float rightx, float bottomy, float pixx, float pixy )
-{
-    translateX = leftx;
-    translateY = bottomy;
-    scaleX = pixx/(rightx-leftx);
-    scaleY = pixy/(topy-bottomy);
-
+void tdSetViewport(float leftx, float topy, float rightx, float bottomy,
+                   float pixx, float pixy) {
+  translateX = leftx;
+  translateY = bottomy;
+  scaleX = pixx / (rightx - leftx);
+  scaleY = pixy / (topy - bottomy);
 }
 
-
-void tdMode (int mode) {
-    if( mode < 0 || mode > 1 )
-        return;
-    gSMatrix = gsMatricies[mode][0];
+void tdMode(int mode) {
+  if (mode < 0 || mode > 1)
+    return;
+  gSMatrix = gsMatricies[mode][0];
 }
-
 
 void CNFGDrawText(const char *text, short scale) {
   const unsigned char *lmap;
@@ -317,25 +309,23 @@ void CNFGDrawText(const char *text, short scale) {
   }
 }
 
-
-static inline double OGGetAbsoluteTime()
-{
-	struct timeval tv;
-	gettimeofday( &tv, 0 );
-	return ((double)tv.tv_usec)/1000000. + (tv.tv_sec);
+static inline double OGGetAbsoluteTime() {
+  struct timeval tv;
+  gettimeofday(&tv, 0);
+  return ((double)tv.tv_usec) / 1000000. + (tv.tv_sec);
 }
 
-void tdPSubtract(float* x, float* y, float* z) {
-    z[0] = x[0] - y[0];
-    z[1] = x[1] - y[1];
-    z[2] = x[2] - y[2];
+void tdPSubtract(float *x, float *y, float *z) {
+  z[0] = x[0] - y[0];
+  z[1] = x[1] - y[1];
+  z[2] = x[2] - y[2];
 }
 
 void SetupIMU() {
-  static ASensorManager* sm;
-  static const ASensor* as;
-  static ALooper* alooper;
-  
+  static ASensorManager *sm;
+  static const ASensor *as;
+  static ALooper *alooper;
+
   sm = ASensorManager_getInstance();
   as = ASensorManager_getDefaultSensor(sm, ASENSOR_TYPE_GYROSCOPE);
   no_sensor_for_gyro = as == NULL;
@@ -370,8 +360,6 @@ void AccCheck() {
 
 void AndroidDisplayKeyboard(int pShow);
 
-
-
 void HandleKey(int keycode, int bDown) {
   lastkey = keycode;
   lastkeydown = bDown;
@@ -396,13 +384,11 @@ void HandleButton(int x, int y, int button, int bDown) {
   }
 }
 
-
 void HandleMotion(int x, int y, int mask) {
   lastmask = mask;
   lastmotionx = x;
   lastmotiony = y;
 }
-
 
 void DrawHeightmap() {
   int x, y;
@@ -524,10 +510,6 @@ void HandleDestroy() {
 void HandleSuspend() { suspended = 1; }
 
 void HandleResume() { suspended = 0; }
-
-
-
-
 
 static void display_image() {
   int x, y;
