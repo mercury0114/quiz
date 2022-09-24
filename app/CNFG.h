@@ -4,7 +4,6 @@
 
 //Some per-platform logic.
 #define CNFGOGL
-#define CNFG_BATCH 8192 //131,072 bytes.
 #define CNFGEWGL //EGL or WebGL
 
 typedef struct {
