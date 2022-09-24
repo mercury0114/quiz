@@ -675,7 +675,6 @@ void AndroidSendToBack( int param )
 	env = (*envptr);
 	jobject activity = app->activity->clazz;
 
-	//_glfmCallJavaMethodWithArgs(jni, gapp->activity->clazz, "moveTaskToBack", "(Z)Z", Boolean, false);
 	jclass ClassActivity = env->FindClass( envptr, "android/app/Activity" );
 	jmethodID MethodmoveTaskToBack = env->GetMethodID( envptr, ClassActivity, "moveTaskToBack", "(Z)Z" );
 	env->CallBooleanMethod( envptr, activity, MethodmoveTaskToBack, param );
@@ -686,8 +685,6 @@ void AndroidSendToBack( int param )
 void android_main(struct android_app* app)
 {
     printf("Starting android_main\n");
-	char * argv[] = { "main", 0 };
-
 	{
 		char sdk_ver_str[92];
 		int len = __system_property_get("ro.build.version.sdk", sdk_ver_str);

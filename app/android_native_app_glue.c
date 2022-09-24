@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "android_native_app_glue.h"
+#include "android_main.h"
 #include <android/log.h>
 
 static int pfd[2];
