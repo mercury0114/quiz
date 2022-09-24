@@ -370,37 +370,7 @@ void CNFGSetLineWidth(short width) {
 
 
 
-int (*MyFunc)(int program, const char *name);
 
-
-void glEnableVertexAttribArray(uint32_t index);
-void glUseProgram(uint32_t program);
-void glGetProgramInfoLog(uint32_t program, int32_t maxLength, int32_t *length,
-                        char *infoLog);
-void glGetProgramiv(uint32_t program, uint32_t pname, int32_t *params);
-void glBindAttribLocation(uint32_t program, uint32_t index, const char *name);
-void glGetShaderiv(uint32_t shader, uint32_t pname, int32_t *params);
-
-void glVertexAttribPointer(uint32_t index, int32_t size, uint32_t type, GLboolean normalized,
-int32_t stride, const void *pointer);
-void glShaderSource(uint32_t shader, int32_t count, const char *const *string,
-                    const int32_t *length);
-void glAttachShader(uint32_t program, uint32_t shader);
-void glCompileShader(uint32_t shader);
-void glGetShaderInfoLog(uint32_t shader, int32_t maxLength, int32_t *length,
-                        char *infoLog);
-
-void glLinkProgram(uint32_t program);
-void glDeleteShader(uint32_t shader);
-void glUniform4f (int32_t location, float v0, float v1, float v2, float v3);
-void glUniformli(int32_t location, int32_t i0);
-void glActiveTexture(uint32_t texture);
-
-int32_t glGetUniformLocation(uint32_t program, const char *name);
-uint32_t glCreateProgram(void);
-uint32_t glCreateShader(uint32_t e);
-
-static void CNFGLoadExtensionsInternal() {}
 
 uint32_t gRDShaderProg = -1;
 uint32_t gRDBlitProg = -1;
@@ -507,8 +477,6 @@ fail:
 
 void CNFGSetupBatchInternal() {
   short w, h;
-
-  CNFGLoadExtensionsInternal();
 
   CNFGGetDimensions(&w, &h);
 
