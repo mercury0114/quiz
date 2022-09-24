@@ -8,19 +8,10 @@ typedef struct {
     short x, y; 
 } RDPoint; 
 
-void CNFGDrawText( const char * text, short scale );
-
-//Determine how large a given test would be to draw.
-void CNFGGetTextExtents( const char * text, int * w, int * h, int textsize  );
 
 //Draws a box, outline as whatever the last CNFGColor was set to but also draws
 //a rectangle as a background as whatever CNFGDialogColor is set to.
 void CNFGDrawBox( short x1, short y1, short x2, short y2 );
-
-//To be provided by driver. Rawdraw uses colors in the format 0xRRGGBBAA
-//Note that some backends do not support alpha of any kind.
-//Some platforms also support alpha blending.  So, be sure to set alpha to 0xFF
-uint32_t CNFGColor( uint32_t RGBA );
 
 //This both updates the screen, and flips, all as a single operation.
 void CNFGUpdateScreenWithBitmap( uint32_t * data, int w, int h );

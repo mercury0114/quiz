@@ -1,5 +1,11 @@
 #pragma once
 
+
+//Note that some backends do not support alpha of any kind.
+//Some platforms also support alpha blending.  So, be sure to set alpha to 0xFF
+uint32_t CNFGColor( uint32_t RGBA );
+
+
 void CNFGDrawBox(short x1, short y1, short x2, short y2);
 
 void CNFGGetTextExtents(const char *text, int *w, int *h, int textsize);
