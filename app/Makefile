@@ -55,7 +55,7 @@ TARGETS += makecapk/lib/arm64-v8a/lib$(APPNAME).so
 
 STOREPASS := password
 DNAME := "CN=example.com, OU=ID, O=Example, L=Doe, S=John, C=GB"
-KEYSTOREFILE := my-release-key.keystore
+KEYSTOREFILE := key
 
 CLEAN_COMMAND := rm -rf makecapk
 CLEAN_COMMAND += rm temp.apk
@@ -63,13 +63,12 @@ CLEAN_COMMAND += rm makecapk.apk
 CLEAN_COMMAND += rm AndroidManifest.xml
 CLEAN_COMMAND += rm $(APKFILE)
 CLEAN_COMMAND += rm $(APPNAME).apk.idsig
-CLEAN_COMMAND += rm $(KEYSTOREFILE)
 
 clean :
 	$(CLEAN_COMMAND)
 
-uninstall : 
-	adb uninstall $(PACKAGENAME)
+$(KEYSTOREFILE) : 
+	keytool -genkey -v -keystore $(KEYSTOREFILE) -alias standkey -keyalg RSA -keysize 2048 -validity 10000 -storepass $(STOREPASS) -keypass $(STOREPASS) -dname $(DNAME)
 
 AndroidManifest.xml :
 	PACKAGENAME=$(PACKAGENAME) \
@@ -79,14 +78,11 @@ AndroidManifest.xml :
 		LABEL=$(LABEL) envsubst '$$ANDROIDTARGET $$ANDROIDVERSION $$APPNAME $$PACKAGENAME $$LABEL' \
 		< AndroidManifest.xml.template > AndroidManifest.xml
 
-$(KEYSTOREFILE) : clean
-	keytool -genkey -v -keystore $(KEYSTOREFILE) -alias standkey -keyalg RSA -keysize 2048 -validity 10000 -storepass $(STOREPASS) -keypass $(STOREPASS) -dname $(DNAME)
-
 makecapk/lib/arm64-v8a/lib$(APPNAME).so : $(ANDROIDSRCS)
 	mkdir -p makecapk/lib/arm64-v8a
 	$(CC_ARM64) $(CFLAGS) $(CFLAGS_ARM64) -o $@ $(ANDROIDSRCS) -L$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/lib/aarch64-linux-android/$(ANDROIDVERSION) $(LDFLAGS)
 
-compile : $(TARGETS) $(KEYSTOREFILE) AndroidManifest.xml
+compile : clean $(KEYSTOREFILE) $(TARGETS) AndroidManifest.xml
 	mkdir -p makecapk/assets
 	cp -r Sources/assets/* makecapk/assets
 	$(BUILD_TOOLS)/aapt package -f -F temp.apk -I $(ANDROIDSDK)/platforms/android-$(ANDROIDVERSION)/android.jar -M AndroidManifest.xml -S Sources/res -A makecapk/assets -v --target-sdk-version $(ANDROIDTARGET)
@@ -96,8 +92,6 @@ compile : $(TARGETS) $(KEYSTOREFILE) AndroidManifest.xml
 	$(BUILD_TOOLS)/zipalign -v 4 makecapk.apk $(APKFILE)
 	$(BUILD_TOOLS)/apksigner sign --key-pass pass:$(STOREPASS) --ks-pass pass:$(STOREPASS) --ks $(KEYSTOREFILE) $(APKFILE)
 
-install : $(KEYSTOREFILE) compile
+install : compile
 	adb install -r $(APKFILE)
 	$(CLEAN_COMMAND)
-
-reinstall : uninstall install

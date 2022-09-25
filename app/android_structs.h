@@ -1,5 +1,6 @@
 #pragma once
 
+#include <native_activity.h>
 #include <android/configuration.h>
 
 enum {
