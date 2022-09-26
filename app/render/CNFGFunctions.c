@@ -260,8 +260,8 @@ fail:
   return -1;
 }
 
-void CNFGSetupBatchInternal() {
-  CNFGGetDimensions();
+void CNFGSetupBatchInternal(int android_width, int android_height) {
+  CNFGInternalResize(android_width, android_height);
 
   gRDShaderProg =
       CNFGGLInternalLoadShader("uniform vec4 xfrm;"

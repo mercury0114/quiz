@@ -5,8 +5,6 @@ typedef struct {
 } RDPoint; 
 
 
-void CNFGGetDimensions(void);
-
 //Note that some backends do not support alpha of any kind.
 //Some platforms also support alpha blending.  So, be sure to set alpha to 0xFF
 uint32_t CNFGColor( uint32_t RGBA );
@@ -25,7 +23,7 @@ uint32_t CNFGColor(uint32_t RGB);
 void CNFGSetLineWidth(short width);
 uint32_t CNFGGLInternalLoadShader(const char *vertex_shader,
                                   const char *fragment_shader);
-void CNFGSetupBatchInternal();
+void CNFGSetupBatchInternal(int android_width, int android_height);
 void CNFGInternalResize(short x, short y);
 void CNFGEmitBackendTriangles(const float *vertices, const uint32_t *colors,
                               int num_vertices);
