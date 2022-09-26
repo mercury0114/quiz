@@ -261,9 +261,7 @@ fail:
 }
 
 void CNFGSetupBatchInternal() {
-  short w, h;
-
-  CNFGGetDimensions(&w, &h);
+  CNFGGetDimensions();
 
   gRDShaderProg =
       CNFGGLInternalLoadShader("uniform vec4 xfrm;"

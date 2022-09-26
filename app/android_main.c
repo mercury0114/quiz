@@ -19,11 +19,6 @@
 #include "CNFGFunctions.h"
 #include "android_structs.h"
 
-#define tdMODELVIEW 0
-#define tdPROJECTION 1
-#define HMX 162
-#define HMY 162
-
 volatile int suspended;
 
 static short iLastInternalW, iLastInternalH;
@@ -51,8 +46,6 @@ struct android_app *gapp;
 static int OGLESStarted;
 static int android_width, android_height;
 
-
-
 float *gSMatrix;
 void CNFGSetupFullscreen(const char* WindowName, int screen_number);
 
@@ -76,14 +69,6 @@ static void display_image() {
     usleep(2000);
   }
 }
-
-typedef enum {
-  FBDEV_PIXMAP_DEFAULT = 0,
-  FBDEV_PIXMAP_SUPPORTS_UMP = (1 << 0),
-  FBDEV_PIXMAP_ALPHA_FORMAT_PRE = (1 << 1),
-  FBDEV_PIXMAP_COLORSPACE_sRGB = (1 << 2),
-  FBDEV_PIXMAP_EGL_MEMORY = (1 << 3) /* EGL allocates/frees this memory */
-} fbdev_pixmap_flags;
 
 static void AndroidMakeFullscreen() {
   const struct JNINativeInterface *env = 0;
@@ -166,11 +151,8 @@ static void AndroidMakeFullscreen() {
   jnii->DetachCurrentThread(jniiptr);
 }
 
-void CNFGGetDimensions(short *x, short *y) {
-  *x = android_width;
-  *y = android_height;
-  if (*x != iLastInternalW || *y != iLastInternalH)
-    CNFGInternalResize(iLastInternalW = *x, iLastInternalH = *y);
+void CNFGGetDimensions(void) {
+  CNFGInternalResize(android_width, android_height);
 }
 
 int CNFGSetup(const char *WindowName, int w, int h) {
@@ -257,23 +239,6 @@ void handle_cmd(struct android_app *app, int32_t cmd) {
     OGLESStarted = 1;
     suspended = 0;
   }
-}
-
-int __system_property_get(const char *name, char *value);
-
-
-jstring android_permission_name(const struct JNINativeInterface **envptr,
-                                const char *perm_name) {
-  // nested class permission in class android.Manifest,
-  // hence android 'slash' Manifest 'dollar' permission
-  const struct JNINativeInterface *env = *envptr;
-  jclass ClassManifestpermission =
-      env->FindClass(envptr, "android/Manifest$permission");
-  jfieldID lid_PERM = env->GetStaticFieldID(envptr, ClassManifestpermission,
-                                            perm_name, "Ljava/lang/String;");
-  jstring ls_PERM = (jstring)(
-      env->GetStaticObjectField(envptr, ClassManifestpermission, lid_PERM));
-  return ls_PERM;
 }
 
 void android_main(struct android_app *app) {

@@ -5,7 +5,7 @@ typedef struct {
 } RDPoint; 
 
 
-void CNFGGetDimensions(short* x, short* y);
+void CNFGGetDimensions(void);
 
 //Note that some backends do not support alpha of any kind.
 //Some platforms also support alpha blending.  So, be sure to set alpha to 0xFF
