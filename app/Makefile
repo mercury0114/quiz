@@ -36,11 +36,14 @@ endif
 
 ANDROIDSRCS := android_main.c
 ANDROIDSRCS += android_native_app_glue.c 
+ANDROIDSRCS += render/CNFGFunctions.c
+ANDROIDSRCS += render/CNFG3D.c
 
 CFLAGS := -ffunction-sections -Os -fdata-sections -Wall -fvisibility=hidden
 CFLAGS += -Os -DANDROID -DAPPNAME=\"$(APPNAME)\"
 CFLAGS += -DANDROID_FULLSCREEN
 CFLAGS += -I.
+CFLAGS += -I./render/
 CFLAGS += -I$(NDK)/sysroot/usr/include
 CFLAGS += -I$(NDK)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android
