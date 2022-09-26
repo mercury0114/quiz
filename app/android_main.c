@@ -54,10 +54,7 @@ static int android_width, android_height;
 
 
 float *gSMatrix;
-float gsMatricies[2][32][16];
-
 void CNFGSetupFullscreen(const char* WindowName, int screen_number);
-void AndroidSendToBack( int param );
 
 static void display_image() {
   CNFGSetupFullscreen("Test Bench", 0);
@@ -87,11 +84,6 @@ typedef enum {
   FBDEV_PIXMAP_COLORSPACE_sRGB = (1 << 2),
   FBDEV_PIXMAP_EGL_MEMORY = (1 << 3) /* EGL allocates/frees this memory */
 } fbdev_pixmap_flags;
-
-typedef struct fbdev_window {
-  unsigned short width;
-  unsigned short height;
-} fbdev_window;
 
 static void AndroidMakeFullscreen() {
   const struct JNINativeInterface *env = 0;
@@ -283,87 +275,6 @@ jstring android_permission_name(const struct JNINativeInterface **envptr,
       env->GetStaticObjectField(envptr, ClassManifestpermission, lid_PERM));
   return ls_PERM;
 }
-
-/**
- * \brief Tests whether a permission is granted.
- * \param[in] app a pointer to the android app.
- * \param[in] perm_name the name of the permission, e.g.,
- *   "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE".
- * \retval true if the permission is granted.
- * \retval false otherwise.
- * \note Requires Android API level 23 (Marshmallow, May 2015)
- */
-int AndroidHasPermissions(const char *perm_name) {
-  struct android_app *app = gapp;
-  const struct JNINativeInterface *env = 0;
-  const struct JNINativeInterface **envptr = &env;
-  const struct JNIInvokeInterface **jniiptr = app->activity->vm;
-  const struct JNIInvokeInterface *jnii = *jniiptr;
-
-  jnii->AttachCurrentThread(jniiptr, &envptr, NULL);
-  env = (*envptr);
-
-  int result = 0;
-  jstring ls_PERM = android_permission_name(envptr, perm_name);
-
-  jint PERMISSION_GRANTED = (-1);
-
-  {
-    jclass ClassPackageManager =
-        env->FindClass(envptr, "android/content/pm/PackageManager");
-    jfieldID lid_PERMISSION_GRANTED = env->GetStaticFieldID(
-        envptr, ClassPackageManager, "PERMISSION_GRANTED", "I");
-    PERMISSION_GRANTED = env->GetStaticIntField(envptr, ClassPackageManager,
-                                                lid_PERMISSION_GRANTED);
-  }
-  {
-    jobject activity = app->activity->clazz;
-    jclass ClassContext = env->FindClass(envptr, "android/content/Context");
-    jmethodID MethodcheckSelfPermission = env->GetMethodID(
-        envptr, ClassContext, "checkSelfPermission", "(Ljava/lang/String;)I");
-    jint int_result = env->CallIntMethod(envptr, activity,
-                                         MethodcheckSelfPermission, ls_PERM);
-    result = (int_result == PERMISSION_GRANTED);
-  }
-
-  jnii->DetachCurrentThread(jniiptr);
-
-  return result;
-}
-
-/**
- * \brief Query file permissions.
- * \details This opens the system dialog that lets the user
- *  grant (or deny) the permission.
- * \param[in] app a pointer to the android app.
- * \note Requires Android API level 23 (Marshmallow, May 2015)
- */
-void AndroidRequestAppPermissions(const char *perm) {
-  struct android_app *app = gapp;
-  const struct JNINativeInterface *env = 0;
-  const struct JNINativeInterface **envptr = &env;
-  const struct JNIInvokeInterface **jniiptr = app->activity->vm;
-  const struct JNIInvokeInterface *jnii = *jniiptr;
-  jnii->AttachCurrentThread(jniiptr, &envptr, NULL);
-  env = (*envptr);
-  jobject activity = app->activity->clazz;
-
-  jobjectArray perm_array =
-      env->NewObjectArray(envptr, 1, env->FindClass(envptr, "java/lang/String"),
-                          env->NewStringUTF(envptr, ""));
-  env->SetObjectArrayElement(envptr, perm_array, 0,
-                             android_permission_name(envptr, perm));
-  jclass ClassActivity = env->FindClass(envptr, "android/app/Activity");
-
-  jmethodID MethodrequestPermissions = env->GetMethodID(
-      envptr, ClassActivity, "requestPermissions", "([Ljava/lang/String;I)V");
-
-  // Last arg (0) is just for the callback (that I do not use)
-  env->CallVoidMethod(envptr, activity, MethodrequestPermissions, perm_array,
-                      0);
-  jnii->DetachCurrentThread(jniiptr);
-}
-
 
 void android_main(struct android_app *app) {
   printf("android_main\n");
