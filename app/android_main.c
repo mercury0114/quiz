@@ -21,18 +21,16 @@
 
 volatile int suspended;
 
-static short iLastInternalW, iLastInternalH;
-
 static EGLNativeWindowType native_window;
 
-static EGLint const config_attribute_list[] = {
+static int32_t const config_attribute_list[] = {
     EGL_RED_SIZE,    8,  EGL_GREEN_SIZE,      8,
     EGL_BLUE_SIZE,   8,  EGL_ALPHA_SIZE,      8,
     EGL_BUFFER_SIZE, 32, EGL_STENCIL_SIZE,    0,
     EGL_DEPTH_SIZE,  16, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
     EGL_NONE};
 
-static EGLint window_attribute_list[] = {EGL_NONE};
+static int32_t window_attribute_list[] = {EGL_NONE};
 
 static const EGLint context_attribute_list[] = {EGL_CONTEXT_CLIENT_VERSION, 2,
                                                 EGL_NONE};
@@ -40,13 +38,10 @@ static const EGLint context_attribute_list[] = {EGL_CONTEXT_CLIENT_VERSION, 2,
 static EGLDisplay egl_display;
 static EGLSurface egl_surface;
 
-static ASensorEventQueue *aeq;
-
 struct android_app *gapp;
 static int OGLESStarted;
 static int android_width, android_height;
 
-float *gSMatrix;
 void CNFGSetupFullscreen(const char* WindowName, int screen_number);
 
 static void display_image() {
@@ -156,9 +151,9 @@ void CNFGGetDimensions(void) {
 }
 
 int CNFGSetup(const char *WindowName, int w, int h) {
-  EGLint egl_major, egl_minor;
+  int32_t egl_major, egl_minor;
   EGLConfig config;
-  EGLint num_config;
+  int32_t num_config;
   EGLContext context;
 
   // This MUST be called before doing any initialization.
@@ -193,14 +188,8 @@ int CNFGSetup(const char *WindowName, int w, int h) {
     return -1;
   }
   printf("Context Created %p\n", context);
-
-  if (native_window && !gapp->window) {
-    printf("WARNING: App restarted without a window.  Cannot progress.\n");
-    exit(0);
-  }
-
+  
   printf("Getting Surface %p\n", native_window = gapp->window);
-
   if (!native_window) {
     printf("FAULT: Cannot get window\n");
     return -5;
