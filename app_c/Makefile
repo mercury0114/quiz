@@ -49,6 +49,8 @@ CFLAGS += -I$(NDK)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/android
 CFLAGS += -I$(NDK)/toolchains/llvm/prebuilt/$(OS_NAME)/sysroot/usr/include/GLES
 
+CFLAGS += -DPACKAGENAME='"$(PACKAGENAME)"'
+
 LDFLAGS := -Wl,--gc-sections -s -Wall -lm -lGLESv3 -lEGL -landroid -llog
 LDFLAGS += -shared -uANativeActivity_onCreate
 

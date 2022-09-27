@@ -1,13 +1,15 @@
+#include <EGL/egl.h>
+#include <GLES3/gl3.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <EGL/egl.h>
 
 #include "CNFGFunctions.h"
 #include "android_structs.h"
 
-static const char STORAGE_PATH[] = "/storage/emulated/0/Documents/vocabulary/";
+static const char STORAGE_PATH[] =
+    "/storage/emulated/0/Android/data/" PACKAGENAME "/vocabulary/";
 
 static const int32_t CONFIG_ATTRIBUTE_LIST[] = {
     EGL_RED_SIZE,    8,  EGL_GREEN_SIZE,      8,
@@ -17,7 +19,7 @@ static const int32_t CONFIG_ATTRIBUTE_LIST[] = {
     EGL_NONE};
 static const int32_t WINDOW_ATTRIBUTE_LIST[] = {EGL_NONE};
 static const int32_t CONTEXT_ATTRIBUTE_LIST[] = {EGL_CONTEXT_CLIENT_VERSION, 2,
-                                                EGL_NONE};
+                                                 EGL_NONE};
 
 volatile int suspended;
 
@@ -65,7 +67,7 @@ static int SetupScreen() {
     return -1;
   }
   printf("Context Created %p\n", context);
-  
+
   if (!gapp->window) {
     printf("FAULT: Cannot get window\n");
     return -5;
@@ -93,33 +95,36 @@ static int SetupScreen() {
   return 0;
 }
 
-static void draw_row(uint16_t row_number) {
-    for (int y = 0; y < 100; y++) {
-        for (int x = 0; x < android_width; x++) {
-            CNFGColor(0xffffffff);
-            CNFGTackPixel(x, row_number * 200 + y);
-            CNFGColor(0x00003200);
-            CNFGTackPixel(x, row_number * 200 + 100 + y);
-        }
-    }
+static void sleep_while_suspended(void) {
+  while (suspended) {
+    usleep(2000);
+  }
 }
 
-static void sleep_while_suspended(void) {
-    while (suspended) {
-        usleep(2000);
+static void draw_row(uint16_t row_number) {
+  if ((row_number + 1) * 200 >= android_height)
+    return;
+  for (int y = 0; y < 100; y++) {
+    for (int x = 0; x < android_width; x++) {
+      CNFGColor(0xffffffff);
+      CNFGTackPixel(x, row_number * 200 + y);
+      CNFGColor(0x00003200);
+      CNFGTackPixel(x, row_number * 200 + 100 + y);
     }
+  }
 }
 
 static void display_image() {
-  DIR* dir = opendir(STORAGE_PATH);
+  sleep_while_suspended();
+  DIR *dir = opendir(STORAGE_PATH);
   if (dir) {
-    struct dirent* file;
+    struct dirent *file;
     uint16_t count = 1;
-    CNFGClearFrame();
     while ((file = readdir(dir))) {
-        sleep_while_suspended();
+      if (file->d_type == DT_REG) {
         draw_row(count);
         count++;
+      }
     }
     closedir(dir);
   }
