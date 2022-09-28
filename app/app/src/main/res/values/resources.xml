@@ -1,0 +1,5 @@
+<!-- file needed -->
+<resources>
+    <style name="Theme.Vocabulary" parent="Theme.MaterialComponents.DayNight.DarkActionBar"/>
+    <string name="app_name">vocabulary</string>
+</resources>
