@@ -16,6 +16,10 @@ public class FilesReader {
         }
     }
 
+    public static final ImmutableList<String> GetFilesNames(String name) {
+        return GetFilesNames(new File(name));
+    }
+
     public static final ImmutableList<String> GetFilesNames(File folder) {
         if (!folder.isDirectory()) {
             throw new FileNotFolderException(folder.getName());

@@ -1,0 +1,1 @@
+Make app able to read files that are created not by the app itself
