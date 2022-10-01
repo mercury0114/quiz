@@ -4,8 +4,6 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import com.google.common.collect.ImmutableList;
 import java.io.File;
-import java.nio.file.Files;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FilesReader {
