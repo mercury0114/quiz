@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import android.widget.Button;
+
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.mainView);
         for (String fileName : GetFilesNames(PATH)) {
-            TextView t = new TextView(this);
-            t.setText(fileName);
-            dynamicHolder.addView(t);
+            Button button = new Button(this);
+            button.setText(fileName);
+            dynamicHolder.addView(button);
         }
     }
 }
