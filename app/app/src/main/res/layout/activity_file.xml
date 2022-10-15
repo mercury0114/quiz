@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="40dp"
-            android:textSize="25dp"/>
+            android:textSize="35dp"/>
         <Button
             android:id="@+id/reveal_answer_button_id"
             android:layout_width="match_parent"
