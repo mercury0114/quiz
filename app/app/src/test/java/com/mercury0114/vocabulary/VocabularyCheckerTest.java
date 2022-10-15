@@ -81,44 +81,44 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void updateList_pops1Adds2() throws IOException {
+  public void checkAnswer_pops1Adds2() throws IOException {
     String[] lines = {"question, answer"};
     writeLines(file, lines);
     VocabularyChecker checker = new VocabularyChecker(2);
     checker.prepareQuestions(file);
     assertEquals(checker.nextQuestion(), "question");
-    checker.updateList("answer");
+    checker.checkAnswer("answer");
     assertEquals(checker.questionsRemaining(), 1);
     assertEquals(checker.nextQuestion(), "question");
-    checker.updateList("wrong_answer");
+    checker.checkAnswer("wrong_answer");
     assertEquals(checker.questionsRemaining(), 3);
   }
 
   @Test
-  public void updateList_pops1() throws IOException {
+  public void checkAnswer_pops1() throws IOException {
     String[] lines = {"question, correct_answer"};
     writeLines(file, lines);
     VocabularyChecker checker = new VocabularyChecker(1);
     checker.prepareQuestions(file);
     assertEquals(checker.questionsRemaining(), 1);
     assertEquals(checker.nextQuestion(), "question");
-    checker.updateList("correct_answer");
+    checker.checkAnswer("correct_answer");
     assertEquals(checker.questionsRemaining(), 0);
   }
 
   @Test
-  public void updateList_adds1_pops1_pops1() throws IOException {
+  public void checkAnswer_adds1_pops1_pops1() throws IOException {
     String[] lines = {"question1, answer1"};
     writeLines(file, lines);
     VocabularyChecker checker = new VocabularyChecker(1);
     checker.prepareQuestions(file);
     checker.nextQuestion();
-    checker.updateList("wrong_answer");
+    checker.checkAnswer("wrong_answer");
     assertEquals(checker.questionsRemaining(), 2);
-    checker.updateList("answer1");
+    checker.checkAnswer("answer1");
     assertEquals(checker.questionsRemaining(), 1);
     checker.nextQuestion();
-    checker.updateList("answer1");
+    checker.checkAnswer("answer1");
     assertEquals(checker.questionsRemaining(), 0);
   }
 
@@ -138,22 +138,7 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void nextQuestion_choosesRandomlyAllQuestions() throws IOException {
-    String[] lines = {"0, answer0", "1, answer1"};
-    writeLines(file, lines);
-    boolean[] asked = {false, false};
-    VocabularyChecker checker = new VocabularyChecker(1);
-    checker.prepareQuestions(file);
-    int counter = 150;
-    while (!asked[0] || !asked[1]) {
-      int questionIndex = Integer.parseInt(checker.nextQuestion());
-      asked[questionIndex] = true;
-      assertNotEquals(counter--, 0);
-    }
-  }
-
-  @Test
-  public void updateList_popsCorrectQuestion() throws IOException {
+  public void checkAnswer_popsCorrectQuestion() throws IOException {
     String[] lines = {"0, answer0", "1, answer1"};
     writeLines(file, lines);
     int counter = 150;
@@ -162,11 +147,27 @@ public class VocabularyCheckerTest {
       checker.prepareQuestions(file);
       boolean[] asked = {false, false};
       int question_index = Integer.parseInt(checker.nextQuestion());
-      checker.updateList(String.format("answer%d", question_index));
+      checker.checkAnswer(String.format("answer%d", question_index));
       assertEquals(checker.questionsRemaining(), 1);
       counter--;
     }
   }
+
+  @Test
+  public void nextQuestion_sameQuestionAfterWrongAnswer() throws IOException {
+    String[] lines = {"0, answer0", "1, answer1"};
+    writeLines(file, lines);
+    for (int i = 0; i < 150; i++) {
+        VocabularyChecker checker = new VocabularyChecker(1);
+        checker.prepareQuestions(file);
+        int question_index = Integer.parseInt(checker.nextQuestion());
+        checker.checkAnswer("wrong_answer");
+        assertEquals(checker.questionsRemaining(), 3);
+        assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
+        assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
+    }
+  }
+
 
   private void assertQuestionAnswerEquals(QuestionAnswer qa, String question,
                                           String answer) {

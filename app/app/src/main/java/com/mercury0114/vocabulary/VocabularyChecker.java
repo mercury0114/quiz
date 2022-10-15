@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.max;
 
 import com.mercury0114.vocabulary.QuestionAnswer;
 import java.io.File;
@@ -18,17 +19,21 @@ public class VocabularyChecker {
   }
   public static class NoQuestionsException extends RuntimeException {}
 
+  private static int FACTOR = 2011;
+  private static int MODULUS = 7919;
+
   private final int penaltyFactor;
   private final ArrayList<QuestionAnswer> question_answer_list =
       new ArrayList();
   private int nextQuestionIndex;
+  private int seed;
 
   public VocabularyChecker(int penaltyFactor) {
     if (penaltyFactor <= 0) {
       throw new IllegalArgumentException();
     }
     this.penaltyFactor = penaltyFactor;
-    this.nextQuestionIndex = abs((int)System.currentTimeMillis());
+    this.seed = abs((int)System.currentTimeMillis()) % MODULUS;
   }
 
   public void prepareQuestions(File file) throws IOException {
@@ -44,7 +49,7 @@ public class VocabularyChecker {
         question_answer_list.add(question_answer);
       }
     }
-    nextQuestionIndex %= question_answer_list.size();
+    nextQuestionIndex = seed % question_answer_list.size();
   }
 
   public int questionsRemaining() { return question_answer_list.size(); }
@@ -53,15 +58,15 @@ public class VocabularyChecker {
     if (question_answer_list.size() == 0) {
       throw new NoQuestionsException();
     }
-    nextQuestionIndex =
-        (nextQuestionIndex * 7919 + 101) % (question_answer_list.size());
     return question_answer_list.get(nextQuestionIndex).question;
   }
 
-  public void updateList(String answer) {
+  public void checkAnswer(String answer) {
     QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
     if (answer.equals(questionAnswer.answer)) {
       question_answer_list.remove(nextQuestionIndex);
+      seed = (seed * FACTOR + 101) % MODULUS;
+      nextQuestionIndex = seed % max(1, question_answer_list.size());
     } else {
       for (int i = 0; i < penaltyFactor; i++) {
         question_answer_list.add(questionAnswer);
