@@ -60,6 +60,10 @@ public class FileActivity extends AppCompatActivity {
   private void updateQuestionsViews() {
     questionsRemainingView.setText(vocabularyChecker.questionsRemaining() +
                                    " questions remain:");
+    if (vocabularyChecker.questionsRemaining() == 0) {
+        finish();
+        return;
+    }
     questionView.setText(vocabularyChecker.nextQuestion());
   }
 }
