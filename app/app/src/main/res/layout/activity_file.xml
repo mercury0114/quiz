@@ -8,20 +8,26 @@
         <TextView
             android:id="@+id/questions_remaining_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="40dp"
+            android:textSize="25dp"/>
         <TextView 
             android:id="@+id/question_view_id"    
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="40dp"
+            android:textSize="25dp"/>
         <Button
-            android:id="@+id/submit_button_id"
+            android:id="@+id/reveal_answer_button_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Show Answer"/>
+            android:layout_marginBottom="8dp"
+            android:text="Reveal Answer"/>
         <EditText
             android:id="@+id/text_input_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:inputType="text"/>
     </LinearLayout>

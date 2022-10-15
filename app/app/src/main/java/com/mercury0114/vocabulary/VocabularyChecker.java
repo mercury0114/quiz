@@ -3,7 +3,6 @@ package com.mercury0114.vocabulary;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
-import com.mercury0114.vocabulary.QuestionAnswer;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
@@ -19,12 +18,12 @@ public class VocabularyChecker {
   }
   public static class NoQuestionsException extends RuntimeException {}
 
-  private static int FACTOR = 2011;
-  private static int MODULUS = 7919;
+  private static final int FACTOR = 2011;
+  private static final int MODULUS = 7919;
 
-  private final int penaltyFactor;
   private final ArrayList<QuestionAnswer> question_answer_list =
       new ArrayList();
+  private final int penaltyFactor;
   private int nextQuestionIndex;
   private int seed;
 
@@ -52,6 +51,16 @@ public class VocabularyChecker {
     nextQuestionIndex = seed % question_answer_list.size();
   }
 
+  public void checkAnswer(String answer) {
+    QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
+    if (answer.equals(questionAnswer.answer)) {
+      question_answer_list.remove(nextQuestionIndex);
+      updateSeedAndQuestionIndex();
+    } else {
+      updateQuestionAnswerList(1);
+    }
+  }
+
   public int questionsRemaining() { return question_answer_list.size(); }
 
   public String nextQuestion() throws NoQuestionsException {
@@ -61,16 +70,22 @@ public class VocabularyChecker {
     return question_answer_list.get(nextQuestionIndex).question;
   }
 
-  public void checkAnswer(String answer) {
+  public String revealAnswer() {
+    String answer = question_answer_list.get(nextQuestionIndex).answer;
+    updateQuestionAnswerList(penaltyFactor);
+    updateSeedAndQuestionIndex();
+    return answer;
+  }
+
+  private void updateQuestionAnswerList(int penaltyFactor) {
     QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
-    if (answer.equals(questionAnswer.answer)) {
-      question_answer_list.remove(nextQuestionIndex);
+    for (int i = 0; i < penaltyFactor; i++) {
+      question_answer_list.add(questionAnswer);
+    }
+  }
+
+  private void updateSeedAndQuestionIndex() {
       seed = (seed * FACTOR + 101) % MODULUS;
       nextQuestionIndex = seed % max(1, question_answer_list.size());
-    } else {
-      for (int i = 0; i < penaltyFactor; i++) {
-        question_answer_list.add(questionAnswer);
-      }
-    }
   }
 }

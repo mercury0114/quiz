@@ -33,9 +33,12 @@ public class FileActivity extends AppCompatActivity {
     questionView = (TextView)findViewById(R.id.question_view_id);
     updateQuestionsViews();
 
-    final Button button = findViewById(R.id.submit_button_id);
-    button.setOnClickListener(new OnClickListener() {
-      public void onClick(View view) {}
+    final Button revealAnswerButton = findViewById(R.id.reveal_answer_button_id);
+    revealAnswerButton.setOnClickListener(new OnClickListener() {
+      public void onClick(View view) {
+        revealAnswerButton.setText("Answer was: " + vocabularyChecker.revealAnswer());
+        updateQuestionsViews();
+      }
     });
     final EditText editText = (EditText)findViewById(R.id.text_input_id);
     editText.setOnKeyListener(new OnKeyListener() {
@@ -44,6 +47,7 @@ public class FileActivity extends AppCompatActivity {
         if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
             (keyCode == KeyEvent.KEYCODE_ENTER)) {
           vocabularyChecker.checkAnswer(editText.getText().toString());
+          revealAnswerButton.setText("Reveal Answer");
           editText.getText().clear();
           updateQuestionsViews();
           return true;
@@ -55,7 +59,7 @@ public class FileActivity extends AppCompatActivity {
 
   private void updateQuestionsViews() {
     questionsRemainingView.setText(vocabularyChecker.questionsRemaining() +
-                                   " questions");
+                                   " questions remain:");
     questionView.setText(vocabularyChecker.nextQuestion());
   }
 }

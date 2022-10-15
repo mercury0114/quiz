@@ -3,10 +3,8 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.VocabularyChecker.EmptyFileException;
 import static com.mercury0114.vocabulary.VocabularyChecker.NoQuestionsException;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,19 +44,15 @@ public class VocabularyCheckerTest {
   @Test
   public void prepareQuestions_twoLines_penaltyFactor3_6Questions()
       throws IOException {
-    VocabularyChecker checker = new VocabularyChecker(3);
     String[] lines = {"question1, answer1", "question2, answer2"};
-    writeLines(file, lines);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
     assertEquals(checker.questionsRemaining(), 6);
   }
 
   @Test
   public void nextQuestion_asksQuestionFooInList() throws IOException {
     String[] lines = {"question_foo, answer_foo"};
-    writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(1);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     String question = checker.nextQuestion();
     assertEquals(question, "question_foo");
   }
@@ -66,9 +60,7 @@ public class VocabularyCheckerTest {
   @Test
   public void nextQuestion_asksQuestionBarInList() throws IOException {
     String[] lines = {"question_bar, answer_bar"};
-    writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(1);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     String question = checker.nextQuestion();
     assertEquals(question, "question_bar");
   }
@@ -81,25 +73,21 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void checkAnswer_pops1Adds2() throws IOException {
+  public void checkAnswer_pops1Adds1() throws IOException {
     String[] lines = {"question, answer"};
-    writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(2);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("answer");
     assertEquals(checker.questionsRemaining(), 1);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("wrong_answer");
-    assertEquals(checker.questionsRemaining(), 3);
+    assertEquals(checker.questionsRemaining(), 2);
   }
 
   @Test
   public void checkAnswer_pops1() throws IOException {
     String[] lines = {"question, correct_answer"};
-    writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(1);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     assertEquals(checker.questionsRemaining(), 1);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("correct_answer");
@@ -109,9 +97,7 @@ public class VocabularyCheckerTest {
   @Test
   public void checkAnswer_adds1_pops1_pops1() throws IOException {
     String[] lines = {"question1, answer1"};
-    writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(1);
-    checker.prepareQuestions(file);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     checker.nextQuestion();
     checker.checkAnswer("wrong_answer");
     assertEquals(checker.questionsRemaining(), 2);
@@ -158,16 +144,63 @@ public class VocabularyCheckerTest {
     String[] lines = {"0, answer0", "1, answer1"};
     writeLines(file, lines);
     for (int i = 0; i < 150; i++) {
-        VocabularyChecker checker = new VocabularyChecker(1);
-        checker.prepareQuestions(file);
-        int question_index = Integer.parseInt(checker.nextQuestion());
-        checker.checkAnswer("wrong_answer");
-        assertEquals(checker.questionsRemaining(), 3);
-        assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
-        assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
+      VocabularyChecker checker = new VocabularyChecker(1);
+      checker.prepareQuestions(file);
+      int question_index = Integer.parseInt(checker.nextQuestion());
+      checker.checkAnswer("wrong_answer");
+      assertEquals(checker.questionsRemaining(), 3);
+      assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
+      assertEquals(Integer.parseInt(checker.nextQuestion()), question_index);
     }
   }
 
+  @Test
+  public void revealAnswer_returnsAnswer() throws IOException {
+    String[] lines = {"question, answer"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
+    assertEquals(checker.revealAnswer(), "answer");
+  }
+
+  @Test
+  public void revealAnswer_returnsAnswer2() throws IOException {
+    String[] lines = {"question, answer2"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
+    assertEquals(checker.revealAnswer(), "answer2");
+  }
+
+  @Test
+  public void revealAnswer_addsPenalty1() throws IOException {
+    String[] lines = {"question, answer"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
+    assertEquals(checker.questionsRemaining(), 1);
+    checker.revealAnswer();
+    assertEquals(checker.questionsRemaining(), 2);
+  }
+
+  @Test
+  public void revealAnswer_addsPenalty2() throws IOException {
+    String[] lines = {"question, answer"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
+    assertEquals(checker.questionsRemaining(), 2);
+    checker.revealAnswer();
+    assertEquals(checker.questionsRemaining(), 4);
+  }
+
+  @Test
+  public void revealAnswer_movesToNextQuestion() throws IOException {
+    String[] lines = {"0, answer0", "1, answer1"};
+    int counter = 150;
+    while (counter > 0) {
+        VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
+        assertEquals(checker.questionsRemaining(), 2);
+        int index = Integer.parseInt(checker.nextQuestion());
+        checker.revealAnswer();
+        if (Integer.parseInt(checker.nextQuestion()) != index) {
+            return;
+        }
+        counter--;
+    }
+  }
 
   private void assertQuestionAnswerEquals(QuestionAnswer qa, String question,
                                           String answer) {
@@ -181,5 +214,14 @@ public class VocabularyCheckerTest {
       linesList.add(line);
     }
     Files.write(Paths.get(file.getPath()), linesList, StandardCharsets.UTF_8);
+  }
+
+  private VocabularyChecker prepareVocabularyChecker(String[] lines,
+                                                     int penaltyFactor)
+      throws IOException {
+    writeLines(file, lines);
+    VocabularyChecker checker = new VocabularyChecker(penaltyFactor);
+    checker.prepareQuestions(file);
+    return checker;
   }
 }
