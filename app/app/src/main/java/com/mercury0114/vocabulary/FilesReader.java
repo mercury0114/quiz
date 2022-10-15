@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class FilesReader {
   public static final String VOCABULARY_PATH =
-      "/storage/emulated/0/Documents/com.mercury0114.vocabulary/vocabulary/";
+      "/storage/emulated/0/Download/com.mercury0114.vocabulary/vocabulary/";
 
   public static class FileNotFolderException extends RuntimeException {
     private FileNotFolderException(String filePath) { super(filePath); }
@@ -19,7 +19,6 @@ public class FilesReader {
   }
 
   public static final ImmutableList<String> GetFilesNames(File folder) {
-    System.out.println("HERE");
     if (!folder.isDirectory()) {
       throw new FileNotFolderException(folder.getName());
     }

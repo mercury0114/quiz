@@ -5,6 +5,7 @@ import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.main_view_id);
     for (String fileName : GetFilesNames(VOCABULARY_PATH)) {
       Button button = createFileButton(fileName);
-      button.setText(fileName);
       dynamicHolder.addView(button);
     }
   }
