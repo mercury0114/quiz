@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     new File(VOCABULARY_PATH).mkdirs();
     setContentView(R.layout.activity_main);
-    LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.mainView);
+    LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.main_view_id);
     for (String fileName : GetFilesNames(VOCABULARY_PATH)) {
       Button button = createFileButton(fileName);
       button.setText(fileName);

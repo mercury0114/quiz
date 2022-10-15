@@ -1,3 +1,5 @@
+Create a script to auto import Java dependencies
+
 Make app able to read files that are created not by the app itself
 
 Add scroll down option in the main activity
