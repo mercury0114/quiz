@@ -8,11 +8,7 @@ public class QuestionAnswer {
     RIGHT,
   }
 
-  enum AnswerStatus {
-    CORRECT,
-    CLOSE,
-    WRONG
-  }
+  enum AnswerStatus { CORRECT, CLOSE, WRONG }
 
   final String question;
   final String answer;
@@ -24,10 +20,10 @@ public class QuestionAnswer {
 
   public AnswerStatus getAnswerStatus(String answer) {
     if (answer.equals(this.answer)) {
-        return AnswerStatus.CORRECT;
+      return AnswerStatus.CORRECT;
     }
     if (StringUtils.getLevenshteinDistance(answer, this.answer) <= 2) {
-        return AnswerStatus.CLOSE;
+      return AnswerStatus.CLOSE;
     }
     return AnswerStatus.WRONG;
   }

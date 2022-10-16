@@ -1,6 +1,5 @@
 package com.mercury0114.vocabulary;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;

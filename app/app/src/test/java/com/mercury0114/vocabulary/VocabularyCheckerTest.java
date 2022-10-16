@@ -3,13 +3,11 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.VocabularyChecker.EmptyFileException;
 import static com.mercury0114.vocabulary.VocabularyChecker.NoQuestionsException;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
 
-import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
+import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
