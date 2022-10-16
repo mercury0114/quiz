@@ -36,8 +36,7 @@ public class FileActivity extends AppCompatActivity {
         (TextView)findViewById(R.id.questions_remaining_id);
     questionView = (TextView)findViewById(R.id.question_view_id);
     statusView = (TextView)findViewById(R.id.status_view_id);
-    statusView.setTextColor(Color.RED);
-    updateQuestionsViews("");
+    updateQuestionsViews("Type answer in the space above");
 
     final Button revealAnswerButton =
         findViewById(R.id.reveal_answer_button_id);
