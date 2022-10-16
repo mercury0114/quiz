@@ -4,6 +4,7 @@ import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
+import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
@@ -22,7 +23,7 @@ public class VocabularyChecker {
   private static final int FACTOR = 2011;
   private static final int MODULUS = 7919;
 
-  private final ArrayList<QuestionAnswer> question_answer_list =
+  private final ArrayList<QuestionAnswer> questionAnswerList =
       new ArrayList();
   private final int penaltyFactor;
   private int nextQuestionIndex;
@@ -46,52 +47,66 @@ public class VocabularyChecker {
     }
     for (String line : lines) {
       String[] words = line.split(", ");
-      QuestionAnswer question_answer = new QuestionAnswer(words[0], words[1]);
+      QuestionAnswer questionAnswer;
+      switch(column) {
+        case LEFT:
+            questionAnswer = new QuestionAnswer(words[0], words[1]);
+            break;
+        case RIGHT:
+            questionAnswer = new QuestionAnswer(words[1], words[0]);
+            break;
+        default:
+            throw new RuntimeException("Wrong Column enum value");
+      }
       for (int i = 0; i < penaltyFactor; i++) {
-        question_answer_list.add(question_answer);
+        questionAnswerList.add(questionAnswer);
       }
     }
-    nextQuestionIndex = seed % question_answer_list.size();
+    nextQuestionIndex = seed % questionAnswerList.size();
   }
 
-  public void checkAnswer(String answer) {
-    QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
-    String correctAnswer =
-        column == Column.LEFT ? questionAnswer.answer : questionAnswer.question;
-    if (answer.equals(correctAnswer)) {
-      question_answer_list.remove(nextQuestionIndex);
-      updateSeedAndQuestionIndex();
-    } else {
-      updateQuestionAnswerList(1);
+  public AnswerStatus checkAnswer(String answer) {
+    QuestionAnswer questionAnswer = questionAnswerList.get(nextQuestionIndex);
+    AnswerStatus answerStatus = questionAnswer.getAnswerStatus(answer);
+    switch (answerStatus) {
+      case CORRECT:
+        questionAnswerList.remove(nextQuestionIndex);
+        updateSeedAndQuestionIndex();
+        break;
+      case CLOSE:
+        break;
+      case WRONG:
+        updateQuestionAnswerList(1);
+        break;
     }
+    return answerStatus;
   }
 
-  public int questionsRemaining() { return question_answer_list.size(); }
+  public int questionsRemaining() { return questionAnswerList.size(); }
 
   public String nextQuestion() throws NoQuestionsException {
-    if (question_answer_list.size() == 0) {
+    if (questionAnswerList.size() == 0) {
       throw new NoQuestionsException();
     }
-    QuestionAnswer qa = question_answer_list.get(nextQuestionIndex);
-    return column == Column.LEFT ? qa.question : qa.answer;
+    return questionAnswerList.get(nextQuestionIndex).question;
   }
 
   public String revealAnswer() {
-    QuestionAnswer qa = question_answer_list.get(nextQuestionIndex);
+    QuestionAnswer qa = questionAnswerList.get(nextQuestionIndex);
     updateQuestionAnswerList(penaltyFactor);
     updateSeedAndQuestionIndex();
-    return column == Column.LEFT ? qa.answer : qa.question;
+    return qa.answer;
   }
 
   private void updateQuestionAnswerList(int penaltyFactor) {
-    QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
+    QuestionAnswer questionAnswer = questionAnswerList.get(nextQuestionIndex);
     for (int i = 0; i < penaltyFactor; i++) {
-      question_answer_list.add(questionAnswer);
+      questionAnswerList.add(questionAnswer);
     }
   }
 
   private void updateSeedAndQuestionIndex() {
     seed = (seed * FACTOR + 101) % MODULUS;
-    nextQuestionIndex = seed % max(1, question_answer_list.size());
+    nextQuestionIndex = seed % max(1, questionAnswerList.size());
   }
 }

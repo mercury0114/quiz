@@ -3,10 +3,13 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.VocabularyChecker.EmptyFileException;
 import static com.mercury0114.vocabulary.VocabularyChecker.NoQuestionsException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
+import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
@@ -71,6 +74,22 @@ public class VocabularyCheckerTest {
       throws NoQuestionsException {
     VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
     assertThrows(NoQuestionsException.class, () -> checker.nextQuestion());
+  }
+
+  @Test
+  public void checkAnswer_rightAnswer_returnsCorrect() throws IOException {
+    String[] lines = {"question, answer"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
+    assertEquals(checker.nextQuestion(), "question");
+    assertEquals(checker.checkAnswer("answer"), AnswerStatus.CORRECT);
+  }
+
+  @Test
+  public void checkAnswer_wrongAnswer_returnsWrong() throws IOException {
+    String[] lines = {"question, answer"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
+    assertEquals(checker.nextQuestion(), "question");
+    assertEquals(checker.checkAnswer("wrong_answer"), AnswerStatus.WRONG);
   }
 
   @Test
