@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
 
+import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
@@ -30,7 +31,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void prepareQuestions_emptyFile_throwsException() throws IOException {
-    VocabularyChecker checker = new VocabularyChecker(2);
+    VocabularyChecker checker = new VocabularyChecker(2, Column.LEFT);
     assertThrows(EmptyFileException.class,
                  () -> checker.prepareQuestions(file));
   }
@@ -38,7 +39,7 @@ public class VocabularyCheckerTest {
   @Test
   public void constructor_penaltyFactor0_throwsIllegalArgumentException() {
     assertThrows(IllegalArgumentException.class,
-                 () -> new VocabularyChecker(0));
+                 () -> new VocabularyChecker(0, Column.LEFT));
   }
 
   @Test
@@ -68,7 +69,7 @@ public class VocabularyCheckerTest {
   @Test
   public void nextQuestion_noQuestions_throwsException()
       throws NoQuestionsException {
-    VocabularyChecker checker = new VocabularyChecker(1);
+    VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
     assertThrows(NoQuestionsException.class, () -> checker.nextQuestion());
   }
 
@@ -115,7 +116,7 @@ public class VocabularyCheckerTest {
     boolean[] asked = {false, false};
     int counter = 150;
     while (!asked[0] || !asked[1]) {
-      VocabularyChecker checker = new VocabularyChecker(1);
+      VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
       checker.prepareQuestions(file);
       int questionIndex = Integer.parseInt(checker.nextQuestion());
       asked[questionIndex] = true;
@@ -129,7 +130,7 @@ public class VocabularyCheckerTest {
     writeLines(file, lines);
     int counter = 150;
     while (counter > 0) {
-      VocabularyChecker checker = new VocabularyChecker(1);
+      VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
       checker.prepareQuestions(file);
       boolean[] asked = {false, false};
       int question_index = Integer.parseInt(checker.nextQuestion());
@@ -140,11 +141,23 @@ public class VocabularyCheckerTest {
   }
 
   @Test
+  public void checkAnswer_worksInAlwaysRightMode() throws IOException {
+    String[] lines = {"answer, question"};
+    VocabularyChecker checker =
+        prepareVocabularyChecker(lines, 1, Column.RIGHT);
+    assertEquals(checker.nextQuestion(), "question");
+    checker.checkAnswer("question");
+    assertEquals(checker.questionsRemaining(), 2);
+    checker.checkAnswer("answer");
+    assertEquals(checker.questionsRemaining(), 1);
+  }
+
+  @Test
   public void nextQuestion_sameQuestionAfterWrongAnswer() throws IOException {
     String[] lines = {"0, answer0", "1, answer1"};
     writeLines(file, lines);
     for (int i = 0; i < 150; i++) {
-      VocabularyChecker checker = new VocabularyChecker(1);
+      VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
       checker.prepareQuestions(file);
       int question_index = Integer.parseInt(checker.nextQuestion());
       checker.checkAnswer("wrong_answer");
@@ -191,15 +204,25 @@ public class VocabularyCheckerTest {
     String[] lines = {"0, answer0", "1, answer1"};
     int counter = 150;
     while (counter > 0) {
-        VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
-        assertEquals(checker.questionsRemaining(), 2);
-        int index = Integer.parseInt(checker.nextQuestion());
-        checker.revealAnswer();
-        if (Integer.parseInt(checker.nextQuestion()) != index) {
-            return;
-        }
-        counter--;
+      VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
+      assertEquals(checker.questionsRemaining(), 2);
+      int index = Integer.parseInt(checker.nextQuestion());
+      checker.revealAnswer();
+      if (Integer.parseInt(checker.nextQuestion()) != index) {
+        return;
+      }
+      counter--;
     }
+  }
+
+  @Test
+  public void vocabularyChecker_askQuestionsFromAnotherColumn()
+      throws IOException {
+    String[] lines = {"left_column, right_column"};
+    VocabularyChecker checker =
+        prepareVocabularyChecker(lines, 1, Column.RIGHT);
+    assertEquals(checker.nextQuestion(), "right_column");
+    assertEquals(checker.revealAnswer(), "left_column");
   }
 
   private void assertQuestionAnswerEquals(QuestionAnswer qa, String question,
@@ -219,8 +242,14 @@ public class VocabularyCheckerTest {
   private VocabularyChecker prepareVocabularyChecker(String[] lines,
                                                      int penaltyFactor)
       throws IOException {
+    return prepareVocabularyChecker(lines, penaltyFactor, Column.LEFT);
+  }
+
+  private VocabularyChecker
+  prepareVocabularyChecker(String[] lines, int penaltyFactor, Column column)
+      throws IOException {
     writeLines(file, lines);
-    VocabularyChecker checker = new VocabularyChecker(penaltyFactor);
+    VocabularyChecker checker = new VocabularyChecker(penaltyFactor, column);
     checker.prepareQuestions(file);
     return checker;
   }

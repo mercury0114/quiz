@@ -1,6 +1,11 @@
 package com.mercury0114.vocabulary;
 
 public class QuestionAnswer {
+  enum Column {
+    LEFT,
+    RIGHT,
+  }
+
   final String question;
   final String answer;
 

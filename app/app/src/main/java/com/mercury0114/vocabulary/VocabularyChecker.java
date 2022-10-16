@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
+import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
@@ -26,13 +27,15 @@ public class VocabularyChecker {
   private final int penaltyFactor;
   private int nextQuestionIndex;
   private int seed;
+  private Column column;
 
-  public VocabularyChecker(int penaltyFactor) {
+  public VocabularyChecker(int penaltyFactor, Column column) {
     if (penaltyFactor <= 0) {
       throw new IllegalArgumentException();
     }
     this.penaltyFactor = penaltyFactor;
     this.seed = abs((int)System.currentTimeMillis()) % MODULUS;
+    this.column = column;
   }
 
   public void prepareQuestions(File file) throws IOException {
@@ -53,7 +56,9 @@ public class VocabularyChecker {
 
   public void checkAnswer(String answer) {
     QuestionAnswer questionAnswer = question_answer_list.get(nextQuestionIndex);
-    if (answer.equals(questionAnswer.answer)) {
+    String correctAnswer =
+        column == Column.LEFT ? questionAnswer.answer : questionAnswer.question;
+    if (answer.equals(correctAnswer)) {
       question_answer_list.remove(nextQuestionIndex);
       updateSeedAndQuestionIndex();
     } else {
@@ -67,14 +72,15 @@ public class VocabularyChecker {
     if (question_answer_list.size() == 0) {
       throw new NoQuestionsException();
     }
-    return question_answer_list.get(nextQuestionIndex).question;
+    QuestionAnswer qa = question_answer_list.get(nextQuestionIndex);
+    return column == Column.LEFT ? qa.question : qa.answer;
   }
 
   public String revealAnswer() {
-    String answer = question_answer_list.get(nextQuestionIndex).answer;
+    QuestionAnswer qa = question_answer_list.get(nextQuestionIndex);
     updateQuestionAnswerList(penaltyFactor);
     updateSeedAndQuestionIndex();
-    return answer;
+    return column == Column.LEFT ? qa.answer : qa.question;
   }
 
   private void updateQuestionAnswerList(int penaltyFactor) {
@@ -85,7 +91,7 @@ public class VocabularyChecker {
   }
 
   private void updateSeedAndQuestionIndex() {
-      seed = (seed * FACTOR + 101) % MODULUS;
-      nextQuestionIndex = seed % max(1, question_answer_list.size());
+    seed = (seed * FACTOR + 101) % MODULUS;
+    nextQuestionIndex = seed % max(1, question_answer_list.size());
   }
 }
