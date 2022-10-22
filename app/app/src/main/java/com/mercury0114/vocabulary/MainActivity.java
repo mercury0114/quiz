@@ -10,7 +10,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.mercury0114.vocabulary.FileActivity;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 
@@ -19,23 +18,22 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     new File(VOCABULARY_PATH).mkdirs();
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.main_layout);
     LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.main_view_id);
     for (String fileName : GetFilesNames(VOCABULARY_PATH)) {
-      dynamicHolder.addView(createFileButton(fileName, Column.LEFT));
-      dynamicHolder.addView(createFileButton(fileName, Column.RIGHT));
+      dynamicHolder.addView(createFileButton(fileName));
     }
   }
 
-  private Button createFileButton(String fileName, Column column) {
+  private Button createFileButton(String fileName) {
     Button button = new Button(this);
-    button.setText(fileName + "\n ask from " + column.name() + " column");
+    button.setText(fileName);
     button.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this, FileActivity.class);
+        Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
+        intent.putExtra("FILE_NAME", fileName);
         intent.putExtra("FILE_PATH", VOCABULARY_PATH + fileName);
-        intent.putExtra("COLUMN", column.name());
         startActivity(intent);
       }
     });

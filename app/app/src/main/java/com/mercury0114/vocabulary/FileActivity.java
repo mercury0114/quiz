@@ -23,7 +23,7 @@ public class FileActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_file);
+    setContentView(R.layout.file_layout);
     String filePath = getIntent().getStringExtra("FILE_PATH");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     vocabularyChecker = new VocabularyChecker(2, column);
