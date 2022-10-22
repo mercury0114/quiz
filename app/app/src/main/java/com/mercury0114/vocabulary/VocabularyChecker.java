@@ -1,18 +1,15 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.FilesReader.readFileContent;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
-import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
+import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class VocabularyChecker {
   public static class EmptyFileException extends RuntimeException {
@@ -23,8 +20,7 @@ public class VocabularyChecker {
   private static final int FACTOR = 2011;
   private static final int MODULUS = 7919;
 
-  private final ArrayList<QuestionAnswer> questionAnswerList =
-      new ArrayList();
+  private final ArrayList<QuestionAnswer> questionAnswerList = new ArrayList();
   private final int penaltyFactor;
   private int nextQuestionIndex;
   private int seed;
@@ -40,23 +36,18 @@ public class VocabularyChecker {
   }
 
   public void prepareQuestions(File file) throws IOException {
-    List<String> lines =
-        Files.readAllLines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
-    if (lines.size() == 0) {
-      throw new EmptyFileException(file.getPath());
-    }
-    for (String line : lines) {
+    for (String line : readFileContent(file)) {
       String[] words = line.split(", ");
       QuestionAnswer questionAnswer;
-      switch(column) {
-        case LEFT:
-            questionAnswer = new QuestionAnswer(words[0], words[1]);
-            break;
-        case RIGHT:
-            questionAnswer = new QuestionAnswer(words[1], words[0]);
-            break;
-        default:
-            throw new RuntimeException("Wrong Column enum value");
+      switch (column) {
+      case LEFT:
+        questionAnswer = new QuestionAnswer(words[0], words[1]);
+        break;
+      case RIGHT:
+        questionAnswer = new QuestionAnswer(words[1], words[0]);
+        break;
+      default:
+        throw new RuntimeException("Wrong Column enum value");
       }
       for (int i = 0; i < penaltyFactor; i++) {
         questionAnswerList.add(questionAnswer);
@@ -69,15 +60,15 @@ public class VocabularyChecker {
     QuestionAnswer questionAnswer = questionAnswerList.get(nextQuestionIndex);
     AnswerStatus answerStatus = questionAnswer.getAnswerStatus(answer);
     switch (answerStatus) {
-      case CORRECT:
-        questionAnswerList.remove(nextQuestionIndex);
-        updateSeedAndQuestionIndex();
-        break;
-      case CLOSE:
-        break;
-      case WRONG:
-        updateQuestionAnswerList(1);
-        break;
+    case CORRECT:
+      questionAnswerList.remove(nextQuestionIndex);
+      updateSeedAndQuestionIndex();
+      break;
+    case CLOSE:
+      break;
+    case WRONG:
+      updateQuestionAnswerList(1);
+      break;
     }
     return answerStatus;
   }

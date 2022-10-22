@@ -6,11 +6,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/file_name_text_id"
+            android:id="@+id/file_name_text_view_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="File Name"/>
+            android:textSize="25dp"/>
         <Button
             android:id="@+id/left_column_button_id"
             android:layout_width="match_parent"

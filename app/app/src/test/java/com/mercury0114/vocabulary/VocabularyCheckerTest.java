@@ -1,6 +1,5 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.VocabularyChecker.EmptyFileException;
 import static com.mercury0114.vocabulary.VocabularyChecker.NoQuestionsException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -28,13 +27,6 @@ public class VocabularyCheckerTest {
   @Before
   public void setUp() throws IOException {
     file = temporaryFolder.newFile("file.txt");
-  }
-
-  @Test
-  public void prepareQuestions_emptyFile_throwsException() throws IOException {
-    VocabularyChecker checker = new VocabularyChecker(2, Column.LEFT);
-    assertThrows(EmptyFileException.class,
-                 () -> checker.prepareQuestions(file));
   }
 
   @Test

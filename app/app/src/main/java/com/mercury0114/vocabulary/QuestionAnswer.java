@@ -3,6 +3,10 @@ package com.mercury0114.vocabulary;
 import org.apache.commons.lang3.StringUtils;
 
 public class QuestionAnswer {
+  public static class WronglyFormattedLineException extends RuntimeException {
+    private WronglyFormattedLineException(String line) { super(line); }
+  }
+
   enum Column {
     LEFT,
     RIGHT,
@@ -16,6 +20,15 @@ public class QuestionAnswer {
   public QuestionAnswer(String question, String answer) {
     this.question = question;
     this.answer = answer;
+  }
+
+  public QuestionAnswer(String line) {
+    String[] words = line.split(", ");
+    if (words.length != 2) {
+        throw new WronglyFormattedLineException(line);
+    }
+    question = words[0];
+    answer = words[1];
   }
 
   public AnswerStatus getAnswerStatus(String answer) {

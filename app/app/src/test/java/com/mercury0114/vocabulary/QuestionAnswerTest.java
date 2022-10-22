@@ -1,6 +1,8 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import com.mercury0114.vocabulary.QuestionAnswer;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
@@ -66,5 +68,38 @@ public class QuestionAnswerTest {
   public void answerStatus_emptyAnswer_returnsWrongStatus() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertEquals(qa.getAnswerStatus(""), AnswerStatus.WRONG);
+  }
+
+  @Test
+  public void constructor_noSpace_throwsException() {
+    assertThrows(WronglyFormattedLineException.class,
+                 () -> new QuestionAnswer("question,answer"));
+  }
+
+  @Test
+  public void constructor_noComma_throwsException() {
+    assertThrows(WronglyFormattedLineException.class,
+                 () -> new QuestionAnswer("question answer"));
+  }
+
+  @Test
+  public void constructor_severalCommas_throwsException() {
+    assertThrows(WronglyFormattedLineException.class,
+                 () -> new QuestionAnswer("question, answer, more"));
+  }
+
+  @Test
+  public void constructor_correctLine_constructsRightQuestionAnswer() {
+    QuestionAnswer qa = new QuestionAnswer("question, answer");
+    assertEquals(qa.question, "question");
+    assertEquals(qa.answer, "answer");
+  }
+
+  @Test
+  public void constructor_phrase_constructsPhrase() {
+    QuestionAnswer qa =
+        new QuestionAnswer("multiple words question, multiple words answer");
+    assertEquals(qa.question, "multiple words question");
+    assertEquals(qa.answer, "multiple words answer");
   }
 }

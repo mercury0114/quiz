@@ -41,9 +41,8 @@ public class FileActivity extends AppCompatActivity {
         findViewById(R.id.reveal_answer_button_id);
     revealAnswerButton.setOnClickListener(new OnClickListener() {
       public void onClick(View view) {
-        updateTextViews(String.format("%s: %s",
-            questionView.getText(),
-            vocabularyChecker.revealAnswer()));
+        updateTextViews(String.format("%s: %s", questionView.getText(),
+                                      vocabularyChecker.revealAnswer()));
       }
     });
     final EditText editText = (EditText)findViewById(R.id.text_input_id);

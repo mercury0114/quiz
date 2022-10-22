@@ -10,7 +10,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {

@@ -4,6 +4,11 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import com.google.common.collect.ImmutableList;
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class FilesReader {
@@ -12,6 +17,9 @@ public class FilesReader {
 
   public static class FileNotFolderException extends RuntimeException {
     private FileNotFolderException(String filePath) { super(filePath); }
+  }
+  public static class EmptyFileException extends RuntimeException {
+    private EmptyFileException(String filePath) { super(filePath); }
   }
 
   public static final ImmutableList<String> GetFilesNames(String name) {
@@ -25,5 +33,14 @@ public class FilesReader {
     return Stream.of(folder.listFiles())
         .map(File::getName)
         .collect(toImmutableList());
+  }
+
+  public static List<String> readFileContent(File file) throws IOException {
+    List<String> lines =
+        Files.readAllLines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
+    if (lines.isEmpty()) {
+      throw new EmptyFileException(file.getPath());
+    }
+    return lines;
   }
 }
