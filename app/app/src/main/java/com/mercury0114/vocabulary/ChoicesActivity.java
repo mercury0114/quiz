@@ -28,7 +28,12 @@ public class ChoicesActivity extends AppCompatActivity {
         createColumnButtonListener(Column.RIGHT));
     final Button viewContentButton = findViewById(R.id.view_content_button_id);
     viewContentButton.setOnClickListener(new OnClickListener() {
-      public void onClick(View view) { viewContentButton.setText(filePath); }
+      public void onClick(View view) {
+        Intent intent = new Intent(ChoicesActivity.this, ContentActivity.class);
+        intent.putExtra("FILE_PATH", filePath);
+        intent.putExtra("FILE_NAME", fileName);
+        startActivity(intent);
+      }
     });
   }
 
