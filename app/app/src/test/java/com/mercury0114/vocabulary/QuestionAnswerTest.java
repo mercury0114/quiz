@@ -55,4 +55,16 @@ public class QuestionAnswerTest {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertEquals(qa.getAnswerStatus("ANSwer"), AnswerStatus.WRONG);
   }
+
+  @Test
+  public void answerStatus_correctAnswerIgnoringSpace_returnsCorrectStatus() {
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertEquals(qa.getAnswerStatus("answer "), AnswerStatus.CORRECT);
+  }
+
+  @Test
+  public void answerStatus_emptyAnswer_returnsWrongStatus() {
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertEquals(qa.getAnswerStatus(""), AnswerStatus.WRONG);
+  }
 }

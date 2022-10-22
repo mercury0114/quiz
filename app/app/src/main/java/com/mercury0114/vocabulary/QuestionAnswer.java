@@ -19,10 +19,17 @@ public class QuestionAnswer {
   }
 
   public AnswerStatus getAnswerStatus(String answer) {
-    if (answer.equals(this.answer)) {
-      return AnswerStatus.CORRECT;
+    if (answer.isEmpty()) {
+        return AnswerStatus.WRONG;
     }
-    if (StringUtils.getLevenshteinDistance(answer, this.answer) <= 2) {
+    int distance = StringUtils.getLevenshteinDistance(answer, this.answer);
+    if (answer.charAt(answer.length() - 1) == ' ') {
+        distance--;
+    }
+    if (distance == 0) {
+        return AnswerStatus.CORRECT;
+    }
+    if (distance <= 2) { 
       return AnswerStatus.CLOSE;
     }
     return AnswerStatus.WRONG;
