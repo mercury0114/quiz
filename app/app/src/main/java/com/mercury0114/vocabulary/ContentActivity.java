@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
 import java.io.IOException;
@@ -23,52 +22,25 @@ import java.util.List;
 public class ContentActivity extends AppCompatActivity {
   private static final int MAX_LINES = 50;
 
-  private final ArrayList<EditText> editTextViews = new ArrayList();
+  private final ArrayList<EditText> contentTextViews = new ArrayList();
 
-  private EditText editNameText;
   private String fileName;
-  private TextView questionsRemainingView;
-  private TextView questionView;
-  private TextView statusView;
-  private VocabularyChecker vocabularyChecker;
+  private EditText editFileNameText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_layout);
     fileName = getIntent().getStringExtra("FILE_NAME");
-    editNameText = (EditText)findViewById(R.id.edit_name_text_id);
-    editNameText.setText(fileName);
-    List<String> lines;
-    try {
-      lines = readFileContent(new File(VOCABULARY_PATH + fileName));
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
-    LinearLayout linearLayout =
-        (LinearLayout)findViewById(R.id.content_view_id);
-    for (String line : lines) {
-      EditText editText = createEditView(line);
-      linearLayout.addView(editText);
-      editTextViews.add(editText);
-    }
-    for (int i = 0; i < MAX_LINES - lines.size(); i++) {
-      EditText editText = createEditView("");
-      linearLayout.addView(editText);
-      editTextViews.add(editText);
-    }
+    editFileNameText = (EditText)findViewById(R.id.edit_file_name_text_id);
+    editFileNameText.setText(fileName);
+    configureContentTextViews();
   }
 
   @Override
   protected void onStop() {
-    ArrayList<String> lines = new ArrayList();
-    for (EditText editText : editTextViews) {
-      String line = editText.getText().toString();
-      if (!line.isEmpty()) {
-        lines.add(editText.getText().toString());
-      }
-    }
-    String newName = editNameText.getText().toString();
+    ArrayList<String> lines = getNonEmptyLines();
+    String newName = editFileNameText.getText().toString();
     try {
       Files.write(Paths.get(VOCABULARY_PATH + fileName), lines,
                   StandardCharsets.UTF_8);
@@ -84,6 +56,38 @@ public class ContentActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
       }
+    }
+  }
+
+  private ArrayList<String> getNonEmptyLines() {
+    ArrayList<String> lines = new ArrayList();
+    for (EditText editText : contentTextViews) {
+      String line = editText.getText().toString();
+      if (!line.isEmpty()) {
+        lines.add(editText.getText().toString());
+      }
+    }
+    return lines;
+  }
+
+  private void configureContentTextViews() {
+    List<String> lines;
+    try {
+      lines = readFileContent(new File(VOCABULARY_PATH + fileName));
+    } catch (IOException exception) {
+      throw new RuntimeException(exception);
+    }
+    LinearLayout linearLayout =
+        (LinearLayout)findViewById(R.id.content_view_id);
+    for (String line : lines) {
+      EditText editText = createEditView(line);
+      linearLayout.addView(editText);
+      contentTextViews.add(editText);
+    }
+    for (int i = 0; i < MAX_LINES - lines.size(); i++) {
+      EditText editText = createEditView("");
+      linearLayout.addView(editText);
+      contentTextViews.add(editText);
     }
   }
 

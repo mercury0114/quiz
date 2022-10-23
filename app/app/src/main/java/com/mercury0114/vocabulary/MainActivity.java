@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
   @Override
@@ -24,12 +30,36 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
     setContentView(R.layout.main_layout);
     LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.main_view_id);
+    configureNewFileButton();
     for (String fileName : GetFilesNames(VOCABULARY_PATH)) {
-      dynamicHolder.addView(createFileButton(fileName));
+      dynamicHolder.addView(createExistingFileButton(fileName));
     }
   }
 
-  private Button createFileButton(String fileName) {
+  private void configureNewFileButton() {
+    Button button = findViewById(R.id.new_file_button_id);
+    button.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        String newFileName = "enter_file_name";
+        Path newFilePath = Paths.get(VOCABULARY_PATH + newFileName);
+        try {
+          Files.createFile(newFilePath);
+          ArrayList<String> exampleList = new ArrayList();
+          exampleList.add("enter_question_1, enter_answer_1");
+          exampleList.add("enter_question_2, enter_answer_2");
+          Files.write(newFilePath, exampleList, StandardCharsets.UTF_8);
+        } catch (IOException exception) {
+          throw new RuntimeException(exception);
+        }
+        Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+        intent.putExtra("FILE_NAME", newFileName);
+        startActivity(intent);
+      }
+    });
+  }
+
+  private Button createExistingFileButton(String fileName) {
     Button button = new Button(this);
     button.setText(fileName);
     button.setOnClickListener(new OnClickListener() {
