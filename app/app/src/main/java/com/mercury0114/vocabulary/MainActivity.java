@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         String newFileName = "enter_file_name";
         Path newFilePath = Paths.get(VOCABULARY_PATH + newFileName);
+        if (Files.exists(newFilePath)) {
+            button.setText("enter_file_name exists");
+            return;
+        }
         try {
           Files.createFile(newFilePath);
           ArrayList<String> exampleList = new ArrayList();
