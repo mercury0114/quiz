@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 import static com.mercury0114.vocabulary.FilesReader.readFileContent;
 
 import android.os.Bundle;
@@ -20,23 +21,26 @@ import java.util.List;
 
 public class ContentActivity extends AppCompatActivity {
   private static final int MAX_LINES = 50;
-  
+
   private final ArrayList<EditText> editTextViews = new ArrayList();
-  
+
+  private String fileName;
+
   private TextView questionsRemainingView;
   private TextView questionView;
   private TextView statusView;
   private VocabularyChecker vocabularyChecker;
-  private String filePath;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_layout);
-    filePath = getIntent().getStringExtra("FILE_PATH");
+    fileName = getIntent().getStringExtra("FILE_NAME");
+    EditText editNameText = (EditText)findViewById(R.id.edit_name_text_id);
+    editNameText.setText(fileName);
     List<String> lines;
     try {
-      lines = readFileContent(new File(filePath));
+      lines = readFileContent(new File(VOCABULARY_PATH + fileName));
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
@@ -48,9 +52,9 @@ public class ContentActivity extends AppCompatActivity {
       editTextViews.add(editText);
     }
     for (int i = 0; i < MAX_LINES - lines.size(); i++) {
-        EditText editText = createEditView("");
-        linearLayout.addView(editText);
-        editTextViews.add(editText);
+      EditText editText = createEditView("");
+      linearLayout.addView(editText);
+      editTextViews.add(editText);
     }
   }
 
@@ -64,7 +68,8 @@ public class ContentActivity extends AppCompatActivity {
       }
     }
     try {
-      Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
+      Files.write(Paths.get(VOCABULARY_PATH + fileName), lines,
+                  StandardCharsets.UTF_8);
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     } finally {

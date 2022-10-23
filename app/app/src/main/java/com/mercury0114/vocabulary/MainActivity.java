@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
         intent.putExtra("FILE_NAME", fileName);
-        intent.putExtra("FILE_PATH", VOCABULARY_PATH + fileName);
         startActivity(intent);
       }
     });

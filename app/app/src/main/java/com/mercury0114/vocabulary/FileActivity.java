@@ -14,6 +14,8 @@ import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
 
+import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
+
 public class FileActivity extends AppCompatActivity {
   private TextView questionsRemainingView;
   private TextView questionView;
@@ -24,11 +26,11 @@ public class FileActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.file_layout);
-    String filePath = getIntent().getStringExtra("FILE_PATH");
+    String fileName = getIntent().getStringExtra("FILE_NAME");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     vocabularyChecker = new VocabularyChecker(2, column);
     try {
-      vocabularyChecker.prepareQuestions(new File(filePath));
+      vocabularyChecker.prepareQuestions(new File(VOCABULARY_PATH + fileName));
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }

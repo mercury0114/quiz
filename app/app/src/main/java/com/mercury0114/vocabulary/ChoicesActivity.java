@@ -10,14 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 
 public class ChoicesActivity extends AppCompatActivity {
-  String filePath;
+  String fileName;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choices_layout);
-    filePath = getIntent().getStringExtra("FILE_PATH");
-    String fileName = getIntent().getStringExtra("FILE_NAME");
+    fileName = getIntent().getStringExtra("FILE_NAME");
     TextView textView = (TextView)findViewById(R.id.file_name_text_view_id);
     textView.setText(fileName);
     final Button leftColumnButton = findViewById(R.id.left_column_button_id);
@@ -30,7 +29,6 @@ public class ChoicesActivity extends AppCompatActivity {
     viewContentButton.setOnClickListener(new OnClickListener() {
       public void onClick(View view) {
         Intent intent = new Intent(ChoicesActivity.this, ContentActivity.class);
-        intent.putExtra("FILE_PATH", filePath);
         intent.putExtra("FILE_NAME", fileName);
         startActivity(intent);
       }
@@ -41,7 +39,7 @@ public class ChoicesActivity extends AppCompatActivity {
     return new OnClickListener() {
       public void onClick(View view) {
         Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
-        intent.putExtra("FILE_PATH", filePath);
+        intent.putExtra("FILE_NAME", fileName);
         intent.putExtra("COLUMN", column.name());
         startActivity(intent);
       }
