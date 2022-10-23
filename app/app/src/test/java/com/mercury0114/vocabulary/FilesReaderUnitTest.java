@@ -22,24 +22,37 @@ public class FilesReaderUnitTest {
   @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   @Test
-  public void test1() throws IOException {
+  public void getFilesNames_emptyFolder_returnsEmptyList() throws IOException {
     File emptyFolder = temporaryFolder.newFolder("empty_folder");
     assertEquals(GetFilesNames(emptyFolder).size(), 0);
   }
 
   @Test
-  public void test2() throws IOException {
+  public void getFilesNames_oneFile_returnsOneName() throws IOException {
     File oneFileFolder = temporaryFolder.newFolder("one_file_folder");
     File file = temporaryFolder.newFile("one_file_folder/file.txt");
     assertEquals(GetFilesNames(oneFileFolder).size(), 1);
   }
 
   @Test
-  public void test3() throws IOException {
+  public void getFilesNames_notFolder_throwsException() throws IOException {
     File file = temporaryFolder.newFile("file.txt");
     FileNotFolderException exception =
         assertThrows(FileNotFolderException.class, () -> GetFilesNames(file));
     assertEquals("file.txt", exception.getMessage());
+  }
+
+  @Test
+  public void getFilesNames_returnsSortedList() throws IOException {
+    File folder = temporaryFolder.newFolder("folder");
+    temporaryFolder.newFile("folder/b");
+    temporaryFolder.newFile("folder/c");
+    temporaryFolder.newFile("folder/a");
+    List<String> names = GetFilesNames(folder);
+    assertEquals(names.size(), 3);
+    assertEquals(names.get(0), "a");
+    assertEquals(names.get(1), "b");
+    assertEquals(names.get(2), "c");
   }
 
   @Test

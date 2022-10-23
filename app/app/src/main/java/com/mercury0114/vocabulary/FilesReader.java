@@ -31,7 +31,7 @@ public class FilesReader {
       throw new FileNotFolderException(folder.getName());
     }
     return Stream.of(folder.listFiles())
-        .map(File::getName)
+        .map(File::getName).sorted()
         .collect(toImmutableList());
   }
 
