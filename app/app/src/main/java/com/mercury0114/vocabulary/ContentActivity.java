@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 import static com.mercury0114.vocabulary.FilesReader.readFileContent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -24,8 +25,8 @@ public class ContentActivity extends AppCompatActivity {
 
   private final ArrayList<EditText> editTextViews = new ArrayList();
 
+  private EditText editNameText;
   private String fileName;
-
   private TextView questionsRemainingView;
   private TextView questionView;
   private TextView statusView;
@@ -36,7 +37,7 @@ public class ContentActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_layout);
     fileName = getIntent().getStringExtra("FILE_NAME");
-    EditText editNameText = (EditText)findViewById(R.id.edit_name_text_id);
+    editNameText = (EditText)findViewById(R.id.edit_name_text_id);
     editNameText.setText(fileName);
     List<String> lines;
     try {
@@ -67,13 +68,22 @@ public class ContentActivity extends AppCompatActivity {
         lines.add(editText.getText().toString());
       }
     }
+    String newName = editNameText.getText().toString();
     try {
       Files.write(Paths.get(VOCABULARY_PATH + fileName), lines,
                   StandardCharsets.UTF_8);
+      File oldFile = new File(VOCABULARY_PATH + fileName);
+      File newFile = new File(VOCABULARY_PATH + newName);
+      Files.move(oldFile.toPath(), newFile.toPath());
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     } finally {
       super.onStop();
+      if (!newName.equals(fileName)) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+      }
     }
   }
 

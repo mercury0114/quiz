@@ -17,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     new File(VOCABULARY_PATH).mkdirs();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
     setContentView(R.layout.main_layout);
     LinearLayout dynamicHolder = (LinearLayout)findViewById(R.id.main_view_id);
     for (String fileName : GetFilesNames(VOCABULARY_PATH)) {
