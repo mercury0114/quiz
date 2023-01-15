@@ -62,7 +62,7 @@ public class VocabularyChecker {
     switch (answerStatus) {
     case CORRECT:
       questionAnswerList.remove(nextQuestionIndex);
-      updateSeedAndQuestionIndex();
+      updateSeedAndQuestionIndex(questionAnswer);
       break;
     case CLOSE:
       break;
@@ -85,7 +85,7 @@ public class VocabularyChecker {
   public String revealAnswer() {
     QuestionAnswer qa = questionAnswerList.get(nextQuestionIndex);
     updateQuestionAnswerList(penaltyFactor);
-    updateSeedAndQuestionIndex();
+    updateSeedAndQuestionIndex(qa);
     return qa.answer;
   }
 
@@ -96,8 +96,14 @@ public class VocabularyChecker {
     }
   }
 
-  private void updateSeedAndQuestionIndex() {
+  private void updateSeedAndQuestionIndex(QuestionAnswer previous) {
     seed = (seed * FACTOR + 101) % MODULUS;
     nextQuestionIndex = seed % max(1, questionAnswerList.size());
+    for (int i = 0; i < questionAnswerList.size(); i++) {
+      if (!questionAnswerList.get(nextQuestionIndex).same(previous)) {
+	return;
+      }
+      nextQuestionIndex = (nextQuestionIndex + 1) % questionAnswerList.size();
+    }
   }
 }

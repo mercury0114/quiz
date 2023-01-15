@@ -47,4 +47,9 @@ public class QuestionAnswer {
     }
     return AnswerStatus.WRONG;
   }
+
+  public boolean same(QuestionAnswer questionAnswer) {
+    return this.question.equals(questionAnswer.question) && 
+	   this.answer.equals(questionAnswer.answer);
+  }
 }

@@ -2,7 +2,9 @@ package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import com.mercury0114.vocabulary.QuestionAnswer;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
@@ -101,5 +103,23 @@ public class QuestionAnswerTest {
         new QuestionAnswer("multiple words question, multiple words answer");
     assertEquals(qa.question, "multiple words question");
     assertEquals(qa.answer, "multiple words answer");
+  }
+
+  @Test
+  public void same_returnsTrueOnSameQuestionAnswer() {
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertTrue(qa.same(new QuestionAnswer("question", "answer")));
+  }
+
+  @Test
+  public void same_returnsFalseOnDifferentQuestion() {
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertFalse(qa.same(new QuestionAnswer("question2", "answer")));
+  }
+
+  @Test
+  public void same_returnsFalseOnDifferentAnswer() { 
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertFalse(qa.same(new QuestionAnswer("question", "answer2")));
   }
 }

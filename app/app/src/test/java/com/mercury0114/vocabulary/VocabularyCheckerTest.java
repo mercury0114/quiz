@@ -67,6 +67,17 @@ public class VocabularyCheckerTest {
   }
 
   @Test
+  public void nextQuestion_asksDifferentQuestion() throws IOException {
+    String[] lines = {"0, 0", "1, 1"};
+    for (int i = 0; i < 200; i++) {
+      VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
+      String question = checker.nextQuestion();
+      assertEquals(checker.checkAnswer(question), AnswerStatus.CORRECT);
+      assertNotEquals(checker.nextQuestion(), question);
+    }
+  }
+
+  @Test
   public void checkAnswer_rightAnswer_returnsCorrect() throws IOException {
     String[] lines = {"question, answer"};
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
