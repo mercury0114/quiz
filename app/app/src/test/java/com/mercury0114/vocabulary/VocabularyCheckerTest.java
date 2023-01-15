@@ -245,6 +245,17 @@ public class VocabularyCheckerTest {
     assertEquals(checker.revealAnswer(), "left_column");
   }
 
+  @Test
+  public void vocabularyChecker_askQuestionsFromBothColumns() throws IOException {
+    String[] lines = {"0, 1"};
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.BOTH);
+    assertEquals(checker.questionsRemaining(), 2);
+    int question = Integer.parseInt(checker.nextQuestion());
+    String answer = new Integer((question + 1) % 2).toString();
+    assertEquals(checker.checkAnswer(answer), AnswerStatus.CORRECT);
+    assertEquals(checker.nextQuestion(), answer);
+  }
+
   private void assertQuestionAnswerEquals(QuestionAnswer qa, String question,
                                           String answer) {
     assertEquals(qa.question, question);

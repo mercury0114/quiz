@@ -38,19 +38,23 @@ public class VocabularyChecker {
   public void prepareQuestions(File file) throws IOException {
     for (String line : readFileContent(file)) {
       String[] words = line.split(", ");
-      QuestionAnswer questionAnswer;
-      switch (column) {
-      case LEFT:
-        questionAnswer = new QuestionAnswer(words[0], words[1]);
-        break;
-      case RIGHT:
-        questionAnswer = new QuestionAnswer(words[1], words[0]);
-        break;
-      default:
-        throw new RuntimeException("Wrong Column enum value");
-      }
+      QuestionAnswer left = new QuestionAnswer(words[0], words[1]);
+      QuestionAnswer right = new QuestionAnswer(words[1], words[0]);
       for (int i = 0; i < penaltyFactor; i++) {
-        questionAnswerList.add(questionAnswer);
+        switch (column) {
+	  case LEFT:
+            questionAnswerList.add(left);
+	    break;
+	  case RIGHT:
+	    questionAnswerList.add(right);
+	    break;
+	  case BOTH:
+	    questionAnswerList.add(left);
+	    questionAnswerList.add(right);
+	    break;
+          default:
+            throw new RuntimeException("Wrong Column enum value");
+	}
       }
     }
     nextQuestionIndex = seed % questionAnswerList.size();

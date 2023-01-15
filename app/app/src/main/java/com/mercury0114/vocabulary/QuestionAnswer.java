@@ -10,6 +10,7 @@ public class QuestionAnswer {
   enum Column {
     LEFT,
     RIGHT,
+    BOTH,
   }
 
   enum AnswerStatus { CORRECT, CLOSE, WRONG }

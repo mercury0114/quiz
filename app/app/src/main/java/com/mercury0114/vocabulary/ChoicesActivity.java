@@ -33,7 +33,11 @@ public class ChoicesActivity extends AppCompatActivity {
     final Button rightColumnButton = findViewById(R.id.right_column_button_id);
     rightColumnButton.setOnClickListener(
         createColumnButtonListener(Column.RIGHT));
-    
+ 
+    final Button bothColumnsButton = findViewById(R.id.both_columns_button_id);
+    bothColumnsButton.setOnClickListener(
+        createColumnButtonListener(Column.BOTH));
+
     final Button viewContentButton = findViewById(R.id.view_content_button_id);
     viewContentButton.setOnClickListener(new OnClickListener() {
       public void onClick(View view) {
