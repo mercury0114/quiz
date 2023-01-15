@@ -24,16 +24,16 @@ public class ContentActivity extends AppCompatActivity {
 
   private final ArrayList<EditText> contentTextViews = new ArrayList();
 
-  private String fileName;
+  private String filePath;
   private EditText editFileNameText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_layout);
-    fileName = getIntent().getStringExtra("FILE_NAME");
+    filePath = getIntent().getStringExtra("PATH");
     editFileNameText = (EditText)findViewById(R.id.edit_file_name_text_id);
-    editFileNameText.setText(fileName);
+    editFileNameText.setText(new File(filePath).getName());
     configureContentTextViews();
   }
 
@@ -42,16 +42,15 @@ public class ContentActivity extends AppCompatActivity {
     ArrayList<String> lines = getNonEmptyLines();
     String newName = editFileNameText.getText().toString();
     try {
-      Files.write(Paths.get(VOCABULARY_PATH + fileName), lines,
-                  StandardCharsets.UTF_8);
-      File oldFile = new File(VOCABULARY_PATH + fileName);
-      File newFile = new File(VOCABULARY_PATH + newName);
+      Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
+      File oldFile = new File(filePath);
+      File newFile = new File(new File(filePath).getParent() + "/" + newName);
       Files.move(oldFile.toPath(), newFile.toPath());
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     } finally {
       super.onStop();
-      if (!newName.equals(fileName)) {
+      if (!newName.equals(new File(filePath).getName())) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -73,7 +72,7 @@ public class ContentActivity extends AppCompatActivity {
   private void configureContentTextViews() {
     List<String> lines;
     try {
-      lines = readFileContent(new File(VOCABULARY_PATH + fileName));
+      lines = readFileContent(new File(filePath));
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }

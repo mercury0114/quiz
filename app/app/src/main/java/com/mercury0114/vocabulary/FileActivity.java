@@ -26,11 +26,11 @@ public class FileActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.file_layout);
-    String fileName = getIntent().getStringExtra("FILE_NAME");
+    String filePath = getIntent().getStringExtra("PATH");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     vocabularyChecker = new VocabularyChecker(2, column);
     try {
-      vocabularyChecker.prepareQuestions(new File(VOCABULARY_PATH + fileName));
+      vocabularyChecker.prepareQuestions(new File(filePath));
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }

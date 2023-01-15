@@ -16,15 +16,15 @@ import android.app.AlertDialog;
 import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 
 public class ChoicesActivity extends AppCompatActivity {
-  String fileName;
+  String filePath;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choices_layout);
-    fileName = getIntent().getStringExtra("FILE_NAME");
+    filePath = getIntent().getStringExtra("PATH");
     TextView textView = (TextView)findViewById(R.id.file_name_text_view_id);
-    textView.setText(fileName);
+    textView.setText(new File(filePath).getName());
     
     final Button leftColumnButton = findViewById(R.id.left_column_button_id);
     leftColumnButton.setOnClickListener(
@@ -42,7 +42,7 @@ public class ChoicesActivity extends AppCompatActivity {
     viewContentButton.setOnClickListener(new OnClickListener() {
       public void onClick(View view) {
         Intent intent = new Intent(ChoicesActivity.this, ContentActivity.class);
-        intent.putExtra("FILE_NAME", fileName);
+        intent.putExtra("PATH", filePath);
         startActivity(intent);
       }
     });
@@ -58,7 +58,7 @@ public class ChoicesActivity extends AppCompatActivity {
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    new File(VOCABULARY_PATH + fileName).delete();
+                    new File(filePath).delete();
                     finish();
                 }
             });
@@ -72,7 +72,7 @@ public class ChoicesActivity extends AppCompatActivity {
     return new OnClickListener() {
       public void onClick(View view) {
         Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
-        intent.putExtra("FILE_NAME", fileName);
+	intent.putExtra("PATH", filePath);
         intent.putExtra("COLUMN", column.name());
         startActivity(intent);
       }
