@@ -4,7 +4,7 @@
 #include <string.h> // strcmp
 
 #define BEGIN_TESTING int main(int argc, char ** argv) {
-#define TEST(NAME) if (run_test(NAME, argc, argv))
+#define TEST(test_name) if (run_test(test_name, argc, argv))
 #define END_TESTING return 0; }
 
 bool run_test(const char* test_name, int argc, char **argv) {
