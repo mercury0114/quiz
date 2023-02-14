@@ -1,8 +1,7 @@
 #pragma once
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
+#include <stdbool.h> // bool
+#include <string.h> // strcmp
 
 #define BEGIN_TESTING int main(int argc, char ** argv) {
 #define TEST(NAME) if (run_test(NAME, argc, argv))
