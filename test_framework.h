@@ -1,11 +1,9 @@
 #pragma once
 
-#include <stdbool.h> // bool
+#include <stdbool.h> // bool, false, true
 #include <string.h> // strcmp
 
-#define BEGIN_TESTING int main(int argc, char ** argv) {
 #define TEST(test_name) if (run_test(test_name, argc, argv))
-#define END_TESTING return 0; }
 
 bool run_test(const char* test_name, int argc, char **argv) {
 	if (argc == 1) {
@@ -23,15 +21,15 @@ bool run_test(const char* test_name, int argc, char **argv) {
 /*
 #include test_framework.h
 
-BEGIN_TESTING
+int main(int argc, char ** argv) {
+    TEST("PassingTest") {
+	    assert(1 == 1);
+    }
 
-TEST("PassingTest") {
-	assert(1 == 1);
+    TEST("FailingTest") {
+	    assert(1 == 2);
+    }
+
+    return 0;
 }
-
-TEST("FailingTest") {
-	assert(1 == 2);
-}
-
-END_TESTING
 */
