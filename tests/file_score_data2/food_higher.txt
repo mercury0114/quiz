@@ -1,2 +1,0 @@
-potato, ziemniak, 9, 9
-beer, piwo, 9, 9

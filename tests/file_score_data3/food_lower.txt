@@ -1,5 +1,0 @@
-potato, ziemniak, 9, 9
-beer, piwo, 2, 2
-milk, mleko, 2, 2
-egg, jajko, 2, 2
-fish, ryba, 7, 7
