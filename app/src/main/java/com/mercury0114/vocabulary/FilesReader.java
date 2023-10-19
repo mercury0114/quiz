@@ -16,10 +16,15 @@ public class FilesReader {
       "/storage/emulated/0/Download/com.mercury0114.vocabulary/vocabulary/";
 
   public static class FileNotFolderException extends RuntimeException {
-    private FileNotFolderException(String filePath) { super(filePath); }
+    private FileNotFolderException(String filePath) {
+      super(filePath);
+    }
   }
+
   public static class EmptyFileException extends RuntimeException {
-    private EmptyFileException(String filePath) { super(filePath); }
+    private EmptyFileException(String filePath) {
+      super(filePath);
+    }
   }
 
   public static final ImmutableList<String> GetFilesNames(String name) {
@@ -30,14 +35,11 @@ public class FilesReader {
     if (!folder.isDirectory()) {
       throw new FileNotFolderException(folder.getName());
     }
-    return Stream.of(folder.listFiles())
-        .map(File::getName).sorted()
-        .collect(toImmutableList());
+    return Stream.of(folder.listFiles()).map(File::getName).sorted().collect(toImmutableList());
   }
 
   public static List<String> readFileContent(File file) throws IOException {
-    List<String> lines =
-        Files.readAllLines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
+    List<String> lines = Files.readAllLines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
     if (lines.isEmpty()) {
       throw new EmptyFileException(file.getPath());
     }

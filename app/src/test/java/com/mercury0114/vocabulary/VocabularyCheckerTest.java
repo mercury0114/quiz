@@ -9,7 +9,6 @@ import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
-import java.lang.IllegalArgumentException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,13 +30,11 @@ public class VocabularyCheckerTest {
 
   @Test
   public void constructor_penaltyFactor0_throwsIllegalArgumentException() {
-    assertThrows(IllegalArgumentException.class,
-                 () -> new VocabularyChecker(0, Column.LEFT));
+    assertThrows(IllegalArgumentException.class, () -> new VocabularyChecker(0, Column.LEFT));
   }
 
   @Test
-  public void prepareQuestions_twoLines_penaltyFactor3_6Questions()
-      throws IOException {
+  public void prepareQuestions_twoLines_penaltyFactor3_6Questions() throws IOException {
     String[] lines = {"question1, answer1", "question2, answer2"};
     VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
     assertEquals(checker.questionsRemaining(), 6);
@@ -60,8 +57,7 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void nextQuestion_noQuestions_throwsException()
-      throws NoQuestionsException {
+  public void nextQuestion_noQuestions_throwsException() throws NoQuestionsException {
     VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
     assertThrows(NoQuestionsException.class, () -> checker.nextQuestion());
   }
@@ -163,8 +159,7 @@ public class VocabularyCheckerTest {
   @Test
   public void checkAnswer_worksInAlwaysRightMode() throws IOException {
     String[] lines = {"answer, question"};
-    VocabularyChecker checker =
-        prepareVocabularyChecker(lines, 1, Column.RIGHT);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.RIGHT);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("question");
     assertEquals(checker.questionsRemaining(), 2);
@@ -236,11 +231,9 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void vocabularyChecker_askQuestionsFromAnotherColumn()
-      throws IOException {
+  public void vocabularyChecker_askQuestionsFromAnotherColumn() throws IOException {
     String[] lines = {"left_column, right_column"};
-    VocabularyChecker checker =
-        prepareVocabularyChecker(lines, 1, Column.RIGHT);
+    VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.RIGHT);
     assertEquals(checker.nextQuestion(), "right_column");
     assertEquals(checker.revealAnswer(), "left_column");
   }
@@ -256,8 +249,7 @@ public class VocabularyCheckerTest {
     assertEquals(checker.nextQuestion(), answer);
   }
 
-  private void assertQuestionAnswerEquals(QuestionAnswer qa, String question,
-                                          String answer) {
+  private void assertQuestionAnswerEquals(QuestionAnswer qa, String question, String answer) {
     assertEquals(qa.question, question);
     assertEquals(qa.answer, answer);
   }
@@ -270,15 +262,13 @@ public class VocabularyCheckerTest {
     Files.write(Paths.get(file.getPath()), linesList, StandardCharsets.UTF_8);
   }
 
-  private VocabularyChecker prepareVocabularyChecker(String[] lines,
-                                                     int penaltyFactor)
+  private VocabularyChecker prepareVocabularyChecker(String[] lines, int penaltyFactor)
       throws IOException {
     return prepareVocabularyChecker(lines, penaltyFactor, Column.LEFT);
   }
 
-  private VocabularyChecker
-  prepareVocabularyChecker(String[] lines, int penaltyFactor, Column column)
-      throws IOException {
+  private VocabularyChecker prepareVocabularyChecker(
+      String[] lines, int penaltyFactor, Column column) throws IOException {
     writeLines(file, lines);
     VocabularyChecker checker = new VocabularyChecker(penaltyFactor, column);
     checker.prepareQuestions(file);

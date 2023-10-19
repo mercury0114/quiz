@@ -6,7 +6,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-import com.mercury0114.vocabulary.QuestionAnswer;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import org.junit.Test;
 
@@ -74,20 +73,18 @@ public class QuestionAnswerTest {
 
   @Test
   public void constructor_noSpace_throwsException() {
-    assertThrows(WronglyFormattedLineException.class,
-                 () -> new QuestionAnswer("question,answer"));
+    assertThrows(WronglyFormattedLineException.class, () -> new QuestionAnswer("question,answer"));
   }
 
   @Test
   public void constructor_noComma_throwsException() {
-    assertThrows(WronglyFormattedLineException.class,
-                 () -> new QuestionAnswer("question answer"));
+    assertThrows(WronglyFormattedLineException.class, () -> new QuestionAnswer("question answer"));
   }
 
   @Test
   public void constructor_severalCommas_throwsException() {
-    assertThrows(WronglyFormattedLineException.class,
-                 () -> new QuestionAnswer("question, answer, more"));
+    assertThrows(
+        WronglyFormattedLineException.class, () -> new QuestionAnswer("question, answer, more"));
   }
 
   @Test
@@ -99,8 +96,7 @@ public class QuestionAnswerTest {
 
   @Test
   public void constructor_phrase_constructsPhrase() {
-    QuestionAnswer qa =
-        new QuestionAnswer("multiple words question, multiple words answer");
+    QuestionAnswer qa = new QuestionAnswer("multiple words question, multiple words answer");
     assertEquals(qa.question, "multiple words question");
     assertEquals(qa.answer, "multiple words answer");
   }
@@ -118,7 +114,7 @@ public class QuestionAnswerTest {
   }
 
   @Test
-  public void same_returnsFalseOnDifferentAnswer() { 
+  public void same_returnsFalseOnDifferentAnswer() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertFalse(qa.same(new QuestionAnswer("question", "answer2")));
   }

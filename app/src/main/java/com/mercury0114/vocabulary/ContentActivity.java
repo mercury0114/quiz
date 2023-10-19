@@ -1,6 +1,5 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 import static com.mercury0114.vocabulary.FilesReader.readFileContent;
 
 import android.content.Intent;
@@ -32,7 +31,7 @@ public class ContentActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.content_layout);
     filePath = getIntent().getStringExtra("PATH");
-    editFileNameText = (EditText)findViewById(R.id.edit_file_name_text_id);
+    editFileNameText = (EditText) findViewById(R.id.edit_file_name_text_id);
     editFileNameText.setText(new File(filePath).getName());
     configureContentTextViews();
   }
@@ -76,8 +75,7 @@ public class ContentActivity extends AppCompatActivity {
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
-    LinearLayout linearLayout =
-        (LinearLayout)findViewById(R.id.content_view_id);
+    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.content_view_id);
     for (String line : lines) {
       EditText editText = createEditView(line);
       linearLayout.addView(editText);
@@ -93,17 +91,18 @@ public class ContentActivity extends AppCompatActivity {
   private EditText createEditView(String line) {
     EditText editText = new EditText(this);
     editText.setText(line);
-    editText.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View view, int keyCode, KeyEvent event) {
-        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-            (keyCode == KeyEvent.KEYCODE_ENTER)) {
-          // Returning true so that pressing enter wouldn't create a new line.
-          return true;
-        }
-        return false;
-      }
-    });
+    editText.setOnKeyListener(
+        new OnKeyListener() {
+          @Override
+          public boolean onKey(View view, int keyCode, KeyEvent event) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+              // Returning true so that pressing enter wouldn't create a new line.
+              return true;
+            }
+            return false;
+          }
+        });
     return editText;
   }
 }
