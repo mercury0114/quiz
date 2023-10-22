@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.readFileContent;
+import static java.util.Collections.sort;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,6 +76,7 @@ public class ContentActivity extends AppCompatActivity {
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
+    sort(lines);
     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.content_view_id);
     for (String line : lines) {
       EditText editText = createEditView(line);
