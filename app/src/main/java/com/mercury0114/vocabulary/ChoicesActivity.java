@@ -46,6 +46,17 @@ public class ChoicesActivity extends AppCompatActivity {
     deleteFileButton.setOnClickListener(createDeleteFileListener());
   }
 
+  private OnClickListener createColumnButtonListener(Column column) {
+    return new OnClickListener() {
+      public void onClick(View view) {
+        Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
+        intent.putExtra("PATH", filePath);
+        intent.putExtra("COLUMN", column.name());
+        startActivity(intent);
+      }
+    };
+  }
+
   private OnClickListener createDeleteFileListener() {
     return new OnClickListener() {
       public void onClick(View view) {
@@ -61,17 +72,6 @@ public class ChoicesActivity extends AppCompatActivity {
             });
         builder.setMessage("DELETE FILE?");
         builder.create().show();
-      }
-    };
-  }
-
-  private OnClickListener createColumnButtonListener(Column column) {
-    return new OnClickListener() {
-      public void onClick(View view) {
-        Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
-        intent.putExtra("PATH", filePath);
-        intent.putExtra("COLUMN", column.name());
-        startActivity(intent);
       }
     };
   }
