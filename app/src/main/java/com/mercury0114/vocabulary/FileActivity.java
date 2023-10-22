@@ -9,10 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
-import java.io.File;
-import java.io.IOException;
 
 public class FileActivity extends AppCompatActivity {
   private TextView questionsRemainingView;
@@ -26,12 +25,10 @@ public class FileActivity extends AppCompatActivity {
     setContentView(R.layout.file_layout);
     String filePath = getIntent().getStringExtra("PATH");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
-    vocabularyChecker = new VocabularyChecker(2, column);
-    try {
-      vocabularyChecker.prepareQuestions(new File(filePath));
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
+    VocabularyCheckerModel viewModel =
+        new ViewModelProvider(this).get(VocabularyCheckerModel.class);
+    vocabularyChecker = viewModel.createOrGetChecker(/* penaltyFactor= */ 2, column, filePath);
+
     questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     questionView = (TextView) findViewById(R.id.question_view_id);
     statusView = (TextView) findViewById(R.id.status_view_id);
