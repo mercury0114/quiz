@@ -69,7 +69,7 @@ public class FolderActivity extends AppCompatActivity {
             } catch (IOException exception) {
               throw new RuntimeException(exception);
             }
-            Intent intent = new Intent(FolderActivity.this, ContentActivity.class);
+            Intent intent = new Intent(FolderActivity.this, EditContentActivity.class);
             intent.putExtra("PATH", newFilePath);
             startActivity(intent);
           }

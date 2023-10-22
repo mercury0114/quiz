@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContentActivity extends AppCompatActivity {
+public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
 
   private final ArrayList<EditText> contentTextViews = new ArrayList();

@@ -22,7 +22,7 @@
         <activity android:name=".FileActivity"/>
 	<activity android:name=".FolderActivity"/>
 	<activity android:name=".ChoicesActivity"/>
-        <activity android:name=".ContentActivity"/>
+        <activity android:name=".EditContentActivity"/>
     </application>
 
 </manifest>

@@ -32,11 +32,21 @@ public class ChoicesActivity extends AppCompatActivity {
     final Button bothColumnsButton = findViewById(R.id.both_columns_button_id);
     bothColumnsButton.setOnClickListener(createColumnButtonListener(Column.BOTH));
 
+    final Button customLeftColumnButton = findViewById(R.id.custom_left_column_button_id);
+    customLeftColumnButton.setOnClickListener(
+        new OnClickListener() {
+          public void onClick(View view) {
+            Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
+            intent.putExtra("PATH", filePath);
+            startActivity(intent);
+          }
+        });
+
     final Button viewContentButton = findViewById(R.id.view_content_button_id);
     viewContentButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            Intent intent = new Intent(ChoicesActivity.this, ContentActivity.class);
+            Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
             intent.putExtra("PATH", filePath);
             startActivity(intent);
           }
