@@ -10,5 +10,9 @@ and then create a symbolic link to the `gradle` binary.
 
 3) Go to `app` directory and type `gradle test`, check that all tests pass
 
-4) To install APK, type `gradle installDebug`
+4) Enable USB debugging on Android phone.
+
+5) To install APK, type `gradle installDebug`
+
+6) To see logs on Android, type `adb logcat`
 
