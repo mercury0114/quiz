@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentActivity extends AppCompatActivity {
-  private static final int MAX_LINES = 50;
+  private static final int EXTRA_BLANK_LINES = 10;
 
   private final ArrayList<EditText> contentTextViews = new ArrayList();
 
@@ -81,7 +81,7 @@ public class ContentActivity extends AppCompatActivity {
       linearLayout.addView(editText);
       contentTextViews.add(editText);
     }
-    for (int i = 0; i < MAX_LINES - lines.size(); i++) {
+    for (int i = 0; i < EXTRA_BLANK_LINES; i++) {
       EditText editText = createEditView("");
       linearLayout.addView(editText);
       contentTextViews.add(editText);
