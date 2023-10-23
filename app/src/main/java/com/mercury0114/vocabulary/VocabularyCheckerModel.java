@@ -3,7 +3,6 @@ package com.mercury0114.vocabulary;
 import androidx.lifecycle.ViewModel;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
-import java.io.IOException;
 
 public class VocabularyCheckerModel extends ViewModel {
   private VocabularyChecker vocabularyChecker = null;
@@ -18,11 +17,7 @@ public class VocabularyCheckerModel extends ViewModel {
 
   private VocabularyChecker createChecker(int penaltyFactor, Column column, String filePath) {
     VocabularyChecker checker = new VocabularyChecker(penaltyFactor, column);
-    try {
-      checker.prepareQuestions(new File(filePath));
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
+    checker.prepareQuestions(new File(filePath));
     return checker;
   }
 }

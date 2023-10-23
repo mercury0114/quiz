@@ -3,16 +3,16 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.FilesReader.EmptyFileException;
 import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
-import static com.mercury0114.vocabulary.FilesReader.readFileContent;
+import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,23 +56,21 @@ public class FilesReaderUnitTest {
   }
 
   @Test
-  public void readFileContent_emptyFile_throwsException() throws IOException {
+  public void readLinesAndSort_emptyFile_throwsException() throws IOException {
     File file = temporaryFolder.newFile("file.txt");
-    assertThrows(EmptyFileException.class, () -> readFileContent(file));
+    assertThrows(EmptyFileException.class, () -> readLinesAndSort(file));
   }
 
   @Test
-  public void readFileContent_readsLines() throws IOException {
-    String line0 = "question0, answer0";
-    String line1 = "question1, answer1";
+  public void readLinesAndSort_returnsSortedList() throws IOException {
     File file = temporaryFolder.newFile("file.txt");
-    ArrayList<String> linesList = new ArrayList();
-    linesList.add(line0);
-    linesList.add(line1);
-    Files.write(Paths.get(file.getPath()), linesList, StandardCharsets.UTF_8);
+    ImmutableList<String> fileContent =
+        ImmutableList.of("question1, answer1", "question0, answer0");
 
-    List<String> lines = readFileContent(file);
-    assertEquals(lines.get(0), line0);
-    assertEquals(lines.get(1), line1);
+    Files.write(Paths.get(file.getPath()), fileContent, StandardCharsets.UTF_8);
+
+    ImmutableList<String> lines = readLinesAndSort(file);
+    assertEquals(lines.get(0), "question0, answer0");
+    assertEquals(lines.get(1), "question1, answer1");
   }
 }

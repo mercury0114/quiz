@@ -1,12 +1,14 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
+import static java.util.Collections.sort;
 
 import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Stream;
@@ -38,11 +40,21 @@ public class FilesReader {
     return Stream.of(folder.listFiles()).map(File::getName).sorted().collect(toImmutableList());
   }
 
-  public static List<String> readFileContent(File file) throws IOException {
-    List<String> lines = Files.readAllLines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
+  public static ImmutableList<String> readLinesAndSort(File file) {
+    List<String> lines = readFileContent(file.getPath());
     if (lines.isEmpty()) {
       throw new EmptyFileException(file.getPath());
     }
-    return lines;
+    sort(lines);
+    return ImmutableList.copyOf(lines);
+  }
+
+  private static List<String> readFileContent(String filePath) {
+    Path path = Paths.get(filePath);
+    try {
+      return Files.readAllLines(path, StandardCharsets.UTF_8);
+    } catch (IOException exception) {
+      throw new RuntimeException(exception);
+    }
   }
 }

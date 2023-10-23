@@ -1,7 +1,6 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.readFileContent;
-import static java.util.Collections.sort;
+import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,13 +69,7 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
   }
 
   private void configureContentTextViews() {
-    List<String> lines;
-    try {
-      lines = readFileContent(new File(filePath));
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
-    sort(lines);
+    List<String> lines = readLinesAndSort(new File(filePath));
     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.content_view_id);
     for (String line : lines) {
       EditText editText = createEditView(line);
