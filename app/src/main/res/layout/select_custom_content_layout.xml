@@ -15,6 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25dp"
-            android:text="Content"/>
+            android:text="Select words to practice"/>
     </LinearLayout>
 </ScrollView>
