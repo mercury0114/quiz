@@ -29,7 +29,7 @@ public class EditContentActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.content_layout);
+    setContentView(R.layout.edit_content_layout);
     filePath = getIntent().getStringExtra("PATH");
     editFileNameText = (EditText) findViewById(R.id.edit_file_name_text_id);
     editFileNameText.setText(new File(filePath).getName());
