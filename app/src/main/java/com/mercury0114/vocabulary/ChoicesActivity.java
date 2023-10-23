@@ -36,7 +36,7 @@ public class ChoicesActivity extends AppCompatActivity {
     customLeftColumnButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
+            Intent intent = new Intent(ChoicesActivity.this, SelectCustomWordsActivity.class);
             intent.putExtra("PATH", filePath);
             startActivity(intent);
           }

@@ -17,22 +17,22 @@
             android:id="@+id/left_column_button_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Check All Left Column"/>
+            android:text="Check Left Column"/>
         <Button
             android:id="@+id/right_column_button_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-	    android:text="Check All Right Column"/>
+	    android:text="Check Right Column"/>
 	<Button
 	    android:id="@+id/both_columns_button_id"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:text="Check All Both Columns"/>
+	    android:text="Check Both Columns"/>
 	<Button
 	    android:id="@+id/custom_left_column_button_id"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:text="Check Custom Left Column"/>
+	    android:text="Check Left Column Custom Words"/>
 	<Button
             android:id="@+id/view_content_button_id"
             android:layout_width="match_parent"
