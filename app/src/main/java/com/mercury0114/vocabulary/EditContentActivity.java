@@ -70,7 +70,7 @@ public class EditContentActivity extends AppCompatActivity {
 
   private void configureContentTextViews() {
     List<String> lines = readLinesAndSort(new File(filePath));
-    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.content_view_id);
+    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.edit_content_id);
     for (String line : lines) {
       EditText editText = createEditView(line);
       linearLayout.addView(editText);

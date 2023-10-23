@@ -19,7 +19,7 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
   }
 
   private void addButtonsToLinearLayout(String filePath) {
-    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.content_view_id);
+    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.select_custom_content_id);
     for (String line : readLinesAndSort(new File(filePath))) {
       Button button = new Button(this);
       button.setText(line);
