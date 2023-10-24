@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +35,13 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
         });
   }
 
+  private Intent buildIntentForFileActivity(String filePath) {
+    Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
+    intent.putExtra("PATH", filePath);
+    intent.putExtra("COLUMN", Column.BOTH.name());
+    return intent;
+  }
+
   private void addSelectWordButtons(String filePath) {
     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.select_custom_content_id);
     for (String line : readLinesAndSort(new File(filePath))) {
@@ -47,16 +55,9 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
     button.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            // TODO(mariusl): implement full logic
+            button.setBackgroundColor(Color.BLUE);
           }
         });
     return button;
-  }
-
-  private Intent buildIntentForFileActivity(String filePath) {
-    Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
-    intent.putExtra("PATH", filePath);
-    intent.putExtra("COLUMN", Column.BOTH.name());
-    return intent;
   }
 }
