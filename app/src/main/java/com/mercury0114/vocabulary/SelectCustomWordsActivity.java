@@ -28,10 +28,7 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
     startButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
-            // TODO(mariusl): implement proper logic
-            intent.putExtra("PATH", filePath);
-            intent.putExtra("COLUMN", Column.BOTH.name());
+            Intent intent = buildIntentForFileActivity(filePath);
             startActivity(intent);
           }
         });
@@ -54,5 +51,12 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
           }
         });
     return button;
+  }
+
+  private Intent buildIntentForFileActivity(String filePath) {
+    Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
+    intent.putExtra("PATH", filePath);
+    intent.putExtra("COLUMN", Column.BOTH.name());
+    return intent;
   }
 }

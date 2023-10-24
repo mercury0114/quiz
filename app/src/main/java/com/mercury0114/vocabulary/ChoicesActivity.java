@@ -24,30 +24,28 @@ public class ChoicesActivity extends AppCompatActivity {
     textView.setText(new File(filePath).getName());
 
     final Button leftColumnButton = findViewById(R.id.left_column_button_id);
-    leftColumnButton.setOnClickListener(createColumnButtonListener(Column.LEFT));
+    leftColumnButton.setOnClickListener(createColumnButtonListener(Column.LEFT, filePath));
 
     final Button rightColumnButton = findViewById(R.id.right_column_button_id);
-    rightColumnButton.setOnClickListener(createColumnButtonListener(Column.RIGHT));
+    rightColumnButton.setOnClickListener(createColumnButtonListener(Column.RIGHT, filePath));
 
     final Button bothColumnsButton = findViewById(R.id.both_columns_button_id);
-    bothColumnsButton.setOnClickListener(createColumnButtonListener(Column.BOTH));
+    bothColumnsButton.setOnClickListener(createColumnButtonListener(Column.BOTH, filePath));
 
     final Button customLeftColumnButton = findViewById(R.id.custom_left_column_button_id);
     customLeftColumnButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            Intent intent = new Intent(ChoicesActivity.this, SelectCustomWordsActivity.class);
-            intent.putExtra("PATH", filePath);
+            Intent intent = buildIntentForSelectCustomWordsActivity(filePath);
             startActivity(intent);
           }
         });
 
-    final Button viewContentButton = findViewById(R.id.view_content_button_id);
-    viewContentButton.setOnClickListener(
+    final Button editContentButton = findViewById(R.id.edit_content_button_id);
+    editContentButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
-            intent.putExtra("PATH", filePath);
+            Intent intent = buildIntentForEditContentActivity(filePath);
             startActivity(intent);
           }
         });
@@ -56,12 +54,10 @@ public class ChoicesActivity extends AppCompatActivity {
     deleteFileButton.setOnClickListener(createDeleteFileListener());
   }
 
-  private OnClickListener createColumnButtonListener(Column column) {
+  private OnClickListener createColumnButtonListener(Column column, String filePath) {
     return new OnClickListener() {
       public void onClick(View view) {
-        Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
-        intent.putExtra("PATH", filePath);
-        intent.putExtra("COLUMN", column.name());
+        Intent intent = buildIntentForFileActivity(column, filePath);
         startActivity(intent);
       }
     };
@@ -84,5 +80,24 @@ public class ChoicesActivity extends AppCompatActivity {
         builder.create().show();
       }
     };
+  }
+
+  private Intent buildIntentForFileActivity(Column column, String filePath) {
+    Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
+    intent.putExtra("PATH", filePath);
+    intent.putExtra("COLUMN", column.name());
+    return intent;
+  }
+
+  private Intent buildIntentForEditContentActivity(String filePath) {
+    Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
+    intent.putExtra("PATH", filePath);
+    return intent;
+  }
+
+  private Intent buildIntentForSelectCustomWordsActivity(String filePath) {
+    Intent intent = new Intent(ChoicesActivity.this, SelectCustomWordsActivity.class);
+    intent.putExtra("PATH", filePath);
+    return intent;
   }
 }
