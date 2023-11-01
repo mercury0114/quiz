@@ -3,12 +3,13 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.TextSelector.CHOSEN_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.DEFAULT_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.extractChosenTexts;
+import static com.mercury0114.vocabulary.TextSelector.getToggledColorCode;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import android.graphics.drawable.ColorDrawable;
+import android.content.res.ColorStateList;
 import android.widget.Button;
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.TextSelector.NoChosenTextException;
@@ -23,6 +24,27 @@ import org.mockito.quality.Strictness;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class TextSelectorTest {
   @Rule public MockitoRule rule = MockitoJUnit.rule().strictness(Strictness.LENIENT);
+
+  private static final int UNSEEN_COLOR_CODE = 123;
+
+  @Test
+  public void getToggledColorCode_forDefaultButtonReturnsChosenColorCode() {
+    Button button = createButton("question, answer", DEFAULT_COLOR_CODE);
+    assertEquals(getToggledColorCode(button), CHOSEN_COLOR_CODE);
+  }
+
+  @Test
+  public void getToggledColorCode_forChosenButtonReturnsDefaultColorCode() {
+    Button button = createButton("question, answer", CHOSEN_COLOR_CODE);
+    assertEquals(getToggledColorCode(button), DEFAULT_COLOR_CODE);
+  }
+
+  @Test
+  public void getToggledColorCode_forButtonWithUnseenColor_throwsException() {
+    Button button = createButton("question, answer", UNSEEN_COLOR_CODE);
+
+    assertThrows(IllegalArgumentException.class, () -> getToggledColorCode(button));
+  }
 
   @Test
   public void extractChosenTexts_emptyButtonsList_throwsException() {
@@ -56,18 +78,17 @@ public class TextSelectorTest {
 
   @Test
   public void extractChosenTexts_buttonHasUnseenColor_throwsException() {
-    int unseenColorCode = 123;
-    Button button = createButton("question, answer", unseenColorCode);
+    Button button = createButton("question, answer", UNSEEN_COLOR_CODE);
 
     assertThrows(
         IllegalArgumentException.class, () -> extractChosenTexts(ImmutableList.of(button)));
   }
 
   private static Button createButton(String content, int colorCode) {
-    ColorDrawable drawable = mock(ColorDrawable.class);
-    when(drawable.getColor()).thenReturn(colorCode);
+    ColorStateList colorStateList = mock(ColorStateList.class);
+    when(colorStateList.getDefaultColor()).thenReturn(colorCode);
     Button button = mock(Button.class);
-    when(button.getBackground()).thenReturn(drawable);
+    when(button.getTextColors()).thenReturn(colorStateList);
     when(button.getText()).thenReturn(content);
     return button;
   }

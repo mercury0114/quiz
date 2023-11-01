@@ -1,9 +1,10 @@
 package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.TextSelector.DEFAULT_COLOR_CODE;
+import static com.mercury0114.vocabulary.TextSelector.getToggledColorCode;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,10 +53,12 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
   private Button createSelectButton(String line) {
     Button button = new Button(this);
     button.setText(line);
+    button.setTextColor(DEFAULT_COLOR_CODE);
     button.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
-            button.setBackgroundColor(Color.BLUE);
+            int toggledColorCode = getToggledColorCode(button);
+            button.setTextColor(toggledColorCode);
           }
         });
     return button;

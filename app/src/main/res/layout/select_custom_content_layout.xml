@@ -17,7 +17,7 @@
             android:textSize="25dp"
             android:text="Select words to practice"/>
         <Button
-            android:id="@+id/start_practice_button_id"
+	    android:id="@+id/start_practice_button_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Start Practicing"/>

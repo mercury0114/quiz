@@ -8,6 +8,7 @@ import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VocabularyChecker {
   public static class EmptyFileException extends RuntimeException {
@@ -37,7 +38,11 @@ public class VocabularyChecker {
   }
 
   public void prepareQuestions(File file) {
-    for (String line : readLinesAndSort(file)) {
+    prepareQuestions(readLinesAndSort(file));
+  }
+
+  public void prepareQuestions(List<String> lines) {
+    for (String line : lines) {
       String[] words = line.split(", ");
       QuestionAnswer left = new QuestionAnswer(words[0], words[1]);
       QuestionAnswer right = new QuestionAnswer(words[1], words[0]);
