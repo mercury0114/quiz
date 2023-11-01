@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 
@@ -84,6 +85,8 @@ public class ChoicesActivity extends AppCompatActivity {
 
   private Intent buildIntentForFileActivity(Column column, String filePath) {
     Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
+    ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
+    intent.putExtra("TEXTS", texts);
     intent.putExtra("PATH", filePath);
     intent.putExtra("COLUMN", column.name());
     return intent;

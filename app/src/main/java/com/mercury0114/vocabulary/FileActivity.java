@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
+import java.util.ArrayList;
 
 public class FileActivity extends AppCompatActivity {
   private TextView questionsRemainingView;
@@ -24,10 +26,12 @@ public class FileActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.file_layout);
     String filePath = getIntent().getStringExtra("PATH");
+    ArrayList<String> texts = (ArrayList<String>) getIntent().getSerializableExtra("TEXTS");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     VocabularyCheckerModel viewModel =
         new ViewModelProvider(this).get(VocabularyCheckerModel.class);
-    vocabularyChecker = viewModel.createOrGetChecker(/* penaltyFactor= */ 2, column, filePath);
+    vocabularyChecker =
+        viewModel.createOrGet(/* penaltyFactor= */ 2, column, ImmutableList.copyOf(texts));
 
     questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     questionView = (TextView) findViewById(R.id.question_view_id);
