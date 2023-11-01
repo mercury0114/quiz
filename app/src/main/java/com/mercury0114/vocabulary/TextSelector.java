@@ -15,18 +15,32 @@ final class TextSelector {
 
   static ImmutableList<String> extractChosenTexts(
       ImmutableList<Button> buttonsCorrespondingToTexts) {
-    ImmutableList<Button> chosenButtons =
-        buttonsCorrespondingToTexts.stream()
-            .filter(button -> buttonIsChosen(button))
-            .collect(toImmutableList());
+    checkAllColorsAreValid(buttonsCorrespondingToTexts);
+    ImmutableList<Button> chosenButtons = selectOnlyChosenButtons(buttonsCorrespondingToTexts);
     if (chosenButtons.isEmpty()) {
       throw new NoChosenTextException();
     }
     return extractAllTexts(chosenButtons);
   }
 
-  private static boolean buttonIsChosen(Button button) {
-    return ((ColorDrawable) button.getBackground()).getColor() == CHOSEN_COLOR_CODE;
+  private static void checkAllColorsAreValid(ImmutableList<Button> buttons) {
+    for (Button button : buttons) {
+      int colorCode = getColorCode(button);
+      if (!ImmutableList.of(CHOSEN_COLOR_CODE, DEFAULT_COLOR_CODE).contains(colorCode)) {
+        throw new IllegalArgumentException(
+            String.format("Button color %d not supported\n", colorCode));
+      }
+    }
+  }
+
+  private static ImmutableList<Button> selectOnlyChosenButtons(ImmutableList<Button> buttons) {
+    return buttons.stream()
+        .filter(button -> getColorCode(button) == CHOSEN_COLOR_CODE)
+        .collect(toImmutableList());
+  }
+
+  private static int getColorCode(Button button) {
+    return ((ColorDrawable) button.getBackground()).getColor();
   }
 
   private static ImmutableList<String> extractAllTexts(ImmutableList<Button> chosenButtons) {

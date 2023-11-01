@@ -54,6 +54,15 @@ public class TextSelectorTest {
         ImmutableList.of("chosen question, answer"));
   }
 
+  @Test
+  public void extractChosenTexts_buttonHasUnseenColor_throwsException() {
+    int unseenColorCode = 123;
+    Button button = createButton("question, answer", unseenColorCode);
+
+    assertThrows(
+        IllegalArgumentException.class, () -> extractChosenTexts(ImmutableList.of(button)));
+  }
+
   private static Button createButton(String content, int colorCode) {
     ColorDrawable drawable = mock(ColorDrawable.class);
     when(drawable.getColor()).thenReturn(colorCode);
