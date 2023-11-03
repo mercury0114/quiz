@@ -37,6 +37,10 @@ public class ChoicesActivity extends AppCompatActivity {
     customLeftColumnButton.setOnClickListener(
         createCustomColumnButtonListener(Column.LEFT, filePath));
 
+    final Button customRightColumnButton = findViewById(R.id.custom_right_column_button_id);
+    customRightColumnButton.setOnClickListener(
+        createCustomColumnButtonListener(Column.RIGHT, filePath));
+
     final Button editContentButton = findViewById(R.id.edit_content_button_id);
     editContentButton.setOnClickListener(createEditContentButtonListener(filePath));
 

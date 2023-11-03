@@ -23,27 +23,27 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.select_custom_content_layout);
     String filePath = getIntent().getStringExtra("PATH");
-    prepareButtons(filePath);
+    Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
+    prepareButtons(filePath, column);
   }
 
-  private void prepareButtons(String filePath) {
+  private void prepareButtons(String filePath, Column column) {
     final Button startButton = (Button) findViewById(R.id.start_practice_button_id);
     ImmutableList<Button> selectTextButtons = createSelectTextButtons(filePath);
     startButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
             ImmutableList<String> texts = extractChosenTexts(selectTextButtons);
-            Intent intent = buildIntentForFileActivity(filePath, texts);
+            Intent intent = buildIntentForFileActivity(column, texts);
             startActivity(intent);
           }
         });
   }
 
-  private Intent buildIntentForFileActivity(String filePath, ImmutableList<String> texts) {
+  private Intent buildIntentForFileActivity(Column column, ImmutableList<String> texts) {
     Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
-    intent.putExtra("PATH", filePath);
     intent.putExtra("TEXTS", texts);
-    intent.putExtra("COLUMN", Column.LEFT.name());
+    intent.putExtra("COLUMN", column.name());
     return intent;
   }
 
