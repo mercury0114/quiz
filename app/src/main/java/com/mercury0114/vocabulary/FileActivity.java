@@ -14,13 +14,11 @@ import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 
 public class FileActivity extends AppCompatActivity {
-  String filePath;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choices_layout);
-    filePath = getIntent().getStringExtra("PATH");
+    String filePath = getIntent().getStringExtra("PATH");
     TextView textView = (TextView) findViewById(R.id.file_name_text_view_id);
     textView.setText(new File(filePath).getName());
 
@@ -45,7 +43,7 @@ public class FileActivity extends AppCompatActivity {
     editContentButton.setOnClickListener(createEditContentButtonListener(filePath));
 
     final Button deleteFileButton = findViewById(R.id.delete_file_button_id);
-    deleteFileButton.setOnClickListener(createDeleteFileListener());
+    deleteFileButton.setOnClickListener(createDeleteFileListener(filePath));
   }
 
   private OnClickListener createColumnButtonListener(Column column, String filePath) {
@@ -75,7 +73,7 @@ public class FileActivity extends AppCompatActivity {
     };
   }
 
-  private OnClickListener createDeleteFileListener() {
+  private OnClickListener createDeleteFileListener(String filePath) {
     return new OnClickListener() {
       public void onClick(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(FileActivity.this);
