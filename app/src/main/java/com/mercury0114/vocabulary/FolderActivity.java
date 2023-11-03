@@ -133,7 +133,7 @@ public class FolderActivity extends AppCompatActivity {
           @Override
           public void onClick(View v) {
             String path = getFolderPath() + fileName;
-            Intent intent = new Intent(FolderActivity.this, ChoicesActivity.class);
+            Intent intent = new Intent(FolderActivity.this, FileActivity.class);
             intent.putExtra("PATH", path);
             startActivity(intent);
           }

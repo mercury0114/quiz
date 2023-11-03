@@ -13,7 +13,7 @@ import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 
-public class ChoicesActivity extends AppCompatActivity {
+public class FileActivity extends AppCompatActivity {
   String filePath;
 
   @Override
@@ -78,7 +78,7 @@ public class ChoicesActivity extends AppCompatActivity {
   private OnClickListener createDeleteFileListener() {
     return new OnClickListener() {
       public void onClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ChoicesActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(FileActivity.this);
         builder.setPositiveButton(
             "Yes",
             new DialogInterface.OnClickListener() {
@@ -95,7 +95,7 @@ public class ChoicesActivity extends AppCompatActivity {
   }
 
   private Intent buildIntentForVocabularyActivity(Column column, String filePath) {
-    Intent intent = new Intent(ChoicesActivity.this, VocabularyActivity.class);
+    Intent intent = new Intent(FileActivity.this, VocabularyActivity.class);
     ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
     intent.putExtra("TEXTS", texts);
     intent.putExtra("COLUMN", column.name());
@@ -103,13 +103,13 @@ public class ChoicesActivity extends AppCompatActivity {
   }
 
   private Intent buildIntentForEditContentActivity(String filePath) {
-    Intent intent = new Intent(ChoicesActivity.this, EditContentActivity.class);
+    Intent intent = new Intent(FileActivity.this, EditContentActivity.class);
     intent.putExtra("PATH", filePath);
     return intent;
   }
 
   private Intent buildIntentForSelectCustomWordsActivity(Column column, String filePath) {
-    Intent intent = new Intent(ChoicesActivity.this, SelectCustomWordsActivity.class);
+    Intent intent = new Intent(FileActivity.this, SelectCustomWordsActivity.class);
     intent.putExtra("COLUMN", column.name());
     intent.putExtra("PATH", filePath);
     return intent;
