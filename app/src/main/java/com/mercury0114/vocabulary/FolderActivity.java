@@ -55,7 +55,7 @@ public class FolderActivity extends AppCompatActivity {
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String newFilePath = getFolderPath() + "_enter_file_name/";
+            String newFilePath = getFolderPath() + "_enter_file_name";
             if (Files.exists(Paths.get(newFilePath))) {
               button.setText("_enter_file_name exists");
               return;
