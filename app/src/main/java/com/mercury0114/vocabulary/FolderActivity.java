@@ -34,7 +34,7 @@ public class FolderActivity extends AppCompatActivity {
     configureNewFileButton();
     configureNewFolderButton();
     configureDeleteFolderButton();
-    String folderPath = getPath();
+    String folderPath = getFolderPath();
     LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.main_view_id);
     for (String fileName : GetFilesNames(folderPath)) {
       dynamicHolder.addView(createExistingFileButton(fileName));
@@ -43,8 +43,8 @@ public class FolderActivity extends AppCompatActivity {
 
   private void configureFolderNameTextView() {
     TextView textView = (TextView) findViewById(R.id.folder_name_text_view_id);
-    textView.setText(new File(getPath()).getName());
-    if (getPath().equals(VOCABULARY_PATH)) {
+    textView.setText(new File(getFolderPath()).getName());
+    if (getFolderPath().equals(VOCABULARY_PATH)) {
       textView.setVisibility(View.GONE);
     }
   }
@@ -55,7 +55,7 @@ public class FolderActivity extends AppCompatActivity {
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String newFilePath = getPath() + "_enter_file_name/";
+            String newFilePath = getFolderPath() + "_enter_file_name/";
             if (Files.exists(Paths.get(newFilePath))) {
               button.setText("_enter_file_name exists");
               return;
@@ -83,7 +83,7 @@ public class FolderActivity extends AppCompatActivity {
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String newFolderPath = getPath() + "_new_folder_name/";
+            String newFolderPath = getFolderPath() + "_new_folder_name/";
             if (Files.exists(Paths.get(newFolderPath))) {
               button.setText("new_folder_name exists");
               return;
@@ -98,7 +98,8 @@ public class FolderActivity extends AppCompatActivity {
 
   private void configureDeleteFolderButton() {
     Button button = findViewById(R.id.delete_folder_button_id);
-    if (FilesReader.GetFilesNames(getPath()).size() > 0 || getPath().equals(VOCABULARY_PATH)) {
+    String folderPath = getFolderPath();
+    if (FilesReader.GetFilesNames(folderPath).size() > 0 || folderPath.equals(VOCABULARY_PATH)) {
       button.setVisibility(View.GONE);
     }
     button.setOnClickListener(
@@ -111,7 +112,7 @@ public class FolderActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                   @Override
                   public void onClick(DialogInterface dialog, int which) {
-                    new File(getPath()).delete();
+                    new File(getFolderPath()).delete();
                     finish();
                   }
                 });
@@ -123,7 +124,7 @@ public class FolderActivity extends AppCompatActivity {
 
   private Button createExistingFileButton(String fileName) {
     Button button = new Button(this);
-    String path = getPath() + fileName + "/";
+    String path = getFolderPath() + fileName + "/";
     if (!new File(path).isFile()) {
       button.setTextColor(0xFFFF0000);
     }
@@ -132,7 +133,7 @@ public class FolderActivity extends AppCompatActivity {
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String path = getPath() + fileName + "/";
+            String path = getFolderPath() + fileName + "/";
             Intent intent =
                 new File(path).isFile()
                     ? new Intent(FolderActivity.this, ChoicesActivity.class)
@@ -144,7 +145,7 @@ public class FolderActivity extends AppCompatActivity {
     return button;
   }
 
-  private String getPath() {
+  private String getFolderPath() {
     return getIntent().getStringExtra("PATH");
   }
 }
