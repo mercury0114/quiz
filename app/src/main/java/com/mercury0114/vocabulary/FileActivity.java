@@ -25,13 +25,12 @@ public class FileActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.file_layout);
-    String filePath = getIntent().getStringExtra("PATH");
     ArrayList<String> texts = (ArrayList<String>) getIntent().getSerializableExtra("TEXTS");
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     VocabularyCheckerModel viewModel =
         new ViewModelProvider(this).get(VocabularyCheckerModel.class);
     vocabularyChecker =
-        viewModel.createOrGet(/* penaltyFactor= */ 2, column, ImmutableList.copyOf(texts));
+        viewModel.createOrGetChecker(/* penaltyFactor= */ 2, column, ImmutableList.copyOf(texts));
 
     questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     questionView = (TextView) findViewById(R.id.question_view_id);

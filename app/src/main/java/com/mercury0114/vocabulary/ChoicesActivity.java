@@ -35,21 +35,10 @@ public class ChoicesActivity extends AppCompatActivity {
 
     final Button customLeftColumnButton = findViewById(R.id.custom_left_column_button_id);
     customLeftColumnButton.setOnClickListener(
-        new OnClickListener() {
-          public void onClick(View view) {
-            Intent intent = buildIntentForSelectCustomWordsActivity(filePath);
-            startActivity(intent);
-          }
-        });
+        createCustomColumnButtonListener(Column.LEFT, filePath));
 
     final Button editContentButton = findViewById(R.id.edit_content_button_id);
-    editContentButton.setOnClickListener(
-        new OnClickListener() {
-          public void onClick(View view) {
-            Intent intent = buildIntentForEditContentActivity(filePath);
-            startActivity(intent);
-          }
-        });
+    editContentButton.setOnClickListener(createEditContentButtonListener(filePath));
 
     final Button deleteFileButton = findViewById(R.id.delete_file_button_id);
     deleteFileButton.setOnClickListener(createDeleteFileListener());
@@ -59,6 +48,24 @@ public class ChoicesActivity extends AppCompatActivity {
     return new OnClickListener() {
       public void onClick(View view) {
         Intent intent = buildIntentForFileActivity(column, filePath);
+        startActivity(intent);
+      }
+    };
+  }
+
+  private OnClickListener createCustomColumnButtonListener(Column column, String filePath) {
+    return new OnClickListener() {
+      public void onClick(View view) {
+        Intent intent = buildIntentForSelectCustomWordsActivity(column, filePath);
+        startActivity(intent);
+      }
+    };
+  }
+
+  private OnClickListener createEditContentButtonListener(String filePath) {
+    return new OnClickListener() {
+      public void onClick(View view) {
+        Intent intent = buildIntentForEditContentActivity(filePath);
         startActivity(intent);
       }
     };
@@ -87,7 +94,6 @@ public class ChoicesActivity extends AppCompatActivity {
     Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
     ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
     intent.putExtra("TEXTS", texts);
-    intent.putExtra("PATH", filePath);
     intent.putExtra("COLUMN", column.name());
     return intent;
   }
@@ -98,8 +104,9 @@ public class ChoicesActivity extends AppCompatActivity {
     return intent;
   }
 
-  private Intent buildIntentForSelectCustomWordsActivity(String filePath) {
+  private Intent buildIntentForSelectCustomWordsActivity(Column column, String filePath) {
     Intent intent = new Intent(ChoicesActivity.this, SelectCustomWordsActivity.class);
+    intent.putExtra("COLUMN", column.name());
     intent.putExtra("PATH", filePath);
     return intent;
   }

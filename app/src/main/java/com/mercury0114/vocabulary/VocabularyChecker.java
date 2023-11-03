@@ -1,14 +1,12 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
+import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class VocabularyChecker {
   public static class EmptyFileException extends RuntimeException {
@@ -37,11 +35,7 @@ public class VocabularyChecker {
     this.column = column;
   }
 
-  public void prepareQuestions(File file) {
-    prepareQuestions(readLinesAndSort(file));
-  }
-
-  public void prepareQuestions(List<String> lines) {
+  public void prepareQuestions(ImmutableList<String> lines) {
     for (String line : lines) {
       String[] words = line.split(", ");
       QuestionAnswer left = new QuestionAnswer(words[0], words[1]);

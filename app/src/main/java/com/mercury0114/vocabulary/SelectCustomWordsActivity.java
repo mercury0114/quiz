@@ -43,7 +43,7 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
     Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
     intent.putExtra("PATH", filePath);
     intent.putExtra("TEXTS", texts);
-    intent.putExtra("COLUMN", Column.BOTH.name());
+    intent.putExtra("COLUMN", Column.LEFT.name());
     return intent;
   }
 
