@@ -6,6 +6,7 @@ import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,12 +14,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class FolderActivity extends AppCompatActivity {
   @Override
@@ -62,9 +63,9 @@ public class FolderActivity extends AppCompatActivity {
             }
             try {
               Files.createFile(Paths.get(newFilePath));
-              ArrayList<String> exampleList = new ArrayList();
-              exampleList.add("enter_question_1, enter_answer_1");
-              exampleList.add("enter_question_2, enter_answer_2");
+              ImmutableList<String> exampleList =
+                  ImmutableList.of(
+                      "enter_question_1, enter_answer_1", "enter_question_2, enter_answer_2");
               Files.write(Paths.get(newFilePath), exampleList, StandardCharsets.UTF_8);
             } catch (IOException exception) {
               throw new RuntimeException(exception);
@@ -78,7 +79,7 @@ public class FolderActivity extends AppCompatActivity {
 
   private void configureNewFolderButton() {
     Button button = findViewById(R.id.new_folder_button_id);
-    button.setTextColor(0xFFFF0000);
+    button.setTextColor(Color.RED);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
