@@ -35,10 +35,12 @@ public class FolderActivity extends AppCompatActivity {
     configureNewFileButton();
     configureNewFolderButton();
     configureDeleteFolderButton();
-    String folderPath = getFolderPath();
+
     LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.main_view_id);
-    for (String fileName : GetFilesNames(folderPath)) {
-      dynamicHolder.addView(createExistingFileButton(fileName));
+    for (String name : GetFilesNames(getFolderPath())) {
+      Button button =
+          isFileName(name) ? createExistingFileButton(name) : createExistingFolderButton(name);
+      dynamicHolder.addView(button);
     }
   }
 
@@ -125,20 +127,30 @@ public class FolderActivity extends AppCompatActivity {
 
   private Button createExistingFileButton(String fileName) {
     Button button = new Button(this);
-    String path = getFolderPath() + fileName + "/";
-    if (!new File(path).isFile()) {
-      button.setTextColor(0xFFFF0000);
-    }
     button.setText(fileName);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String path = getFolderPath() + fileName + "/";
-            Intent intent =
-                new File(path).isFile()
-                    ? new Intent(FolderActivity.this, ChoicesActivity.class)
-                    : new Intent(FolderActivity.this, FolderActivity.class);
+            String path = getFolderPath() + fileName;
+            Intent intent = new Intent(FolderActivity.this, ChoicesActivity.class);
+            intent.putExtra("PATH", path);
+            startActivity(intent);
+          }
+        });
+    return button;
+  }
+
+  private Button createExistingFolderButton(String folderName) {
+    Button button = new Button(this);
+    button.setTextColor(Color.RED);
+    button.setText(folderName);
+    button.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            String path = getFolderPath() + folderName + "/";
+            Intent intent = new Intent(FolderActivity.this, FolderActivity.class);
             intent.putExtra("PATH", path);
             startActivity(intent);
           }
@@ -148,5 +160,10 @@ public class FolderActivity extends AppCompatActivity {
 
   private String getFolderPath() {
     return getIntent().getStringExtra("PATH");
+  }
+
+  private boolean isFileName(String name) {
+    String path = getFolderPath() + name;
+    return (new File(path)).isFile();
   }
 }
