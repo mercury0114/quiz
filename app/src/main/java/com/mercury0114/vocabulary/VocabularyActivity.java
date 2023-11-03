@@ -15,7 +15,7 @@ import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.util.ArrayList;
 
-public class FileActivity extends AppCompatActivity {
+public class VocabularyActivity extends AppCompatActivity {
   private TextView questionsRemainingView;
   private TextView questionView;
   private TextView statusView;

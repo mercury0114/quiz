@@ -34,14 +34,14 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
         new OnClickListener() {
           public void onClick(View view) {
             ImmutableList<String> texts = extractChosenTexts(selectTextButtons);
-            Intent intent = buildIntentForFileActivity(column, texts);
+            Intent intent = buildIntentForVocabularyActivity(column, texts);
             startActivity(intent);
           }
         });
   }
 
-  private Intent buildIntentForFileActivity(Column column, ImmutableList<String> texts) {
-    Intent intent = new Intent(SelectCustomWordsActivity.this, FileActivity.class);
+  private Intent buildIntentForVocabularyActivity(Column column, ImmutableList<String> texts) {
+    Intent intent = new Intent(SelectCustomWordsActivity.this, VocabularyActivity.class);
     intent.putExtra("TEXTS", texts);
     intent.putExtra("COLUMN", column.name());
     return intent;

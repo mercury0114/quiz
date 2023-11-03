@@ -51,7 +51,7 @@ public class ChoicesActivity extends AppCompatActivity {
   private OnClickListener createColumnButtonListener(Column column, String filePath) {
     return new OnClickListener() {
       public void onClick(View view) {
-        Intent intent = buildIntentForFileActivity(column, filePath);
+        Intent intent = buildIntentForVocabularyActivity(column, filePath);
         startActivity(intent);
       }
     };
@@ -94,8 +94,8 @@ public class ChoicesActivity extends AppCompatActivity {
     };
   }
 
-  private Intent buildIntentForFileActivity(Column column, String filePath) {
-    Intent intent = new Intent(ChoicesActivity.this, FileActivity.class);
+  private Intent buildIntentForVocabularyActivity(Column column, String filePath) {
+    Intent intent = new Intent(ChoicesActivity.this, VocabularyActivity.class);
     ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
     intent.putExtra("TEXTS", texts);
     intent.putExtra("COLUMN", column.name());
