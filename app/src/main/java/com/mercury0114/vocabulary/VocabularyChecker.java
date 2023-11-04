@@ -1,12 +1,10 @@
 package com.mercury0114.vocabulary;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.max;
-
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VocabularyChecker {
   public static class EmptyFileException extends RuntimeException {
@@ -17,13 +15,8 @@ public class VocabularyChecker {
 
   public static class NoQuestionsException extends RuntimeException {}
 
-  private static final int FACTOR = 2011;
-  private static final int MODULUS = 7919;
-
   private final ArrayList<QuestionAnswer> questionAnswerList = new ArrayList();
   private final int penaltyFactor;
-  private int nextQuestionIndex;
-  private int seed;
   private Column column;
 
   public VocabularyChecker(int penaltyFactor, Column column) {
@@ -31,7 +24,6 @@ public class VocabularyChecker {
       throw new IllegalArgumentException();
     }
     this.penaltyFactor = penaltyFactor;
-    this.seed = abs((int) System.currentTimeMillis()) % MODULUS;
     this.column = column;
   }
 
@@ -57,16 +49,17 @@ public class VocabularyChecker {
         }
       }
     }
-    nextQuestionIndex = seed % questionAnswerList.size();
+    Collections.shuffle(questionAnswerList);
   }
 
   public AnswerStatus checkAnswer(String answer) {
-    QuestionAnswer questionAnswer = questionAnswerList.get(nextQuestionIndex);
+    QuestionAnswer questionAnswer = questionAnswerList.get(0);
     AnswerStatus answerStatus = questionAnswer.getAnswerStatus(answer);
     switch (answerStatus) {
       case CORRECT:
-        questionAnswerList.remove(nextQuestionIndex);
-        updateSeedAndQuestionIndex(questionAnswer);
+        questionAnswerList.remove(0);
+        Collections.shuffle(questionAnswerList);
+        putDifferentQuestionFirst(questionAnswer);
         break;
       case CLOSE:
         break;
@@ -85,31 +78,26 @@ public class VocabularyChecker {
     if (questionAnswerList.size() == 0) {
       throw new NoQuestionsException();
     }
-    return questionAnswerList.get(nextQuestionIndex).question;
+    return questionAnswerList.get(0).question;
   }
 
   public String revealAnswer() {
-    QuestionAnswer qa = questionAnswerList.get(nextQuestionIndex);
     updateQuestionAnswerList(penaltyFactor);
-    updateSeedAndQuestionIndex(qa);
-    return qa.answer;
+    return questionAnswerList.get(0).answer;
   }
 
-  private void updateQuestionAnswerList(int penaltyFactor) {
-    QuestionAnswer questionAnswer = questionAnswerList.get(nextQuestionIndex);
-    for (int i = 0; i < penaltyFactor; i++) {
-      questionAnswerList.add(questionAnswer);
+  private void putDifferentQuestionFirst(QuestionAnswer previous) {
+    for (int i = 0; i < questionAnswerList.size(); i++) {
+      if (!questionAnswerList.get(i).same(previous)) {
+        Collections.swap(questionAnswerList, 0, i);
+      }
     }
   }
 
-  private void updateSeedAndQuestionIndex(QuestionAnswer previous) {
-    seed = (seed * FACTOR + 101) % MODULUS;
-    nextQuestionIndex = seed % max(1, questionAnswerList.size());
-    for (int i = 0; i < questionAnswerList.size(); i++) {
-      if (!questionAnswerList.get(nextQuestionIndex).same(previous)) {
-        return;
-      }
-      nextQuestionIndex = (nextQuestionIndex + 1) % questionAnswerList.size();
+  private void updateQuestionAnswerList(int penaltyFactor) {
+    QuestionAnswer questionAnswer = questionAnswerList.get(0);
+    for (int i = 0; i < penaltyFactor; i++) {
+      questionAnswerList.add(questionAnswer);
     }
   }
 }
