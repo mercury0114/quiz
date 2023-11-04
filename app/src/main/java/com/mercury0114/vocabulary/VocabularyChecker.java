@@ -82,8 +82,10 @@ public class VocabularyChecker {
   }
 
   public String revealAnswer() {
+    QuestionAnswer questionAnswer = questionAnswerList.get(0);
     updateQuestionAnswerList(penaltyFactor);
-    return questionAnswerList.get(0).answer;
+    putDifferentQuestionFirst(questionAnswer);
+    return questionAnswer.answer;
   }
 
   private void putDifferentQuestionFirst(QuestionAnswer previous) {

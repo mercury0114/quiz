@@ -48,12 +48,24 @@ public class VocabularyCheckerTest {
   }
 
   @Test
-  public void nextQuestion_asksDifferentQuestion() throws IOException {
+  public void nextQuestion_previousAnsweredCorrectly_asksDifferentQuestion() throws IOException {
     ImmutableList<String> lines = ImmutableList.of("0, 0", "1, 1");
     for (int i = 0; i < 200; i++) {
       VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
       String question = checker.nextQuestion();
-      assertEquals(checker.checkAnswer(question), AnswerStatus.CORRECT);
+      String correctAnswer = question; // answer in this test is always the same as question
+      assertEquals(checker.checkAnswer(correctAnswer), AnswerStatus.CORRECT);
+      assertNotEquals(checker.nextQuestion(), question);
+    }
+  }
+
+  @Test
+  public void nextQuestion_asksDifferentQuestion_whenRequestedAnswerForPreviousQuestion() {
+    ImmutableList<String> lines = ImmutableList.of("question0, answer0", "question1, answer1");
+    VocabularyChecker checker = prepareVocabularyChecker(lines, /* penaltyFactor= */ 1);
+    for (int i = 0; i < 200; i++) {
+      String question = checker.nextQuestion();
+      checker.revealAnswer();
       assertNotEquals(checker.nextQuestion(), question);
     }
   }
@@ -236,13 +248,13 @@ public class VocabularyCheckerTest {
     assertEquals(qa.answer, answer);
   }
 
-  private VocabularyChecker prepareVocabularyChecker(ImmutableList<String> lines, int penaltyFactor)
-      throws IOException {
+  private VocabularyChecker prepareVocabularyChecker(
+      ImmutableList<String> lines, int penaltyFactor) {
     return prepareVocabularyChecker(lines, penaltyFactor, Column.LEFT);
   }
 
   private VocabularyChecker prepareVocabularyChecker(
-      ImmutableList<String> lines, int penaltyFactor, Column column) throws IOException {
+      ImmutableList<String> lines, int penaltyFactor, Column column) {
     VocabularyChecker checker = new VocabularyChecker(penaltyFactor, column);
     checker.prepareQuestions(lines);
     return checker;
