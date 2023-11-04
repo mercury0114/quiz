@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 
 import android.content.Intent;
@@ -10,35 +11,35 @@ import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
 
   private final ArrayList<EditText> contentTextViews = new ArrayList();
 
-  private String filePath;
   private EditText editFileNameText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.edit_content_layout);
-    filePath = getIntent().getStringExtra("PATH");
+    String filePath = getIntent().getStringExtra("PATH");
     editFileNameText = (EditText) findViewById(R.id.edit_file_name_text_id);
     editFileNameText.setText(new File(filePath).getName());
-    configureContentTextViews();
+    configureContentTextViews(filePath);
   }
 
   @Override
   protected void onStop() {
-    ArrayList<String> lines = getNonEmptyLines();
+    String filePath = getIntent().getStringExtra("PATH");
+    ImmutableList<String> lines = getNonEmptyLines();
     String newName = editFileNameText.getText().toString();
     try {
       Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
@@ -57,21 +58,9 @@ public class EditContentActivity extends AppCompatActivity {
     }
   }
 
-  private ArrayList<String> getNonEmptyLines() {
-    ArrayList<String> lines = new ArrayList();
-    for (EditText editText : contentTextViews) {
-      String line = editText.getText().toString();
-      if (!line.isEmpty()) {
-        lines.add(editText.getText().toString());
-      }
-    }
-    return lines;
-  }
-
-  private void configureContentTextViews() {
-    List<String> lines = readLinesAndSort(new File(filePath));
+  private void configureContentTextViews(String filePath) {
     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.edit_content_id);
-    for (String line : lines) {
+    for (String line : readLinesAndSort(new File(filePath))) {
       EditText editText = createEditView(line);
       linearLayout.addView(editText);
       contentTextViews.add(editText);
@@ -81,6 +70,13 @@ public class EditContentActivity extends AppCompatActivity {
       linearLayout.addView(editText);
       contentTextViews.add(editText);
     }
+  }
+
+  private ImmutableList<String> getNonEmptyLines() {
+    return contentTextViews.stream()
+        .map(editText -> editText.getText().toString())
+        .filter(line -> !line.isEmpty())
+        .collect(toImmutableList());
   }
 
   private EditText createEditView(String line) {
