@@ -29,7 +29,7 @@ public class VocabularyChecker {
 
   public void prepareQuestions(ImmutableList<String> lines) {
     for (String line : lines) {
-      String[] words = line.split(", ");
+      String[] words = line.split(" \\| ");
       QuestionAnswer left = new QuestionAnswer(words[0], words[1]);
       QuestionAnswer right = new QuestionAnswer(words[1], words[0]);
       for (int i = 0; i < penaltyFactor; i++) {

@@ -72,31 +72,28 @@ public class QuestionAnswerTest {
   }
 
   @Test
-  public void constructor_noSpace_throwsException() {
-    assertThrows(WronglyFormattedLineException.class, () -> new QuestionAnswer("question,answer"));
-  }
-
-  @Test
-  public void constructor_noComma_throwsException() {
-    assertThrows(WronglyFormattedLineException.class, () -> new QuestionAnswer("question answer"));
-  }
-
-  @Test
   public void constructor_severalCommas_throwsException() {
     assertThrows(
         WronglyFormattedLineException.class, () -> new QuestionAnswer("question, answer, more"));
   }
 
   @Test
+  public void constructor_commaInQuestion_constructsRightQuestionAnswer() {
+    QuestionAnswer qa = new QuestionAnswer("hey, Jack | hello");
+    assertEquals("hey, Jack", qa.question);
+    assertEquals("hello", qa.answer);
+  }
+
+  @Test
   public void constructor_correctLine_constructsRightQuestionAnswer() {
-    QuestionAnswer qa = new QuestionAnswer("question, answer");
+    QuestionAnswer qa = new QuestionAnswer("question | answer");
     assertEquals(qa.question, "question");
     assertEquals(qa.answer, "answer");
   }
 
   @Test
   public void constructor_phrase_constructsPhrase() {
-    QuestionAnswer qa = new QuestionAnswer("multiple words question, multiple words answer");
+    QuestionAnswer qa = new QuestionAnswer("multiple words question | multiple words answer");
     assertEquals(qa.question, "multiple words question");
     assertEquals(qa.answer, "multiple words answer");
   }

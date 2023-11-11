@@ -20,14 +20,14 @@ public class VocabularyCheckerTest {
 
   @Test
   public void prepareQuestions_twoLines_penaltyFactor3_6Questions() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question1, answer1", "question2, answer2");
+    ImmutableList<String> lines = ImmutableList.of("question1 | answer1", "question2 | answer2");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
     assertEquals(checker.questionsRemaining(), 6);
   }
 
   @Test
   public void nextQuestion_asksQuestionFooInList() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question_foo, answer_foo");
+    ImmutableList<String> lines = ImmutableList.of("question_foo | answer_foo");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     String question = checker.nextQuestion();
     assertEquals(question, "question_foo");
@@ -35,7 +35,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void nextQuestion_asksQuestionBarInList() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question_bar, answer_bar");
+    ImmutableList<String> lines = ImmutableList.of("question_bar | answer_bar");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     String question = checker.nextQuestion();
     assertEquals(question, "question_bar");
@@ -49,19 +49,19 @@ public class VocabularyCheckerTest {
 
   @Test
   public void nextQuestion_previousAnsweredCorrectly_asksDifferentQuestion() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, 0", "1, 1");
+    ImmutableList<String> lines = ImmutableList.of("0 | 0", "1 | 1");
     for (int i = 0; i < 200; i++) {
       VocabularyChecker checker = prepareVocabularyChecker(lines, 3);
       String question = checker.nextQuestion();
       String correctAnswer = question; // answer in this test is always the same as question
-      assertEquals(checker.checkAnswer(correctAnswer), AnswerStatus.CORRECT);
+      assertEquals(AnswerStatus.CORRECT, checker.checkAnswer(correctAnswer));
       assertNotEquals(checker.nextQuestion(), question);
     }
   }
 
   @Test
   public void nextQuestion_asksDifferentQuestion_whenRequestedAnswerForPreviousQuestion() {
-    ImmutableList<String> lines = ImmutableList.of("question0, answer0", "question1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("question0 | answer0", "question1 | answer1");
     VocabularyChecker checker = prepareVocabularyChecker(lines, /* penaltyFactor= */ 1);
     for (int i = 0; i < 200; i++) {
       String question = checker.nextQuestion();
@@ -72,7 +72,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_rightAnswer_returnsCorrect() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     assertEquals(checker.nextQuestion(), "question");
     assertEquals(checker.checkAnswer("answer"), AnswerStatus.CORRECT);
@@ -80,7 +80,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_wrongAnswer_returnsWrong() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     assertEquals(checker.nextQuestion(), "question");
     assertEquals(checker.checkAnswer("wrong_answer"), AnswerStatus.WRONG);
@@ -88,7 +88,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_pops1Adds1() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("answer");
@@ -100,7 +100,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_pops1() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, correct_answer");
+    ImmutableList<String> lines = ImmutableList.of("question | correct_answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     assertEquals(checker.questionsRemaining(), 1);
     assertEquals(checker.nextQuestion(), "question");
@@ -110,7 +110,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_adds1_pops1_pops1() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("question1 | answer1");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     checker.nextQuestion();
     checker.checkAnswer("wrong_answer");
@@ -124,7 +124,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void nextQuestion_choosesRandomlyFirstQuestion() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, answer0", "1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("0 | answer0", "1 | answer1");
     boolean[] asked = {false, false};
     int counter = 150;
     while (!asked[0] || !asked[1]) {
@@ -138,7 +138,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_popsCorrectQuestion() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, answer0", "1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("0 | answer0", "1 | answer1");
     int counter = 150;
     while (counter > 0) {
       VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
@@ -153,7 +153,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void checkAnswer_worksInAlwaysRightMode() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("answer, question");
+    ImmutableList<String> lines = ImmutableList.of("answer | question");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.RIGHT);
     assertEquals(checker.nextQuestion(), "question");
     checker.checkAnswer("question");
@@ -164,7 +164,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void nextQuestion_sameQuestionAfterWrongAnswer() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, answer0", "1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("0 | answer0", "1 | answer1");
     for (int i = 0; i < 150; i++) {
       VocabularyChecker checker = new VocabularyChecker(1, Column.LEFT);
       checker.prepareQuestions(lines);
@@ -178,21 +178,21 @@ public class VocabularyCheckerTest {
 
   @Test
   public void revealAnswer_returnsAnswer() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
     assertEquals(checker.revealAnswer(), "answer");
   }
 
   @Test
   public void revealAnswer_returnsAnswer2() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer2");
+    ImmutableList<String> lines = ImmutableList.of("question | answer2");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
     assertEquals(checker.revealAnswer(), "answer2");
   }
 
   @Test
   public void revealAnswer_addsPenalty1() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
     assertEquals(checker.questionsRemaining(), 1);
     checker.revealAnswer();
@@ -201,7 +201,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void revealAnswer_addsPenalty2() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("question, answer");
+    ImmutableList<String> lines = ImmutableList.of("question | answer");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 2);
     assertEquals(checker.questionsRemaining(), 2);
     checker.revealAnswer();
@@ -210,7 +210,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void revealAnswer_movesToNextQuestion() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, answer0", "1, answer1");
+    ImmutableList<String> lines = ImmutableList.of("0 | answer0", "1 | answer1");
     int counter = 150;
     while (counter > 0) {
       VocabularyChecker checker = prepareVocabularyChecker(lines, 1);
@@ -226,7 +226,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void vocabularyChecker_askQuestionsFromAnotherColumn() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("left_column, right_column");
+    ImmutableList<String> lines = ImmutableList.of("left_column | right_column");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.RIGHT);
     assertEquals(checker.nextQuestion(), "right_column");
     assertEquals(checker.revealAnswer(), "left_column");
@@ -234,7 +234,7 @@ public class VocabularyCheckerTest {
 
   @Test
   public void vocabularyChecker_askQuestionsFromBothColumns() throws IOException {
-    ImmutableList<String> lines = ImmutableList.of("0, 1");
+    ImmutableList<String> lines = ImmutableList.of("0 | 1");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 1, Column.BOTH);
     assertEquals(checker.questionsRemaining(), 2);
     int question = Integer.parseInt(checker.nextQuestion());

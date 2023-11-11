@@ -30,7 +30,7 @@ public class QuestionAnswer {
   }
 
   public QuestionAnswer(String line) {
-    String[] words = line.split(", ");
+    String[] words = line.split(" \\| ");
     if (words.length != 2) {
       throw new WronglyFormattedLineException(line);
     }
