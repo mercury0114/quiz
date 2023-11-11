@@ -24,18 +24,25 @@ public class QuestionAnswer {
   final String question;
   final String answer;
 
-  public QuestionAnswer(String question, String answer) {
-    this.question = question;
-    this.answer = answer;
-  }
-
-  public QuestionAnswer(String line) {
+  public static QuestionAnswer extractQuestionAnswer(String line, Column column) {
     String[] words = line.split(" \\| ");
     if (words.length != 2) {
       throw new WronglyFormattedLineException(line);
     }
-    question = words[0];
-    answer = words[1];
+    switch (column) {
+      case LEFT:
+        return new QuestionAnswer(words[0], words[1]);
+      case RIGHT:
+        return new QuestionAnswer(words[1], words[0]);
+      case BOTH:
+        throw new IllegalArgumentException("Only LEFT or RIGHT column supported, not BOTH");
+    }
+    throw new AssertionError("Impossible code path reached");
+  }
+
+  public QuestionAnswer(String question, String answer) {
+    this.question = question;
+    this.answer = answer;
   }
 
   public AnswerStatus getAnswerStatus(String answer) {
@@ -55,7 +62,7 @@ public class QuestionAnswer {
     return AnswerStatus.WRONG;
   }
 
-  public boolean same(QuestionAnswer questionAnswer) {
+  public boolean equals(QuestionAnswer questionAnswer) {
     return this.question.equals(questionAnswer.question)
         && this.answer.equals(questionAnswer.answer);
   }

@@ -1,5 +1,7 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
+
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
@@ -29,9 +31,8 @@ public class VocabularyChecker {
 
   public void prepareQuestions(ImmutableList<String> lines) {
     for (String line : lines) {
-      String[] words = line.split(" \\| ");
-      QuestionAnswer left = new QuestionAnswer(words[0], words[1]);
-      QuestionAnswer right = new QuestionAnswer(words[1], words[0]);
+      QuestionAnswer left = extractQuestionAnswer(line, Column.LEFT);
+      QuestionAnswer right = extractQuestionAnswer(line, Column.RIGHT);
       for (int i = 0; i < penaltyFactor; i++) {
         switch (column) {
           case LEFT:
@@ -90,7 +91,7 @@ public class VocabularyChecker {
 
   private void putDifferentQuestionFirst(QuestionAnswer previous) {
     for (int i = 0; i < questionAnswerList.size(); i++) {
-      if (!questionAnswerList.get(i).same(previous)) {
+      if (!questionAnswerList.get(i).equals(previous)) {
         Collections.swap(questionAnswerList, 0, i);
       }
     }
