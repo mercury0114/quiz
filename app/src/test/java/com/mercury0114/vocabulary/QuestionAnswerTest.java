@@ -74,6 +74,19 @@ public class QuestionAnswerTest {
   }
 
   @Test
+  public void extractQuestionAnswer_lineWithEmptyAnswer_throwsException() {
+    assertThrows(
+        WronglyFormattedLineException.class,
+        () -> extractQuestionAnswer("question | ", Column.LEFT));
+  }
+
+  @Test
+  public void extractQuestionAnswer_lineWithEmptyQuestion_throwsException() {
+    assertThrows(
+        WronglyFormattedLineException.class, () -> extractQuestionAnswer(" | answer", Column.LEFT));
+  }
+
+  @Test
   public void extractQuestionAnswer_noDelimiter_throwsException() {
     assertThrows(
         WronglyFormattedLineException.class,
@@ -102,19 +115,19 @@ public class QuestionAnswerTest {
   }
 
   @Test
-  public void same_returnsTrueOnSameQuestionAnswer() {
+  public void equals_returnsTrueOnSameQuestionAnswer() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertTrue(qa.equals(new QuestionAnswer("question", "answer")));
   }
 
   @Test
-  public void same_returnsFalseOnDifferentQuestion() {
+  public void equals_returnsFalseOnDifferentQuestion() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertFalse(qa.equals(new QuestionAnswer("question2", "answer")));
   }
 
   @Test
-  public void same_returnsFalseOnDifferentAnswer() {
+  public void equals_returnsFalseOnDifferentAnswer() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertFalse(qa.equals(new QuestionAnswer("question", "answer2")));
   }

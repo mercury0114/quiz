@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.StringUtils;
 
 public class QuestionAnswer {
@@ -25,19 +26,28 @@ public class QuestionAnswer {
   final String answer;
 
   public static QuestionAnswer extractQuestionAnswer(String line, Column column) {
-    String[] words = line.split(" \\| ");
-    if (words.length != 2) {
-      throw new WronglyFormattedLineException(line);
-    }
+    ImmutableList<String> twoStrings = splitIntoTwoStrings(line);
     switch (column) {
       case LEFT:
-        return new QuestionAnswer(words[0], words[1]);
+        return new QuestionAnswer(twoStrings.get(0), twoStrings.get(1));
       case RIGHT:
-        return new QuestionAnswer(words[1], words[0]);
+        return new QuestionAnswer(twoStrings.get(1), twoStrings.get(0));
       case BOTH:
         throw new IllegalArgumentException("Only LEFT or RIGHT column supported, not BOTH");
     }
     throw new AssertionError("Impossible code path reached");
+  }
+
+  // Throws an exception, if line is not correctly formatted.
+  public static ImmutableList<String> splitIntoTwoStrings(String line) {
+    if (!line.contains(" | ")) {
+      throw new WronglyFormattedLineException(line);
+    }
+    String[] twoStrings = line.split(" \\| ");
+    if (twoStrings.length != 2 || twoStrings[0].isEmpty() || twoStrings[1].isEmpty()) {
+      throw new WronglyFormattedLineException(line);
+    }
+    return ImmutableList.copyOf(twoStrings);
   }
 
   public QuestionAnswer(String question, String answer) {

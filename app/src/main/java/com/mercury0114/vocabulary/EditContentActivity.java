@@ -1,13 +1,16 @@
 package com.mercury0114.vocabulary;
 
-import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
+import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +20,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
-
-  private final ArrayList<EditText> contentTextViews = new ArrayList();
 
   private EditText editFileNameText;
 
@@ -59,29 +59,53 @@ public class EditContentActivity extends AppCompatActivity {
   }
 
   private void configureContentTextViews(String filePath) {
-    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.edit_content_id);
+    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_left_column_id);
+    LinearLayout rightLayout = (LinearLayout) findViewById(R.id.edit_content_right_column_id);
     for (String line : readLinesAndSort(new File(filePath))) {
-      EditText editText = createEditView(line);
-      linearLayout.addView(editText);
-      contentTextViews.add(editText);
+      ImmutableList<String> twoStrings;
+      try {
+        twoStrings = splitIntoTwoStrings(line);
+      } catch (WronglyFormattedLineException exception) {
+        twoStrings = ImmutableList.of(line, "");
+      }
+      leftLayout.addView(createEditView(twoStrings.get(0)));
+      rightLayout.addView(createEditView(twoStrings.get(1)));
     }
     for (int i = 0; i < EXTRA_BLANK_LINES; i++) {
-      EditText editText = createEditView("");
-      linearLayout.addView(editText);
-      contentTextViews.add(editText);
+      leftLayout.addView(createEditView(""));
+      rightLayout.addView(createEditView(""));
     }
   }
 
   private ImmutableList<String> getNonEmptyLines() {
-    return contentTextViews.stream()
-        .map(editText -> editText.getText().toString())
-        .filter(line -> !line.isEmpty())
-        .collect(toImmutableList());
+    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_left_column_id);
+    LinearLayout rightLayout = (LinearLayout) findViewById(R.id.edit_content_right_column_id);
+    ImmutableList.Builder<String> linesBuilder = ImmutableList.builder();
+    for (int i = 0; i < leftLayout.getChildCount(); i++) {
+      EditText leftEditText = (EditText) leftLayout.getChildAt(i);
+      EditText rightEditText = (EditText) rightLayout.getChildAt(i);
+      String leftText = leftEditText.getText().toString();
+      String rightText = rightEditText.getText().toString();
+      if (leftText.isEmpty() && rightText.isEmpty()) {
+        continue;
+      }
+      linesBuilder.add(
+          String.format("%s | %s", addWarningIfEmpty(leftText), addWarningIfEmpty(rightText)));
+    }
+    return linesBuilder.build();
+  }
+
+  private static String addWarningIfEmpty(String s) {
+    return s.isEmpty() ? "FILL OR CLEAR ROW" : s;
   }
 
   private EditText createEditView(String line) {
     EditText editText = new EditText(this);
+    editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     editText.setText(line);
+    editText.setLayoutParams(
+        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
     editText.setOnKeyListener(
         new OnKeyListener() {
           @Override

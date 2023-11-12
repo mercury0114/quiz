@@ -67,7 +67,7 @@ public class FolderActivity extends AppCompatActivity {
               Files.createFile(Paths.get(newFilePath));
               ImmutableList<String> exampleList =
                   ImmutableList.of(
-                      "enter_question_1, enter_answer_1", "enter_question_2, enter_answer_2");
+                      "enter_question_1 | enter_answer_1", "enter_question_2 | enter_answer_2");
               Files.write(Paths.get(newFilePath), exampleList, StandardCharsets.UTF_8);
             } catch (IOException exception) {
               throw new RuntimeException(exception);
