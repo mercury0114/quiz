@@ -5,14 +5,15 @@ import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineExce
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.common.collect.ImmutableList;
 import java.io.File;
@@ -23,7 +24,6 @@ import java.nio.file.Paths;
 
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
-
   private EditText editFileNameText;
 
   @Override
@@ -59,33 +59,43 @@ public class EditContentActivity extends AppCompatActivity {
   }
 
   private void configureContentTextViews(String filePath) {
-    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_left_column_id);
-    LinearLayout rightLayout = (LinearLayout) findViewById(R.id.edit_content_right_column_id);
-    for (String line : readLinesAndSort(new File(filePath))) {
+    LinearLayout layout = (LinearLayout) findViewById(R.id.edit_content_id);
+    ImmutableList<String> lines = readLinesAndSort(new File(filePath));
+    for (int qaNumber = 1; qaNumber <= lines.size(); qaNumber++) {
+      String line = lines.get(qaNumber - 1);
       ImmutableList<String> twoStrings;
       try {
         twoStrings = splitIntoTwoStrings(line);
       } catch (WronglyFormattedLineException exception) {
         twoStrings = ImmutableList.of(line, "");
       }
-      leftLayout.addView(createEditView(twoStrings.get(0)));
-      rightLayout.addView(createEditView(twoStrings.get(1)));
+      addTwoStringsToLayout(layout, twoStrings, qaNumber);
     }
-    for (int i = 0; i < EXTRA_BLANK_LINES; i++) {
-      leftLayout.addView(createEditView(""));
-      rightLayout.addView(createEditView(""));
+    for (int blankQaNumber = 1; blankQaNumber <= EXTRA_BLANK_LINES; blankQaNumber++) {
+      addTwoStringsToLayout(layout, ImmutableList.of("", ""), lines.size() + blankQaNumber);
     }
   }
 
+  private void addTwoStringsToLayout(
+      LinearLayout layout, ImmutableList<String> twoStrings, int index) {
+    layout.addView(createQuestionAnswerInfoView(index));
+    layout.addView(createEditText(twoStrings.get(0), Color.LTGRAY));
+    layout.addView(createEditText(twoStrings.get(1), Color.GRAY));
+  }
+
+  private TextView createQuestionAnswerInfoView(int questionAnswerNumber) {
+    TextView textView = new TextView(this);
+    textView.setPadding(10, 50, 0, 0);
+    textView.setText(String.format("Question-answer pair %d:", questionAnswerNumber));
+    return textView;
+  }
+
   private ImmutableList<String> getNonEmptyLines() {
-    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_left_column_id);
-    LinearLayout rightLayout = (LinearLayout) findViewById(R.id.edit_content_right_column_id);
+    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_id);
     ImmutableList.Builder<String> linesBuilder = ImmutableList.builder();
-    for (int i = 0; i < leftLayout.getChildCount(); i++) {
-      EditText leftEditText = (EditText) leftLayout.getChildAt(i);
-      EditText rightEditText = (EditText) rightLayout.getChildAt(i);
-      String leftText = leftEditText.getText().toString();
-      String rightText = rightEditText.getText().toString();
+    for (int i = 0; i < leftLayout.getChildCount(); i += 3) {
+      String leftText = ((EditText) leftLayout.getChildAt(i + 1)).getText().toString();
+      String rightText = ((EditText) leftLayout.getChildAt(i + 2)).getText().toString();
       if (leftText.isEmpty() && rightText.isEmpty()) {
         continue;
       }
@@ -99,13 +109,11 @@ public class EditContentActivity extends AppCompatActivity {
     return s.isEmpty() ? "FILL OR CLEAR ROW" : s;
   }
 
-  private EditText createEditView(String line) {
+  private EditText createEditText(String line, int colorCode) {
     EditText editText = new EditText(this);
-    editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     editText.setText(line);
-    editText.setLayoutParams(
-        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
+    editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+    editText.setBackgroundColor(colorCode);
     editText.setOnKeyListener(
         new OnKeyListener() {
           @Override
