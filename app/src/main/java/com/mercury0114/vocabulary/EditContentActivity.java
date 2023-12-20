@@ -24,7 +24,9 @@ import java.nio.file.Paths;
 
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
+
   private EditText editFileNameText;
+  private ImmutableList<String> initialLinesFromFile;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,8 @@ public class EditContentActivity extends AppCompatActivity {
     String filePath = getIntent().getStringExtra("PATH");
     editFileNameText = (EditText) findViewById(R.id.edit_file_name_text_id);
     editFileNameText.setText(new File(filePath).getName());
-    configureContentTextViews(filePath);
+    initialLinesFromFile = readLinesAndSort(new File(filePath));
+    configureContentTextViews(initialLinesFromFile);
   }
 
   @Override
@@ -58,11 +61,10 @@ public class EditContentActivity extends AppCompatActivity {
     }
   }
 
-  private void configureContentTextViews(String filePath) {
+  private void configureContentTextViews(ImmutableList<String> initialLinesFromFile) {
     LinearLayout layout = (LinearLayout) findViewById(R.id.edit_content_id);
-    ImmutableList<String> lines = readLinesAndSort(new File(filePath));
-    for (int qaNumber = 1; qaNumber <= lines.size(); qaNumber++) {
-      String line = lines.get(qaNumber - 1);
+    for (int qaNumber = 1; qaNumber <= initialLinesFromFile.size(); qaNumber++) {
+      String line = initialLinesFromFile.get(qaNumber - 1);
       ImmutableList<String> twoStrings;
       try {
         twoStrings = splitIntoTwoStrings(line);
@@ -72,7 +74,8 @@ public class EditContentActivity extends AppCompatActivity {
       addTwoStringsToLayout(layout, twoStrings, qaNumber);
     }
     for (int blankQaNumber = 1; blankQaNumber <= EXTRA_BLANK_LINES; blankQaNumber++) {
-      addTwoStringsToLayout(layout, ImmutableList.of("", ""), lines.size() + blankQaNumber);
+      int blankLineIndex = initialLinesFromFile.size() + blankQaNumber;
+      addTwoStringsToLayout(layout, ImmutableList.of("", ""), blankLineIndex);
     }
   }
 
