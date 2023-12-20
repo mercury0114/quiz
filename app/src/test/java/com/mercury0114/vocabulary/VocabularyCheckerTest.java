@@ -14,11 +14,6 @@ import org.junit.Test;
 public class VocabularyCheckerTest {
 
   @Test
-  public void constructor_penaltyFactor0_throwsIllegalArgumentException() {
-    assertThrows(IllegalArgumentException.class, () -> new VocabularyChecker(0, Column.LEFT));
-  }
-
-  @Test
   public void prepareQuestions_twoLines_penaltyFactor3_6Questions() throws IOException {
     ImmutableList<String> lines = ImmutableList.of("question1 | answer1", "question2 | answer2");
     VocabularyChecker checker = prepareVocabularyChecker(lines, 3);

@@ -22,9 +22,7 @@ public class VocabularyChecker {
   private Column column;
 
   public VocabularyChecker(int penaltyFactor, Column column) {
-    if (penaltyFactor <= 0) {
-      throw new IllegalArgumentException();
-    }
+    assert penaltyFactor > 0 : "penaltyFactor argument must be positive";
     this.penaltyFactor = penaltyFactor;
     this.column = column;
   }
