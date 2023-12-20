@@ -126,8 +126,7 @@ public class FolderActivity extends AppCompatActivity {
   }
 
   private Button createExistingFileButton(String fileName) {
-    Button button = new Button(this);
-    button.setText(fileName);
+    Button button = createBasicButton(Color.BLACK, fileName);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
@@ -142,9 +141,7 @@ public class FolderActivity extends AppCompatActivity {
   }
 
   private Button createExistingFolderButton(String folderName) {
-    Button button = new Button(this);
-    button.setTextColor(Color.RED);
-    button.setText(folderName);
+    Button button = createBasicButton(Color.RED, folderName);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
@@ -155,6 +152,14 @@ public class FolderActivity extends AppCompatActivity {
             startActivity(intent);
           }
         });
+    return button;
+  }
+
+  private Button createBasicButton(int colorId, String name) {
+    Button button = new Button(this);
+    button.setAllCaps(false);
+    button.setTextColor(colorId);
+    button.setText(name);
     return button;
   }
 
