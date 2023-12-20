@@ -4,7 +4,6 @@ import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -25,43 +24,38 @@ import java.nio.file.Paths;
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
 
-  private EditText editFileNameText;
   private ImmutableList<String> initialLinesFromFile;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.edit_content_layout);
-    String filePath = getIntent().getStringExtra("PATH");
-    editFileNameText = (EditText) findViewById(R.id.edit_file_name_text_id);
-    editFileNameText.setText(new File(filePath).getName());
-    initialLinesFromFile = readLinesAndSort(new File(filePath));
-    configureContentTextViews(initialLinesFromFile);
+
+    File initialFile = new File(getIntent().getStringExtra("PATH"));
+    initialLinesFromFile = readLinesAndSort(initialFile);
+
+    configureContentTextViews();
   }
 
   @Override
   protected void onStop() {
+    ImmutableList<String> newLines = getNonEmptyLines();
+    if (!newLines.equals(initialLinesFromFile)) {
+      updateFile(newLines);
+    }
+    super.onStop();
+  }
+
+  private void updateFile(ImmutableList<String> newLines) {
     String filePath = getIntent().getStringExtra("PATH");
-    ImmutableList<String> lines = getNonEmptyLines();
-    String newName = editFileNameText.getText().toString();
     try {
-      Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
-      File oldFile = new File(filePath);
-      File newFile = new File(new File(filePath).getParent() + "/" + newName);
-      Files.move(oldFile.toPath(), newFile.toPath());
+      Files.write(Paths.get(filePath), newLines, StandardCharsets.UTF_8);
     } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    } finally {
-      super.onStop();
-      if (!newName.equals(new File(filePath).getName())) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-      }
+      throw new RuntimeException("Failed to update the file contents", exception);
     }
   }
 
-  private void configureContentTextViews(ImmutableList<String> initialLinesFromFile) {
+  private void configureContentTextViews() {
     LinearLayout layout = (LinearLayout) findViewById(R.id.edit_content_id);
     for (int qaNumber = 1; qaNumber <= initialLinesFromFile.size(); qaNumber++) {
       String line = initialLinesFromFile.get(qaNumber - 1);

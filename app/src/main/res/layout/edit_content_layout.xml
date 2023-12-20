@@ -10,13 +10,6 @@ android:layout_height="fill_parent">
   android:orientation="vertical">
     <TextView android:layout_width="match_parent"
     android:layout_height="wrap_content" android:textSize="25dp"
-    android:text="File name" />
-    <EditText android:id="@+id/edit_file_name_text_id"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:textSize="20dp"
-    android:inputType="text" />
-    <TextView android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:textSize="25dp"
     android:text="Content" />
     <LinearLayout android:id="@+id/edit_content_id"
     android:orientation="vertical"
