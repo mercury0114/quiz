@@ -4,23 +4,33 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileActivity extends AppCompatActivity {
+  private EditText fileNameEditText;
+  private String initialFileName;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choices_layout);
     String filePath = getIntent().getStringExtra("PATH");
-    TextView textView = (TextView) findViewById(R.id.file_name_text_view_id);
-    textView.setText(new File(filePath).getName());
+    this.initialFileName = new File(filePath).getName();
+    this.fileNameEditText = prepareFileNameEditText(initialFileName);
 
     final Button leftColumnButton = findViewById(R.id.left_column_button_id);
     leftColumnButton.setOnClickListener(createColumnButtonListener(Column.LEFT, filePath));
@@ -44,6 +54,25 @@ public class FileActivity extends AppCompatActivity {
 
     final Button deleteFileButton = findViewById(R.id.delete_file_button_id);
     deleteFileButton.setOnClickListener(createDeleteFileListener(filePath));
+  }
+
+  private EditText prepareFileNameEditText(String initialFileName) {
+    EditText editText = (EditText) findViewById(R.id.file_name_edit_text_id);
+    editText.setText(initialFileName);
+    editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+    editText.setOnKeyListener(
+        new OnKeyListener() {
+          @Override
+          public boolean onKey(View view, int keyCode, KeyEvent event) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+              // Returning true so that pressing enter wouldn't create a new line.
+              return true;
+            }
+            return false;
+          }
+        });
+    return editText;
   }
 
   private OnClickListener createColumnButtonListener(Column column, String filePath) {
@@ -111,5 +140,24 @@ public class FileActivity extends AppCompatActivity {
     intent.putExtra("COLUMN", column.name());
     intent.putExtra("PATH", filePath);
     return intent;
+  }
+
+  @Override
+  protected void onPause() {
+    String newFileName = fileNameEditText.getText().toString();
+    if (!newFileName.equals(initialFileName)) {
+      renameFile(newFileName);
+    }
+    super.onPause();
+  }
+
+  private void renameFile(String newFileName) {
+    Path initialPath = Paths.get(getIntent().getStringExtra("PATH"));
+    Path newPath = Paths.get(initialPath.getParent() + "/" + newFileName);
+    try {
+      Files.move(initialPath, newPath);
+    } catch (IOException exception) {
+      throw new RuntimeException("Renaming file failed", exception);
+    }
   }
 }

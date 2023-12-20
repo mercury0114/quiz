@@ -88,11 +88,11 @@ public class EditContentActivity extends AppCompatActivity {
   }
 
   private ImmutableList<String> getNonEmptyLines() {
-    LinearLayout leftLayout = (LinearLayout) findViewById(R.id.edit_content_id);
+    LinearLayout linesLayout = (LinearLayout) findViewById(R.id.edit_content_id);
     ImmutableList.Builder<String> linesBuilder = ImmutableList.builder();
-    for (int i = 0; i < leftLayout.getChildCount(); i += 3) {
-      String leftText = ((EditText) leftLayout.getChildAt(i + 1)).getText().toString();
-      String rightText = ((EditText) leftLayout.getChildAt(i + 2)).getText().toString();
+    for (int i = 0; i < linesLayout.getChildCount(); i += 3) {
+      String leftText = ((EditText) linesLayout.getChildAt(i + 1)).getText().toString();
+      String rightText = ((EditText) linesLayout.getChildAt(i + 2)).getText().toString();
       if (leftText.isEmpty() && rightText.isEmpty()) {
         continue;
       }
