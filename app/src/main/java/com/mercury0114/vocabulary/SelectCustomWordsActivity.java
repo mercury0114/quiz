@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.TextSelector.DEFAULT_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.extractChosenTexts;
 import static com.mercury0114.vocabulary.TextSelector.getToggledColorCode;
@@ -29,7 +30,7 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
 
   private void prepareButtons(String filePath, Column column) {
     final Button startButton = (Button) findViewById(R.id.start_practice_button_id);
-    ImmutableList<Button> selectTextButtons = createSelectTextButtons(filePath);
+    ImmutableList<Button> selectTextButtons = createSelectTextButtons(column, filePath);
     startButton.setOnClickListener(
         new OnClickListener() {
           public void onClick(View view) {
@@ -47,20 +48,22 @@ public class SelectCustomWordsActivity extends AppCompatActivity {
     return intent;
   }
 
-  private ImmutableList<Button> createSelectTextButtons(String filePath) {
+  private ImmutableList<Button> createSelectTextButtons(Column column, String filePath) {
     LinearLayout linearLayout = (LinearLayout) findViewById(R.id.select_custom_content_id);
     ImmutableList.Builder<Button> buttonsBuilder = new ImmutableList.Builder<Button>();
     for (String line : readLinesAndSort(new File(filePath))) {
-      Button selectButton = createSelectButton(line);
+      Button selectButton = createSelectButton(line, column);
       buttonsBuilder.add(selectButton);
       linearLayout.addView(selectButton);
     }
     return buttonsBuilder.build();
   }
 
-  private Button createSelectButton(String line) {
+  private Button createSelectButton(String line, Column column) {
     Button button = new Button(this);
-    button.setText(line);
+    QuestionAnswer questionAnswer = extractQuestionAnswer(line, column);
+    button.setText(questionAnswer.question);
+    button.setContentDescription(line);
     button.setTextColor(DEFAULT_COLOR_CODE);
     button.setOnClickListener(
         new OnClickListener() {

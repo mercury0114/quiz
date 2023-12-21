@@ -89,7 +89,7 @@ public class TextSelectorTest {
     when(colorStateList.getDefaultColor()).thenReturn(colorCode);
     Button button = mock(Button.class);
     when(button.getTextColors()).thenReturn(colorStateList);
-    when(button.getText()).thenReturn(content);
+    when(button.getContentDescription()).thenReturn(content);
     return button;
   }
 }

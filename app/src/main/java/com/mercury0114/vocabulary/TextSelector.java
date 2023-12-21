@@ -49,7 +49,7 @@ final class TextSelector {
 
   private static ImmutableList<String> extractAllTexts(ImmutableList<Button> chosenButtons) {
     return chosenButtons.stream()
-        .map(button -> button.getText().toString())
+        .map(button -> button.getContentDescription().toString())
         .collect(toImmutableList());
   }
 }
