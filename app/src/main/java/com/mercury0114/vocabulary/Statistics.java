@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,9 @@ public class Statistics {
 
   ImmutableList<QuestionAnswer> getHardestQuestions(int requestedNumber) {
     assert (entries.size() >= requestedNumber) : "Requested more questions than we have";
-    return entries.stream().map(entry -> entry.questionAnswer).collect(toImmutableList());
+    ImmutableList<QuestionAnswer> questions =
+        entries.stream().map(entry -> entry.questionAnswer).collect(toImmutableList());
+    return questions.subList(0, requestedNumber);
   }
 
   private Statistics(List<Entry> entries) {
