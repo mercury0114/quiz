@@ -18,12 +18,9 @@ public class VocabularyChecker {
   public static class NoQuestionsException extends RuntimeException {}
 
   private final ArrayList<QuestionAnswer> questionAnswerList = new ArrayList();
-  private final int penaltyFactor;
-  private Column column;
+  private final Column column;
 
-  public VocabularyChecker(int penaltyFactor, Column column) {
-    assert penaltyFactor > 0 : "penaltyFactor argument must be positive";
-    this.penaltyFactor = penaltyFactor;
+  public VocabularyChecker(Column column) {
     this.column = column;
   }
 
@@ -31,7 +28,7 @@ public class VocabularyChecker {
     for (String line : lines) {
       QuestionAnswer left = extractQuestionAnswer(line, Column.LEFT);
       QuestionAnswer right = extractQuestionAnswer(line, Column.RIGHT);
-      for (int i = 0; i < penaltyFactor; i++) {
+      for (int i = 0; i < 2; i++) {
         switch (column) {
           case LEFT:
             questionAnswerList.add(left);
@@ -57,13 +54,12 @@ public class VocabularyChecker {
     switch (answerStatus) {
       case CORRECT:
         questionAnswerList.remove(0);
-        Collections.shuffle(questionAnswerList);
         putDifferentQuestionFirst(questionAnswer);
         break;
       case CLOSE:
         break;
       case WRONG:
-        updateQuestionAnswerList(1);
+        addQuestionAnswerMoreTimesToList(questionAnswer, /* numerOfTimes= */ 1);
         break;
     }
     return answerStatus;
@@ -82,22 +78,23 @@ public class VocabularyChecker {
 
   public String revealAnswer() {
     QuestionAnswer questionAnswer = questionAnswerList.get(0);
-    updateQuestionAnswerList(penaltyFactor);
+    addQuestionAnswerMoreTimesToList(questionAnswer, /* numberOfTimes= */ 2);
     putDifferentQuestionFirst(questionAnswer);
     return questionAnswer.answer;
   }
 
   private void putDifferentQuestionFirst(QuestionAnswer previous) {
+    Collections.shuffle(questionAnswerList);
     for (int i = 0; i < questionAnswerList.size(); i++) {
       if (!questionAnswerList.get(i).equals(previous)) {
         Collections.swap(questionAnswerList, 0, i);
+        return;
       }
     }
   }
 
-  private void updateQuestionAnswerList(int penaltyFactor) {
-    QuestionAnswer questionAnswer = questionAnswerList.get(0);
-    for (int i = 0; i < penaltyFactor; i++) {
+  private void addQuestionAnswerMoreTimesToList(QuestionAnswer questionAnswer, int numberOfTimes) {
+    for (int i = 0; i < numberOfTimes; i++) {
       questionAnswerList.add(questionAnswer);
     }
   }

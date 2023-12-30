@@ -29,8 +29,7 @@ public class VocabularyActivity extends AppCompatActivity {
     Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     VocabularyCheckerModel viewModel =
         new ViewModelProvider(this).get(VocabularyCheckerModel.class);
-    vocabularyChecker =
-        viewModel.createOrGetChecker(/* penaltyFactor= */ 2, column, ImmutableList.copyOf(texts));
+    vocabularyChecker = viewModel.createOrGetChecker(column, ImmutableList.copyOf(texts));
 
     questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     questionView = (TextView) findViewById(R.id.question_view_id);
