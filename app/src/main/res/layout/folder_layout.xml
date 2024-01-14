@@ -3,7 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent">
-  <LinearLayout android:id="@+id/main_view_id"
+  <LinearLayout android:id="@+id/folder_main_view_id"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">

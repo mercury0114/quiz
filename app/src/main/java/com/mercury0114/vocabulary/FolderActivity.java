@@ -30,13 +30,13 @@ public class FolderActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    setContentView(R.layout.main_layout);
+    setContentView(R.layout.folder_layout);
     configureFolderNameTextView();
     configureNewFileButton();
     configureNewFolderButton();
     configureDeleteFolderButton();
 
-    LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.main_view_id);
+    LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.folder_main_view_id);
     for (String name : GetFilesNames(getFolderPath())) {
       Button button =
           isFileName(name) ? createExistingFileButton(name) : createExistingFolderButton(name);
