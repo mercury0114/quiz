@@ -51,6 +51,8 @@ public class FileActivity extends AppCompatActivity {
 
     final Button weakestWordsLeftColumnButton =
         findViewById(R.id.weakest_words_left_column_button_id);
+    weakestWordsLeftColumnButton.setOnClickListener(
+        createWeakestWordsColumnButtonListener(Column.LEFT, filePath));
 
     final Button editContentButton = findViewById(R.id.edit_content_button_id);
     editContentButton.setOnClickListener(createEditContentButtonListener(filePath));
@@ -92,6 +94,14 @@ public class FileActivity extends AppCompatActivity {
       public void onClick(View view) {
         Intent intent = buildIntentForSelectCustomWordsActivity(column, filePath);
         startActivity(intent);
+      }
+    };
+  }
+
+  private OnClickListener createWeakestWordsColumnButtonListener(Column column, String filePath) {
+    return new OnClickListener() {
+      public void onClick(View view) {
+        // TODO(mariusl): finish implementing
       }
     };
   }
