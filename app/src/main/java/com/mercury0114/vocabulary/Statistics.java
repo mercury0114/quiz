@@ -1,14 +1,18 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
+import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 
 import com.google.common.collect.ImmutableList;
+import com.mercury0114.vocabulary.QuestionAnswer.Column;
 
 public class Statistics {
 
   private final ImmutableList<Entry> entries;
 
-  static Statistics createStatistics(ImmutableList<QuestionAnswer> questions) {
+  static Statistics createStatistics(ImmutableList<String> texts, Column column) {
+    ImmutableList<QuestionAnswer> questions =
+        texts.stream().map(text -> extractQuestionAnswer(text, column)).collect(toImmutableList());
     ImmutableList<Entry> entries =
         questions.stream().map(question -> new Entry(question)).collect(toImmutableList());
     return new Statistics(entries);

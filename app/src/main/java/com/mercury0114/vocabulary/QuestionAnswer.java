@@ -72,8 +72,14 @@ public class QuestionAnswer {
     return AnswerStatus.WRONG;
   }
 
-  public boolean equals(QuestionAnswer questionAnswer) {
-    return this.question.equals(questionAnswer.question)
-        && this.answer.equals(questionAnswer.answer);
+  @Override
+  public boolean equals(Object other) {
+    return this.question.equals(((QuestionAnswer) other).question)
+        && this.answer.equals(((QuestionAnswer) other).answer);
+  }
+
+  @Override
+  public int hashCode() {
+    return (this.question + this.answer).hashCode();
   }
 }
