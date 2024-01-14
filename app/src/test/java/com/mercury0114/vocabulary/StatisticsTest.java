@@ -1,18 +1,17 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.Statistics.createStatistics;
+import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import com.google.common.collect.ImmutableList;
-import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import org.junit.Test;
 
 public class StatisticsTest {
 
   @Test
   public void getHardestQuestions_requestedTooManyQuestions_throwsIllegalStateException() {
-    Statistics statistics = createStatistics(ImmutableList.of("question | answer"), Column.LEFT);
+    Statistics statistics = new Statistics(ImmutableList.of(createEntry("question1")));
 
     assertThrows(
         AssertionError.class, () -> statistics.getHardestQuestions(/* requestedNumber= */ 2));
@@ -20,25 +19,23 @@ public class StatisticsTest {
 
   @Test
   public void getHardestQuestions_requestedAllQuestions_returnsAllQuestions() {
-    QuestionAnswer questionAnswer1 = new QuestionAnswer("question1", "answer1");
-    QuestionAnswer questionAnswer2 = new QuestionAnswer("question2", "answer2");
     Statistics statistics =
-        createStatistics(
-            ImmutableList.of("question1 | answer1", "question2 | answer2"), Column.LEFT);
+        new Statistics(ImmutableList.of(createEntry("question1"), createEntry("question2")));
 
     assertEquals(
         statistics.getHardestQuestions(/* requestedNumber= */ 2),
-        ImmutableList.of(questionAnswer1, questionAnswer2));
+        ImmutableList.of("question1", "question2"));
   }
 
   @Test
-  public void getHardestQuestions_moreQuestionsThanRequested_returnsRequestedNumber() {
-    QuestionAnswer questionAnswer1 = new QuestionAnswer("question1", "answer1");
-    QuestionAnswer questionAnswer2 = new QuestionAnswer("question2", "answer2");
+  public void getHardestQuestions_statisticsHasMoreQuestionsThanRequested_returnsRequestedNumber() {
     Statistics statistics =
-        createStatistics(
-            ImmutableList.of("question1 | answer1", "question2 | answer2"), Column.LEFT);
+        new Statistics(ImmutableList.of(createEntry("question1"), createEntry("question2")));
 
     assertEquals(statistics.getHardestQuestions(/* requestedNumber= */ 1).size(), 1);
+  }
+
+  private StatisticsEntry createEntry(String question) {
+    return createStatisticsEntry(String.format("%s | correct=0 | close=1 | wrong=2", question));
   }
 }
