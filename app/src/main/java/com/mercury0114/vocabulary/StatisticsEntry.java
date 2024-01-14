@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +21,7 @@ class StatisticsEntry {
     return new StatisticsEntry(question, correctCount, closeCount, wrongCount);
   }
 
-  private StatisticsEntry(String question, int correctCount, int closeCount, int wrongCount) {
+  StatisticsEntry(String question, int correctCount, int closeCount, int wrongCount) {
     this.question = question;
     this.correctCount = correctCount;
     this.closeCount = closeCount;
@@ -41,5 +42,19 @@ class StatisticsEntry {
 
   int wrongCount() {
     return wrongCount;
+  }
+
+  void incrementCounter(AnswerStatus answerStatus) {
+    switch (answerStatus) {
+      case CORRECT:
+        correctCount++;
+        return;
+      case CLOSE:
+        closeCount++;
+        return;
+      case WRONG:
+        wrongCount++;
+        return;
+    }
   }
 }
