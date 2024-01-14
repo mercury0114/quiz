@@ -3,19 +3,14 @@ package com.mercury0114.vocabulary;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import com.google.common.collect.ImmutableList;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Statistics {
 
-  private final List<Entry> entries;
+  private final ImmutableList<Entry> entries;
 
   static Statistics createStatistics(ImmutableList<QuestionAnswer> questions) {
-    List<Entry> entries =
-        questions.stream()
-            .map(question -> new Entry(question))
-            .collect(Collectors.toCollection(ArrayList::new));
+    ImmutableList<Entry> entries =
+        questions.stream().map(question -> new Entry(question)).collect(toImmutableList());
     return new Statistics(entries);
   }
 
@@ -26,7 +21,7 @@ public class Statistics {
     return questions.subList(0, requestedNumber);
   }
 
-  private Statistics(List<Entry> entries) {
+  private Statistics(ImmutableList<Entry> entries) {
     this.entries = entries;
   }
 
