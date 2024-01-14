@@ -100,7 +100,7 @@ public class VocabularyActivity extends AppCompatActivity {
       return;
     }
     questionsRemainingView.setText(vocabularyChecker.questionsRemaining() + " questions remain:");
-    questionView.setText(vocabularyChecker.nextQuestion());
+    questionView.setText(vocabularyChecker.currentQuestion());
     statusView.setText(statusViewText);
   }
 }

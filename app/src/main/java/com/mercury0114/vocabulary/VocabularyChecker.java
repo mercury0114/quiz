@@ -69,7 +69,7 @@ public class VocabularyChecker {
     return questionAnswerList.size();
   }
 
-  public String nextQuestion() throws NoQuestionsException {
+  public String currentQuestion() throws NoQuestionsException {
     if (questionAnswerList.size() == 0) {
       throw new NoQuestionsException();
     }
