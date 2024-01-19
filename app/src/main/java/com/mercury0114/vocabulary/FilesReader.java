@@ -42,9 +42,6 @@ public class FilesReader {
 
   public static ImmutableList<String> readLinesAndSort(File file) {
     List<String> lines = readFileContent(file.getPath());
-    if (lines.isEmpty()) {
-      throw new EmptyFileException(file.getPath());
-    }
     sort(lines);
     return ImmutableList.copyOf(lines);
   }

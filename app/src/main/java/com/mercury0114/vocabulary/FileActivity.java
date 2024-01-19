@@ -139,6 +139,7 @@ public class FileActivity extends AppCompatActivity {
     ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
     intent.putExtra("TEXTS", texts);
     intent.putExtra("COLUMN", column.name());
+    intent.putExtra("PATH", filePath);
     return intent;
   }
 

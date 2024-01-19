@@ -1,7 +1,9 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
+import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
+import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -16,25 +18,38 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class VocabularyActivity extends AppCompatActivity {
+  private Column column;
+  private VocabularyChecker vocabularyChecker;
+  private Statistics statistics;
   private TextView questionsRemainingView;
   private TextView questionView;
   private TextView statusView;
-  private VocabularyChecker vocabularyChecker;
-  private Statistics statistics;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.file_layout);
     ImmutableList<String> texts = getTextsPassedFromParentActivity();
-    Column column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     VocabularyCheckerModel viewModel =
         new ViewModelProvider(this).get(VocabularyCheckerModel.class);
+    this.column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     this.vocabularyChecker = viewModel.createOrGetChecker(column, texts);
-    this.statistics = prepareStatistics(texts, column);
+
+    String statisticsPath = computeStatisticsFilePath();
+    if (!Files.exists(Paths.get(statisticsPath))) {
+      createFile(Paths.get(statisticsPath));
+    }
+
+    this.statistics = gatherStatistics(texts);
     this.questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     this.questionView = (TextView) findViewById(R.id.question_view_id);
     this.statusView = (TextView) findViewById(R.id.status_view_id);
@@ -54,8 +69,10 @@ public class VocabularyActivity extends AppCompatActivity {
           public boolean onKey(View view, int keyCode, KeyEvent event) {
             if ((event.getAction() == KeyEvent.ACTION_DOWN)
                 && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+              String questionBeforeCheckingAnswer = vocabularyChecker.currentQuestion();
               AnswerStatus answerStatus =
                   vocabularyChecker.checkAnswer(editText.getText().toString());
+              statistics.updateOneStatisticsEntry(questionBeforeCheckingAnswer, answerStatus);
               editText.getText().clear();
               updateTextViews(getStatusViewText(answerStatus));
               return true;
@@ -63,18 +80,6 @@ public class VocabularyActivity extends AppCompatActivity {
             return false;
           }
         });
-  }
-
-  private Statistics prepareStatistics(ImmutableList<String> texts, Column column) {
-    ImmutableList<QuestionAnswer> questionsAnswers =
-        texts.stream().map(text -> extractQuestionAnswer(text, column)).collect(toImmutableList());
-    ImmutableList<String> questions =
-        questionsAnswers.stream().map(qa -> qa.question).collect(toImmutableList());
-    ImmutableList<StatisticsEntry> entries =
-        questions.stream()
-            .map(question -> new StatisticsEntry(question, 0, 0, 0))
-            .collect(toImmutableList());
-    return new Statistics(entries);
   }
 
   private ImmutableList<String> getTextsPassedFromParentActivity() {
@@ -96,11 +101,72 @@ public class VocabularyActivity extends AppCompatActivity {
 
   private void updateTextViews(String statusViewText) {
     if (vocabularyChecker.questionsRemaining() == 0) {
+      saveStatisticsToFile();
       finish();
       return;
     }
     questionsRemainingView.setText(vocabularyChecker.questionsRemaining() + " questions remain:");
     questionView.setText(vocabularyChecker.currentQuestion());
     statusView.setText(statusViewText);
+  }
+
+  private Statistics gatherStatistics(ImmutableList<String> texts) {
+    ImmutableList<String> questions =
+        texts.stream()
+            .map(text -> extractQuestionAnswer(text, column).question)
+            .collect(toImmutableList());
+    ImmutableList<String> currentStatisticsFileLines =
+        FilesReader.readLinesAndSort(new File(computeStatisticsFilePath()));
+    ImmutableList<StatisticsEntry> existingEntries =
+        currentStatisticsFileLines.stream()
+            .map(line -> createStatisticsEntry(line))
+            .collect(toImmutableList());
+    ImmutableList<StatisticsEntry> entryForEachQuestion =
+        questions.stream()
+            .map(question -> findEntryOrEmpty(question, existingEntries))
+            .collect(toImmutableList());
+    return new Statistics(entryForEachQuestion);
+  }
+
+  private static StatisticsEntry findEntryOrEmpty(
+      String question, ImmutableList<StatisticsEntry> entries) {
+    return entries.stream()
+        .filter(entry -> entry.question().equals(question))
+        .collect(toOptional())
+        .orElse(new StatisticsEntry(question, 0, 0, 0));
+  }
+
+  private String computeStatisticsFilePath() {
+    String vocabularyFilePath = getIntent().getStringExtra("PATH");
+    return String.format("%s_statistics_%s", vocabularyFilePath, this.column.name());
+  }
+
+  private void saveStatisticsToFile() {
+    String vocabularyFilePath = getIntent().getStringExtra("PATH");
+    String statisticsPath = computeStatisticsFilePath();
+    ImmutableList<String> currentVocabularyFileLines =
+        FilesReader.readLinesAndSort(new File(vocabularyFilePath));
+    ImmutableList<String> currentStatisticsFileLines =
+        FilesReader.readLinesAndSort(new File(statisticsPath));
+    ImmutableList<String> updatedStatisticsFileLines =
+        statistics.prepareUpdatedStatisticsFileLines(
+            this.column, currentVocabularyFileLines, currentStatisticsFileLines);
+    updateFile(statisticsPath, updatedStatisticsFileLines);
+  }
+
+  private void createFile(Path path) {
+    try {
+      Files.createFile(path);
+    } catch (IOException exception) {
+      throw new RuntimeException("Cannot create a statistics file");
+    }
+  }
+
+  private void updateFile(String filePath, ImmutableList<String> newLines) {
+    try {
+      Files.write(Paths.get(filePath), newLines, StandardCharsets.UTF_8);
+    } catch (IOException exception) {
+      throw new RuntimeException("Failed to update the file contents", exception);
+    }
   }
 }

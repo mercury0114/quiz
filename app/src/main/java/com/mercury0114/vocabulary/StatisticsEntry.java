@@ -10,8 +10,15 @@ class StatisticsEntry {
   private int closeCount = 0;
   private int wrongCount = 0;
 
+  StatisticsEntry(String question, int correctCount, int closeCount, int wrongCount) {
+    this.question = question;
+    this.correctCount = correctCount;
+    this.closeCount = closeCount;
+    this.wrongCount = wrongCount;
+  }
+
   static StatisticsEntry createStatisticsEntry(String fileLine) {
-    Pattern pattern = Pattern.compile("(.+) \\| correct=(\\d+) \\| close=(\\d+) \\| wrong=(\\d+)");
+    Pattern pattern = Pattern.compile("(.+) \\| correct=(\\d+), close=(\\d+), wrong=(\\d+)");
     Matcher matcher = pattern.matcher(fileLine);
     assert (matcher.find());
     String question = matcher.group(1);
@@ -21,11 +28,9 @@ class StatisticsEntry {
     return new StatisticsEntry(question, correctCount, closeCount, wrongCount);
   }
 
-  StatisticsEntry(String question, int correctCount, int closeCount, int wrongCount) {
-    this.question = question;
-    this.correctCount = correctCount;
-    this.closeCount = closeCount;
-    this.wrongCount = wrongCount;
+  String convertToFileLine() {
+    return String.format(
+        "%s | correct=%d, close=%d, wrong=%d", question, correctCount, closeCount, wrongCount);
   }
 
   String question() {

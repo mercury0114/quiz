@@ -1,6 +1,5 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.EmptyFileException;
 import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
@@ -53,12 +52,6 @@ public class FilesReaderUnitTest {
     assertEquals(names.get(0), "a");
     assertEquals(names.get(1), "b");
     assertEquals(names.get(2), "c");
-  }
-
-  @Test
-  public void readLinesAndSort_emptyFile_throwsException() throws IOException {
-    File file = temporaryFolder.newFile("file.txt");
-    assertThrows(EmptyFileException.class, () -> readLinesAndSort(file));
   }
 
   @Test
