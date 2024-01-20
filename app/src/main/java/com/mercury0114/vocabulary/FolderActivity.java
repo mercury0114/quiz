@@ -34,6 +34,7 @@ public class FolderActivity extends AppCompatActivity {
     configureFolderNameTextView();
     configureNewFileButton();
     configureNewFolderButton();
+    configureShowStatisticsButton();
     configureDeleteFolderButton();
 
     LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.folder_main_view_id);
@@ -96,6 +97,16 @@ public class FolderActivity extends AppCompatActivity {
             intent.putExtra("PATH", newFolderPath);
             startActivity(intent);
           }
+        });
+  }
+
+  private void configureShowStatisticsButton() {
+    Button button = findViewById(R.id.show_statistics_button_id);
+    button.setTextColor(Color.YELLOW);
+    button.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {}
         });
   }
 
