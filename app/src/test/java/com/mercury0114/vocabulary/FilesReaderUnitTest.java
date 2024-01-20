@@ -2,7 +2,9 @@ package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
+import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -65,5 +67,12 @@ public class FilesReaderUnitTest {
     ImmutableList<String> lines = readLinesAndSort(file);
     assertEquals(lines.get(0), "question0, answer0");
     assertEquals(lines.get(1), "question1, answer1");
+  }
+
+  @Test
+  public void computeStatisticsFilePath_concatenatesStringsCorrectly() {
+    assertEquals("file.txt_statistics_LEFT", computeStatisticsFilePath("file.txt", Column.LEFT));
+    assertEquals("file.txt_statistics_RIGHT", computeStatisticsFilePath("file.txt", Column.RIGHT));
+    assertEquals("other.txt_statistics_LEFT", computeStatisticsFilePath("other.txt", Column.LEFT));
   }
 }

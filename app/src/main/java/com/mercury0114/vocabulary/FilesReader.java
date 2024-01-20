@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
+import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static java.util.Collections.sort;
 
 import com.google.common.collect.ImmutableList;
@@ -29,21 +30,25 @@ public class FilesReader {
     }
   }
 
-  public static final ImmutableList<String> GetFilesNames(String name) {
+  static final ImmutableList<String> GetFilesNames(String name) {
     return GetFilesNames(new File(name));
   }
 
-  public static final ImmutableList<String> GetFilesNames(File folder) {
+  static final ImmutableList<String> GetFilesNames(File folder) {
     if (!folder.isDirectory()) {
       throw new FileNotFolderException(folder.getName());
     }
     return Stream.of(folder.listFiles()).map(File::getName).sorted().collect(toImmutableList());
   }
 
-  public static ImmutableList<String> readLinesAndSort(File file) {
+  static ImmutableList<String> readLinesAndSort(File file) {
     List<String> lines = readFileContent(file.getPath());
     sort(lines);
     return ImmutableList.copyOf(lines);
+  }
+
+  static String computeStatisticsFilePath(String vocabularyFilePath, Column column) {
+    return String.format("%s_%s_%s", vocabularyFilePath, "statistics", column.toString());
   }
 
   private static List<String> readFileContent(String filePath) {

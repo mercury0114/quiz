@@ -2,6 +2,7 @@ package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
+import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
@@ -45,9 +46,9 @@ public class VocabularyActivity extends AppCompatActivity {
     this.column = Column.valueOf(getIntent().getStringExtra("COLUMN"));
     this.vocabularyChecker = viewModel.createOrGetChecker(column, texts);
 
-    String statisticsPath = computeStatisticsFilePath();
-    if (!Files.exists(Paths.get(statisticsPath))) {
-      createFile(Paths.get(statisticsPath));
+    String statisticsFilePath = computeStatisticsPath();
+    if (!Files.exists(Paths.get(statisticsFilePath))) {
+      createFile(Paths.get(statisticsFilePath));
     }
     this.statistics = gatherStatistics(texts);
 
@@ -117,7 +118,7 @@ public class VocabularyActivity extends AppCompatActivity {
             .map(text -> extractQuestionAnswer(text, column).question)
             .collect(toImmutableList());
     ImmutableList<String> currentStatisticsFileLines =
-        FilesReader.readLinesAndSort(new File(computeStatisticsFilePath()));
+        FilesReader.readLinesAndSort(new File(computeStatisticsPath()));
     ImmutableList<StatisticsEntry> existingEntries =
         currentStatisticsFileLines.stream()
             .map(line -> createStatisticsEntry(line))
@@ -137,14 +138,14 @@ public class VocabularyActivity extends AppCompatActivity {
         .orElse(createEmptyStatisticsEntry(question));
   }
 
-  private String computeStatisticsFilePath() {
+  private String computeStatisticsPath() {
     String vocabularyFilePath = getIntent().getStringExtra("PATH");
-    return String.format("%s_statistics_%s", vocabularyFilePath, this.column.name());
+    return computeStatisticsFilePath(vocabularyFilePath, this.column);
   }
 
   private void saveStatisticsToFile() {
     String vocabularyFilePath = getIntent().getStringExtra("PATH");
-    String statisticsPath = computeStatisticsFilePath();
+    String statisticsPath = computeStatisticsPath();
     ImmutableList<String> currentVocabularyFileLines =
         FilesReader.readLinesAndSort(new File(vocabularyFilePath));
     ImmutableList<String> currentStatisticsFileLines =

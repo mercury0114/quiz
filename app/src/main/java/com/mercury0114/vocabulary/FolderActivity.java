@@ -101,12 +101,19 @@ public class FolderActivity extends AppCompatActivity {
   }
 
   private void configureShowStatisticsButton() {
+    String showText = "Show Hidden Statistics Files";
+    String hideText = "Hide Statistics Files";
+
     Button button = findViewById(R.id.show_statistics_button_id);
+    button.setText(showText);
     button.setTextColor(Color.YELLOW);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
-          public void onClick(View v) {}
+          public void onClick(View v) {
+            String text = button.getText().toString();
+            button.setText(text.equals(showText) ? hideText : showText);
+          }
         });
   }
 
