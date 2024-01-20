@@ -22,6 +22,14 @@ public class Statistics {
     this.statisticsEntries = statisticsEntries;
   }
 
+  static Statistics createStatisticsFromLines(ImmutableList<String> fileLines) {
+    ImmutableList<StatisticsEntry> entries =
+        fileLines.stream()
+            .map(fileLine -> createStatisticsEntry(fileLine))
+            .collect(toImmutableList());
+    return new Statistics(entries);
+  }
+
   ImmutableList<String> getHardestQuestions(int requestedNumber) {
     assert (statisticsEntries.size() >= requestedNumber) : "Requested more questions than we have";
     ImmutableList<String> questions =
