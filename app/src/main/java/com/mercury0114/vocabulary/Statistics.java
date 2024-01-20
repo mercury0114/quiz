@@ -5,10 +5,13 @@ import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.findEntryOrEmptyEntry;
+import static java.util.Collections.sort;
 
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 
 public class Statistics {
@@ -23,7 +26,20 @@ public class Statistics {
     assert (statisticsEntries.size() >= requestedNumber) : "Requested more questions than we have";
     ImmutableList<String> questions =
         statisticsEntries.stream().map(entry -> entry.question()).collect(toImmutableList());
-    return questions.subList(0, requestedNumber);
+    ImmutableList<String> hardestQuestions =
+        sortEntriesHardestFirst().stream()
+            .map(entry -> entry.question())
+            .collect(toImmutableList());
+    return hardestQuestions.subList(0, requestedNumber);
+  }
+
+  private ImmutableList<StatisticsEntry> sortEntriesHardestFirst() {
+    Comparator<StatisticsEntry> comparator =
+        Comparator.comparingInt(
+            entry -> entry.correctCount() - entry.closeCount() * 2 - entry.wrongCount() * 4);
+    ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
+    sort(entriesToSort, comparator);
+    return ImmutableList.copyOf(entriesToSort);
   }
 
   void updateOneStatisticsEntry(String question, AnswerStatus answerStatus) {

@@ -24,8 +24,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FolderActivity extends AppCompatActivity {
-  private static final String SHOW_STATISTICS_FILES = "Show Hidden Statistics Files";
   private static final String HIDE_STATISTICS_FILES = "Hide Statistics Files";
+  private static final String SHOW_STATISTICS_FILES = "Show Hidden Statistics Files";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class FolderActivity extends AppCompatActivity {
     configureNewFolderButton();
     configureShowStatisticsButton();
     configureDeleteFolderButton();
-    updateFilesDisplay(SHOW_STATISTICS_FILES);
+    updateFilesDisplay(HIDE_STATISTICS_FILES);
   }
 
   private ImmutableList<Button> getButtonsToDisplay(String displayOption) {
@@ -124,7 +124,7 @@ public class FolderActivity extends AppCompatActivity {
 
   private void configureShowStatisticsButton() {
     Button button = findViewById(R.id.show_statistics_button_id);
-    button.setText(SHOW_STATISTICS_FILES);
+    button.setText(HIDE_STATISTICS_FILES);
     button.setTextColor(Color.YELLOW);
     button.setOnClickListener(
         new OnClickListener() {
@@ -132,7 +132,7 @@ public class FolderActivity extends AppCompatActivity {
           public void onClick(View v) {
             String text = button.getText().toString();
             button.setText(
-                text.equals(SHOW_STATISTICS_FILES) ? HIDE_STATISTICS_FILES : SHOW_STATISTICS_FILES);
+                text.equals(HIDE_STATISTICS_FILES) ? SHOW_STATISTICS_FILES : HIDE_STATISTICS_FILES);
             updateFilesDisplay(button.getText().toString());
           }
         });

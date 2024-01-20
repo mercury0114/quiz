@@ -45,6 +45,45 @@ public class StatisticsTest {
   }
 
   @Test
+  public void
+      getHardestQuestions_secondQuestionIsObviouslyHarderThanFirst_putsSecondQuestionFirst() {
+    StatisticsEntry entry1 = createStatisticsEntry("question1 | correct=3, close=1, wrong=1");
+    StatisticsEntry entry2 = createStatisticsEntry("question2 | correct=4, close=10, wrong=20");
+
+    Statistics statistics = new Statistics(ImmutableList.of(entry1, entry2));
+
+    assertEquals(
+        ImmutableList.of("question2", "question1"),
+        statistics.getHardestQuestions(/* requestedNumber= */ 2));
+  }
+
+  @Test
+  public void
+      getHardestQuestions_firstQuestionIsObviouslyHarderThanSecond_putsFirstQuestionFirst() {
+    StatisticsEntry entry1 = createStatisticsEntry("question1 | correct=4, close=10, wrong=20");
+    StatisticsEntry entry2 = createStatisticsEntry("question2 | correct=3, close=1, wrong=1");
+
+    Statistics statistics = new Statistics(ImmutableList.of(entry1, entry2));
+
+    assertEquals(
+        ImmutableList.of("question1", "question2"),
+        statistics.getHardestQuestions(/* requestedNumber= */ 2));
+  }
+
+  @Test
+  public void getHardestQuestions_whenQuestionsOrderIsKnownMathematically_returnsSortedQuestions() {
+    StatisticsEntry entry1 = createStatisticsEntry("question1 | correct=4, close=1, wrong=1");
+    StatisticsEntry entry2 = createStatisticsEntry("question2 | correct=4, close=1, wrong=2");
+    StatisticsEntry entry3 = createStatisticsEntry("question3 | correct=4, close=1, wrong=3");
+
+    Statistics statistics = new Statistics(ImmutableList.of(entry1, entry2, entry3));
+
+    assertEquals(
+        ImmutableList.of("question3", "question2", "question1"),
+        statistics.getHardestQuestions(/* requestedNumber= */ 3));
+  }
+
+  @Test
   public void updateOneStatisticsEntry_requestingToUpdateNonExistingEntry_throwsException() {
     Statistics statistics =
         new Statistics(ImmutableList.of(createEmptyStatisticsEntry("question")));
