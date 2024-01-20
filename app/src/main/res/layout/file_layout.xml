@@ -4,24 +4,41 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
-  <TextView android:id="@+id/questions_remaining_id"
+  <EditText android:id="@+id/file_name_edit_text_id"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_marginLeft="8dp"
-  android:layout_marginBottom="40dp" android:textSize="25dp" />
-  <TextView android:id="@+id/question_view_id"
+  android:layout_marginLeft="10dp" android:layout_marginTop="10dp"
+  android:layout_marginBottom="10dp" android:textSize="25dp" />
+  <Button android:id="@+id/left_column_button_id"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_marginLeft="8dp"
-  android:layout_marginBottom="40dp" android:textSize="35dp" />
-  <Button android:id="@+id/reveal_answer_button_id"
+  android:text="Check Left Column" />
+  <Button android:id="@+id/right_column_button_id"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_marginBottom="8dp" android:text="Reveal Answer" />
-  <EditText android:id="@+id/text_input_id"
-  android:layout_width="match_parent" android:layout_height="100dp"
-  android:inputType="text" />
-  <TextView android:id="@+id/status_view_id"
+  android:text="Check Right Column" />
+  <Button android:id="@+id/both_columns_button_id"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content" android:textSize="25dp" />
+  android:layout_height="wrap_content"
+  android:text="Check Both Columns" />
+  <Button android:id="@+id/custom_left_column_button_id"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:text="Check Left Column Custom Words" />
+  <Button android:id="@+id/custom_right_column_button_id"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:text="Check Right Column Custom Words" />
+  <Button android:id="@+id/weakest_words_left_column_button_id"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:text="Check Left Column Weakest Words" />
+  <Button android:id="@+id/edit_content_button_id"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:text="View or Edit Content" />
+  <Button android:id="@+id/delete_file_button_id"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginTop="60dp" android:text="Delete file" />
 </LinearLayout>

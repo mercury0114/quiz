@@ -27,7 +27,7 @@ public class FileActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.choices_layout);
+    setContentView(R.layout.file_layout);
     String filePath = getIntent().getStringExtra("PATH");
     this.initialFileName = new File(filePath).getName();
     this.fileNameEditText = prepareFileNameEditText(initialFileName);

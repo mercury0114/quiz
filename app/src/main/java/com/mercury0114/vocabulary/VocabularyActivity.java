@@ -38,7 +38,7 @@ public class VocabularyActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.file_layout);
+    setContentView(R.layout.vocabulary_layout);
     ImmutableList<String> texts = getTextsPassedFromParentActivity();
     VocabularyCheckerModel viewModel =
         new ViewModelProvider(this).get(VocabularyCheckerModel.class);
