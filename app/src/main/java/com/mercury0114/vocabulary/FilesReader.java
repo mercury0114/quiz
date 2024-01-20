@@ -51,6 +51,10 @@ public class FilesReader {
     return String.format("%s_%s_%s", vocabularyFilePath, "statistics", column.toString());
   }
 
+  static boolean isStatisticsFile(String fileName) {
+    return fileName.contains("_statistics_LEFT") || fileName.contains("_statistics_RIGHT");
+  }
+
   private static List<String> readFileContent(String filePath) {
     Path path = Paths.get(filePath);
     try {

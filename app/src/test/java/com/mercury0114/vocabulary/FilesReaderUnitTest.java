@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
 import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesReader.isStatisticsFile;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static org.junit.Assert.assertEquals;
@@ -74,5 +75,30 @@ public class FilesReaderUnitTest {
     assertEquals("file.txt_statistics_LEFT", computeStatisticsFilePath("file.txt", Column.LEFT));
     assertEquals("file.txt_statistics_RIGHT", computeStatisticsFilePath("file.txt", Column.RIGHT));
     assertEquals("other.txt_statistics_LEFT", computeStatisticsFilePath("other.txt", Column.LEFT));
+  }
+
+  @Test
+  public void isStatisticsFile_returnsTrueForStatisticsFile() {
+    assertEquals(true, isStatisticsFile("file.txt_statistics_LEFT"));
+    assertEquals(true, isStatisticsFile("file.txt_statistics_RIGHT"));
+    assertEquals(true, isStatisticsFile("other_file.txt_statistics_LEFT"));
+    assertEquals(true, isStatisticsFile("other_file.txt_statistics_RIGHT"));
+    assertEquals(true, isStatisticsFile("path/to/file.txt_statistics_LEFT"));
+    assertEquals(true, isStatisticsFile("path/to/file.txt_statistics_RIGHT"));
+  }
+
+  @Test
+  public void isStatisticsFile_returnsFalseForRegularFile() {
+    assertEquals(false, isStatisticsFile("file.txt"));
+    assertEquals(false, isStatisticsFile("path/to/file.txt"));
+    assertEquals(false, isStatisticsFile("path/to/file_with_underscores.txt"));
+  }
+
+  @Test
+  public void isStatisticsFile_returnsFalseToMalformedStatisticsFilePath() {
+    assertEquals(false, isStatisticsFile("file.txt_statistics_BOTH"));
+    assertEquals(false, isStatisticsFile("file.txt_stats_LEFT"));
+    assertEquals(false, isStatisticsFile("file.txt_LEFT_statistics"));
+    assertEquals(false, isStatisticsFile("path/to/file.txt_LEFT_statistic"));
   }
 }
