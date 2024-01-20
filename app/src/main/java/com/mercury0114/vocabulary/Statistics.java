@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
+import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 
 import com.google.common.collect.ImmutableList;
@@ -60,10 +61,7 @@ public class Statistics {
 
   private static StatisticsEntry oldEntryOrEmptyEntry(
       String question, ImmutableList<StatisticsEntry> oldStatisticsEntries) {
-    return findEntry(question, oldStatisticsEntries)
-        .orElse(
-            new StatisticsEntry(
-                question, /* correctCount= */ 0, /* closeCount= */ 0, /* wrongCount= */ 0));
+    return findEntry(question, oldStatisticsEntries).orElse(createEmptyStatisticsEntry(question));
   }
 
   private static Optional<StatisticsEntry> findEntry(

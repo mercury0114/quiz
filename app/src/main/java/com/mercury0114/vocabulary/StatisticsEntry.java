@@ -17,6 +17,11 @@ class StatisticsEntry {
     this.wrongCount = wrongCount;
   }
 
+  static StatisticsEntry createEmptyStatisticsEntry(String question) {
+    return new StatisticsEntry(
+        question, /* correctCount= */ 0, /* closeCount= */ 0, /* wrongCount= */ 0);
+  }
+
   static StatisticsEntry createStatisticsEntry(String fileLine) {
     Pattern pattern = Pattern.compile("(.+) \\| correct=(\\d+), close=(\\d+), wrong=(\\d+)");
     Matcher matcher = pattern.matcher(fileLine);

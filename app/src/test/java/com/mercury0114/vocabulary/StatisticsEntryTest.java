@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -36,6 +37,15 @@ public class StatisticsEntryTest {
     assertThrows(
         AssertionError.class,
         () -> createStatisticsEntry("question | correct=1, wrong=2, close=3"));
+  }
+
+  @Test
+  public void createEmptyStatisticsEntry_setsAllCountersToZero() {
+    StatisticsEntry entry = createEmptyStatisticsEntry("question");
+
+    assertEquals(0, entry.correctCount());
+    assertEquals(0, entry.closeCount());
+    assertEquals(0, entry.wrongCount());
   }
 
   @Test

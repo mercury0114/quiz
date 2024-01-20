@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
+import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 
 import android.os.Bundle;
@@ -133,7 +134,7 @@ public class VocabularyActivity extends AppCompatActivity {
     return entries.stream()
         .filter(entry -> entry.question().equals(question))
         .collect(toOptional())
-        .orElse(new StatisticsEntry(question, 0, 0, 0));
+        .orElse(createEmptyStatisticsEntry(question));
   }
 
   private String computeStatisticsFilePath() {
