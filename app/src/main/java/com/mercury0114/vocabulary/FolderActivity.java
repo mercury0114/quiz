@@ -1,7 +1,9 @@
 package com.mercury0114.vocabulary;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
 import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
+import static com.mercury0114.vocabulary.FilesReader.isStatisticsFile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,6 +24,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FolderActivity extends AppCompatActivity {
+  private static final String SHOW_STATISTICS_FILES = "Show Hidden Statistics Files";
+  private static final String HIDE_STATISTICS_FILES = "Hide Statistics Files";
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,11 +41,28 @@ public class FolderActivity extends AppCompatActivity {
     configureNewFolderButton();
     configureShowStatisticsButton();
     configureDeleteFolderButton();
+    updateFilesDisplay(SHOW_STATISTICS_FILES);
+  }
 
-    LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.folder_main_view_id);
-    for (String name : GetFilesNames(getFolderPath())) {
-      Button button =
-          isFileName(name) ? createExistingFileButton(name) : createExistingFolderButton(name);
+  private ImmutableList<Button> getButtonsToDisplay(String displayOption) {
+    ImmutableList<String> fileNamesToDisplay =
+        GetFilesNames(getFolderPath()).stream()
+            .filter(name -> !isStatisticsFile(name) || displayOption.equals(SHOW_STATISTICS_FILES))
+            .collect(toImmutableList());
+    return fileNamesToDisplay.stream()
+        .map(
+            name ->
+                isFileName(name)
+                    ? createExistingFileButton(name)
+                    : createExistingFolderButton(name))
+        .collect(toImmutableList());
+  }
+
+  private void updateFilesDisplay(String displayOption) {
+    ImmutableList<Button> buttons = getButtonsToDisplay(displayOption);
+    LinearLayout dynamicHolder = (LinearLayout) findViewById(R.id.display_files_id);
+    dynamicHolder.removeAllViews();
+    for (Button button : buttons) {
       dynamicHolder.addView(button);
     }
   }
@@ -101,18 +123,17 @@ public class FolderActivity extends AppCompatActivity {
   }
 
   private void configureShowStatisticsButton() {
-    String showText = "Show Hidden Statistics Files";
-    String hideText = "Hide Statistics Files";
-
     Button button = findViewById(R.id.show_statistics_button_id);
-    button.setText(showText);
+    button.setText(SHOW_STATISTICS_FILES);
     button.setTextColor(Color.YELLOW);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
           public void onClick(View v) {
             String text = button.getText().toString();
-            button.setText(text.equals(showText) ? hideText : showText);
+            button.setText(
+                text.equals(SHOW_STATISTICS_FILES) ? HIDE_STATISTICS_FILES : SHOW_STATISTICS_FILES);
+            updateFilesDisplay(button.getText().toString());
           }
         });
   }
