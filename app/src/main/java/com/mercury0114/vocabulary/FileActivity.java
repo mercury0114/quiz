@@ -59,6 +59,11 @@ public class FileActivity extends AppCompatActivity {
     weakestWordsLeftColumnButton.setOnClickListener(
         createWeakestWordsColumnButtonListener(Column.LEFT, filePath));
 
+    final Button weakestWordsRightColumnButton =
+        findViewById(R.id.weakest_words_right_column_button_id);
+    weakestWordsRightColumnButton.setOnClickListener(
+        createWeakestWordsColumnButtonListener(Column.RIGHT, filePath));
+
     final Button editContentButton = findViewById(R.id.edit_content_button_id);
     editContentButton.setOnClickListener(createEditContentButtonListener(filePath));
 
