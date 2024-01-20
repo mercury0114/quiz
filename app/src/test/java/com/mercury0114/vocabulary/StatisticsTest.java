@@ -1,5 +1,6 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -14,7 +15,8 @@ public class StatisticsTest {
 
   @Test
   public void getHardestQuestions_requestedTooManyQuestions_throwsIllegalStateException() {
-    Statistics statistics = new Statistics(ImmutableList.of(createEntry("question1")));
+    Statistics statistics =
+        new Statistics(ImmutableList.of(createEmptyStatisticsEntry("question1")));
 
     assertThrows(
         AssertionError.class, () -> statistics.getHardestQuestions(/* requestedNumber= */ 2));
@@ -23,7 +25,9 @@ public class StatisticsTest {
   @Test
   public void getHardestQuestions_requestedAllQuestions_returnsAllQuestions() {
     Statistics statistics =
-        new Statistics(ImmutableList.of(createEntry("question1"), createEntry("question2")));
+        new Statistics(
+            ImmutableList.of(
+                createEmptyStatisticsEntry("question1"), createEmptyStatisticsEntry("question2")));
 
     assertEquals(
         statistics.getHardestQuestions(/* requestedNumber= */ 2),
@@ -33,14 +37,17 @@ public class StatisticsTest {
   @Test
   public void getHardestQuestions_statisticsHasMoreQuestionsThanRequested_returnsRequestedNumber() {
     Statistics statistics =
-        new Statistics(ImmutableList.of(createEntry("question1"), createEntry("question2")));
+        new Statistics(
+            ImmutableList.of(
+                createEmptyStatisticsEntry("question1"), createEmptyStatisticsEntry("question2")));
 
     assertEquals(statistics.getHardestQuestions(/* requestedNumber= */ 1).size(), 1);
   }
 
   @Test
   public void updateOneStatisticsEntry_requestingToUpdateNonExistingEntry_throwsException() {
-    Statistics statistics = new Statistics(ImmutableList.of(createEntry("question")));
+    Statistics statistics =
+        new Statistics(ImmutableList.of(createEmptyStatisticsEntry("question")));
 
     assertThrows(
         NoSuchElementException.class,
@@ -125,7 +132,8 @@ public class StatisticsTest {
   }
 
   @Test
-  public void prepareUpdatedStatisticsFileLines_oldAndCurrentStatsHasVocabLine_returnsCurrent() {
+  public void
+      prepareUpdatedStatisticsFileLines_oldAndCurrentStatsHasVocabLine_returnsCurrentStat() {
     ImmutableList<String> vocabulary = ImmutableList.of("question | answer");
     ImmutableList<String> oldStatistics =
         ImmutableList.of("question | correct=1, close=2, wrong=3");
@@ -137,9 +145,5 @@ public class StatisticsTest {
         currentStatistics.prepareUpdatedStatisticsFileLines(Column.LEFT, vocabulary, oldStatistics);
 
     assertEquals(ImmutableList.of("question | correct=4, close=5, wrong=6"), updatedStatistics);
-  }
-
-  private StatisticsEntry createEntry(String question) {
-    return createStatisticsEntry(String.format("%s | correct=0, close=0, wrong=0", question));
   }
 }
