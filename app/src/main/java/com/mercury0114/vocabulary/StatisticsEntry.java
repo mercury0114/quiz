@@ -1,5 +1,8 @@
 package com.mercury0114.vocabulary;
 
+import static com.google.common.collect.MoreCollectors.toOptional;
+
+import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +34,14 @@ class StatisticsEntry {
     int closeCount = Integer.parseInt(matcher.group(3));
     int wrongCount = Integer.parseInt(matcher.group(4));
     return new StatisticsEntry(question, correctCount, closeCount, wrongCount);
+  }
+
+  static StatisticsEntry findEntryOrEmptyEntry(
+      String question, ImmutableList<StatisticsEntry> entries) {
+    return entries.stream()
+        .filter(entry -> entry.question().equals(question))
+        .collect(toOptional())
+        .orElse(createEmptyStatisticsEntry(question));
   }
 
   String convertToFileLine() {

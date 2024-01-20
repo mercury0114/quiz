@@ -49,8 +49,8 @@ public class VocabularyActivity extends AppCompatActivity {
     if (!Files.exists(Paths.get(statisticsPath))) {
       createFile(Paths.get(statisticsPath));
     }
-
     this.statistics = gatherStatistics(texts);
+
     this.questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
     this.questionView = (TextView) findViewById(R.id.question_view_id);
     this.statusView = (TextView) findViewById(R.id.status_view_id);

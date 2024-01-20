@@ -3,8 +3,8 @@ package com.mercury0114.vocabulary;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
-import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
+import static com.mercury0114.vocabulary.StatisticsEntry.findEntryOrEmptyEntry;
 
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
@@ -27,7 +27,7 @@ public class Statistics {
   }
 
   void updateOneStatisticsEntry(String question, AnswerStatus answerStatus) {
-    StatisticsEntry entryMatchingQuestion = findEntry(question, this.statisticsEntries).get();
+    StatisticsEntry entryMatchingQuestion = findEntry(question).get();
     entryMatchingQuestion.incrementCounter(answerStatus);
   }
 
@@ -55,18 +55,11 @@ public class Statistics {
 
   private StatisticsEntry returnMostUpToDateStatisticsEntry(
       String question, ImmutableList<StatisticsEntry> oldStatisticsEntries) {
-    return findEntry(question, this.statisticsEntries)
-        .orElse(oldEntryOrEmptyEntry(question, oldStatisticsEntries));
+    return findEntry(question).orElse(findEntryOrEmptyEntry(question, oldStatisticsEntries));
   }
 
-  private static StatisticsEntry oldEntryOrEmptyEntry(
-      String question, ImmutableList<StatisticsEntry> oldStatisticsEntries) {
-    return findEntry(question, oldStatisticsEntries).orElse(createEmptyStatisticsEntry(question));
-  }
-
-  private static Optional<StatisticsEntry> findEntry(
-      String question, ImmutableList<StatisticsEntry> entries) {
-    return entries.stream()
+  private Optional<StatisticsEntry> findEntry(String question) {
+    return this.statisticsEntries.stream()
         .filter(entry -> entry.question().equals(question))
         .collect(toOptional());
   }
