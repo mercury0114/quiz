@@ -14,12 +14,12 @@ import org.junit.Test;
 public class StatisticsTest {
 
   @Test
-  public void getHardestQuestions_requestedTooManyQuestions_throwsIllegalStateException() {
+  public void getHardestQuestions_requestedMoreQuestionsThanHave_returnsAllQuestions() {
     Statistics statistics =
         new Statistics(ImmutableList.of(createEmptyStatisticsEntry("question1")));
 
-    assertThrows(
-        AssertionError.class, () -> statistics.getHardestQuestions(/* requestedNumber= */ 2));
+    assertEquals(
+        ImmutableList.of("question1"), statistics.getHardestQuestions(/* requestedNumber= */ 2));
   }
 
   @Test

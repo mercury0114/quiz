@@ -31,14 +31,13 @@ public class Statistics {
   }
 
   ImmutableList<String> getHardestQuestions(int requestedNumber) {
-    assert (statisticsEntries.size() >= requestedNumber) : "Requested more questions than we have";
     ImmutableList<String> questions =
         statisticsEntries.stream().map(entry -> entry.question()).collect(toImmutableList());
     ImmutableList<String> hardestQuestions =
         sortEntriesHardestFirst().stream()
             .map(entry -> entry.question())
             .collect(toImmutableList());
-    return hardestQuestions.subList(0, requestedNumber);
+    return hardestQuestions.subList(0, Math.min(hardestQuestions.size(), requestedNumber));
   }
 
   private ImmutableList<StatisticsEntry> sortEntriesHardestFirst() {

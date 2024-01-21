@@ -121,7 +121,7 @@ public class FileActivity extends AppCompatActivity {
             FilesReader.readLinesAndSort(new File(computeStatisticsFilePath(filePath, column)));
         Statistics statistics = createStatisticsFromLines(statisticsFileLines);
         ImmutableList<String> hardestQuestions =
-            statistics.getHardestQuestions(/* requestedNumber= */ Math.min(texts.size(), 5));
+            statistics.getHardestQuestions(/* requestedNumber= */ 10);
         ImmutableList<String> textsToAsk =
             texts.stream()
                 .filter(
