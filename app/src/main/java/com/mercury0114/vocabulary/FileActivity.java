@@ -71,6 +71,15 @@ public class FileActivity extends AppCompatActivity {
     deleteFileButton.setOnClickListener(createDeleteFileListener(filePath));
   }
 
+  @Override
+  protected void onPause() {
+    String newFileName = fileNameEditText.getText().toString();
+    if (!newFileName.equals(initialFileName)) {
+      renameFile(newFileName);
+    }
+    super.onPause();
+  }
+
   private EditText prepareFileNameEditText(String initialFileName) {
     EditText editText = (EditText) findViewById(R.id.file_name_edit_text_id);
     editText.setText(initialFileName);
@@ -182,15 +191,6 @@ public class FileActivity extends AppCompatActivity {
     intent.putExtra("COLUMN", column.name());
     intent.putExtra("PATH", filePath);
     return intent;
-  }
-
-  @Override
-  protected void onPause() {
-    String newFileName = fileNameEditText.getText().toString();
-    if (!newFileName.equals(initialFileName)) {
-      renameFile(newFileName);
-    }
-    super.onPause();
   }
 
   private void renameFile(String newFileName) {
