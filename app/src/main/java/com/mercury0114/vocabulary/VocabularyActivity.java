@@ -84,6 +84,12 @@ public class VocabularyActivity extends AppCompatActivity {
         });
   }
 
+  @Override
+  public void onStop() {
+    saveStatisticsToFile();
+    super.onStop();
+  }
+
   private ImmutableList<String> getTextsPassedFromParentActivity() {
     ArrayList<String> texts = (ArrayList<String>) getIntent().getSerializableExtra("TEXTS");
     return ImmutableList.copyOf(texts);

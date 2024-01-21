@@ -27,6 +27,11 @@ public class FolderActivity extends AppCompatActivity {
   private static final String HIDE_STATISTICS_FILES = "Hide Statistics Files";
   private static final String SHOW_STATISTICS_FILES = "Show Hidden Statistics Files";
 
+  private enum DisplayOption {
+    SHOW_STATISTICS_FILES,
+    HIDE_STATISTICS_FILES,
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -39,9 +44,9 @@ public class FolderActivity extends AppCompatActivity {
     configureFolderNameTextView();
     configureNewFileButton();
     configureNewFolderButton();
-    configureShowStatisticsButton();
+    configureShowStatisticsButton(/* oppositeDisplayOption= */ SHOW_STATISTICS_FILES);
+    updateFilesDisplay(/* displayOption= */ HIDE_STATISTICS_FILES);
     configureDeleteFolderButton();
-    updateFilesDisplay(HIDE_STATISTICS_FILES);
   }
 
   private ImmutableList<Button> getButtonsToDisplay(String displayOption) {
@@ -122,18 +127,22 @@ public class FolderActivity extends AppCompatActivity {
         });
   }
 
-  private void configureShowStatisticsButton() {
+  private void configureShowStatisticsButton(String oppositeDisplayOption) {
     Button button = findViewById(R.id.show_statistics_button_id);
-    button.setText(HIDE_STATISTICS_FILES);
+    button.setText(oppositeDisplayOption);
     button.setTextColor(Color.YELLOW);
     button.setOnClickListener(
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            String text = button.getText().toString();
-            button.setText(
-                text.equals(HIDE_STATISTICS_FILES) ? SHOW_STATISTICS_FILES : HIDE_STATISTICS_FILES);
-            updateFilesDisplay(button.getText().toString());
+            String chosenDisplayOption = button.getText().toString();
+            if (chosenDisplayOption.equals(HIDE_STATISTICS_FILES)) {
+              updateFilesDisplay(HIDE_STATISTICS_FILES);
+              button.setText(SHOW_STATISTICS_FILES);
+            } else {
+              updateFilesDisplay(SHOW_STATISTICS_FILES);
+              button.setText(HIDE_STATISTICS_FILES);
+            }
           }
         });
   }
