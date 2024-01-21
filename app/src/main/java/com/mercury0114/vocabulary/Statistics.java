@@ -43,10 +43,18 @@ public class Statistics {
   private ImmutableList<StatisticsEntry> sortEntriesHardestFirst() {
     Comparator<StatisticsEntry> comparator =
         Comparator.comparingInt(
-            entry -> entry.correctCount() - entry.closeCount() * 2 - entry.wrongCount() * 4);
+            entry ->
+                penaltyIfEmptyEntry(entry)
+                    + entry.correctCount()
+                    - entry.closeCount() * 2
+                    - entry.wrongCount() * 4);
     ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
     sort(entriesToSort, comparator);
     return ImmutableList.copyOf(entriesToSort);
+  }
+
+  private static int penaltyIfEmptyEntry(StatisticsEntry entry) {
+    return entry.correctCount() + entry.closeCount() + entry.wrongCount() == 0 ? -1000000 : 0;
   }
 
   void updateOneStatisticsEntry(String question, AnswerStatus answerStatus) {

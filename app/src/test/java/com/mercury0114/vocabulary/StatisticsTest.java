@@ -45,6 +45,19 @@ public class StatisticsTest {
   }
 
   @Test
+  public void getHardestQuestions_considersNewQuestionHarderThanAlreadyAttemptedQuestion() {
+    StatisticsEntry oldEntry =
+        createStatisticsEntry("old_question | correct=1, close=10, wrong=10");
+    StatisticsEntry newEntry = createEmptyStatisticsEntry("new_question");
+
+    Statistics statistics = new Statistics(ImmutableList.of(oldEntry, newEntry));
+
+    assertEquals(
+        ImmutableList.of("new_question", "old_question"),
+        statistics.getHardestQuestions(/* requestedNumber= */ 2));
+  }
+
+  @Test
   public void
       getHardestQuestions_secondQuestionIsObviouslyHarderThanFirst_putsSecondQuestionFirst() {
     StatisticsEntry entry1 = createStatisticsEntry("question1 | correct=3, close=1, wrong=1");
