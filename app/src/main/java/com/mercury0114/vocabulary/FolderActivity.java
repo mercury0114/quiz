@@ -27,11 +27,6 @@ public class FolderActivity extends AppCompatActivity {
   private static final String HIDE_STATISTICS_FILES = "Hide Statistics Files";
   private static final String SHOW_STATISTICS_FILES = "Show Hidden Statistics Files";
 
-  private enum DisplayOption {
-    SHOW_STATISTICS_FILES,
-    HIDE_STATISTICS_FILES,
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
