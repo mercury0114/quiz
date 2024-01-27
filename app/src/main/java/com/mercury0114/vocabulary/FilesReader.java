@@ -77,11 +77,14 @@ public class FilesReader {
     switch (column) {
       case LEFT:
         checkNoDuplicateStrings(questions);
+        break;
       case RIGHT:
         checkNoDuplicateStrings(answers);
+        break;
       case BOTH:
         checkNoDuplicateStrings(questions);
         checkNoDuplicateStrings(answers);
+        break;
     }
     try {
       Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
