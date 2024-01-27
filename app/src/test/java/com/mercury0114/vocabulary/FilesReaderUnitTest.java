@@ -105,14 +105,30 @@ public class FilesReaderUnitTest {
   }
 
   @Test
-  public void writeToFile_duplicateQuestions_throwsException() {
+  public void writeToFile_checkEnabledForLeftColumn_duplicateQuestions_throwsException() {
     ImmutableList<String> lines = ImmutableList.of("question | answer1", "question | answer2");
-    assertThrows(DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines));
+    assertThrows(
+        DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines, Column.LEFT));
   }
 
   @Test
-  public void writeToFile_duplicateAnswers_throwsException() {
+  public void writeToFile_checkEnabledForRightColumn_duplicateAnswers_throwsException() {
     ImmutableList<String> lines = ImmutableList.of("question1 | answer", "question2 | answer");
-    assertThrows(DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines));
+    assertThrows(
+        DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines, Column.RIGHT));
+  }
+
+  @Test
+  public void writeToFile_checkEnabledForBothColumns_duplicateQuestions_throwsException() {
+    ImmutableList<String> lines = ImmutableList.of("question | answer1", "question | answer2");
+    assertThrows(
+        DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines, Column.BOTH));
+  }
+
+  @Test
+  public void writeToFile_checkEnabledForBothColumns_duplicateAnswers_throwsException() {
+    ImmutableList<String> lines = ImmutableList.of("question1 | answer", "question2 | answer");
+    assertThrows(
+        DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines, Column.BOTH));
   }
 }

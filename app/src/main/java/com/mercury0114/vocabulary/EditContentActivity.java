@@ -2,6 +2,7 @@ package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
 import static com.mercury0114.vocabulary.FilesReader.writeToFile;
+import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 
@@ -38,7 +39,7 @@ public class EditContentActivity extends AppCompatActivity {
   protected void onStop() {
     ImmutableList<String> newLines = getNonEmptyLines();
     if (!newLines.equals(initialLinesFromFile)) {
-      writeToFile(getIntent().getStringExtra("PATH"), newLines);
+      writeToFile(getIntent().getStringExtra("PATH"), newLines, Column.BOTH);
     }
     super.onStop();
   }

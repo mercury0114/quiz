@@ -64,14 +64,25 @@ public class FilesReader {
     return fileName.contains("_statistics_LEFT") || fileName.contains("_statistics_RIGHT");
   }
 
-  static void writeToFile(String filePath, ImmutableList<String> lines) {
+  static void writeToFile(String filePath, ImmutableList<String> lines, Column column) {
     ImmutableList<QuestionAnswer> entries =
         lines.stream()
             .map(line -> extractQuestionAnswer(line, Column.LEFT))
             .collect(toImmutableList());
-    checkNoDuplicateStrings(
-        entries.stream().map(entry -> entry.question).collect(toImmutableList()));
-    checkNoDuplicateStrings(entries.stream().map(entry -> entry.answer).collect(toImmutableList()));
+
+    ImmutableList<String> questions =
+        entries.stream().map(entry -> entry.question).collect(toImmutableList());
+    ImmutableList<String> answers =
+        entries.stream().map(entry -> entry.answer).collect(toImmutableList());
+    switch (column) {
+      case LEFT:
+        checkNoDuplicateStrings(questions);
+      case RIGHT:
+        checkNoDuplicateStrings(answers);
+      case BOTH:
+        checkNoDuplicateStrings(questions);
+        checkNoDuplicateStrings(answers);
+    }
     try {
       Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
     } catch (IOException exception) {

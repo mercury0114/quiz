@@ -159,7 +159,7 @@ public class VocabularyActivity extends AppCompatActivity {
     ImmutableList<String> updatedStatisticsFileLines =
         statistics.prepareUpdatedStatisticsFileLines(
             this.column, currentVocabularyFileLines, currentStatisticsFileLines);
-    writeToFile(statisticsPath, updatedStatisticsFileLines);
+    writeToFile(statisticsPath, updatedStatisticsFileLines, Column.LEFT);
   }
 
   private void createFile(Path path) {
