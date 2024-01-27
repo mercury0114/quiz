@@ -1,7 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
-import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.Statistics.createStatisticsFromLines;
 
@@ -102,7 +102,7 @@ public class FileActivity extends AppCompatActivity {
   private OnClickListener createColumnButtonListener(Column column, String filePath) {
     return new OnClickListener() {
       public void onClick(View view) {
-        ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
+        ImmutableList<String> texts = FilesManager.readLinesAndSort(new File(filePath));
         Intent intent = buildIntentForVocabularyActivity(column, filePath, texts);
         startActivity(intent);
       }
@@ -121,13 +121,13 @@ public class FileActivity extends AppCompatActivity {
   private OnClickListener createWeakestWordsColumnButtonListener(Column column, String filePath) {
     return new OnClickListener() {
       public void onClick(View view) {
-        ImmutableList<String> texts = FilesReader.readLinesAndSort(new File(filePath));
+        ImmutableList<String> texts = FilesManager.readLinesAndSort(new File(filePath));
         ImmutableList<QuestionAnswer> questions =
             texts.stream()
                 .map(text -> extractQuestionAnswer(text, column))
                 .collect(toImmutableList());
         ImmutableList<String> statisticsFileLines =
-            FilesReader.readLinesAndSort(new File(computeStatisticsFilePath(filePath, column)));
+            FilesManager.readLinesAndSort(new File(computeStatisticsFilePath(filePath, column)));
         Statistics statistics = createStatisticsFromLines(statisticsFileLines);
         ImmutableList<String> hardestQuestions =
             statistics.getHardestQuestions(/* requestedNumber= */ 10);

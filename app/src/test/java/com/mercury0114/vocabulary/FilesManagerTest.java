@@ -1,12 +1,12 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.DuplicateStringException;
-import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
-import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
-import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
-import static com.mercury0114.vocabulary.FilesReader.isStatisticsFile;
-import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
-import static com.mercury0114.vocabulary.FilesReader.writeToFile;
+import static com.mercury0114.vocabulary.FilesManager.DuplicateStringException;
+import static com.mercury0114.vocabulary.FilesManager.FileNotFolderException;
+import static com.mercury0114.vocabulary.FilesManager.GetFilesNames;
+import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesManager.isStatisticsFile;
+import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
+import static com.mercury0114.vocabulary.FilesManager.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -22,7 +22,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class FilesReaderUnitTest {
+public class FilesManagerTest {
   @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   @Test

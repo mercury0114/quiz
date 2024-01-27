@@ -2,8 +2,8 @@ package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
-import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
-import static com.mercury0114.vocabulary.FilesReader.writeToFile;
+import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesManager.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
@@ -124,7 +124,7 @@ public class VocabularyActivity extends AppCompatActivity {
             .map(text -> extractQuestionAnswer(text, column).question)
             .collect(toImmutableList());
     ImmutableList<String> currentStatisticsFileLines =
-        FilesReader.readLinesAndSort(new File(computeStatisticsPath()));
+        FilesManager.readLinesAndSort(new File(computeStatisticsPath()));
     ImmutableList<StatisticsEntry> existingEntries =
         currentStatisticsFileLines.stream()
             .map(line -> createStatisticsEntry(line))
@@ -153,9 +153,9 @@ public class VocabularyActivity extends AppCompatActivity {
     String vocabularyFilePath = getIntent().getStringExtra("PATH");
     String statisticsPath = computeStatisticsPath();
     ImmutableList<String> currentVocabularyFileLines =
-        FilesReader.readLinesAndSort(new File(vocabularyFilePath));
+        FilesManager.readLinesAndSort(new File(vocabularyFilePath));
     ImmutableList<String> currentStatisticsFileLines =
-        FilesReader.readLinesAndSort(new File(statisticsPath));
+        FilesManager.readLinesAndSort(new File(statisticsPath));
     ImmutableList<String> updatedStatisticsFileLines =
         statistics.prepareUpdatedStatisticsFileLines(
             this.column, currentVocabularyFileLines, currentStatisticsFileLines);

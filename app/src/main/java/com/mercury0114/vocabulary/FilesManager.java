@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class FilesReader {
+public class FilesManager {
   public static final String VOCABULARY_PATH =
       "/storage/emulated/0/Download/com.mercury0114.vocabulary/vocabulary/";
 

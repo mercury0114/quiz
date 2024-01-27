@@ -1,6 +1,6 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.TextSelector.DEFAULT_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.extractChosenTexts;

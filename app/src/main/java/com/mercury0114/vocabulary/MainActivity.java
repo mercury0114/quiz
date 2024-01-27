@@ -1,6 +1,6 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
+import static com.mercury0114.vocabulary.FilesManager.VOCABULARY_PATH;
 
 import android.content.Intent;
 import android.os.Bundle;

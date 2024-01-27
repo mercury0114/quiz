@@ -1,9 +1,9 @@
 package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
-import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
-import static com.mercury0114.vocabulary.FilesReader.VOCABULARY_PATH;
-import static com.mercury0114.vocabulary.FilesReader.isStatisticsFile;
+import static com.mercury0114.vocabulary.FilesManager.GetFilesNames;
+import static com.mercury0114.vocabulary.FilesManager.VOCABULARY_PATH;
+import static com.mercury0114.vocabulary.FilesManager.isStatisticsFile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -145,7 +145,7 @@ public class FolderActivity extends AppCompatActivity {
   private void configureDeleteFolderButton() {
     Button button = findViewById(R.id.delete_folder_button_id);
     String folderPath = getFolderPath();
-    if (FilesReader.GetFilesNames(folderPath).size() > 0 || folderPath.equals(VOCABULARY_PATH)) {
+    if (FilesManager.GetFilesNames(folderPath).size() > 0 || folderPath.equals(VOCABULARY_PATH)) {
       button.setVisibility(View.GONE);
     }
     button.setOnClickListener(

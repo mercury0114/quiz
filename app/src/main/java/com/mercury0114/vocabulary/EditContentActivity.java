@@ -1,7 +1,7 @@
 package com.mercury0114.vocabulary;
 
-import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
-import static com.mercury0114.vocabulary.FilesReader.writeToFile;
+import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
+import static com.mercury0114.vocabulary.FilesManager.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
