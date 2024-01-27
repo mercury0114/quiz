@@ -3,6 +3,7 @@ package com.mercury0114.vocabulary;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.MoreCollectors.toOptional;
 import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesReader.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.StatisticsEntry.createEmptyStatisticsEntry;
 import static com.mercury0114.vocabulary.StatisticsEntry.createStatisticsEntry;
@@ -22,7 +23,6 @@ import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -159,7 +159,7 @@ public class VocabularyActivity extends AppCompatActivity {
     ImmutableList<String> updatedStatisticsFileLines =
         statistics.prepareUpdatedStatisticsFileLines(
             this.column, currentVocabularyFileLines, currentStatisticsFileLines);
-    updateFile(statisticsPath, updatedStatisticsFileLines);
+    writeToFile(statisticsPath, updatedStatisticsFileLines);
   }
 
   private void createFile(Path path) {
@@ -167,14 +167,6 @@ public class VocabularyActivity extends AppCompatActivity {
       Files.createFile(path);
     } catch (IOException exception) {
       throw new RuntimeException("Cannot create a statistics file");
-    }
-  }
-
-  private void updateFile(String filePath, ImmutableList<String> newLines) {
-    try {
-      Files.write(Paths.get(filePath), newLines, StandardCharsets.UTF_8);
-    } catch (IOException exception) {
-      throw new RuntimeException("Failed to update the file contents", exception);
     }
   }
 }

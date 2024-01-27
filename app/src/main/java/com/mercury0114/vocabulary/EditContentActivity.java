@@ -1,6 +1,7 @@
 package com.mercury0114.vocabulary;
 
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.FilesReader.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 
@@ -16,10 +17,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.common.collect.ImmutableList;
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class EditContentActivity extends AppCompatActivity {
   private static final int EXTRA_BLANK_LINES = 10;
@@ -41,18 +38,9 @@ public class EditContentActivity extends AppCompatActivity {
   protected void onStop() {
     ImmutableList<String> newLines = getNonEmptyLines();
     if (!newLines.equals(initialLinesFromFile)) {
-      updateFile(newLines);
+      writeToFile(getIntent().getStringExtra("PATH"), newLines);
     }
     super.onStop();
-  }
-
-  private void updateFile(ImmutableList<String> newLines) {
-    String filePath = getIntent().getStringExtra("PATH");
-    try {
-      Files.write(Paths.get(filePath), newLines, StandardCharsets.UTF_8);
-    } catch (IOException exception) {
-      throw new RuntimeException("Failed to update the file contents", exception);
-    }
   }
 
   private void configureContentTextViews() {
