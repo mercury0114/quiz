@@ -1,10 +1,12 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.FilesReader.DuplicateStringException;
 import static com.mercury0114.vocabulary.FilesReader.FileNotFolderException;
 import static com.mercury0114.vocabulary.FilesReader.GetFilesNames;
 import static com.mercury0114.vocabulary.FilesReader.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.FilesReader.isStatisticsFile;
 import static com.mercury0114.vocabulary.FilesReader.readLinesAndSort;
+import static com.mercury0114.vocabulary.FilesReader.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -100,5 +102,17 @@ public class FilesReaderUnitTest {
     assertEquals(false, isStatisticsFile("file.txt_stats_LEFT"));
     assertEquals(false, isStatisticsFile("file.txt_LEFT_statistics"));
     assertEquals(false, isStatisticsFile("path/to/file.txt_LEFT_statistic"));
+  }
+
+  @Test
+  public void writeToFile_duplicateQuestions_throwsException() {
+    ImmutableList<String> lines = ImmutableList.of("question | answer1", "question | answer2");
+    assertThrows(DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines));
+  }
+
+  @Test
+  public void writeToFile_duplicateAnswers_throwsException() {
+    ImmutableList<String> lines = ImmutableList.of("question1 | answer", "question2 | answer");
+    assertThrows(DuplicateStringException.class, () -> writeToFile("/tmp/file.txt", lines));
   }
 }

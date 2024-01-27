@@ -2,6 +2,7 @@ package com.mercury0114.vocabulary;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
+import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static java.util.Collections.sort;
 
 import com.google.common.collect.ImmutableList;
@@ -11,7 +12,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class FilesReader {
@@ -27,6 +30,12 @@ public class FilesReader {
   public static class EmptyFileException extends RuntimeException {
     private EmptyFileException(String filePath) {
       super(filePath);
+    }
+  }
+
+  public static class DuplicateStringException extends RuntimeException {
+    private DuplicateStringException(String string) {
+      super("Duplicate string found: " + string);
     }
   }
 
@@ -53,6 +62,31 @@ public class FilesReader {
 
   static boolean isStatisticsFile(String fileName) {
     return fileName.contains("_statistics_LEFT") || fileName.contains("_statistics_RIGHT");
+  }
+
+  static void writeToFile(String filePath, ImmutableList<String> lines) {
+    ImmutableList<QuestionAnswer> entries =
+        lines.stream()
+            .map(line -> extractQuestionAnswer(line, Column.LEFT))
+            .collect(toImmutableList());
+    checkNoDuplicateStrings(
+        entries.stream().map(entry -> entry.question).collect(toImmutableList()));
+    checkNoDuplicateStrings(entries.stream().map(entry -> entry.answer).collect(toImmutableList()));
+    try {
+      Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
+    } catch (IOException exception) {
+      throw new RuntimeException("Failed to update the file contents", exception);
+    }
+  }
+
+  private static void checkNoDuplicateStrings(ImmutableList<String> strings) {
+    Set<String> uniqueStrings = new HashSet<>();
+    for (String string : strings) {
+      if (uniqueStrings.contains(string)) {
+        throw new DuplicateStringException(string);
+      }
+      uniqueStrings.add(string);
+    }
   }
 
   private static List<String> readFileContent(String filePath) {
