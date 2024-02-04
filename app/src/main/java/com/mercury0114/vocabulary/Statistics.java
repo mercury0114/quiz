@@ -46,7 +46,7 @@ public class Statistics {
             entry ->
                 penaltyIfEmptyEntry(entry)
                     + entry.correctCount()
-                    - entry.closeCount() * 2
+                    - entry.closeCount()
                     - entry.wrongCount() * 4);
     ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
     sort(entriesToSort, comparator);
