@@ -22,10 +22,6 @@ import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class VocabularyActivity extends AppCompatActivity {
@@ -47,9 +43,7 @@ public class VocabularyActivity extends AppCompatActivity {
     this.vocabularyChecker = viewModel.createOrGetChecker(column, texts);
 
     String statisticsFilePath = computeStatisticsPath();
-    if (!Files.exists(Paths.get(statisticsFilePath))) {
-      createFile(Paths.get(statisticsFilePath));
-    }
+    FilesManager.createFileIfDoesNotExist(statisticsFilePath);
     this.statistics = gatherStatistics(texts);
 
     this.questionsRemainingView = (TextView) findViewById(R.id.questions_remaining_id);
@@ -160,13 +154,5 @@ public class VocabularyActivity extends AppCompatActivity {
         statistics.prepareUpdatedStatisticsFileLines(
             this.column, currentVocabularyFileLines, currentStatisticsFileLines);
     writeToFile(statisticsPath, updatedStatisticsFileLines, Column.LEFT);
-  }
-
-  private void createFile(Path path) {
-    try {
-      Files.createFile(path);
-    } catch (IOException exception) {
-      throw new RuntimeException("Cannot create a statistics file");
-    }
   }
 }

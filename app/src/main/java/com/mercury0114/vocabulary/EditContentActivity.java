@@ -1,10 +1,13 @@
 package com.mercury0114.vocabulary;
 
+import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
+import static com.mercury0114.vocabulary.FilesManager.isStatisticsFile;
 import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
 import static com.mercury0114.vocabulary.FilesManager.writeToFile;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
+import static com.mercury0114.vocabulary.Statistics.createStatisticsFromLines;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -37,11 +40,29 @@ public class EditContentActivity extends AppCompatActivity {
 
   @Override
   protected void onStop() {
-    ImmutableList<String> newLines = getNonEmptyLines();
-    if (!newLines.equals(initialLinesFromFile)) {
-      writeToFile(getIntent().getStringExtra("PATH"), newLines, Column.BOTH);
+    ImmutableList<String> newVocabularyLines = getNonEmptyLines();
+    String vocabularyPath = getIntent().getStringExtra("PATH");
+    if (!newVocabularyLines.equals(initialLinesFromFile)) {
+      writeToFile(vocabularyPath, newVocabularyLines, Column.BOTH);
+    }
+    if (!isStatisticsFile(vocabularyPath)) {
+      updateStatisticsFile(vocabularyPath, newVocabularyLines, Column.LEFT);
+      updateStatisticsFile(vocabularyPath, newVocabularyLines, Column.RIGHT);
     }
     super.onStop();
+  }
+
+  private void updateStatisticsFile(
+      String vocabularyPath, ImmutableList<String> newVocabularyLines, Column column) {
+    String statisticsPath = computeStatisticsFilePath(vocabularyPath, column);
+    FilesManager.createFileIfDoesNotExist(statisticsPath);
+    ImmutableList<String> oldStatisticsFileLines =
+        FilesManager.readLinesAndSort(new File(statisticsPath));
+    Statistics statistics = createStatisticsFromLines(oldStatisticsFileLines);
+    ImmutableList<String> updatedStatisticsFileLines =
+        statistics.prepareUpdatedStatisticsFileLines(
+            column, newVocabularyLines, oldStatisticsFileLines);
+    writeToFile(statisticsPath, updatedStatisticsFileLines, Column.LEFT);
   }
 
   private void configureContentTextViews() {

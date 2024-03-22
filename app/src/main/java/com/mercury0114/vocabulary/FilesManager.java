@@ -39,6 +39,18 @@ public class FilesManager {
     }
   }
 
+  public static void createFileIfDoesNotExist(String filePath) {
+    Path path = Paths.get(filePath);
+    if (Files.exists(path)) {
+      return;
+    }
+    try {
+      Files.createFile(path);
+    } catch (IOException exception) {
+      throw new RuntimeException(exception);
+    }
+  }
+
   static final ImmutableList<String> GetFilesNames(String name) {
     return GetFilesNames(new File(name));
   }

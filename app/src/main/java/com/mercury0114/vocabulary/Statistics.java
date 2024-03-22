@@ -44,17 +44,17 @@ public class Statistics {
     Comparator<StatisticsEntry> comparator =
         Comparator.comparingInt(
             entry ->
-                penaltyIfEmptyEntry(entry)
-                    + entry.correctCount()
+                entry.correctCount()
                     - entry.closeCount()
-                    - entry.wrongCount() * 4);
+                    - entry.wrongCount() * 4
+                    - penaltyIfEmptyEntry(entry));
     ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
     sort(entriesToSort, comparator);
     return ImmutableList.copyOf(entriesToSort);
   }
 
   private static int penaltyIfEmptyEntry(StatisticsEntry entry) {
-    return entry.correctCount() + entry.closeCount() + entry.wrongCount() == 0 ? -1000000 : 0;
+    return entry.correctCount() + entry.closeCount() + entry.wrongCount() == 0 ? 1000000 : 0;
   }
 
   void updateOneStatisticsEntry(String question, AnswerStatus answerStatus) {
