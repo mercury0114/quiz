@@ -44,9 +44,9 @@ public class Statistics {
     Comparator<StatisticsEntry> comparator =
         Comparator.comparingInt(
             entry ->
-                entry.correctCount()
+                entry.correctCount() * 2
                     - entry.closeCount()
-                    - entry.wrongCount() * 4
+                    - entry.wrongCount() * 5
                     - penaltyIfEmptyEntry(entry));
     ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
     sort(entriesToSort, comparator);
