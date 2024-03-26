@@ -23,8 +23,6 @@ import com.google.common.collect.ImmutableList;
 import java.io.File;
 
 public class EditContentActivity extends AppCompatActivity {
-  private static final int EXTRA_BLANK_LINES = 10;
-
   private ImmutableList<String> initialLinesFromFile;
 
   @Override
@@ -67,14 +65,11 @@ public class EditContentActivity extends AppCompatActivity {
 
   private void configureContentTextViews() {
     LinearLayout layout = (LinearLayout) findViewById(R.id.edit_content_id);
+    addTwoStringsToLayout(layout, ImmutableList.of("", ""), 0);
     for (int qaNumber = 1; qaNumber <= initialLinesFromFile.size(); qaNumber++) {
       String line = initialLinesFromFile.get(qaNumber - 1);
       ImmutableList<String> twoStrings = splitIntoTwoStrings(line);
       addTwoStringsToLayout(layout, twoStrings, qaNumber);
-    }
-    for (int blankQaNumber = 1; blankQaNumber <= EXTRA_BLANK_LINES; blankQaNumber++) {
-      int blankLineIndex = initialLinesFromFile.size() + blankQaNumber;
-      addTwoStringsToLayout(layout, ImmutableList.of("", ""), blankLineIndex);
     }
   }
 
