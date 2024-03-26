@@ -4,6 +4,7 @@ import static com.google.common.collect.MoreCollectors.toOptional;
 
 import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,5 +78,18 @@ class StatisticsEntry {
         wrongCount++;
         return;
     }
+  }
+
+  public static Comparator<StatisticsEntry> getComparator() {
+    return Comparator.comparingInt(
+        entry ->
+            entry.correctCount() * 2
+                - entry.closeCount()
+                - entry.wrongCount() * 5
+                - penaltyIfEmptyEntry(entry));
+  }
+
+  private static int penaltyIfEmptyEntry(StatisticsEntry entry) {
+    return entry.correctCount() + entry.closeCount() + entry.wrongCount() == 0 ? 1000000 : 0;
   }
 }

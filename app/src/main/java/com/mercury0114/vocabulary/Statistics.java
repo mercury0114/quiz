@@ -11,7 +11,6 @@ import com.google.common.collect.ImmutableList;
 import com.mercury0114.vocabulary.QuestionAnswer.AnswerStatus;
 import com.mercury0114.vocabulary.QuestionAnswer.Column;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Optional;
 
 public class Statistics {
@@ -41,15 +40,8 @@ public class Statistics {
   }
 
   private ImmutableList<StatisticsEntry> sortEntriesHardestFirst() {
-    Comparator<StatisticsEntry> comparator =
-        Comparator.comparingInt(
-            entry ->
-                entry.correctCount() * 2
-                    - entry.closeCount()
-                    - entry.wrongCount() * 5
-                    - penaltyIfEmptyEntry(entry));
     ArrayList<StatisticsEntry> entriesToSort = new ArrayList<>(this.statisticsEntries);
-    sort(entriesToSort, comparator);
+    sort(entriesToSort, StatisticsEntry.getComparator());
     return ImmutableList.copyOf(entriesToSort);
   }
 
