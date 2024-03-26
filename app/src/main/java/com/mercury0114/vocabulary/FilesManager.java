@@ -64,7 +64,11 @@ public class FilesManager {
 
   static ImmutableList<String> readLinesAndSort(File file) {
     List<String> lines = readFileContent(file.getPath());
-    sort(lines);
+    if (!isStatisticsFile(file.getPath())) {
+      sort(lines);
+    } else {
+      sort(lines, StatisticsEntry.getComparatorForStatisticsLine());
+    }
     return ImmutableList.copyOf(lines);
   }
 

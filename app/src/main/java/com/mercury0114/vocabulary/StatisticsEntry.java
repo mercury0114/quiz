@@ -80,13 +80,19 @@ class StatisticsEntry {
     }
   }
 
-  public static Comparator<StatisticsEntry> getComparator() {
-    return Comparator.comparingInt(
-        entry ->
-            entry.correctCount() * 2
-                - entry.closeCount()
-                - entry.wrongCount() * 5
-                - penaltyIfEmptyEntry(entry));
+  public static Comparator<StatisticsEntry> getComparatorForStatisticsEntry() {
+    return Comparator.comparingInt(entry -> computeScore(entry));
+  }
+
+  public static Comparator<String> getComparatorForStatisticsLine() {
+    return Comparator.comparingInt(line -> computeScore(createStatisticsEntry(line)));
+  }
+
+  private static int computeScore(StatisticsEntry entry) {
+    return entry.correctCount() * 2
+        - entry.closeCount()
+        - entry.wrongCount() * 5
+        - penaltyIfEmptyEntry(entry);
   }
 
   private static int penaltyIfEmptyEntry(StatisticsEntry entry) {
