@@ -6,7 +6,6 @@ import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
 import static com.mercury0114.vocabulary.FilesManager.writeToFile;
 import static com.mercury0114.vocabulary.LinesCreator.createLinesFromPhrases;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
-import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
 import static com.mercury0114.vocabulary.Statistics.createStatisticsFromLines;
 
@@ -70,12 +69,7 @@ public class EditContentActivity extends AppCompatActivity {
     LinearLayout layout = (LinearLayout) findViewById(R.id.edit_content_id);
     for (int qaNumber = 1; qaNumber <= initialLinesFromFile.size(); qaNumber++) {
       String line = initialLinesFromFile.get(qaNumber - 1);
-      ImmutableList<String> twoStrings;
-      try {
-        twoStrings = splitIntoTwoStrings(line);
-      } catch (WronglyFormattedLineException exception) {
-        twoStrings = ImmutableList.of(line, "");
-      }
+      ImmutableList<String> twoStrings = splitIntoTwoStrings(line);
       addTwoStringsToLayout(layout, twoStrings, qaNumber);
     }
     for (int blankQaNumber = 1; blankQaNumber <= EXTRA_BLANK_LINES; blankQaNumber++) {
