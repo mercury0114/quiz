@@ -4,6 +4,7 @@ import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.FilesManager.isStatisticsFile;
 import static com.mercury0114.vocabulary.FilesManager.readLinesAndSort;
 import static com.mercury0114.vocabulary.FilesManager.writeToFile;
+import static com.mercury0114.vocabulary.LinesCreator.createLinesFromPhrases;
 import static com.mercury0114.vocabulary.QuestionAnswer.Column;
 import static com.mercury0114.vocabulary.QuestionAnswer.WronglyFormattedLineException;
 import static com.mercury0114.vocabulary.QuestionAnswer.splitIntoTwoStrings;
@@ -99,17 +100,13 @@ public class EditContentActivity extends AppCompatActivity {
 
   private ImmutableList<String> getNonEmptyLines() {
     LinearLayout linesLayout = (LinearLayout) findViewById(R.id.edit_content_id);
-    ImmutableList.Builder<String> linesBuilder = ImmutableList.builder();
+    ImmutableList.Builder<String> leftPhrases = ImmutableList.builder();
+    ImmutableList.Builder<String> rightPhrases = ImmutableList.builder();
     for (int i = 0; i < linesLayout.getChildCount(); i += 3) {
-      String leftText = ((EditText) linesLayout.getChildAt(i + 1)).getText().toString();
-      String rightText = ((EditText) linesLayout.getChildAt(i + 2)).getText().toString();
-      if (leftText.isEmpty() && rightText.isEmpty()) {
-        continue;
-      }
-      linesBuilder.add(
-          String.format("%s | %s", addWarningIfEmpty(leftText), addWarningIfEmpty(rightText)));
+      leftPhrases.add(((EditText) linesLayout.getChildAt(i + 1)).getText().toString());
+      rightPhrases.add(((EditText) linesLayout.getChildAt(i + 2)).getText().toString());
     }
-    return linesBuilder.build();
+    return createLinesFromPhrases(leftPhrases.build(), rightPhrases.build());
   }
 
   private static String addWarningIfEmpty(String s) {
