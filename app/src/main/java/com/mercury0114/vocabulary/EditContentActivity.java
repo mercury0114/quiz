@@ -109,10 +109,6 @@ public class EditContentActivity extends AppCompatActivity {
     return createLinesFromPhrases(leftPhrases.build(), rightPhrases.build());
   }
 
-  private static String addWarningIfEmpty(String s) {
-    return s.isEmpty() ? "FILL OR CLEAR ROW" : s;
-  }
-
   private EditText createEditText(String line, int colorCode) {
     EditText editText = new EditText(this);
     editText.setText(line);
