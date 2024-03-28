@@ -4,6 +4,7 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.mercury0114.vocabulary.FilesManager.computeStatisticsFilePath;
 import static com.mercury0114.vocabulary.QuestionAnswer.extractQuestionAnswer;
 import static com.mercury0114.vocabulary.Statistics.createStatisticsFromLines;
+import static com.mercury0114.vocabulary.TextSelector.selectRandomlyAtMostKNotChosenTexts;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -131,13 +132,20 @@ public class FileActivity extends AppCompatActivity {
         Statistics statistics = createStatisticsFromLines(statisticsFileLines);
         ImmutableList<String> hardestQuestions =
             statistics.getHardestQuestions(/* requestedNumber= */ 10);
-        ImmutableList<String> textsToAsk =
+        ImmutableList<String> hardestTextsToAsk =
             texts.stream()
                 .filter(
                     text -> hardestQuestions.contains(extractQuestionAnswer(text, column).question))
                 .collect(toImmutableList());
+        ImmutableList<String> additionalRandomTextsToAsk =
+            selectRandomlyAtMostKNotChosenTexts(/* K= */ 2, texts, hardestTextsToAsk);
+        ImmutableList<String> allTextsToAsk =
+            ImmutableList.<String>builder()
+                .addAll(hardestTextsToAsk)
+                .addAll(additionalRandomTextsToAsk)
+                .build();
 
-        Intent intent = buildIntentForVocabularyActivity(column, filePath, textsToAsk);
+        Intent intent = buildIntentForVocabularyActivity(column, filePath, allTextsToAsk);
         startActivity(intent);
       }
     };

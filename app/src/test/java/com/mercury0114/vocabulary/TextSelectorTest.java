@@ -4,8 +4,11 @@ import static com.mercury0114.vocabulary.TextSelector.CHOSEN_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.DEFAULT_COLOR_CODE;
 import static com.mercury0114.vocabulary.TextSelector.extractChosenTexts;
 import static com.mercury0114.vocabulary.TextSelector.getToggledColorCode;
+import static com.mercury0114.vocabulary.TextSelector.selectRandomlyAtMostKNotChosenTexts;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +29,48 @@ public class TextSelectorTest {
   @Rule public MockitoRule rule = MockitoJUnit.rule().strictness(Strictness.LENIENT);
 
   private static final int UNSEEN_COLOR_CODE = 123;
+
+  @Test
+  public void selectRandomlyAtMostKNotChosenTexts_selectsRequestedNumber() {
+    ImmutableList<String> allTexts = ImmutableList.of("first", "second", "third");
+    ImmutableList<String> alreadyChosenTexts = ImmutableList.of("first");
+
+    assertEquals(
+        1, selectRandomlyAtMostKNotChosenTexts(/* K= */ 1, allTexts, alreadyChosenTexts).size());
+    assertEquals(
+        2, selectRandomlyAtMostKNotChosenTexts(/* K= */ 2, allTexts, alreadyChosenTexts).size());
+  }
+
+  @Test
+  public void selectRandomlyAtMostKNotChosenTexts_KLargerThanAvailableTexts_selectsAllAvailable() {
+    ImmutableList<String> allTexts = ImmutableList.of("first", "second", "third");
+    ImmutableList<String> alreadyChosenTexts = ImmutableList.of("first");
+
+    assertEquals(
+        2, selectRandomlyAtMostKNotChosenTexts(/* K= */ 3, allTexts, alreadyChosenTexts).size());
+  }
+
+  @Test
+  public void selectRandomlyAtMostKNotChosenTexts_selectsTextNotInAlreadyChosenTexts() {
+    ImmutableList<String> allTexts = ImmutableList.of("first", "second", "third");
+    ImmutableList<String> alreadyChosenTexts = ImmutableList.of("first");
+
+    String chosenText =
+        selectRandomlyAtMostKNotChosenTexts(/* K= */ 1, allTexts, alreadyChosenTexts).get(0);
+
+    assertFalse(alreadyChosenTexts.contains(chosenText));
+  }
+
+  @Test
+  public void selectRandomlyAtMostKNotChosenTexts_selectedTextInAllTexts() {
+    ImmutableList<String> allTexts = ImmutableList.of("first", "second", "third");
+    ImmutableList<String> alreadyChosenTexts = ImmutableList.of("first");
+
+    String chosenText =
+        selectRandomlyAtMostKNotChosenTexts(/* K= */ 1, allTexts, alreadyChosenTexts).get(0);
+
+    assertTrue(allTexts.contains(chosenText));
+  }
 
   @Test
   public void getToggledColorCode_forDefaultButtonReturnsChosenColorCode() {

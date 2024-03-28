@@ -89,9 +89,8 @@ class StatisticsEntry {
   }
 
   private static int computeScore(StatisticsEntry entry) {
-    return entry.correctCount() * 2
-        - entry.closeCount()
-        - entry.wrongCount() * 5
+    return (entry.correctCount() * 2 - entry.closeCount() - entry.wrongCount() * 5)
+            * entry.correctCount()
         - penaltyIfEmptyEntry(entry);
   }
 

@@ -5,6 +5,9 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 import android.graphics.Color;
 import android.widget.Button;
 import com.google.common.collect.ImmutableList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 final class TextSelector {
   public static class NoChosenTextException extends RuntimeException {}
@@ -27,6 +30,17 @@ final class TextSelector {
       throw new NoChosenTextException();
     }
     return extractAllTexts(chosenButtons);
+  }
+
+  static ImmutableList<String> selectRandomlyAtMostKNotChosenTexts(
+      int K, ImmutableList<String> allTexts, ImmutableList<String> alreadyChosenTexts) {
+    List<String> unchosenTexts =
+        allTexts.stream()
+            .filter(text -> !alreadyChosenTexts.contains(text))
+            .collect(Collectors.toList());
+    Collections.shuffle(unchosenTexts);
+    return ImmutableList.copyOf(
+        unchosenTexts.stream().limit(Math.min(K, unchosenTexts.size())).collect(toImmutableList()));
   }
 
   private static void checkButtonHasValidColor(Button button) {
