@@ -59,17 +59,16 @@ public class QuestionAnswer {
     if (answer.isEmpty()) {
       return AnswerStatus.WRONG;
     }
-    int distance = StringUtils.getLevenshteinDistance(answer, this.answer);
-    if (answer.charAt(answer.length() - 1) == ' ') {
-      distance--;
+    switch (StringUtils.getLevenshteinDistance(StringUtils.removeEnd(answer, " "), this.answer)) {
+      case 0:
+        return AnswerStatus.CORRECT;
+      case 1:
+        return AnswerStatus.CLOSE;
+      case 2:
+        return AnswerStatus.CLOSE;
+      default:
+        return AnswerStatus.WRONG;
     }
-    if (distance == 0) {
-      return AnswerStatus.CORRECT;
-    }
-    if (distance <= 2) {
-      return AnswerStatus.CLOSE;
-    }
-    return AnswerStatus.WRONG;
   }
 
   @Override

@@ -68,6 +68,12 @@ public class QuestionAnswerTest {
   }
 
   @Test
+  public void answerStatus_closeAnswerIgnoringSpace_returnsCloseStatus() {
+    QuestionAnswer qa = new QuestionAnswer("question", "answer");
+    assertEquals(qa.getAnswerStatus("answe "), AnswerStatus.CLOSE);
+  }
+
+  @Test
   public void answerStatus_emptyAnswer_returnsWrongStatus() {
     QuestionAnswer qa = new QuestionAnswer("question", "answer");
     assertEquals(qa.getAnswerStatus(""), AnswerStatus.WRONG);
